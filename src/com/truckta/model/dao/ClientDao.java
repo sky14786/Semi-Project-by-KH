@@ -15,7 +15,7 @@ public class ClientDao {
 
 	public ClientDao() {
 		try {
-			prop.load(new FileReader("resources/ClientQuery.properties"));
+			prop.load(new FileReader("../resources/ClientQuery.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
