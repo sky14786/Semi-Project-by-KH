@@ -1,0 +1,116 @@
+#container {
+  width: 1280px;
+  height: 720px;
+  margin: 0px auto;
+  padding: 20px;
+  font-family: "Do hyeon";
+}
+
+#sidebar-right {
+  width: 160px;
+  padding: 20px;
+  margin-bottom: 20px;
+  float: right;
+  border: 1px solid #bcbcbc;
+}
+
+#header {
+  width: 100%;
+  padding: 20px;
+  height: 80px;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background-color: #bdbdbd;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  position: fixed;
+}
+
+#content {
+  width: 1280px;
+  padding: 20px;
+  padding-top: 100px;
+  margin-left: 0px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  float: left;
+  text-align: center;
+  border: 1px solid #bcbcbc;
+  background-color: #f3f3f3;
+}
+
+#footer {
+  clear: both;
+  width: 1280px;
+  padding: 20px;
+  height: 150px;
+  background-color: #bdbdbd;
+  color: #fff;
+  border: 1px solid #bcbcbc;
+}
+
+.promptText {
+  display: inline;
+  opacity: 0.6;
+  font-family: AppleSDGothicNeo;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.34px;
+  color: #494949;
+}
+
+.temp {
+  margin-left: 140px;
+  width: 1000px;
+  height: 500px;
+  border: solid 3px white;
+  text-align: center;
+}
+
+.shapeRec {
+  margin: 50px;
+  width: 200px;
+  height: 88px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: block;
+  line-height: 88px;
+}
+.shapeKor {
+  display: inline;
+  width: 70px;
+  height: 75px;
+  border: 1px solid grey;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.shapeText {
+  display: inline;
+  font-family: AlteHaasGrotesk_;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -0.96px;
+  text-align: center;
+  color: #000000;
+}
+
+.shapeLText {
+  width: 482px;
+  height: 88px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+td {
+  height: 88px;
+}
+
+tr {
+  height: 100px;
+}
