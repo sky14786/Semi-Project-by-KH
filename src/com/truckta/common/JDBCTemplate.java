@@ -1,7 +1,9 @@
 package com.truckta.common;
 
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,13 +11,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
+
 public class JDBCTemplate {
 	private static Properties prop = new Properties();
 
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			prop.load(new FileReader("../resources/driver.properties"));
+			String path = JDBCTemplate.class.getResource("/").getPath();
+			prop.load(new FileReader(path + "../../resource/driver.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pw"));
