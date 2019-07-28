@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link href="css/signup_main.css?ver1" rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
+	rel="stylesheet" />
+<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<title>SignUp-Main</title>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<h1>Truck~ta</h1>
+		</div>
+
+		<div id="content">
+
+			<p class="promptText">핸드폰 번호를 입력하세요.</p>
+
+			<br />
+			<br />
+			<br />
+			<table class="tableSet">
+				<tr>
+					<td class="shapeText">
+						<form id="sendform" method="post" >
+							<input placeholder="phone number" type="text" id="phone_number"
+								name="phone_number" class="shapeLText"></input>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td class="lastTd"><input type="radio" name="userType"
+						id="isCheck" class="radioType" value="client" />
+						<p class="radioText leftRadio">Client</p> <input type="radio"
+						name="userType" class="radioType" value="driver" />
+						<p class="radioText rightRadio">Driver</p></td>
+				</tr>
+
+
+				<tr>
+					<td>
+						<button onclick="smsLogin();" class="submit">인증</button>
+					</td>
+				</tr>
+
+				<tr>
+
+					<td>Truck-Ta [DEV MODE] uses Account Kit, a Facebook
+						technology, to help you sign in. You don't need a Facebook
+						account. An SMS or text confirmation may be sent to verify your
+						number. Message and data rates may apply. Learn how Facebook uses
+						your info</td>
+				</tr>
+
+			</table>
+		</div>
+		<div id="footer">
+			<h1>copyright</h1>
+		</div>
+	</div>
+
+
+	<script>
+		AccountKit_OnInteractive = function() {
+			AccountKit.init({
+				appId : 1787619668211832,
+				state : "12345",
+				version : "v1.1",
+				fbAppEventsEnabled : true,
+				redirect : ""
+			});
+		};
+
+		// login callback
+		function loginCallback(response) {
+			if (response.status === "PARTIALLY_AUTHENTICATED") {
+				var code = response.code;
+				var csrf = response.state;
+				sendPhoneNumber();
+				// Send code to server to exchange for access token
+			} else if (response.status === "NOT_AUTHENTICATED") {
+				// handle authentication failure
+			} else if (response.status === "BAD_PARAMS") {
+				// handle bad parameters
+			}
+		}
+
+		// phone form submission handler
+		function smsLogin() {
+			var countryCode = "+82";
+			var phoneNumber = document.getElementById("phone_number").value;
+			console.log(userTpyeCheck());
+			AccountKit.login("PHONE", {
+				countryCode : countryCode,
+				phoneNumber : phoneNumber
+			}, // will use default values if not specified
+			loginCallback);
+		}
+
+		function userTpyeCheck() {
+			var userType = $('input:radio[id=isCheck]').is(':checked');
+			return userType;
+		}
+
+		function sendPhoneNumber() {
+			var form = document.getElementById("sendform");
+			console.log(form);
+			if (userTpyeCheck()) {
+				form.action = "signUpClient.jsp";
+				form.submit();
+			} else {
+				form.action = "signUpDriver.jsp"
+				form.submit();
+			}
+		}
+	</script>
+</body>
+</html>

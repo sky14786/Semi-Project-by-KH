@@ -16,7 +16,7 @@ public class ClientDao {
 	public ClientDao() {
 		try {
 			String path = this.getClass().getResource("/").getPath();
-			prop.load(new FileReader(path + "../../resource/ClientQuery.properties"));
+			prop.load(new FileReader(path + "../resource/ClientQuery.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

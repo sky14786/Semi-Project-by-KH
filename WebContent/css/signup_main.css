@@ -65,21 +65,21 @@
   color: #494949;
 }
 
-.temp {
+.tableSet {
   margin-left: 140px;
   width: 1000px;
-  height: 500px;
-  border: solid 3px white;
+  height: 460px;
+  /* border: solid 3px white; */
   text-align: center;
 }
 
-.shapeRec {
-  margin: 50px;
+/* .shapeRec {
+  margin-top: 50px;
   width: 200px;
   height: 88px;
   border-radius: 5px;
   background-color: #ffffff;
-  display: block;
+  display: inline-block;
   line-height: 88px;
 }
 .shapeKor {
@@ -90,27 +90,65 @@
   float: left;
   margin-left: 5px;
   margin-top: 5px;
-}
+} */
 .shapeText {
-  display: inline;
-  font-family: AlteHaasGrotesk_;
-  font-size: 40px;
-  font-weight: bold;
-  letter-spacing: -0.96px;
-  text-align: center;
-  color: #000000;
+  width: 482px;
+  height: 88px;
 }
 
 .shapeLText {
+  font-family: AlteHaasGrotesk_;
+  letter-spacing: -0.96px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 30px;
   width: 482px;
   height: 88px;
   border-radius: 5px;
   background-color: #ffffff;
 }
-td {
-  height: 88px;
+.submit {
+  width: 226.7px;
+  height: 78.7px;
+  border-radius: 25.5px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fffc00;
+  font-family: AppleSDGothicNeo;
+  font-size: 30px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.08px;
+  text-align: center;
+  color: #000000;
 }
 
-tr {
-  height: 100px;
+.radioType {
+  display: inline;
+  border: solid 1px #979797;
+  background-color: #d8d8d8;
+}
+.radioText {
+  display: inline;
+  font-family: AppleSDGothicNeo;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.44px;
+  text-align: center;
+  color: #514e4e;
+}
+.rightRadio {
+  margin-left: 25px;
+}
+.leftRadio {
+  margin-right: 25px;
+}
+.lastTd {
+  height: 70px;
+  text-align: center;
 }

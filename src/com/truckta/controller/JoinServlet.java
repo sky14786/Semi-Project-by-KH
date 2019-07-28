@@ -16,7 +16,7 @@ import com.truckta.model.vo.Client;
 /**
  * Servlet implementation class JoinServlet
  */
-@WebServlet("/clientsignup.do")
+@WebServlet("/ClientJoin.do.do")
 public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -20,7 +20,7 @@ public class JDBCTemplate {
 		Connection conn = null;
 		try {
 			String path = JDBCTemplate.class.getResource("/").getPath();
-			prop.load(new FileReader(path + "../../resource/driver.properties"));
+			prop.load(new FileReader(path + "../resource/driver.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pw"));
