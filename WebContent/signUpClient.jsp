@@ -19,7 +19,6 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("phone_number");
-    
 	%>
 	<div id="container">
 		<div id="header">
@@ -27,15 +26,15 @@
 		</div>
 		<!-- <div id="sidebar-left"></div> -->
 		<div id="content">
-			<br />
-			<br />
+			<br /> <br />
 			<h2>회원가입</h2>
-			<form action="ClientJoin.do" method="post" name="frm">
+			<form action="ClientJoin.do" method="post" name="frm"
+				enctype="multipart/form-data">
 				<table class="inputTable">
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">아이디</p> <input type="text"
-							class="inputBox" name="id" maxlength="11" value="<%=id%>" READONLY/>
+							class="inputBox" name="id" maxlength="11" value="<%=id%>" />
 						</td>
 					</tr>
 
@@ -49,7 +48,7 @@
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">비밀번호확인</p> <input type="password"
-							class="inputBox" maxlength="12" />
+							class="inputBox" maxlength="12" name="pwCheck" />
 						</td>
 					</tr>
 
@@ -57,6 +56,14 @@
 						<td class="tableTd">
 							<p class="tablePromptText">이름</p> <input type="text"
 							class="inputBox" name="name" maxlength="5" />
+						</td>
+					</tr>
+
+					<tr class="tableTr">
+						<td class="tableTd">
+							<p class="tablePromptText">프로필사진</p> <input type="file"
+							accept=".jpg, .png, .pdf"
+							class="fileBtn btn btn-outline-secondary" name="profile" />
 						</td>
 					</tr>
 
