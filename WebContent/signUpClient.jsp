@@ -28,7 +28,7 @@
 		<div id="content">
 			<br /> <br />
 			<h2>회원가입</h2>
-			<form action="ClientJoin.do" method="post" name="frm"
+			<form action="clientJoin.do" method="post" name="frm"
 				enctype="multipart/form-data">
 				<table class="inputTable">
 					<tr class="tableTr">

@@ -1,6 +1,9 @@
 package com.truckta.controller;
 
+import java.io.File;
 import java.io.IOException;
+
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +19,10 @@ import com.truckta.model.vo.Client;
 /**
  * Servlet implementation class JoinServlet
  */
-@WebServlet("/ClientJoin.do")
+@WebServlet("/clientJoin.do")
 public class ClientJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	final private int maxSize = 1024 * 1024 * 3;
 
 	public ClientJoinServlet() {
 		super();
@@ -28,12 +32,19 @@ public class ClientJoinServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 
-		int maxSize = 1024 * 1024 * 3;
 		String path = request.getServletContext().getRealPath("WEB-INF/images");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 
-		String fileNmae = mul.getFilesystemName("profile");
-		String dir = path + "/" + fileNmae;
+		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
+		String fileName = mul.getFilesystemName("profile");
+		String dir = path + "/" + fileName;
+
+		File oldFile = new File(dir);
+		dir = path + "/" + now + fileName;
+
+		File newFIle = new File(dir);
+		oldFile.renameTo(newFIle);
+
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
 		temp.setPw(mul.getParameter("pw"));

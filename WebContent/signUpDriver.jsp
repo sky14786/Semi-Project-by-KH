@@ -17,6 +17,10 @@
 </head>
 
 <body>
+	<%
+		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("phone_number");
+	%>
 	<div id="container">
 		<div id="header">
 			<h1>Truck~ta</h1>
@@ -29,9 +33,10 @@
 				<tr class="tableTr">
 					<td class="tableTd">
 						<p class="tablePromptText">아이디</p>
-						<form action="DriverJoin.do" method="post" name="sendform"
+						<form action="driverSignUp.do" method="post" name="sendform"
 							enctype="multipart/form-data">
-							<input type="text" class="inputBox" maxlength="11" name="id" />
+							<input type="text" class="inputBox" maxlength="11" name="id"
+								value="<%=id%>" readonly />
 					</td>
 				</tr>
 

@@ -8,13 +8,13 @@ import com.truckta.model.vo.Client;
 
 public class ClientService {
 	private ClientDao dao = new ClientDao();
-	
+
 	public int JoinClient(Client temp) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.joinClient(conn,temp);
-		if(result == 1) {
+		int result = dao.joinClient(conn, temp);
+		if (result == 1) {
 			JDBCTemplate.commit(conn);
-		}else {
+		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
