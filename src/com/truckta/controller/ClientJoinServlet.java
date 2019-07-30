@@ -17,10 +17,10 @@ import com.truckta.model.vo.Client;
  * Servlet implementation class JoinServlet
  */
 @WebServlet("/ClientJoin.do")
-public class JoinServlet extends HttpServlet {
+public class ClientJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public JoinServlet() {
+	public ClientJoinServlet() {
 		super();
 	}
 
