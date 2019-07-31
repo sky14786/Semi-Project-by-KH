@@ -56,8 +56,10 @@ public class ClientJoinServlet extends HttpServlet {
 		int result = cs.JoinClient(temp);
 
 		if (result == 1) {
+			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
 			response.sendRedirect("http://www.truckta.com/test.html");
 		} else {
+			System.out.println(":: LOG :: " + now + " :: " + " Client Add Fail");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 

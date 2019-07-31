@@ -100,8 +100,7 @@
 						class="inputBox" name="carType" />
 					</td>
 				</tr>
-				<!-- ---------------------------------------------------- -->
-				<!-- 확장자 제한 javascript로 재 정의 필요 -->
+				
 				<tr class="tableTr">
 					<td class="tableTd">
 						<p class="tablePromptText">면허증</p> <input type="file"
@@ -125,7 +124,7 @@
 						class="fileBtn btn btn-outline-secondary" name="carPic" />
 					</td>
 				</tr>
-				<!-- ---------------------------------------------------- -->
+			
 				<tr>
 					<td class="lastTd"><input type="checkbox" name="isAgree"
 						class="radioAgree" />

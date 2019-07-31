@@ -64,8 +64,10 @@ public class DriverJoinServlet extends HttpServlet {
 		int result = new DriverService().joinDriver(temp);
 
 		if (result == 1) {
+			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
 			response.sendRedirect("http://www.truckta.com/test.html");
 		} else {
+			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 	}
