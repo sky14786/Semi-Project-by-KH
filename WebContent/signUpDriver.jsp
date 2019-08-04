@@ -13,6 +13,8 @@
 	rel="stylesheet" />
 <link href="css/sginup_style.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/bootstrap.css" />
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
 <title>Truck~ta Sign up Page</title>
 </head>
 
@@ -33,8 +35,9 @@
 				<tr class="tableTr">
 					<td class="tableTd">
 						<p class="tablePromptText">아이디</p>
+
 						<form action="driverSignUp.do" method="post" name="sendform"
-							enctype="multipart/form-data">
+							enctype="multipart/form-data" onsubmit="return checkData();">
 							<input type="text" class="inputBox" maxlength="11" name="id"
 								value="<%=id%>" readonly />
 					</td>
@@ -100,7 +103,7 @@
 						class="inputBox" name="carType" />
 					</td>
 				</tr>
-				
+
 				<tr class="tableTr">
 					<td class="tableTd">
 						<p class="tablePromptText">면허증</p> <input type="file"
@@ -124,7 +127,7 @@
 						class="fileBtn btn btn-outline-secondary" name="carPic" />
 					</td>
 				</tr>
-			
+
 				<tr>
 					<td class="lastTd"><input type="checkbox" name="isAgree"
 						class="radioAgree" />
@@ -143,5 +146,77 @@
 			<h1>copyright</h1>
 		</div>
 	</div>
+
+	<script tpye="text/javascript">
+		function checkData() {
+			//조건1. 8~14 영문 대소문자
+			//조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
+			var pwChecking = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,14}$/;
+			var idChecking = /[^0-9]/g;
+			var formatChecking = /\.(jpg|pdf|jpeg|png)$/i;
+
+			if (idChecking.test($('input[name=id]').val())
+					|| !$('input[name=id]').val()) {
+				alert('아이디가 정상적이지 못합니다.');
+				return false;
+			}
+
+			if (!pwChecking.test($('input[name=pw]').val())) {
+				alert('비밀번호는 8~14자 영소문자,대문자로 이루어져 있습니다.');
+				return false;
+			}
+
+			if ($('input[name=pw]').val() != $("input[name=pwCheck]").val()) {
+				alert('비밀번호가 일치하지 않습니다.');
+				$("input[name=pwCheck]").val('');
+				return false;
+			}
+			if (!$('input[name=name]').val()) {
+				alert('이름을 입력해 주세요.');
+				return false;
+			}
+
+			if (!($('input[name=birth1]').val()
+					|| $('input[name=birth2]').val() || $('input[name=birth3]')
+					.val())) {
+				alert('생년월일을 입력해 주세요.');
+				return false;
+			}
+
+			if (!$('input[name=bLicense]').val()) {
+				alert('사업자등록증을 등록해 주세요.');
+				return false;
+			}
+
+			if (!formatChecking.test($('input[name=bLicense]').val()
+					.toLowerCase())) {
+				alert('사업자등록증의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]');
+				$('input[name=dLicense]').val('');
+				return false;
+			}
+
+			if (!$('input[name=dLicense]').val()) {
+				alert('면허증을 등록해 주세요.');
+				return false;
+			}
+
+			if (!formatChecking.test($('input[name=dLicense]').val()
+					.toLowerCase())) {
+				alert('면허증의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]');
+				$('input[name=dLicense]').val('');
+				return false;
+			}
+
+			if ($('input[name=carPic]').val()) {
+				if (!formatChecking.test($('input[name=carPic]').val()
+						.toLowerCase())) {
+					alert('차사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]');
+					$('input[name=carPic]').val('');
+					return false;
+				}
+			}
+
+		}
+	</script>
 </body>
 </html>

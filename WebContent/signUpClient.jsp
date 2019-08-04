@@ -7,11 +7,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
 	rel="stylesheet" />
 <link href="css/sginup_style.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/bootstrap.css" />
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
 <title>Truck~ta Sign up Page</title>
 </head>
 
@@ -29,7 +32,7 @@
 			<br /> <br />
 			<h2>회원가입</h2>
 			<form action="clientJoin.do" method="post" name="frm"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" onsubmit="return checkData();">
 				<table class="inputTable">
 					<tr class="tableTr">
 						<td class="tableTd">
@@ -41,14 +44,14 @@
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">비밀번호 (영문 대소문자,숫자 8~14자)</p> <input
-							type="password" class="inputBox" name="pw" maxlength="12" />
+							type="password" class="inputBox" id="pw" name="pw" maxlength="12" />
 						</td>
 					</tr>
 
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">비밀번호확인</p> <input type="password"
-							class="inputBox" maxlength="12" name="pwCheck" />
+							class="inputBox" maxlength="12" id="pwCheck" name="pwCheck" />
 						</td>
 					</tr>
 
@@ -85,5 +88,48 @@
 			<h1>copyright</h1>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		function checkData() {
+			//조건1. 8~14 영문 대소문자
+			//조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
+			var pwChecking = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,14}$/;
+			var idChecking = /[^0-9]/g;
+			var formatChecking = /\.(jpg|pdf|jpeg|png)$/i;
+
+			if (idChecking.test($('input[name=id]').val())
+					|| !$('input[name=id]').val()) {
+				alert('아이디가 정상적이지 못합니다.');
+				return false;
+			}
+
+			if (!pwChecking.test($('input[name=pw]').val())) {
+				alert('비밀번호는 8~14자 영소문자,대문자로 이루어져 있습니다.');
+				return false;
+			}
+
+			if ($('input[name=pw]').val() != $("input[name=pwCheck]").val()) {
+				alert('비밀번호가 일치하지 않습니다.');
+				$("input[name=pwCheck]").val('');
+				return false;
+			}
+
+			if (!$('input[name=name]').val()) {
+				alert('이름을 입력해 주세요.');
+				return false;
+			}
+
+			if ($('input[name=profile]').val()) {
+				if (!formatChecking.test($('input[name=profile]').val()
+						.toLowerCase())) {
+					alert('프로필사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]');
+					$('input[name=profile]').val('');
+					return false;
+				}
+			}
+		   
+
+		}
+	</script>
 </body>
 </html>

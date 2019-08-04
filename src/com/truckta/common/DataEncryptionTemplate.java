@@ -8,8 +8,9 @@ public class DataEncryptionTemplate {
 	public static String encryptionToSHA256(String temp) {
 		MessageDigest md = null;
 		try {
+			String key = "www.truckta.com"+temp;
 			md = MessageDigest.getInstance("SHA-256");
-			md.update(temp.getBytes());
+			md.update(key.getBytes());
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
