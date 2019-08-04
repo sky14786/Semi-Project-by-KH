@@ -37,21 +37,22 @@
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">아이디</p> <input type="text"
-							class="inputBox" name="id" maxlength="11" value="<%=id%>" />
+							class="inputBox" name="id" maxlength="11" value="<%=id%>"
+							readonly />
 						</td>
 					</tr>
 
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">비밀번호 (영문 대소문자,숫자 8~14자)</p> <input
-							type="password" class="inputBox" id="pw" name="pw" maxlength="12" />
+							type="password" class="inputBox" name="pw" maxlength="12" />
 						</td>
 					</tr>
 
 					<tr class="tableTr">
 						<td class="tableTd">
 							<p class="tablePromptText">비밀번호확인</p> <input type="password"
-							class="inputBox" maxlength="12" id="pwCheck" name="pwCheck" />
+							class="inputBox" maxlength="12" name="pwCheck" />
 						</td>
 					</tr>
 
@@ -66,7 +67,8 @@
 						<td class="tableTd">
 							<p class="tablePromptText">프로필사진</p> <input type="file"
 							accept=".jpg, .png, .pdf"
-							class="fileBtn btn btn-outline-secondary" name="profile" />
+							class="fileBtn btn btn-outline-secondary" name="profile"
+							id="profile" />
 						</td>
 					</tr>
 
@@ -96,6 +98,7 @@
 			var pwChecking = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,14}$/;
 			var idChecking = /[^0-9]/g;
 			var formatChecking = /\.(jpg|pdf|jpeg|png)$/i;
+			var sizeChecking = 1024 * 1024 * 3;
 
 			if (idChecking.test($('input[name=id]').val())
 					|| !$('input[name=id]').val()) {
@@ -127,7 +130,20 @@
 					return false;
 				}
 			}
-		   
+
+			if ($('input[name=profile]').val()) {
+				var size = document.getElementById("profile").files[0].size;
+				if (sizeChecking < size) {
+					alert('프로필사진의 용량을 확인해 주세요. [3MB]');
+					$('input[name=profile]').val('');
+					return false;
+				}
+			}
+
+			if (!$('input:checkbox[name=isAgree]').is(':checked')) {
+				alert('이용약관에 동의해 주세요.');
+				return false;
+			}
 
 		}
 	</script>

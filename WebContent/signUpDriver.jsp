@@ -108,7 +108,8 @@
 					<td class="tableTd">
 						<p class="tablePromptText">면허증</p> <input type="file"
 						accept=".jpg, .png, .pdf"
-						class="fileBtn btn btn-outline-secondary" name="dLicense" />
+						class="fileBtn btn btn-outline-secondary" id="dLicnese"
+						name="dLicense" />
 					</td>
 				</tr>
 
@@ -116,7 +117,8 @@
 					<td class="tableTd">
 						<p class="tablePromptText">사업자등록증</p> <input type="file"
 						accept=".jpg, .png, .pdf"
-						class="fileBtn btn btn-outline-secondary" name="bLicense" />
+						class="fileBtn btn btn-outline-secondary" id="bLicense"
+						name="bLicense" />
 					</td>
 				</tr>
 
@@ -124,7 +126,8 @@
 					<td class="tableTd">
 						<p class="tablePromptText">차사진</p> <input type="file"
 						accept=".jpg, .png, .pdf"
-						class="fileBtn btn btn-outline-secondary" name="carPic" />
+						class="fileBtn btn btn-outline-secondary" id="carPic"
+						name="carPic" />
 					</td>
 				</tr>
 
@@ -154,6 +157,7 @@
 			var pwChecking = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,14}$/;
 			var idChecking = /[^0-9]/g;
 			var formatChecking = /\.(jpg|pdf|jpeg|png)$/i;
+			var sizeChecking = 1024 * 1024 * 3;
 
 			if (idChecking.test($('input[name=id]').val())
 					|| !$('input[name=id]').val()) {
@@ -195,6 +199,15 @@
 				return false;
 			}
 
+			if ($('input[name=bLicense]').val()) {
+				var size = document.getElementById("bLicense").files[0].size;
+				if (sizeChecking < size) {
+					alert('사업자등록증의 용량을 확인해 주세요. [3MB]');
+					$('input[name=bLicense]').val('');
+					return false;
+				}
+			}
+
 			if (!$('input[name=dLicense]').val()) {
 				alert('면허증을 등록해 주세요.');
 				return false;
@@ -207,6 +220,15 @@
 				return false;
 			}
 
+			if ($('input[name=dLicense]').val()) {
+				var size = document.getElementById("dLicense").files[0].size;
+				if (sizeChecking < size) {
+					alert('사업자등록증의 용량을 확인해 주세요. [3MB]');
+					$('input[name=dLicense]').val('');
+					return false;
+				}
+			}
+
 			if ($('input[name=carPic]').val()) {
 				if (!formatChecking.test($('input[name=carPic]').val()
 						.toLowerCase())) {
@@ -214,6 +236,20 @@
 					$('input[name=carPic]').val('');
 					return false;
 				}
+			}
+
+			if ($('input[name=carPic]').val()) {
+				var size = document.getElementById("carPic").files[0].size;
+				if (sizeChecking < size) {
+					alert('차사진의 용량을 확인해 주세요. [3MB]');
+					$('input[name=carPic]').val('');
+					return false;
+				}
+			}
+
+			if (!$('input:checkbox[name=isAgree]').is(':checked')) {
+				alert('이용약관에 동의해 주세요.');
+				return false;
 			}
 
 		}
