@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.truckta.common.DataEncryptionTemplate;
 import com.truckta.model.service.DriverService;
 import com.truckta.model.vo.Driver;
 
@@ -36,7 +37,7 @@ public class DriverJoinServlet extends HttpServlet {
 		String dirs[] = new String[3];
 		Driver temp = new Driver();
 		temp.setId(mul.getParameter("id"));
-		temp.setPw(mul.getParameter("pw"));
+		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
 		temp.setName(mul.getParameter("name"));
 
 		Date tempDate = new Date(Integer.parseInt(mul.getParameter("birth1")),

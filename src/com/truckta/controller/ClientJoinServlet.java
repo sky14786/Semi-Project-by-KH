@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.truckta.common.DataEncryptionTemplate;
 import com.truckta.model.service.ClientService;
 import com.truckta.model.vo.Client;
 
@@ -47,7 +48,7 @@ public class ClientJoinServlet extends HttpServlet {
 
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
-		temp.setPw(mul.getParameter("pw"));
+		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
 		temp.setName(mul.getParameter("name"));
 		temp.setProfile(dir);
 
