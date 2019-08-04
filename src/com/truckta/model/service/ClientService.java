@@ -20,4 +20,13 @@ public class ClientService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	public int selectClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectClient(conn,id);
+		
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
 }

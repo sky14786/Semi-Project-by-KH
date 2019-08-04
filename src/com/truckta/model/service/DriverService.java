@@ -22,4 +22,12 @@ public class DriverService {
 		return result;
 	}
 
+	public int selectDriver(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectDriver(conn, id);
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

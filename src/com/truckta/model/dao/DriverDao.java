@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -42,6 +43,28 @@ public class DriverDao {
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectDriver(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectDriver");
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = 1;
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
