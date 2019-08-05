@@ -1,6 +1,6 @@
 #container {
-  width: 1280px;
-  height: 720px;
+  width: 1024px;
+  height: 768px;
   margin: 0px auto;
   padding: 20px;
   font-family: "Do hyeon";
@@ -14,6 +14,20 @@
   border: 1px solid #bcbcbc;
 }
 
+/* #header {
+  width: 100%;
+  padding: 20px;
+  height: 80px;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background-color: #bdbdbd;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  position: fixed;
+} */
 #header {
   width: 100%;
   padding: 20px;
@@ -30,7 +44,7 @@
 }
 
 #content {
-  width: 1280px;
+  width: 1024px;
   padding: 20px;
   padding-top: 100px;
   margin-left: 0px;
@@ -44,7 +58,7 @@
 
 #footer {
   clear: both;
-  width: 1280px;
+  width: 1024px;
   padding: 20px;
   height: 150px;
   background-color: #bdbdbd;
@@ -66,7 +80,6 @@
 }
 
 .tableSet {
-  margin-left: 140px;
   width: 1000px;
   height: 460px;
   /* border: solid 3px white; */

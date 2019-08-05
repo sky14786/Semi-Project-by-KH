@@ -11,15 +11,15 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
 	rel="stylesheet" />
-<link href="css/sginup_style.css" rel="stylesheet" />
+<link href="css/sginup_style.css?ver1" rel="stylesheet" />
 <link rel="stylesheet" href="css/bootstrap.css" />
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	if (!sessionStorage.getItem("isCertified")) {
-		alert('비정상적인 접근입니다.');
-		location.href = "signUpMain.html";
-	}
+	//if (!sessionStorage.getItem("isCertified")) {
+	//	alert('비정상적인 접근입니다.');
+//	location.href = "signUpMain.html";
+//}
 </script>
 <title>Truck~ta Sign up Page</title>
 </head>
@@ -35,7 +35,6 @@
 		</div>
 		<!-- <div id="sidebar-left"></div> -->
 		<div id="content">
-			<br /> <br />
 			<h2>회원가입</h2>
 			<table class="inputTable">
 				<tr class="tableTr">

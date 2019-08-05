@@ -1,6 +1,6 @@
 #container {
-  width: 1280px;
-  height: 720px;
+  width: 1024px;
+  height: 768px;
   margin: 0px auto;
   padding: 20px;
   font-family: "Do hyeon";
@@ -30,18 +30,21 @@
 }
 
 #content {
-  width: 1280px;
+  width: 1024px;
   padding: 20px;
+  padding-top: 50px;
   margin-left: 0px;
   margin-bottom: 20px;
+  margin-top: 50px;
   float: left;
+  text-align: center;
   border: 1px solid #bcbcbc;
   background-color: #f3f3f3;
 }
 
 #footer {
   clear: both;
-  width: 1280px;
+  width: 1024px;
   padding: 20px;
   height: 150px;
   background-color: #bdbdbd;
@@ -50,6 +53,7 @@
 }
 
 .inputTable {
+  width: 1000px;
   display: -webkit-box;
   -webkit-box-pack: center;
   -webkit-box-align: center;
@@ -96,8 +100,8 @@
 }
 .tableTr {
   text-align: left;
-  width: 538px;
-  height: 63px;
+  width: 523px;
+  height: 78px;
 }
 
 .tablePromptText {
