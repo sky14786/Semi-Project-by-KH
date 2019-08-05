@@ -14,11 +14,11 @@
 <link href="css/sginup_style.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/bootstrap.css" />
 <script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+	src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	if (!sessionStorage.getItem("isCertified")) {
 		alert('비정상적인 접근입니다.');
-		location.href = "signUpMain.html";
+	location.href = "signUpMain.html";
 	}
 </script>
 <title>Truck~ta Sign up Page</title>
