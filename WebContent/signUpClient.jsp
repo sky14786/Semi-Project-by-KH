@@ -151,7 +151,7 @@
 				alert('이용약관에 동의해 주세요.');
 				return false;
 			}
-
+			sessionStorage.removeItem("isCertified");
 		}
 	</script>
 </body>

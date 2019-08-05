@@ -80,8 +80,7 @@
 								var start = toyear + 1900;
 								var end = toyear - 70 + 1900;
 
-								document
-										.write("<font size=2><select name=birth1>");
+								document.write("<font size=2><select name=birth1>");
 								document.write("<option value='' selected>");
 								for (i = start; i >= end; i--)
 									document.write("<option>" + i);

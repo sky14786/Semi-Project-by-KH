@@ -42,9 +42,9 @@ public class ClientDao {
 		}
 		return result;
 	}
-	
+
 	public int selectClient(Connection conn, String id) {
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectClient");
 		ResultSet rs = null;
 		int result = 0;
@@ -52,13 +52,13 @@ public class ClientDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				result = 1;
 			}
-		}catch(SQLException sqle) {
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
