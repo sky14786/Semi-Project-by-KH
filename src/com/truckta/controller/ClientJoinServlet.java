@@ -17,10 +17,8 @@ import com.truckta.common.DataEncryptionTemplate;
 import com.truckta.model.service.ClientService;
 import com.truckta.model.vo.Client;
 
-/**
- * Servlet implementation class JoinServlet
- */
-@WebServlet("/clientJoin.do")
+
+@WebServlet("/clientSignUp.do")
 public class ClientJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final private int maxSize = 1024 * 1024 * 3;
@@ -29,7 +27,7 @@ public class ClientJoinServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 
