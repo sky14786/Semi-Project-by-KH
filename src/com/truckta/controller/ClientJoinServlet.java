@@ -17,7 +17,6 @@ import com.truckta.common.DataEncryptionTemplate;
 import com.truckta.model.service.ClientService;
 import com.truckta.model.vo.Client;
 
-
 @WebServlet("/clientSignUp.do")
 public class ClientJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,9 +55,11 @@ public class ClientJoinServlet extends HttpServlet {
 
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
-			response.sendRedirect("http://www.truckta.com/test.html");
+			response.getWriter().print("<script>alert('회원가입에 성공했습니다. 메인페이지로 이동합니다.')</script>");
+			response.sendRedirect("http://www.truckta.com/index.html");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Client Add Fail");
+			response.getWriter().print("<script>alert('회원가입에 실패했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 

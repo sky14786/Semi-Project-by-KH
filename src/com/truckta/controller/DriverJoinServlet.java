@@ -66,9 +66,11 @@ public class DriverJoinServlet extends HttpServlet {
 
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
+			response.getWriter().print("<script>alert('회원가입에 성공했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect("http://www.truckta.com/test.html");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
+			response.getWriter().print("<script>alert('회원가입에 실패했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 	}
