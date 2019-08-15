@@ -8,7 +8,7 @@ public class Driver {
 	private String name;
 	private Date regdate;
 	private Date moddate;
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	private String dLicense;
 	private String bLicense;
 	private String carpic;
@@ -17,7 +17,7 @@ public class Driver {
 	public Driver() {
 	}
 
-	public Driver(String id, String pw, String name, Date regdate, Date moddate, Date dateOfBirth, String dLicense,
+	public Driver(String id, String pw, String name, Date regdate, Date moddate, String dateOfBirth, String dLicense,
 			String bLicense, String carpic, String cartype) {
 		super();
 		this.id = id;
@@ -72,11 +72,11 @@ public class Driver {
 		this.moddate = moddate;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

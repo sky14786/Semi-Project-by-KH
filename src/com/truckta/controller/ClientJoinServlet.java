@@ -54,11 +54,11 @@ public class ClientJoinServlet extends HttpServlet {
 
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
-			response.getWriter().print("<script>alert('È¸¿ø°¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù. ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.')</script>");
+			response.getWriter().print("<script>alert('íšŒì›ê°€ì…ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤. ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.')</script>");
 			response.sendRedirect("http://www.truckta.com/index.html");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Client Add Fail");
-			response.getWriter().print("<script>alert('È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù. ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.')</script>");
+			response.getWriter().print("<script>alert('íšŒì›ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.')</script>");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 

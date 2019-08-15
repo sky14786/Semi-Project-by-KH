@@ -61,7 +61,8 @@
 					<!-- onsubmit="return checkData();" -->
 					<div class="form-group">
 						<label for="id">Id</label> <input type="text" name="id" id="id"
-							class="form-control" placeholder="Phone Number" />
+							class="form-control" placeholder="Phone Number" value="<%=id%>"
+							readonly />
 					</div>
 					<div class="form-group">
 						<label for="pw">Pw</label> <input type="password" name="pw"

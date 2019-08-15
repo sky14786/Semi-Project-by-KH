@@ -54,7 +54,7 @@
 			<div class="col-xl-2"></div>
 			<div class="col-xl-8">
 				<h2>Driver Sign Up</h2>
-				<form action="driverSignUp.do" method="post" name="sendform"
+				<form action="/driverSignUp.do" method="post" name="sendform"
 					enctype="multipart/form-data" onsubmit="return checkData();">
 					<div class="form-group">
 						<label for="id">Id</label> <input type="text" name="id" id="id"

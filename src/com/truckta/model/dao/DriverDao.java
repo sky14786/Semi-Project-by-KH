@@ -33,7 +33,7 @@ public class DriverDao {
 			pstmt.setString(1, temp.getId());
 			pstmt.setString(2, temp.getPw());
 			pstmt.setString(3, temp.getName());
-			pstmt.setDate(4, temp.getDateOfBirth());
+			pstmt.setString(4, temp.getDateOfBirth());
 			pstmt.setString(5, temp.getCartype());
 			pstmt.setString(6, temp.getdLicense());
 			pstmt.setString(7, temp.getbLicense());
