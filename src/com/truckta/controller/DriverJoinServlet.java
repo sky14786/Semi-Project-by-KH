@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -40,9 +41,8 @@ public class DriverJoinServlet extends HttpServlet {
 		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
 		temp.setName(mul.getParameter("name"));
 
-		Date tempDate = new Date(Integer.parseInt(mul.getParameter("birth1")),
-				Integer.parseInt(mul.getParameter("birth2")), Integer.parseInt(mul.getParameter("birth3")));
-		temp.setDateOfBirth(tempDate);
+		temp.setDateOfBirth(
+				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
 
 		temp.setCartype(mul.getParameter("carType"));
 
@@ -66,11 +66,11 @@ public class DriverJoinServlet extends HttpServlet {
 
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
-			response.getWriter().print("<script>alert('È¸¿ø°¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù. ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.')</script>");
+			response.getWriter().print("<script>alert('íšŒì›ê°€ì…ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤. ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.')</script>");
 			response.sendRedirect("http://www.truckta.com/test.html");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
-			response.getWriter().print("<script>alert('È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù. ¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù.')</script>");
+			response.getWriter().print("<script>alert('íšŒì›ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤.')</script>");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 	}

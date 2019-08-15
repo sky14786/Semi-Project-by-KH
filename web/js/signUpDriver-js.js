@@ -73,6 +73,26 @@ function checkData() {
 		return false;
 	}
 
+	if (!$("input[name=dLicense]").val()) {
+		alert("면허증을 등록해 주세요.");
+		return false;
+	}
+
+	if (!formatChecking.test($("input[name=dLicense]").val().toLowerCase())) {
+		alert("면허증의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
+		$("input[name=dLicense]").val("");
+		return false;
+	}
+
+	if ($("input[name=dLicense]").val()) {
+		var size = document.getElementById("dLicense").files[0].size;
+		if (sizeChecking < size) {
+			alert("면허증의 용량을 확인해 주세요. [3MB]");
+			$("input[name=dLicense]").val("");
+			return false;
+		}
+	}
+
 	if (!$("input[name=bLicense]").val()) {
 		alert("사업자등록증을 등록해 주세요.");
 		return false;
@@ -91,17 +111,6 @@ function checkData() {
 			$("input[name=bLicense]").val("");
 			return false;
 		}
-	}
-
-	if (!$("input[name=dLicense]").val()) {
-		alert("면허증을 등록해 주세요.");
-		return false;
-	}
-
-	if (!formatChecking.test($("input[name=dLicense]").val().toLowerCase())) {
-		alert("면허증의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
-		$("input[name=dLicense]").val("");
-		return false;
 	}
 
 	if ($("input[name=dLicense]").val()) {
