@@ -8,8 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.truckta.common.JDBCTemplate;
 import com.truckta.model.vo.Driver;
+
+import common.template.JDBCTemplate;
 
 public class DriverDao {
 	Properties prop = new Properties();
@@ -17,7 +18,7 @@ public class DriverDao {
 	public DriverDao() {
 		try {
 			String path = this.getClass().getResource("/").getPath();
-			prop.load(new FileReader(path + "../resource/DriverQuery.properties"));
+			prop.load(new FileReader(path + "../resource/properties/DriverQuery.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

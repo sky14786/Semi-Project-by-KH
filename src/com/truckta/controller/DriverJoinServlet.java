@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.truckta.common.DataEncryptionTemplate;
 import com.truckta.model.service.DriverService;
 import com.truckta.model.vo.Driver;
+
+import common.template.DataEncryptionTemplate;
 
 @WebServlet("/driverSignUp.do")
 public class DriverJoinServlet extends HttpServlet {
@@ -30,7 +31,7 @@ public class DriverJoinServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		String path = request.getServletContext().getRealPath("WEB-INF/images");
+		String path = request.getServletContext().getRealPath("WEB-INF/resource/images/uploaded_files");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		ArrayList<String> fileNames = new ArrayList<String>();

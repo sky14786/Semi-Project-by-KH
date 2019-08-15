@@ -2,9 +2,10 @@ package com.truckta.model.service;
 
 import java.sql.Connection;
 
-import com.truckta.common.JDBCTemplate;
 import com.truckta.model.dao.ClientDao;
 import com.truckta.model.vo.Client;
+
+import common.template.JDBCTemplate;
 
 public class ClientService {
 	private ClientDao dao = new ClientDao();

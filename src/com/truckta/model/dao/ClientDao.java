@@ -8,8 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.truckta.common.JDBCTemplate;
 import com.truckta.model.vo.Client;
+
+import common.template.JDBCTemplate;
 
 public class ClientDao {
 	Properties prop = new Properties();
@@ -17,7 +18,7 @@ public class ClientDao {
 	public ClientDao() {
 		try {
 			String path = this.getClass().getResource("/").getPath();
-			prop.load(new FileReader(path + "../resource/ClientQuery.properties"));
+			prop.load(new FileReader(path + "../resource/properties/ClientQuery.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

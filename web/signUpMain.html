@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<!-- [Start Import]This Page import Script and external library -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet" />
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+
+<!-- Moog Import Script -->
+<link href="css/nav_style.css" rel="stylesheet">
+<script
+	src="https://cdnjs.cloudfla
+    re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://use.fonta
+    wesome.com/releases/v5.0.8/js/all.js"></script>
+<!-- eng moog import script -->
+
+<!-- [end import] -->
+
+<title>Truckta Sign Up</title>
+</head>
+<style>
+.container {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+.container>h1 {
+	margin-top: 80px;
+	margin-left: 50px;
+	text-align: left;
+}
+
+.row>.col-xl-10>div {
+	text-align: center;
+	color: #333;
+	margin-bottom: 60px;
+	font-size: 18px;
+}
+
+.content_margin {
+	margin-top: 30px;
+}
+
+.form-style {
+	text-align: center;
+}
+
+.form-style>.form-group>label {
+	font-size: 30px;
+}
+</style>
+
+<body>
+	<nav
+		class="navbar sticky-top container-fluid d-flex justify-content-center">
+		<div class="input-group">
+			<img
+				src="WEB-INF/resource/image_resource/t-logo-png-twitter-logo-18.png"
+				alt="logo.png" class="front-logo" id="logo" />
+			<p>&nbsp&nbsp</p>
+			<input type="text" class="form-control rounded" placeholder="Search"
+				name="search" aria-label="Small"
+				aria-describedby="inputGroup-sizing-sm">
+			<div class="navbar-right btn btn-xs">
+				<button class="btn btn-warning btn-lg" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+				<button class="btn btn-light btn-lg" type="submit">
+					<i class="fas fa-envelope"></i>
+				</button>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<!-- <div class="navbar navbar-expand-xl bg-dark navbar-dark fixed-top">
+        <a href="" class="navbar-brand d-none d-sm-block">WWW.TRUCKTA.COM</a>
+
+        <form class="navbar-form pull-left" role="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" size="28" />
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-success">
+                검색
+              </button>
+            </div>
+          </div>
+        </form>
+      </div> -->
+
+		<h1>Sign Up</h1>
+		<div class="row content_margin">
+			<div class="col-xl-1"></div>
+			<div class="col-xl-10"
+				style="background-color: lightgray; padding: 60px 20px">
+				<div>Truck-Ta [DEV MODE] uses Account Kit, a Facebook
+					technology, to help you sign in. You don't need a Facebook account.
+					An SMS or text confirmation may be sent to verify your number.
+					Message and data rates may apply. Learn how Facebook uses your info
+				</div>
+				<form class="form-style" id="sendform" method="post">
+					<div class="form-group">
+						<label for="phone_number">Input Your Phone Number</label> <input
+							type="text" name="phone_number" id="phone_number"
+							class="form-control"
+							style="height: 60px; width: 700px; margin-left: 100px; text-align: center; font-size: 25px"
+							placeholder="010-XXXX-XXXX" />
+				</form>
+			</div>
+			<div class="form-style">
+				<div class="form-check-inline">
+					<label for="userType"> <input type="radio" name="userType"
+						id="isCheck" class="form-check-input" value="client" />Client
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label for="userType"> <input type="radio" name="userType"
+						class="form-check-input" value="driver" />Driver
+					</label>
+				</div>
+				<div>
+					</form>
+					<button onclick="duplicateCheck();" class="btn btn-warning"
+						style="margin-top: 35px; width: 140px; height: 50px;">
+						<span style="font-size: 25px;">Send</span>
+					</button>
+				</div>
+
+			</div>
+			<div class="col-xl-1"></div>
+		</div>
+	</div>
+	<script>
+		AccountKit_OnInteractive = function() {
+			AccountKit.init({
+				appId : 1787619668211832,
+				state : "12345",
+				version : "v1.1",
+				fbAppEventsEnabled : true,
+				redirect : ""
+			});
+		};
+
+		// login callback
+		function loginCallback(response) {
+			if (response.status === "PARTIALLY_AUTHENTICATED") {
+				var code = response.code;
+				var csrf = response.state;
+				sessionStorage.setItem("isCertified", true);
+				sendPhoneNumber();
+				// Send code to server to exchange for access token
+			} else if (response.status === "NOT_AUTHENTICATED") {
+				// handle authentication failure
+				alert("정상적인 방법이 아닙니다.");
+				$("input[name=phone_number]").val("");
+			} else if (response.status === "BAD_PARAMS") {
+				// handle bad parameters
+				alert("정상적인 방법이 아닙니다.");
+				$("input[name=phone_number]").val("");
+			}
+		}
+
+		// phone form submission handler
+		function smsLogin() {
+			var countryCode = "+82";
+			var phoneNumber = document.getElementById("phone_number").value;
+			console.log(userTpyeCheck());
+			AccountKit.login("PHONE", {
+				countryCode : countryCode,
+				phoneNumber : phoneNumber
+			}, // will use default values if not specified
+			loginCallback);
+		}
+
+		function userTpyeCheck() {
+			var userType = $("input:radio[id=isCheck]").is(":checked");
+			return userType;
+		}
+
+		function sendPhoneNumber() {
+			var form = document.getElementById("sendform");
+			console.log(form);
+			if (userTpyeCheck()) {
+				form.action = "signUpClient.jsp";
+				form.submit();
+			} else {
+				form.action = "signUpDriver.jsp";
+				form.submit();
+			}
+		}
+		function phoneNumberCheck() {
+			var reg = /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
+
+			var temp = $("input[name=phone_number]").val();
+
+			if (!reg.test(phone_number)) {
+				alert("비정상적인 휴대폰번호 양식입니다.");
+				$("input[name=phone_number]").val("");
+			} else {
+				duplicateCheck();
+			}
+		}
+
+		function duplicateCheck() {
+			var phone_number = $("input[name=phone_number]").val();
+
+			$.ajax({
+				type : "POST",
+				url : "/duplicateCheck.do",
+				data : {
+					id : phone_number
+				},
+				datatype : "json",
+				success : function(data) {
+					if (data == "true") {
+						smsLogin();
+					} else {
+						alert("이미 사용중인 아이디 입니다.");
+						$("input[name=phone_number]").val("");
+					}
+				},
+				error : function(e) {
+					alert("에러발생");
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.truckta.common;
+package common.template;
 
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -20,7 +20,8 @@ public class JDBCTemplate {
 		Connection conn = null;
 		try {
 			String path = JDBCTemplate.class.getResource("/").getPath();
-			prop.load(new FileReader(path + "../resource/driver.properties"));
+			System.out.println("JDBCTemplate's reference Path : " + path);
+			prop.load(new FileReader(path + "../resource/properties/driver.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pw"));

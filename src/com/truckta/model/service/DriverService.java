@@ -2,9 +2,10 @@ package com.truckta.model.service;
 
 import java.sql.Connection;
 
-import com.truckta.common.JDBCTemplate;
 import com.truckta.model.dao.DriverDao;
 import com.truckta.model.vo.Driver;
+
+import common.template.JDBCTemplate;
 
 public class DriverService {
 	private DriverDao dao = new DriverDao();
