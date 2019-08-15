@@ -22,35 +22,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link href="../css/signUpClient-Style.css" rel="stylesheet">
 <!-- [End Import] -->
 
 <title>Truckta ~ SignUp Client</title>
-<style>
-.container {
-	font-family: "Noto Sans KR", sans-serif;
-}
-
-.inputFile {
-	height: 45px;
-}
-
-.navbar {
-	height: 65px;
-	width: 100%;
-}
-
-.navbar-brand {
-	width: 200px;
-}
-
-.navInput {
-	width: 200px;
-}
-
-.navButton {
-	width: 100px;
-}
-</style>
 <script type="text/javascript">
 	/* if (!sessionStorage.getItem("isCertified")) {
 		alert('비정상적인 접근입니다.');

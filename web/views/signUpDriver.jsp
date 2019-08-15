@@ -21,64 +21,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link href="../css/signUpDriver-Style.css" rel="stylesheet">
 <!-- [End Import] -->
 <title>Truckta ~ SignUp Driver</title>
-<style>
-.container {
-	font-family: "Noto Sans KR", sans-serif;
-}
-
-.inputFile {
-	height: 45px;
-}
-
-.navbar {
-	height: 65px;
-	width: 100%;
-}
-
-.navbar-brand {
-	width: 200px;
-}
-
-.navInput {
-	width: 200px;
-}
-
-.navButton {
-	width: 100px;
-}
-
-.input-dateofbirth-text {
-	font-size: 18px;
-	padding: 10px;
-	vertical-align: inherit;
-}
-
-.form-group-1 {
-	vertical-align: middle;
-}
-
-.form-group-1>select {
-	vertical-align: inherit;
-}
-
-.custom-select-sm {
-	background:
-		url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
-		no-repeat right 0.5rem center/8px 10px;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	margin: 10px;
-	margin-left: 0;
-}
-</style>
 <script type="text/javascript">
-	if (!sessionStorage.getItem("isCertified")) {
+	/* if (!sessionStorage.getItem("isCertified")) {
 		alert("비정상적인 접근입니다.");
 		location.href = "signUpMain.html";
-	}
+	} */
 </script>
 </head>
 
@@ -136,7 +86,7 @@
 							var end = toyear - 70 + 1900;
 
 							document
-									.write("<select name=birth1 style=width:80px class=custom-select-sm>");
+									.write("<select name=birth1 class='custom-select-sm select-birth-input'>");
 							for (i = start; i >= end; i--)
 								document
 										.write("<option value='" + i + "'>" + i);
@@ -144,7 +94,7 @@
 									.write("</select><span class=input-dateofbirth-text>Year</span>  ");
 
 							document
-									.write("<select name=birth2 style=width:80px class=custom-select-sm >");
+									.write("<select name=birth2 class='custom-select-sm select-birth-input'>");
 							for (i = 1; i <= 12; i++)
 								document
 										.write("<option value='" + i + "'>" + i);
@@ -152,7 +102,7 @@
 									.write("</select><span class=input-dateofbirth-text>Month</span>  ");
 
 							document
-									.write("<select name=birth3 style=width:80px class=custom-select-sm >");
+									.write("<select name=birth3 class='custom-select-sm select-birth-input'>");
 							for (i = 1; i <= 31; i++)
 								document
 										.write("<option value='" + i + "'>" + i);
@@ -162,8 +112,7 @@
 					</div>
 					<div class="form-group">
 						<label for="carType">Truck Category</label><br /> <select
-							name="carType" style="width: 100px; padding: 10x"
-							class="custom-select-sm">
+							name="carType" class="custom-select-sm select-cartype-input">
 							<option value="1" selected>~1t</option>
 							<option value="2" selected>1~1.5t</option>
 							<option value="3" selected>1.5~3t</option>
