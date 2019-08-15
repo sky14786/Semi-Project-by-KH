@@ -28,8 +28,6 @@ public class TryPasswordResetServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
 
 		String inputId = request.getParameter("id");
 		int driverCount = new DriverService().selectDriver(inputId);

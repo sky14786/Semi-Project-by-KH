@@ -4,7 +4,7 @@
 
 function certifiedCheck() {
 	if (!sessionStorage.getItem("isCertified")) {
-		alert('비정상적인 접근입니다.');
+		alert("비정상적인 접근입니다.");
 		location.href = "../signUpMain.html";
 	}
 }

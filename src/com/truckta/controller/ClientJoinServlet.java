@@ -29,12 +29,9 @@ public class ClientJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
-		System.out.println(request.getServletContext().getRealPath("/"));
-		String path = request.getServletContext().getRealPath("/WEB-INF/resource/images/uploaded_files");
-		System.out.println("file save real path : " + path);
-		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 
+		String path = request.getServletContext().getRealPath("/WEB-INF/resource/images/uploaded_files");
+		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		String fileName = mul.getFilesystemName("profile");
 		String dir = path + "/" + fileName;

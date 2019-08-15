@@ -32,7 +32,6 @@ public class IdDuplicateCheckServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 
 		String inputId = request.getParameter("id");
