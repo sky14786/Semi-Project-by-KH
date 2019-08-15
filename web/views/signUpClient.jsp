@@ -68,7 +68,6 @@
 	<div class="container">
 		<div class="navbar navbar-expand-xl bg-dark navbar-dark fixed-top">
 			<a href="" class="navbar-brand d-none d-sm-block">WWW.TRUCKTA.COM</a>
-
 			<form class="navbar-form pull-left" role="search">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search"

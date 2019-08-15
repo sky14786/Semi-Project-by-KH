@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <!-- [Start Import]This Page import Script and external library -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet" />
@@ -19,6 +20,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<link href="css/signUpMain-Style.css" rel="stylesheet">
 
 <!-- Moog Import Script -->
 <link href="css/nav_style.css" rel="stylesheet">
@@ -34,36 +36,6 @@
 
 <title>Truckta Sign Up</title>
 </head>
-<style>
-.container {
-	font-family: "Noto Sans KR", sans-serif;
-}
-
-.container>h1 {
-	margin-top: 80px;
-	margin-left: 50px;
-	text-align: left;
-}
-
-.row>.col-xl-10>div {
-	text-align: center;
-	color: #333;
-	margin-bottom: 60px;
-	font-size: 18px;
-}
-
-.content_margin {
-	margin-top: 30px;
-}
-
-.form-style {
-	text-align: center;
-}
-
-.form-style>.form-group>label {
-	font-size: 30px;
-}
-</style>
 
 <body>
 	<nav
@@ -105,8 +77,7 @@
 		<h1>Sign Up</h1>
 		<div class="row content_margin">
 			<div class="col-xl-1"></div>
-			<div class="col-xl-10"
-				style="background-color: lightgray; padding: 60px 20px">
+			<div class="col-xl-10 content-background">
 				<div>Truck-Ta [DEV MODE] uses Account Kit, a Facebook
 					technology, to help you sign in. You don't need a Facebook account.
 					An SMS or text confirmation may be sent to verify your number.
@@ -116,8 +87,7 @@
 					<div class="form-group">
 						<label for="phone_number">Input Your Phone Number</label> <input
 							type="text" name="phone_number" id="phone_number"
-							class="form-control"
-							style="height: 60px; width: 700px; margin-left: 100px; text-align: center; font-size: 25px"
+							class="form-control input-phonenumber"
 							placeholder="010-XXXX-XXXX" />
 				</form>
 			</div>
@@ -134,9 +104,9 @@
 				</div>
 				<div>
 					</form>
-					<button onclick="duplicateCheck();" class="btn btn-warning"
-						style="margin-top: 35px; width: 140px; height: 50px;">
-						<span style="font-size: 25px;">Send</span>
+					<button onclick="duplicateCheck();"
+						class="btn btn-warning button-send">
+						<span class="span-send">Send</span>
 					</button>
 				</div>
 
