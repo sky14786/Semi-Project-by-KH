@@ -28,7 +28,7 @@
 
 <title>Truckta ~ SignUp Client</title>
 <script>
-	certifiedCheck();
+	//certifiedCheck();
 </script>
 
 </head>
