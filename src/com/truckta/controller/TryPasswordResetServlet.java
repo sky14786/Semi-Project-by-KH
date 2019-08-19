@@ -5,15 +5,15 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 
 import com.truckta.model.service.ClientService;
-import com.truckta.model.service.DriverService;
 
 /**
  * Servlet implementation class PasswordResetServlet
@@ -30,23 +30,15 @@ public class TryPasswordResetServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String inputId = request.getParameter("id");
-		int driverCount = new DriverService().selectDriver(inputId);
 		int clientCount = new ClientService().selectClient(inputId);
 
-		if (driverCount == 1) {
+		if (clientCount == 1) {
 			RequestDispatcher rd = request.getRequestDispatcher("/pwReset.html");
 			request.setAttribute("id", inputId);
-			request.setAttribute("isDriver", true);
-			rd.forward(request, response);
-
-		} else if (clientCount == 1) {
-			RequestDispatcher rd = request.getRequestDispatcher("/pwReset.html");
-			request.setAttribute("id", inputId);
-			request.setAttribute("isDriver", false);
 			rd.forward(request, response);
 		} else {
 			PrintWriter pw = response.getWriter();
-			pw.println("<script>alert('µÓ∑œµ» ∞Ë¡§¿Ã æ∆¥’¥œ¥Ÿ.');</script>");
+			pw.println("<script>alert('Ìï¥Îãπ IDÎ°ú Í∞ÄÏûÖÎêú Ï†ïÎ≥¥Í∞Ä ÏóÜÏäµÎãàÎã§.');</script>");
 			pw.flush();
 		}
 

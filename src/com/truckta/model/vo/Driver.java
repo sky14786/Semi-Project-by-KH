@@ -3,33 +3,28 @@ package com.truckta.model.vo;
 import java.sql.Date;
 
 public class Driver {
+
 	private String id;
-	private String pw;
-	private String name;
-	private Date regdate;
-	private Date moddate;
 	private String dateOfBirth;
+	private String carType;
 	private String dLicense;
 	private String bLicense;
-	private String carpic;
-	private String cartype;
+	private String carPic;
+	private Date regDate;
 
 	public Driver() {
 	}
 
-	public Driver(String id, String pw, String name, Date regdate, Date moddate, String dateOfBirth, String dLicense,
-			String bLicense, String carpic, String cartype) {
+	public Driver(String id, String dateOfBirth, String carType, String dLicense, String bLicense, String carPic,
+			Date regDate) {
 		super();
 		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.regdate = regdate;
-		this.moddate = moddate;
 		this.dateOfBirth = dateOfBirth;
+		this.carType = carType;
 		this.dLicense = dLicense;
 		this.bLicense = bLicense;
-		this.carpic = carpic;
-		this.cartype = cartype;
+		this.carPic = carPic;
+		this.regDate = regDate;
 	}
 
 	public String getId() {
@@ -40,44 +35,20 @@ public class Driver {
 		this.id = id;
 	}
 
-	public String getPw() {
-		return pw;
-	}
-
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
-
-	public Date getModdate() {
-		return moddate;
-	}
-
-	public void setModdate(Date moddate) {
-		this.moddate = moddate;
-	}
-
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getCarType() {
+		return carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
 	}
 
 	public String getdLicense() {
@@ -96,27 +67,26 @@ public class Driver {
 		this.bLicense = bLicense;
 	}
 
-	public String getCarpic() {
-		return carpic;
+	public String getCarPic() {
+		return carPic;
 	}
 
-	public void setCarpic(String carpic) {
-		this.carpic = carpic;
+	public void setCarPic(String carPic) {
+		this.carPic = carPic;
 	}
 
-	public String getCartype() {
-		return cartype;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setCartype(String cartype) {
-		this.cartype = cartype;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Driver [id=" + id + ", pw=" + pw + ", name=" + name + ", regdate=" + regdate + ", moddate=" + moddate
-				+ ", dateOfBirth=" + dateOfBirth + ", dLicense=" + dLicense + ", bLicense=" + bLicense + ", carpic="
-				+ carpic + ", cartype=" + cartype + "]";
+		return "Driver [id=" + id + ", dateOfBirth=" + dateOfBirth + ", carType=" + carType + ", dLicense=" + dLicense
+				+ ", bLicense=" + bLicense + ", carPic=" + carPic + ", regDate=" + regDate + "]";
 	}
 
 }

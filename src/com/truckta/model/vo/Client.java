@@ -6,21 +6,23 @@ public class Client {
 	private String id;
 	private String pw;
 	private String name;
-	private Date regdate;
-	private Date moddate;
 	private String profile;
+	private Date regDate;
+	private Date modDate;
+	private int userType;
 
 	public Client() {
 	}
 
-	public Client(String id, String pw, String name, Date regdate, Date moddate, String profile) {
+	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
-		this.regdate = regdate;
-		this.moddate = moddate;
 		this.profile = profile;
+		this.regDate = regDate;
+		this.modDate = modDate;
+		this.userType = userType;
 	}
 
 	public String getId() {
@@ -47,22 +49,6 @@ public class Client {
 		this.name = name;
 	}
 
-	public Date getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
-
-	public Date getModdate() {
-		return moddate;
-	}
-
-	public void setModdate(Date moddate) {
-		this.moddate = moddate;
-	}
-
 	public String getProfile() {
 		return profile;
 	}
@@ -71,10 +57,34 @@ public class Client {
 		this.profile = profile;
 	}
 
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public Date getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
+	}
+
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", pw=" + pw + ", name=" + name + ", regdate=" + regdate + ", moddate=" + moddate
-				+ ", profile=" + profile + "]";
+		return "Client [id=" + id + ", pw=" + pw + ", name=" + name + ", profile=" + profile + ", regDate=" + regDate
+				+ ", modDate=" + modDate + ", userType=" + userType + "]";
 	}
 
 }

@@ -38,13 +38,10 @@ public class DriverJoinServlet extends HttpServlet {
 		String dirs[] = new String[3];
 		Driver temp = new Driver();
 		temp.setId(mul.getParameter("id"));
-		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
-		temp.setName(mul.getParameter("name"));
-
 		temp.setDateOfBirth(
 				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
 
-		temp.setCartype(mul.getParameter("carType"));
+		temp.setCarType(mul.getParameter("carType"));
 
 		fileNames.add(mul.getFilesystemName("dLicense"));
 		fileNames.add(mul.getFilesystemName("bLincese"));
@@ -60,7 +57,7 @@ public class DriverJoinServlet extends HttpServlet {
 		}
 		temp.setdLicense(dirs[0]);
 		temp.setbLicense(dirs[1]);
-		temp.setCarpic(dirs[2]);
+		temp.setCarPic(dirs[2]);
 
 		int result = new DriverService().joinDriver(temp);
 

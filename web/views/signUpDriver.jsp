@@ -61,7 +61,7 @@
 							class="form-control" placeholder="Phone Number" value="<%=id%>"
 							readonly />
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="pw">Pw</label> <input type="password" name="pw"
 							id="pw" class="form-control" placeholder="Password" />
 					</div>
@@ -73,7 +73,7 @@
 					<div class="form-group">
 						<label for="name">Name</label> <input type="text" name="name"
 							id="name" class="form-control" placeholder="NAME" />
-					</div>
+					</div> -->
 					<div class="form-group form-group-1">
 						<label>Date of Birth</label><br />
 

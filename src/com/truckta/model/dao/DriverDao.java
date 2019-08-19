@@ -31,13 +31,11 @@ public class DriverDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, temp.getId());
-			pstmt.setString(2, temp.getPw());
-			pstmt.setString(3, temp.getName());
-			pstmt.setString(4, temp.getDateOfBirth());
-			pstmt.setString(5, temp.getCartype());
-			pstmt.setString(6, temp.getdLicense());
-			pstmt.setString(7, temp.getbLicense());
-			pstmt.setString(8, temp.getCarpic());
+			pstmt.setString(2, temp.getDateOfBirth());
+			pstmt.setString(3, temp.getCarType());
+			pstmt.setString(4, temp.getdLicense());
+			pstmt.setString(5, temp.getbLicense());
+			pstmt.setString(6, temp.getCarPic());
 
 			result = pstmt.executeUpdate();
 
@@ -49,25 +47,5 @@ public class DriverDao {
 		return result;
 	}
 
-	public int selectDriver(Connection conn, String id) {
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("selectDriver");
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				result = 1;
-			}
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
 }
