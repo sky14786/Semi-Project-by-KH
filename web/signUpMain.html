@@ -2,61 +2,49 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<!-- [Start Import]This Page import Script and external library -->
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet" />
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-<link href="css/signUpMain-Style.css" rel="stylesheet">
-<script src="js/signUpMain-js.js" charset="utf-8"></script>
-<!-- [end import] -->
+	<!-- [Start Import]This Page import Script and external library -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+	<link href="css/signUpMain-Style.css" rel="stylesheet">
+	<script src="js/signUpMain-js.js" charset="utf-8"></script>
+	<!-- [end import] -->
 
-<!-- Moog Import Script -->
-<link href="css/nav_style.css" rel="stylesheet">
-<script
-	src="https://cdnjs.cloudfla
+	<!-- Moog Import Script -->
+	<link href="/web/css/style.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudfla
     re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://use.fonta
-    wesome.com/releases/v5.0.8/js/all.js"></script>
-<!-- eng moog import script -->
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<!-- eng moog import script -->
 
 
 
-<title>Truckta Sign Up</title>
+	<title>Truckta Sign Up</title>
 </head>
 
 <body>
-	<nav
-		class="navbar sticky-top container-fluid d-flex justify-content-center">
+	<nav class="navbar sticky-top container-fluid d-flex justify-content-center" name="top-nav" id="top-nav">
 		<div class="input-group">
-			<img
-				src="WEB-INF/resource/image_resource/t-logo-png-twitter-logo-18.png"
-				alt="logo.png" class="front-logo" id="logo" />
+			<img src="WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png" alt="logo.png" class="front-logo" id="logo" />
 			<p>&nbsp&nbsp</p>
-			<input type="text" class="form-control rounded" placeholder="Search"
-				name="search" aria-label="Small"
-				aria-describedby="inputGroup-sizing-sm">
+			<!-- search bar -->
+			<input type="text" class="form-control rounded" placeholder="Search" name="search-bar" aria-label="Small"
+				aria-describedby="inputGroup-sizing-sm" id="search-bar">
+			<p>&nbsp&nbsp</p>
 			<div class="navbar-right btn btn-xs">
 				<button class="btn btn-warning btn-lg" type="submit">
-					<i class="fas fa-search"></i>
-				</button>
-				<button class="btn btn-light btn-lg" type="submit">
-					<i class="fas fa-envelope"></i>
-				</button>
+					<i class="fas fa-search"></i></button>
+				<button class="btn btn-light btn-lg" onclick="redirect();">
+					<i class="fas fa-envelope"></i></button>
 			</div>
 		</div>
 	</nav>
@@ -87,27 +75,24 @@
 				</div>
 				<form class="form-style" id="sendform" method="post">
 					<div class="form-group">
-						<label for="phone_number">Input Your Phone Number</label> <input
-							type="text" name="phone_number" id="phone_number"
-							class="form-control input-phonenumber"
-							placeholder="010-XXXX-XXXX" />
+						<label for="phone_number">Input Your Phone Number</label> <input type="text" name="phone_number"
+							id="phone_number" class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
 				</form>
 			</div>
 			<div class="form-style">
 				<div class="form-check-inline">
-					<label for="userType"> <input type="radio" name="userType"
-						id="isCheck" class="form-check-input" value="client" />Client
+					<label for="userType"> <input type="radio" name="userType" id="isCheck" class="form-check-input"
+							value="client" />Client
 					</label>
 				</div>
 				<div class="form-check-inline">
-					<label for="userType"> <input type="radio" name="userType"
-						class="form-check-input" value="driver" />Driver
+					<label for="userType"> <input type="radio" name="userType" class="form-check-input"
+							value="driver" />Driver
 					</label>
 				</div>
 				<div>
 					</form>
-					<button onclick="duplicateCheck();"
-						class="btn btn-warning button-send">
+					<button onclick="duplicateCheck();" class="btn btn-warning button-send">
 						<span class="span-send">Send</span>
 					</button>
 				</div>
@@ -118,4 +103,5 @@
 	</div>
 
 </body>
+
 </html>
