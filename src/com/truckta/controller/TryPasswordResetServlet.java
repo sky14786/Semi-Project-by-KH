@@ -28,9 +28,9 @@ public class TryPasswordResetServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String inputName = request.getParameter("userName");
 		String inputId = request.getParameter("id");
-		int clientCount = new ClientService().selectClient(inputId);
+		int clientCount = new ClientService().findClient(inputId, inputName);
 
 		if (clientCount == 1) {
 			RequestDispatcher rd = request.getRequestDispatcher("/pwReset.html");

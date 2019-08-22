@@ -15,12 +15,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-	<link href="css/signUpMain-Style.css" rel="stylesheet">
-	<script src="js/signUpMain-js.js" charset="utf-8"></script>
+	<link href="../../css/signUpMain-Style.css?ver=1.1" rel="stylesheet">
+	<script src="../../js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
 	<!-- [end import] -->
 
 	<!-- Moog Import Script -->
-	<link href="/web/css/style.css" rel="stylesheet">
+	<link href="../../css/style.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudfla
     re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -34,7 +34,8 @@
 <body>
 	<nav class="navbar sticky-top container-fluid d-flex justify-content-center" name="top-nav" id="top-nav">
 		<div class="input-group">
-			<img src="WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png" alt="logo.png" class="front-logo" id="logo" />
+			<img src="../../WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png" alt="logo.png"
+				class="front-logo" id="logo" />
 			<p>&nbsp&nbsp</p>
 			<!-- search bar -->
 			<input type="text" class="form-control rounded" placeholder="Search" name="search-bar" aria-label="Small"
@@ -49,21 +50,6 @@
 		</div>
 	</nav>
 	<div class="container">
-		<!-- <div class="navbar navbar-expand-xl bg-dark navbar-dark fixed-top">
-        <a href="" class="navbar-brand d-none d-sm-block">WWW.TRUCKTA.COM</a>
-
-        <form class="navbar-form pull-left" role="search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" size="28" />
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-success">
-                검색
-              </button>
-            </div>
-          </div>
-        </form>
-      </div> -->
-
 		<h1>Sign Up</h1>
 		<div class="row content_margin">
 			<div class="col-xl-1"></div>
@@ -79,17 +65,7 @@
 							id="phone_number" class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
 				</form>
 			</div>
-			<div class="form-style">
-				<div class="form-check-inline">
-					<label for="userType"> <input type="radio" name="userType" id="isCheck" class="form-check-input"
-							value="client" />Client
-					</label>
-				</div>
-				<div class="form-check-inline">
-					<label for="userType"> <input type="radio" name="userType" class="form-check-input"
-							value="driver" />Driver
-					</label>
-				</div>
+			<div class="form-style">	
 				<div>
 					</form>
 					<button onclick="duplicateCheck();" class="btn btn-warning button-send">

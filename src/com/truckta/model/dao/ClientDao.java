@@ -35,7 +35,6 @@ public class ClientDao {
 			pstmt.setString(3, temp.getName());
 			pstmt.setString(4, temp.getProfile());
 			pstmt.setInt(5, temp.getUserType());
-		
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException sqle) {
@@ -46,14 +45,15 @@ public class ClientDao {
 		return result;
 	}
 
-	public int selectClient(Connection conn, String id) {
+	public int findClient(Connection conn, String id, String name) {
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("selectClient");
+		String sql = prop.getProperty("findClient");
 		ResultSet rs = null;
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setString(2, name);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -63,6 +63,48 @@ public class ClientDao {
 			sqle.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int clientDuplicateCheck(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("clientDuplicateCheck");
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (!rs.next()) {
+				result = 1;
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int resetPassword(Connection conn, String id, String pw) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("resetPassword");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;

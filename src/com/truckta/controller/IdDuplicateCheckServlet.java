@@ -35,9 +35,9 @@ public class IdDuplicateCheckServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 
 		String inputId = request.getParameter("id");
-		int result = new ClientService().selectClient(inputId);
+		int result = new ClientService().clientDuplicateCheck(inputId);
 
-		if (result == 0) {
+		if (result == 1) {
 			pw.print(true);
 
 		} else {

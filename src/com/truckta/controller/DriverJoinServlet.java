@@ -40,9 +40,7 @@ public class DriverJoinServlet extends HttpServlet {
 		temp.setId(mul.getParameter("id"));
 		temp.setDateOfBirth(
 				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
-
 		temp.setCarType(mul.getParameter("carType"));
-
 		fileNames.add(mul.getFilesystemName("dLicense"));
 		fileNames.add(mul.getFilesystemName("bLincese"));
 		fileNames.add(mul.getFilesystemName("carPic"));
@@ -63,11 +61,11 @@ public class DriverJoinServlet extends HttpServlet {
 
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
-			response.getWriter().print("<script>alert('회원가입에 성공했습니다. 메인페이지로 이동합니다.')</script>");
+			response.getWriter().print("<script>alert('Upgrade Driver Success Move MainPage')</script>");
 			response.sendRedirect("http://www.truckta.com/test.html");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
-			response.getWriter().print("<script>alert('회원가입에 실패했습니다. 메인페이지로 이동합니다.')</script>");
+			response.getWriter().print("<script>alert('Upgrade Driver Fail Move MainPage')</script>");
 			response.sendRedirect("http://www.truckta.com/testfail.html");
 		}
 	}

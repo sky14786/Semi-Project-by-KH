@@ -43,21 +43,11 @@ function smsLogin() {
 	loginCallback);
 }
 
-function userTpyeCheck() {
-	var userType = $("input:radio[id=isCheck]").is(":checked");
-	return userType;
-}
 
 function sendPhoneNumber() {
 	var form = document.getElementById("sendform");
-	console.log(form);
-	if (userTpyeCheck()) {
-		form.action = "signUpClient.jsp";
-		form.submit();
-	} else {
-		form.action = "signUpDriver.jsp";
-		form.submit();
-	}
+	form.action = "signUpClient.jsp";
+	form.submit();
 }
 function phoneNumberCheck() {
 	var reg = /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
