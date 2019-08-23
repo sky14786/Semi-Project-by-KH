@@ -1,53 +1,51 @@
 @charset "UTF-8";
 
 .container {
-	font-family: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
-.container>h1 {
-	margin-top: 80px;
-	margin-left: 50px;
-	text-align: left;
+.container > h1 {
+  margin-top: 80px;
+  margin-left: 50px;
+  text-align: left;
 }
 
-.row>.col-xl-10>div {
-	text-align: center;
-	color: #333;
-	margin-bottom: 60px;
-	font-size: 18px;
+.row > .col-xl-10 > div {
+  text-align: center;
+  color: #333;
+  margin-bottom: 60px;
+  font-size: 18px;
 }
 
 .content_margin {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .form-style {
-	text-align: center;
+  text-align: center;
 }
 
-.form-style>.form-group>label {
-	font-size: 30px;
+.form-style > .form-group > label {
+  font-size: 30px;
 }
 
 .content-background {
-	background-color: lightgray;
-	padding: 60px 20px;
+  background-color: lightgray;
+  padding: 60px 20px;
 }
 
 .input-phonenumber {
-	hegiht: 60px;
-	width: 700px;
-	margin-left: 100px;
-	text-align: center;
-	font-size: 25px;
+  hegiht: 60px;
+  text-align: center;
+  font-size: 25px;
 }
 
 .button-send {
-	margin-top: 35px;
-	width: 140px;
-	height: 50px;
+  margin-top: 35px;
+  width: 140px;
+  height: 50px;
 }
 
 .span-send {
-	font-size: 25px;
+  font-size: 25px;
 }

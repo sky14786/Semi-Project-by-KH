@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<!-- [Start Import]This Page import Script and external library -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+	<link href="../../css/signUpMain-Style.css?ver=1.1" rel="stylesheet">
+	<script src="../../js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
+	<!-- [end import] -->
+
+	<!-- Moog Import Script -->
+	<link href="../../css/style.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudfla
+    re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<!-- eng moog import script -->
+
+
+
+	<title>Truckta Sign Up</title>
+</head>
+
+<body>
+	<nav class="navbar sticky-top container-fluid d-flex justify-content-center" name="top-nav" id="top-nav">
+		<div class="input-group">
+			<img src="../../WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png" alt="logo.png"
+				class="front-logo" id="logo" />
+			<p>&nbsp&nbsp</p>
+			<!-- search bar -->
+			<input type="text" class="form-control rounded" placeholder="Search" name="search-bar" aria-label="Small"
+				aria-describedby="inputGroup-sizing-sm" id="search-bar">
+			<p>&nbsp&nbsp</p>
+			<div class="navbar-right btn btn-xs">
+				<button class="btn btn-warning btn-lg" type="submit">
+					<i class="fas fa-search"></i></button>
+				<button class="btn btn-light btn-lg" onclick="redirect();">
+					<i class="fas fa-envelope"></i></button>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>Sign Up</h1>
+		<div class="row content_margin">
+			<div class="col-xl-1"></div>
+			<div class="col-xl-10 content-background">
+				<div>Truck-Ta [DEV MODE] uses Account Kit, a Facebook
+					technology, to help you sign in. You don't need a Facebook account.
+					An SMS or text confirmation may be sent to verify your number.
+					Message and data rates may apply. Learn how Facebook uses your info
+				</div>
+				<form class="form-style" id="sendform" method="post">
+					<div class="form-group">
+						<label for="phone_number">Input Your Phone Number</label> <input type="text" name="phone_number"
+							id="phone_number" class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
+				</form>
+			</div>
+			<div class="form-style">	
+				<div>
+					</form>
+					<button onclick="duplicateCheck();" class="btn btn-warning button-send">
+						<span class="span-send">Send</span>
+					</button>
+				</div>
+
+			</div>
+			<div class="col-xl-1"></div>
+		</div>
+	</div>
+
+</body>
+
+</html>

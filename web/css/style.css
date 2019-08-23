@@ -1,0 +1,44 @@
+
+  .bar-content{
+      /* display: inline; */
+  }
+
+   .btn-default{
+    background: #fffc00;
+   }
+   .message-btn{
+    color: white;
+    font-size: 20px; 
+   }
+
+   nav{
+       background-color: #4340c3;
+       color: #09090a;
+   }
+
+   .front-logo{
+        width: auto;
+        height: 27px;
+        color: white;
+   }
+
+   /* .btn-group{
+       flex: none !important;
+   } */
+
+   #logo{
+       width: 03em;
+       height: 3em;
+   }
+
+   div.btn{
+    padding: 0 0;
+    }
+
+    #search-bar{
+        font-size: 130%
+    }
+
+    .align-middle{
+        align-items: center !important;
+    }
