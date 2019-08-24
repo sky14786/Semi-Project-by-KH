@@ -46,7 +46,7 @@ pageEncoding="utf-8"%>
     >
       <div class="input-group">
         <img
-          src="../../WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png"
+          src="../../project_images/t-logo-png-twitter-logo-18.png"
           alt="logo.png"
           class="front-logo"
           id="logo"
@@ -79,7 +79,7 @@ pageEncoding="utf-8"%>
         <div class="col-xl-1"></div>
         <div class="col-xl-5 left-image d-none d-sm-block">
           <img
-            src="../..//WEB-INF/resource/project_images/ResetPassword-Thumbnail.jpg"
+            src="../../project_images/ResetPassword-Thumbnail.jpg"
             alt=""
             class="img-thumbnail"
           />

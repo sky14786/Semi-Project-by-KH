@@ -37,7 +37,7 @@ re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <title>Truckta ~ SignUp Driver</title>
     <script>
-      certifiedCheck();
+      //certifiedCheck();
     </script>
   </head>
 
@@ -49,7 +49,7 @@ re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     >
       <div class="input-group">
         <img
-          src="../../WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png"
+          src="../../project_images/t-logo-png-twitter-logo-18.png"
           alt="logo.png"
           class="front-logo"
           id="logo"

@@ -52,7 +52,6 @@ public class ClientJoinServlet extends HttpServlet {
 		ClientService cs = new ClientService();
 
 		int result = cs.JoinClient(temp);
-
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
 			response.getWriter().print("<script>alert('회원가입에 성공했습니다. 메인페이지로 이동합니다.')</script>");
