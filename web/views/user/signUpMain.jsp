@@ -1,3 +1,7 @@
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +38,9 @@
 <body>
 	<nav class="navbar sticky-top container-fluid d-flex justify-content-center" name="top-nav" id="top-nav">
 		<div class="input-group">
-			<img src="../../project_images/t-logo-png-twitter-logo-18.png" alt="logo.png"
+			<img src="../../images/project_imgaes/t-logo-png-twitter-logo-18.png" alt="logo.png"
 				class="front-logo" id="logo" />
+				<!-- /WEB-INF/resource/project_images/t-logo-png-twitter-logo-18.png -->
 			<p>&nbsp&nbsp</p>
 			<!-- search bar -->
 			<input type="text" class="form-control rounded" placeholder="Search" name="search-bar" aria-label="Small"

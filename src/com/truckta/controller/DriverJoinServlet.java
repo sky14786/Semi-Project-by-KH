@@ -31,7 +31,7 @@ public class DriverJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getServletContext().getRealPath("WEB-INF/resource/images/uploaded_files");
+		String path = request.getServletContext().getRealPath("WEB-INF/resource/uploaded_files");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		ArrayList<String> fileNames = new ArrayList<String>();
