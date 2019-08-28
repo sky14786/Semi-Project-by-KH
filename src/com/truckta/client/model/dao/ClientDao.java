@@ -1,4 +1,4 @@
-package com.truckta.model.dao;
+package com.truckta.client.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.truckta.model.vo.Client;
+import com.truckta.client.model.vo.Client;
 
 import common.template.JDBCTemplate;
 

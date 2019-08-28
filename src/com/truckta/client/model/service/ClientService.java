@@ -1,9 +1,9 @@
-package com.truckta.model.service;
+package com.truckta.client.model.service;
 
 import java.sql.Connection;
 
-import com.truckta.model.dao.ClientDao;
-import com.truckta.model.vo.Client;
+import com.truckta.client.model.dao.ClientDao;
+import com.truckta.client.model.vo.Client;
 
 import common.template.JDBCTemplate;
 

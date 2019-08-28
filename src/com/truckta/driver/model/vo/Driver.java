@@ -1,4 +1,4 @@
-package com.truckta.model.vo;
+package com.truckta.driver.model.vo;
 
 import java.sql.Date;
 

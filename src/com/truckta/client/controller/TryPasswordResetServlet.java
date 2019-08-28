@@ -1,4 +1,4 @@
-package com.truckta.controller;
+package com.truckta.client.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
 
-import com.truckta.model.service.ClientService;
+import com.truckta.client.model.service.ClientService;
 
 /**
  * Servlet implementation class PasswordResetServlet

@@ -1,14 +1,13 @@
-package com.truckta.model.dao;
+package com.truckta.driver.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.truckta.model.vo.Driver;
+import com.truckta.driver.model.vo.Driver;
 
 import common.template.JDBCTemplate;
 

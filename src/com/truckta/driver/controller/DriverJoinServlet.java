@@ -1,11 +1,9 @@
-package com.truckta.controller;
+package com.truckta.driver.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.truckta.model.service.DriverService;
-import com.truckta.model.vo.Driver;
-
-import common.template.DataEncryptionTemplate;
+import com.truckta.driver.model.service.DriverService;
+import com.truckta.driver.model.vo.Driver;
 
 @WebServlet("/driverSignUp.do")
 public class DriverJoinServlet extends HttpServlet {
@@ -31,7 +27,7 @@ public class DriverJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getServletContext().getRealPath("WEB-INF/resource/uploaded_files");
+		String path = request.getServletContext().getRealPath("/images/profile_images");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		ArrayList<String> fileNames = new ArrayList<String>();

@@ -1,4 +1,4 @@
-package com.truckta.controller;
+package com.truckta.client.controller;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.truckta.model.service.ClientService;
+import com.truckta.client.model.service.ClientService;
 
 /**
  * Servlet implementation class UserPasswordResetServlet

@@ -1,6 +1,8 @@
-<%@page import="java.io.Console"%> <%@ page language="java" contentType="text/html; charset=utf-8"
-pageEncoding="utf-8"%>
-
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -112,8 +114,8 @@ re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
                 id="id"
                 class="form-control"
                 placeholder="Phone Number"
-                value="<%=id%>"
-                readonly
+              <%--   value="<%=id%>"
+                readonly --%>
               />
             </div>
             <div class="form-group">
