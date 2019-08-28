@@ -1,6 +1,7 @@
 package com.truckta.client.model.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.truckta.client.model.dao.ClientDao;
 import com.truckta.client.model.vo.Client;
@@ -48,5 +49,19 @@ public class ClientService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public int selectCountClient() {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectCountClient(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<Client> selectListPage(int cPage, int numPerPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Client> list = dao.selectListPage(conn, cPage, numPerPage);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

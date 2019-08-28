@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.truckta.client.model.vo.Client;
@@ -16,9 +18,9 @@ public class ClientDao {
 	Properties prop = new Properties();
 
 	public ClientDao() {
+		String path = getClass().getResource("/").getPath()+"sql/client/client-query.properties";
 		try {
-			String path = this.getClass().getResource("/").getPath();
-			prop.load(new FileReader(path + "../resource/properties/ClientQuery.properties"));
+			prop.load(new FileReader(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -108,5 +110,57 @@ public class ClientDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int selectCountClient(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = prop.getProperty("selectCountClient");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public List<Client> selectListPage(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectListPage");
+		List<Client> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(2, cPage * numPerPage);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Client c = new Client();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regdate"));
+				c.setModDate(rs.getDate("moddate"));
+				c.setUserType(rs.getInt("user_type"));
+				list.add(c);
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 }

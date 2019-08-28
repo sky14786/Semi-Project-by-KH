@@ -15,9 +15,9 @@ public class DriverDao {
 	Properties prop = new Properties();
 
 	public DriverDao() {
+		String path = getClass().getResource("/").getPath()+"sql/driver/driver-query.properties";
 		try {
-			String path = this.getClass().getResource("/").getPath();
-			prop.load(new FileReader(path + "../resource/properties/DriverQuery.properties"));
+			prop.load(new FileReader(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -45,6 +45,5 @@ public class DriverDao {
 		}
 		return result;
 	}
-
 
 }
