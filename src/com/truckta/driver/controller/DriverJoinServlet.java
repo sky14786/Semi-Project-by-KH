@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.truckta.driver.model.service.DriverService;
@@ -27,6 +29,13 @@ public class DriverJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.getSession().setAttribute("isCertified", false);
+			request.setAttribute("location", "/");
+			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
+		
 		String path = request.getServletContext().getRealPath("/images/profile_images");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
@@ -58,11 +67,11 @@ public class DriverJoinServlet extends HttpServlet {
 		if (result == 1) {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
 			response.getWriter().print("<script>alert('Upgrade Driver Success Move MainPage')</script>");
-			response.sendRedirect("http://www.truckta.com/test.html");
+			response.sendRedirect("http://www.truckta.com/index.jsp");
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
 			response.getWriter().print("<script>alert('Upgrade Driver Fail Move MainPage')</script>");
-			response.sendRedirect("http://www.truckta.com/testfail.html");
+			response.sendRedirect("http://www.truckta.com/index.jsp");
 		}
 	}
 

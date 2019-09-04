@@ -38,6 +38,7 @@ re.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 </head>
 
 <body>
+
 	<nav
 		class="navbar sticky-top container-fluid d-flex justify-content-center"
 		name="top-nav" id="top-nav">

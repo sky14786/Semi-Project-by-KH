@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.truckta.client.model.service.ClientService;
@@ -29,6 +31,12 @@ public class ClientJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.getSession().setAttribute("isCertified", false);
+			request.setAttribute("location", "/");
+			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
 
 		String path = request.getServletContext().getRealPath("/images/profile_images");
 		DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();

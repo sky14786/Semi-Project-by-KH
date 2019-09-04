@@ -32,20 +32,19 @@
 </head>
 
 <body>
-<%-- class="navbar sticky-top container-fluid d-flex justify-content-center" --%>
 <nav class="navbar navbar-expand-sm bg-nav sticky-top">
 
 		<div class="row" style="height: 50; padding: 2 50;">
 
-			<div class="col-sm-1 .d-none .d-sm-block">
+			<div class="col-sm-1 d-none d-xl-block">
 				<img
 					src="<%=request.getContextPath()%>/images/project_images/t-logo.png"
 					alt="logo.png" class="nav-bar" />
 			</div>
-			<div class="col-sm-2 .d-none .d-sm-block" >
+			<div class="col-sm-2 d-none d-xl-block">
 
 
-				<p style="font-size: 28px; color: #ffffff;">This is Truckta</p>
+				 <p  style="font-size: 28px; color: #ffffff;">This is Truckta</p>
 
 			</div>
 			<div class="col-sm-6">
@@ -64,15 +63,15 @@
      
 			<div class="col-sm-2" style="display:inline-flex;">
       		<button type="button" class="btn btn-bg-color " style="
-    width: 100px;
+    width: 120px;
     height: 40px;
     margin-top: 2px;
     margin-right: 10px;">Login</button>
           <button type="button" class="btn btn-bg-color "style="
-    width: 100px;
+    width: 120px;
     height: 40px;
     margin-top: 2px;
-    margin-right: 10px;">Sign Up</button>
+    margin-right: 10px;">SignUp</button>
       </div>
       <div class="col-sm-1"></div>
 			
@@ -83,11 +82,11 @@
 
 
 
-<div class="jumbotron">
+<%-- <div class="jumbotron">
   <h1>Welcome to Truckta</h1>
   <p>Truck-Ta [DEV MODE] uses Account Kit, a Facebook
 				technology, to help you sign in. You don't need a Facebook account.
 				An SMS or text confirmation may be sent to verify your number.
 				Message and data rates may apply. Learn how Facebook uses your info</p>
-</div>
+</div> --%>
 <%-- </div> --%>
