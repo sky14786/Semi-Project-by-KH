@@ -2,9 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- This Page's Include and import Files -->
 <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
-<link href="../../css/signUpMain-Style.css?ver=1.1" rel="stylesheet">
-<script src="../../js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/signUpMain-Style.css?ver=1.1" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
+
+<!-- ----------------End----------------- -->
 <div class="container">
 	<h1>Sign Up</h1>
 	<div class="row content_margin">
@@ -18,7 +22,7 @@
 			<form class="form-style" id="sendform" method="post">
 				<div class="form-group">
 					<label for="phone_number">Input Your Phone Number</label> <input
-						type="text" name="phone_number" id="phone_number"
+						 name="phone_number" id="phone_number"
 						class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
 			</form>
 		</div>
