@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/tomcat/lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="C:/tomcat/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/tomcat/lib/cos.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>
