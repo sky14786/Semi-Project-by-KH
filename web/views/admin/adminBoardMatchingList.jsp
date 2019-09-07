@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<%@ page import="java.util.List,com.truckta.client.model.vo.Client" %>
+<%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching" %>
 
 <%
-	List<Client> list = (List) request.getAttribute("list");
+	List<BoardMatching> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
 %>
 <style>
-.container {
+.container-fluid {
 	font-family: "Noto Sans KR", sans-serif;
+}
+tr>td{
+	vertical-align:middle!important;
 }
 </style>
 <div class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -20,7 +23,7 @@
 	</button>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
+		<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">건의사항</a></li>
 		</ul>
@@ -39,43 +42,38 @@
 	</div>
 </div>
 
-<div class="container-fluid" style="margin-top: 3%">
+<div class="container-fluid" style=" margin-top: 3%">
 	<table class="table">
 		<thead class="thead-light">
 			<tr style="text-align:center;">
-				<th>ID</th>
-				<th>이름</th>
-				<th>가입일</th>
-				<th>수정일</th>
-				<th>유저권한</th>
-				<th>프로필사진</th>
-				<th>상세정보</th>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>출발지</th>
+				<th>도착지</th>
+				<th>작성일</th>
+				<th>조회수</th>
+				<th>글상태</th>
+				<th>메모</th>
+				<th>기타</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%if(list!=null){ 
-				for(Client c : list){
+				for(BoardMatching bm : list){
 			%>
 					<tr style="text-align:center;">
-						<td><%=c.getId() %></td>
-						<td><%=c.getName() %></td>
-						<td><%=c.getRegDate() %></td>
-						<td><%=c.getModDate() %></td>
-						<td><%if(c.getUserType()==1){%>
-								일반회원
-							<%}else if(c.getUserType()==2) {%>
-								기사회원
-							<%}else if(c.getUserType()==3) {%>
-								관리자
-							<%} %>						
-						</td>
-						<%if(c.getProfile()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/project_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %>
+						<td><%=bm.getBoardNo() %></td>
+						<td><a href="#" style="color:inherit;"><%=bm.getTitle() %></a></td>
+						<td><%=bm.getWrtier() %></td>
+						<td><%=bm.getStartAddr() %></td>
+						<td><%=bm.getEndAddr() %></td>
+						<td><%=bm.getHireDate() %></td>
+						<td><%=bm.getCount() %></td>
+						<td><%=bm.getBoardState() == 1?"정상":"삭제" %></td>
+						<td><%=bm.getMemo()!=null?bm.getMemo():"X" %></td>
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">보기</button>
+
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
@@ -83,11 +81,16 @@
 				</tr>
 			<%	}
 			}%>
+			
+					
+			
 		</tbody>
 	</table>
-	<div id="pageBar" style="text-align:center;color:black;">
+	<div id="pageBar" style="text-align:center;color:black!important;font-size:18px;"> 
 			<%=request.getAttribute("pageBar")%>
 	</div>
+	
+
 </div>
 <style>
 #pageBar>a{

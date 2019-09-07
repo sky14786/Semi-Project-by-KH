@@ -31,7 +31,7 @@ public class DriverDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, temp.getId());
 			pstmt.setString(2, temp.getDateOfBirth());
-			pstmt.setString(3, temp.getCarType());
+			pstmt.setInt(3, temp.getCarType());
 			pstmt.setString(4, temp.getdLicense());
 			pstmt.setString(5, temp.getbLicense());
 			pstmt.setString(6, temp.getCarPic());

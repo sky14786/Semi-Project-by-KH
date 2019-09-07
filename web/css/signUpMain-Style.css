@@ -35,8 +35,7 @@
 }
 
 .input-phonenumber {
-  width: auto;
-  hegiht: 60px;
+  height: 60px;
   text-align: center;
   font-size: 25px;
 }

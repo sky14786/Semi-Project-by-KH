@@ -21,7 +21,7 @@
 			</div>
 			<form class="form-style" id="sendform" method="post">
 				<div class="form-group">
-					<label for="phone_number">Input Your Phone Number</label> <input
+					<label for="phone_number">Input Your Phone Number</label> <input type="text"
 						 name="phone_number" id="phone_number"
 						class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
 			</form>

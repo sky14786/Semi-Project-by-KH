@@ -6,17 +6,18 @@ public class Driver {
 
 	private String id;
 	private String dateOfBirth;
-	private String carType;
+	private int carType;
 	private String dLicense;
 	private String bLicense;
 	private String carPic;
 	private Date regDate;
+	private int status;
 
 	public Driver() {
 	}
 
-	public Driver(String id, String dateOfBirth, String carType, String dLicense, String bLicense, String carPic,
-			Date regDate) {
+	public Driver(String id, String dateOfBirth, int carType, String dLicense, String bLicense, String carPic,
+			Date regDate, int status) {
 		super();
 		this.id = id;
 		this.dateOfBirth = dateOfBirth;
@@ -25,6 +26,19 @@ public class Driver {
 		this.bLicense = bLicense;
 		this.carPic = carPic;
 		this.regDate = regDate;
+		this.status = status;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public void setCarType(int carType) {
+		this.carType = carType;
 	}
 
 	public String getId() {
@@ -43,12 +57,8 @@ public class Driver {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getCarType() {
+	public int getCarType() {
 		return carType;
-	}
-
-	public void setCarType(String carType) {
-		this.carType = carType;
 	}
 
 	public String getdLicense() {

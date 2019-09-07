@@ -10,7 +10,7 @@
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">게시글관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">건의사항</a></li>
 		</ul>
 		&nbsp;&nbsp;
