@@ -1,6 +1,3 @@
-//달력 피커
-
-
 //이미지 자바스크립트
 
 function imgUpload() { // 파일 업로드 on
@@ -12,6 +9,7 @@ function imgUpload() { // 파일 업로드 on
 var imgCk = 0;
 
 $(function() {
+	//달력 피커
 	$('#datepicker').datepicker({
 		uiLibrary: 'bootstrap4'
 	});
@@ -42,7 +40,7 @@ $(function() {
 					}
 				}
 
-				//
+				// 올라온 이미지 중복확인
 				if($('.notice-img').children().length > 0){
 					// console.log('중복 확인 : ' + $('.notice-img-lb').val() );
 					for(var i = 0; i < $('.notice-img').children().length; i++){
@@ -56,7 +54,7 @@ $(function() {
 					}//for
 				}//if
 
-				// 이미지 파일수
+				// 이미지 생성
 				for (var i=0; i < $(fileN).length; i++) {
 					// 선택된 이미지 태그생성                
 					var imgLabel = 'notice-img-lb' + imgCk;
@@ -91,3 +89,7 @@ $(function() {
 		// $(this).siblings('.upload-name').val(filename); 
 	}); 
 });
+
+
+	
+	

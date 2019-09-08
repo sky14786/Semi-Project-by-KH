@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%-- <%@ include file="/views/common/header.jsp" %> --%>
 <head>
 
     <meta charset="utf-8">
@@ -22,16 +23,15 @@
     <!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
-
-    <!-- date picker -->
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
-	 <!-- notice -->
-	 <script src="../../js/notice.js" charset="utf-8"></script>
-	 <!-- post -->
-	 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-	 <script src="../../js/post.js" charset="utf-8"></script>
+	<!-- date picker -->
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	
+	<!-- notice -->
+	<script src="../../js/notice.js" charset="utf-8"></script>
+	<!-- post -->
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+	<script src="../../js/post.js" charset="utf-8"></script>
 
     <style>
         /* div{
@@ -56,7 +56,19 @@
         }
       }
     </style>
-    <!-- <link href="form-validation.css" rel="stylesheet"> -->
+    <link href="form-validation.css" rel="stylesheet">
+
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/header.css?var=1.1"
+	rel="stylesheet" />
+	<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+
 
 </head>
 
@@ -64,11 +76,75 @@
     <div class="container">
       <div class="py-1 text-center">
         <h2>header</h2>
-      </div>
+		<!-- 헤더 수정 -->
+
+
+			<%-- <nav class="navbar navbar-expand-sm bg-nav sticky-top">
+
+				<div class="row" style="height: 50; padding: 2 50;">
+
+					<div class="col-md-1 .d-none .d-sm-block">
+						<img
+							src="<%=request.getContextPath()%>/images/project_images/t-logo.png"
+							alt="logo.png" class="nav-bar" />
+					</div>
+					<div class="col-md-2 .d-none .d-sm-block">
+
+
+						<p style="font-size: 28px; color: #ffffff;">This is Truckta</p>
+
+					</div>
+					<div class="col-md-6">
+						<form>
+							<div class="input-group">
+								<input type="text" class="form-control header-search-bar"
+									placeholder="Input your search_keyword" size="120"
+									style="height: 45px;" />
+								<div class="input-group-append">
+									<button type="button" class="btn btn-bg-color ">검색</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-md-2 mb-1"
+						style="display: inline-flex; margin-left: 60px;">
+						<button type="button" class="btn btn-bg-color "
+							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Login</button>
+						<button type="button" class="btn btn-bg-color "
+							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Sign
+							Up</button>
+					</div>
+					<div class="col-md-1"></div>
+
+				</div>
+			</nav> --%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
 
       <div class="row">
         <div class="col-md-2 order-md-1 mb-1">
-          <nav>nav</nav>
+       <nav>nav</nav>
+        
+        
+        
+        
+        
+        
+        <!-- ---------------------------------------- -->
         </div>
 
 
@@ -76,7 +152,8 @@
         <div class="col-md-8 order-md-2">
           <h4 class="mb-3">배달 정보</h4>
           <hr class="mb-4">
-          <form class="needs-validation" novalidate>
+			<!-- 데이터 폼 -->
+          <form method="POST" onsubmit="return false;" action="<%=request.getContextPath()%>/notice/upload" class="needs-validation" name="imgFile" enctype="multipart/form-data" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">화물 정보</label>
@@ -84,14 +161,15 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">가 격</label>
-                <input type="text" class="form-control" id="lastName" placeholder="₩" value="" required>
+                <input type="text" class="form-control" id="lastName" placeholder="₩ 이거 사라질 꺼임" value="" required>
               </div>
             </div>
 
             <label for="address">출발지 주소</label>
             <div class="input-group mb-1">
               <input type="text" class="start-postcode" name="post-number" placeholder="우 편 번 호" style="text-align: center">
-              <input type="text" class="form-control start-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="button-addon2">
+              <input type="text" class="form-control start-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="button-addon2"
+              onkeydown="JavaScript:Enter_Check(1);">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary start-btn" type="button" id="button-addon2" onclick="execDaumPostcode(1)">주소 찾기</button>
               </div>
@@ -102,7 +180,7 @@
             <label for="address2">목적지 주소</label>
             <div class="input-group mb-1">
               <input type="text" class="end-postcode" name="post-number" placeholder="우 편 번 호" style="text-align: center">
-              <input type="text" class="form-control end-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="">
+              <input type="text" class="form-control end-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="" onkeydown="JavaScript:Enter_Check(2);">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="execDaumPostcode(2)">주소 찾기</button>
               </div>
@@ -113,7 +191,7 @@
             <br>
             <div class="mb-3">
               <label for="">설명</label>
-              <textarea class="form-control" id="FormControlTextarea" rows="3"></textarea>
+              <textarea class="form-control" id="FormControlTextarea" rows="3" placeholder="여기에는 배송관련 정보를 입력해주세요"></textarea>
             </div>
 
             <div class="mb-3">
@@ -145,7 +223,7 @@
             <!-- 이미지 업로드 버튼 -->
             <div class="input-group mb-3" hidden>
               <div class="custom-file">
-                <input type="file" class="custom-file-input file-img-upload" id="input-img-file" multiple>
+                <input type="file" name="imgFileList" class="custom-file-input file-img-upload" id="input-img-file" multiple>
                 <label class="custom-file-label" for="input-img-file">Choose file</label>
               </div>
             </div>
@@ -154,10 +232,7 @@
               <button class="btn btn-primary btn-sm col-3" type="button" onclick="imgUpload()">사진 올리기</button><small class="text-muted"> &nbsp;최대 5장까지 업로드가 가능</small>
             </div>
             <div class="notice-img-list notice-img">
-              <!-- <p>미완성</p>
-              <div class="input-group mb-1">
-                <input type="text" class="form-control col-md-12" id="cc-name" placeholder="사진경로 / 이름" required>
-                <button type="button" class="btn btn-danger img-check0">사진 삭제</button>     -->
+            <!-- 이미지 생성 공간 -->
             </div>
           </div>
           
@@ -168,7 +243,8 @@
         </div>
         <hr class="mb-6">
         <!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
-        <button class="btn btn-primary btn-lg btn-block" type="submit">글 올리기</button>
+        <button class="btn btn-primary btn-lg btn-block" name="" id="" type="submit">글 올리기</button>
+        
     </form>
     </div>
     </div>
