@@ -45,8 +45,7 @@ form:active {
 		</div>
 
 
-
-		<form action = "<%=request.getContextPath() %>/messages/chat">
+		<a href="<%=request.getContextPath()%>/messages/chat">
 			<div class="d-flex mt-3 py-2 border-bottom">
 				<img class="img-sm rounded-circle"
 					src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
@@ -57,7 +56,7 @@ form:active {
 				</div>
 				<small class="text-muted ml-auto">1 Hours ago</small>
 			</div>
-		</form>
+		</a>
 
 		<div class="d-flex py-2 border-bottom">
 			<span class="img-sm rounded-circle bg-warning text-white text-avatar">OH</span>

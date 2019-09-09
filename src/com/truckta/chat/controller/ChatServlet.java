@@ -26,7 +26,6 @@ public class ChatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("////////////////////////////////////////");
 		request.getRequestDispatcher("/views/chat/chat.jsp").forward(request, response);
 	}
 

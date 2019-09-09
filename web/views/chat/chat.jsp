@@ -27,82 +27,75 @@
 
 
 <body>
-    <div class="message-feed media">
+    <div class="message-feed feed">
         <div class="pull-left">
-            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
+            <img src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="" class="mr-2 img-avatar">
         </div>
         <div class="media-body">
-            <div class="mf-content">
+            <div class="mf-content bg-secondary text-dark">
                 Quisque consequat arcu eget odio cursus, ut tempor arcu vestibulum. Etiam ex arcu, porta a urna non,
                 lacinia pellentesque orci. Proin semper sagittis erat, eget condimentum sapien viverra et. Mauris
                 volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem pulvinar
                 lobortis.
             </div>
-            <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:00</small>
+            <small class="mf-date"><i class="far fa-clock"></i> 20/02/2015 at 09:00</small>
         </div>
     </div>
 
     <div class="message-feed right">
-        <div class="pull-right">
-            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
-        </div>
         <div class="media-body">
-            <div class="mf-content">
+            <div class="mf-content bg-primary text-white">
                 Mauris volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem
                 pulvinar
                 lobortis.
             </div>
-            <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:30</small>
+            <small class="mf-date"><i class="far fa-clock"></i> 20/02/2015 at 09:30</small>
         </div>
     </div>
 
     <div class="message-feed media">
         <div class="pull-left">
-            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
+            <img src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="" class="mr-2 img-avatar">
         </div>
         <div class="media-body">
-            <div class="mf-content">
+            <div class="mf-content bg-secondary text-dark">
                 Etiam ex arcumentum
             </div>
-            <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 09:33</small>
+            <small class="mf-date"><i class="far fa-clock"></i> 20/02/2015 at 09:33</small>
         </div>
     </div>
 
     <div class="message-feed right">
-        <div class="pull-right">
-            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="img-avatar">
-        </div>
         <div class="media-body">
-            <div class="mf-content">
+            <div class="mf-content bg-primary text-white">
                 Etiam nec facilisis lacus. Nulla imperdiet augue ullamcorper dui ullamcorper, eu laoreet sem
                 consectetur. Aenean et ligula risus. Praesent sed posuere sem. Cum sociis natoque penatibus et
                 magnis
                 dis parturient montes,
             </div>
-            <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 10:10</small>
+            <small class="mf-date"><i class="far fa-clock"></i> 20/02/2015 at 10:10</small>
         </div>
     </div>
 
     <div class="message-feed media">
         <div class="pull-left">
-            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-avatar">
+            <img src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="" class="mr-2 img-avatar">
         </div>
         <div class="media-body">
-            <div class="mf-content">
+            <div class="mf-content bg-secondary text-dark">
                 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac
                 tortor ut
                 elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar
                 at
                 sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat
-                ㅇㅇㅇㅇeget
+                eget
+                
             </div>
-            <small class="mf-date"><i class="fa fa-clock-o"></i> 20/02/2015 at 10:24</small>
+            <small class="mf-date"><i class="far fa-clock"></i> 20/02/2015 at 10:24</small>
         </div>
     </div>
     <br> <br> <br>
 
-
-    <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
     <script type="text/javascript">
         $(function () {
             if ($('#ms-menu-trigger')[0]) {
@@ -129,7 +122,7 @@
 <footer>
     <div class="fixed-bottom msb-reply">
         <textarea placeholder="What's on your mind..."></textarea>
-        <button><i class="far fa-paper-plane"></i></button>
+        <button onclick = "send();"><i class="far fa-paper-plane"></i></button>
     </div>
 </footer>
 
