@@ -12,6 +12,7 @@
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">건의사항</a></li>
+			 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/listCarType">운송수단추가</a></li>
 		</ul>
 		&nbsp;&nbsp;
 		<form action="" method="post" class="form-inline">

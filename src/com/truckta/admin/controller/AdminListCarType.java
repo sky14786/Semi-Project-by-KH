@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.truckta.boardmatching.model.service.BoardMatchingService;
-import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.cartype.model.service.CarTypeService;
+import com.truckta.cartype.model.vo.CarType;
 
-@WebServlet("/admin/adminBoardMatchingList")
-public class AdminBoardMatchingListServlet extends HttpServlet {
+@WebServlet("/admin/listCarType")
+public class AdminListCarType extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminBoardMatchingListServlet() {
+	public AdminListCarType() {
 		super();
 	}
 
@@ -25,12 +25,9 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 //		Client loginClient = (Client) request.getSession().getAttribute("loginClient");
 //		if (loginClient != null && loginClient.getUserType() == 3) {
 //
-//			request.setAttribute("msg","잘못된 경로로 접근하셨습니다.");
-//			request.setAttribute("loc", "/");
-//			request.getRequestDispatcher("/views/common/msg.jsp")
-//			.forward(request, response);
-//			return;	
 //		}
+		
+		
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -39,8 +36,8 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 		}
 
 		int numPerPage = 15;
-		int totalClient = new BoardMatchingService().selectCountBoardMatching();
-		List<BoardMatching> list = new BoardMatchingService().selectListPage(cPage, numPerPage);
+		int totalClient = new CarTypeService().selectCountCarType();
+		List<CarType> list = new CarTypeService().selectListPage(cPage, numPerPage);
 		int totalPage = (int) Math.ceil((double) totalClient / numPerPage);
 
 		String pageBar = "";
@@ -52,7 +49,7 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 		if (pageNo == 1) {
 			pageBar += "<span>[이전]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminBoardMatchingList?cPage=" + (pageNo - 1)
+			pageBar += "<a href=" + request.getContextPath() + "/admin/listCarType?cPage=" + (pageNo - 1)
 					+ ">[이전]</a>";
 		}
 
@@ -60,7 +57,7 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 			if (pageNo == cPage) {
 				pageBar += "<span class='cPage'>" + pageNo + "</span>";
 			} else {
-				pageBar += "<a href=" + request.getContextPath() + "/admin/adminBoardMatchingList?cPage=" + pageNo + ">"
+				pageBar += "<a href=" + request.getContextPath() + "/admin/listCarType?cPage=" + pageNo + ">"
 						+ pageNo + "</a>";
 			}
 			pageNo++;
@@ -69,14 +66,13 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 		if (pageNo > totalPage) {
 			pageBar += "<span>[다음]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminBoardMatchingList?cPage=" + (pageNo)
-					+ ">[다음]</a>";
+			pageBar += "<a href=" + request.getContextPath() + "/admin/listCarType?cPage=" + (pageNo) + ">[다음]</a>";
 		}
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/admin/adminBoardMatchingList.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/adminInsertCarType.jsp").forward(request, response);
 
 	}
 
