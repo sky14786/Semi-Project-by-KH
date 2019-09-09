@@ -13,9 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/tomcat/lib/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="C:/tomcat/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="C:/tomcat/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/tomcat/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/Desktop/페이지처리/web/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/Desktop/apache-tomcat-8.5.43/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/Desktop/JDBC/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/Desktop/06_HelloMVC/web/WEB-INF/lib/cos.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

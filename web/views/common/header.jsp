@@ -32,9 +32,12 @@
         <form class="ml-4">
           <input type="text" name="search" placeholder="Search.." id="seachbar" class="search-bar"/>
         </form>
-        <button class="navbar-right btn btn-primary ml-auto mr-2">
+        <!-- 메세지 버튼 -->
+        <form action = "<%=request.getContextPath() %>/messages" class = "navbar-right ml-auto mr-2 btn btn-primary">
+        <button class = "btn btn-primary">
           <i class="fas fa-envelope"></i>
         </button>
+        </form>
         <button
           class="navbar-toggler"
           type="button"
