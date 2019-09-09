@@ -18,7 +18,7 @@
     <div id="chat-container" class="container-fluid ">
         <br>
         <div class="navbar">
-            <a href="./chat.html" class="p-2 "> <i class="fas fa-chevron-left fa-3x"></i></a>
+            <a href="<%=request.getContextPath() %>/messages" class="p-2 "> <i class="fas fa-chevron-left fa-3x"></i></a>
             <div class="p-2 chat-container-title "><i class="far fa-envelope-open fa-2x"></i></div>
             <div></div>
         </div>
