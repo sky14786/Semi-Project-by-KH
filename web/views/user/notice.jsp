@@ -56,7 +56,7 @@
         }
       }
     </style>
-    <link href="form-validation.css" rel="stylesheet">
+    <%-- <link href="form-validation.css" rel="stylesheet">
 
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -67,7 +67,7 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" />
+	rel="stylesheet" /> --%>
 
 
 </head>
@@ -153,51 +153,51 @@
           <h4 class="mb-3">배달 정보</h4>
           <hr class="mb-4">
 			<!-- 데이터 폼 -->
-          <form method="POST" onsubmit="return false;" action="<%=request.getContextPath()%>/notice/upload" class="needs-validation" name="imgFile" enctype="multipart/form-data" novalidate>
+          <form method="POST" onsubmit="return true;" action="<%=request.getContextPath()%>/notice/upload" class="needs-validation" name="imgFile" enctype="multipart/form-data" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">화물 정보</label>
-                <input type="text" class="form-control" id="firstName" placeholder="예시) 침대 이사, 소파 배송" value="" required>
+                <input type="text" class="form-control" name="stuff" id="firstName" placeholder="예시) 침대 이사, 소파 배송" value="" required>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">가 격</label>
-                <input type="text" class="form-control" id="lastName" placeholder="₩ 이거 사라질 꺼임" value="" required>
+                <input type="text" class="form-control" name="price" id="lastName" placeholder="₩ 이거 사라질 꺼임" value="" required>
               </div>
             </div>
 
             <label for="address">출발지 주소</label>
             <div class="input-group mb-1">
               <input type="text" class="start-postcode" name="post-number" placeholder="우 편 번 호" style="text-align: center">
-              <input type="text" class="form-control start-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="button-addon2"
+              <input type="text" class="form-control start-addr" name="start-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="button-addon2"
               onkeydown="JavaScript:Enter_Check(1);">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary start-btn" type="button" id="button-addon2" onclick="execDaumPostcode(1)">주소 찾기</button>
               </div>
             </div>
-            <input type="text" class="form-control start-addr-detail" id="address-2" placeholder="상세 주소를 입력해주세요" required>
+            <input type="text" class="form-control start-addr-detail" name="start-detail" id="address-2" placeholder="상세 주소를 입력해주세요" required>
 
             <div class="mb-4"></div>
             <label for="address2">목적지 주소</label>
             <div class="input-group mb-1">
-              <input type="text" class="end-postcode" name="post-number" placeholder="우 편 번 호" style="text-align: center">
-              <input type="text" class="form-control end-addr" placeholder="주소를 검색해주세요" aria-label="" aria-describedby="" onkeydown="JavaScript:Enter_Check(2);">
+              <input type="text" class="end-postcode" name="post-number2" placeholder="우 편 번 호" style="text-align: center">
+              <input type="text" class="form-control end-addr" name="end-addr" placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(2);">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="execDaumPostcode(2)">주소 찾기</button>
               </div>
             </div>
             
-            <input type="text" class="form-control end-addr-detail" id="address2-2" placeholder="상세 주소를 입력해주세요" required>
+            <input type="text" class="form-control end-addr-detail" name="end-detail" id="address2-2" placeholder="상세 주소를 입력해주세요" required>
 
             <br>
             <div class="mb-3">
               <label for="">설명</label>
-              <textarea class="form-control" id="FormControlTextarea" rows="3" placeholder="여기에는 배송관련 정보를 입력해주세요"></textarea>
+              <textarea class="form-control" name="etc" id="FormControlTextarea" rows="3" placeholder="여기에는 배송관련 정보를 입력해주세요"></textarea>
             </div>
 
             <div class="mb-3">
               <label for="truck-size">사이즈 / 규모(선택사항)</label>
               <div class="col-8">
-                  <input type="text" class="form-control" id="" placeholder="가로 X 세로  X 높이 (미터로 표시)">
+                  <input type="text" name="size" class="form-control" id="" placeholder="가로 X 세로  X 높이 (미터로 표시)">
               </div>
             </div>
 
@@ -205,9 +205,9 @@
             <div class="mb-3">
                 <label for="">희망 배송일</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="" placeholder="배송 메모">
+                    <input type="text" class="form-control" name="memo" id="" placeholder="배송 메모">
                     <div style="height: 4px"></div> 
-                    <input class="form-control" id="datepicker" placeholder="일 / 월 / 년"/>
+                    <input class="form-control" id="datepicker" name="date" placeholder="일 / 월 / 년"/>
                 </div>
             </div>
 
@@ -223,7 +223,7 @@
             <!-- 이미지 업로드 버튼 -->
             <div class="input-group mb-3" hidden>
               <div class="custom-file">
-                <input type="file" name="imgFileList" class="custom-file-input file-img-upload" id="input-img-file" multiple>
+                <input type="file" name="imgFileList" class="custom-file-input file-img-upload" id="input-img-file" accept=".jpg, .png, .pdf" multiple>
                 <label class="custom-file-label" for="input-img-file">Choose file</label>
               </div>
             </div>
@@ -234,6 +234,10 @@
             <div class="notice-img-list notice-img">
             <!-- 이미지 생성 공간 -->
             </div>
+           	<div class='col-md12' hidden>
+           		<input class='imgNames' type="text" name='imgNamess'></input>
+           	</div>
+            
           </div>
           
           <!-- aside -->
@@ -243,7 +247,7 @@
         </div>
         <hr class="mb-6">
         <!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
-        <button class="btn btn-primary btn-lg btn-block" name="" id="" type="submit">글 올리기</button>
+        <button class="btn btn-primary btn-lg btn-block" name="" id="" type="submit" onclick="imgNames()">글 올리기</button>
         
     </form>
     </div>

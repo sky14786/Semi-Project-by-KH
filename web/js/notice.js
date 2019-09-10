@@ -17,7 +17,6 @@ $(function() {
 	var fileTarget = $('.file-img-upload'); 
 	
 	fileTarget.on('change', function(){
-
 //		console.log( $('.notice-img').children().length ); // 추가 파일 총 갯수
 		if(window.FileReader){
 			var fileN = $(this)[0].files; //파일의 배열을 가져옴
@@ -59,7 +58,7 @@ $(function() {
 					// 선택된 이미지 태그생성                
 					var imgLabel = 'notice-img-lb' + imgCk;
 					var img = $('<input>').attr(
-							{'type':'text', 'class':'form-control col-md12 '+ imgLabel, 'placeholder':'사진경로 / 이름' ,'required':'', 'value':fileN[i].name}
+							{'type':'text', 'class':'form-control col-md12 '+ imgLabel ,'placeholder':'사진경로 / 이름' ,'required':'', 'value':fileN[i].name}
 					);
 					var imgNumbr = 'notice-img-check' + imgCk; //클래서 + 넘버 부여
 					var imgBtn = $('<button>').attr(
@@ -74,7 +73,15 @@ $(function() {
 
 					$('.notice-img-list').append(imgDiv);
 					// console.log("? : " + fileN[i].name); 
-					imgCk++;     
+					imgCk++; 
+					
+					// var imgInput = $('<input>').attr(
+					// 		{'type' : 'text', 'name' : 'boardImg', 'value':fileN[i].name
+					// });
+					// var imgInput = $('.imgNames');
+					// console.log( $('.'+imgLabel).val() );
+					// imgFileNames += ($('.'+imgLabel).val() + ',');
+					
 				}//for
 			}//if
 			else{ // 이미지 개수가 5개 미만일때
@@ -84,12 +91,28 @@ $(function() {
 		}//if
 		else {
 			console.log("img file else->");
-			var filename = $(this).val().split('/').pop().split('\\').pop();
+			//var filename = $(this).val().split('/').pop().split('\\').pop();
 		}//else
 		// $(this).siblings('.upload-name').val(filename); 
 	}); 
 });
 
+// 이미지 파일 리스트
+function imgNames() {
+	
+	var imgFileNames = "";
+
+	var k = $('.notice-img').children().length;
+//	console.log(k);
+	for (var i=0; i < k; i++) {
+		var imglb = 'notice-img-lb' + i;
+		imgFileNames += $('.'+imglb).val() + ','; 
+		$(".imgNames").val(imgFileNames);
+	}
+	
+}
+
+// 빈 값이 있는 지확인하는 스크립트 필요
 
 	
 	

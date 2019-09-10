@@ -9,9 +9,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * Servlet Filter implementation class UTF8EncodingFilter
- */
 @WebFilter("/encoding")
 public class UTF8EncodingFilter implements Filter {
 
