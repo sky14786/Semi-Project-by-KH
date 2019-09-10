@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.cartype.model.service.CarTypeService;
 import com.truckta.cartype.model.vo.CarType;
+import com.truckta.driver.model.service.DriverService;
+import com.truckta.driver.model.vo.Driver;
 
-@WebServlet("/admin/adminCarTypeList")
-public class AdminListCarType extends HttpServlet {
+@WebServlet("/admin/driverApproval")
+public class AdminDriverApprovalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminListCarType() {
+	public AdminDriverApprovalServlet() {
 		super();
 	}
 
@@ -26,8 +28,7 @@ public class AdminListCarType extends HttpServlet {
 //		if (loginClient != null && loginClient.getUserType() == 3) {
 //
 //		}
-		
-		
+
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -36,9 +37,10 @@ public class AdminListCarType extends HttpServlet {
 		}
 
 		int numPerPage = 15;
-		int totalClient = new CarTypeService().selectCountCarType();
-		List<CarType> list = new CarTypeService().selectListPage(cPage, numPerPage);
-		int totalPage = (int) Math.ceil((double) totalClient / numPerPage);
+		int totalDriver = new DriverService().selectCountDriver(true);
+		List<Driver> dList = new DriverService().selectListPage(cPage, numPerPage, true);
+		List<CarType> cList = new CarTypeService().selectAll();
+		int totalPage = (int) Math.ceil((double) totalDriver / numPerPage);
 
 		String pageBar = "";
 		int pageSizeBar = 5;
@@ -49,16 +51,15 @@ public class AdminListCarType extends HttpServlet {
 		if (pageNo == 1) {
 			pageBar += "<span>[이전]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminCarTypeList?cPage=" + (pageNo - 1)
-					+ ">[이전]</a>";
+			pageBar += "<a href=" + request.getContextPath() + "/admin/driverApproval?cPage=" + (pageNo - 1) + ">[이전]</a>";
 		}
 
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (pageNo == cPage) {
 				pageBar += "<span class='cPage'>" + pageNo + "</span>";
 			} else {
-				pageBar += "<a href=" + request.getContextPath() + "/admin/adminCarTypeList?cPage=" + pageNo + ">"
-						+ pageNo + "</a>";
+				pageBar += "<a href=" + request.getContextPath() + "/admin/driverApproval?cPage=" + pageNo + ">" + pageNo
+						+ "</a>";
 			}
 			pageNo++;
 		}
@@ -66,13 +67,14 @@ public class AdminListCarType extends HttpServlet {
 		if (pageNo > totalPage) {
 			pageBar += "<span>[다음]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminCarTypeList?cPage=" + (pageNo) + ">[다음]</a>";
+			pageBar += "<a href=" + request.getContextPath() + "/admin/driverApproval?cPage=" + (pageNo) + ">[다음]</a>";
 		}
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/admin/adminInsertCarType.jsp").forward(request, response);
+		request.setAttribute("dList", dList);
+		request.setAttribute("cList", cList);
+		request.getRequestDispatcher("/views/admin/adminDriverApproval.jsp").forward(request, response);
 
 	}
 

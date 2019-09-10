@@ -10,11 +10,12 @@ public class Client {
 	private Date regDate;
 	private Date modDate;
 	private int userType;
+	private int status;
 
 	public Client() {
 	}
 
-	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType) {
+	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType, int status) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -23,6 +24,7 @@ public class Client {
 		this.regDate = regDate;
 		this.modDate = modDate;
 		this.userType = userType;
+		this.status = status;
 	}
 
 	public String getId() {
@@ -79,6 +81,14 @@ public class Client {
 
 	public void setUserType(int userType) {
 		this.userType = userType;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	@Override

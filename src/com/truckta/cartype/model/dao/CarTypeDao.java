@@ -92,4 +92,25 @@ public class CarTypeDao {
 		return result;
 	}
 
+	public List<CarType> selectAll(Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAll");
+		ResultSet rs = null;
+		List<CarType> list = new ArrayList<CarType>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CarType ct = new CarType(rs.getInt("type_no"), rs.getString("car_type"));
+				list.add(ct);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
 }

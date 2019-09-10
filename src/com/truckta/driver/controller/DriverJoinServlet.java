@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.truckta.driver.model.service.DriverService;
 import com.truckta.driver.model.vo.Driver;
 
-@WebServlet("/driverSignUp.do")
+@WebServlet("/driverSignUp")
 public class DriverJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final private int maxSize = 1024 * 1024 * 3;
@@ -29,13 +29,14 @@ public class DriverJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.getSession().setAttribute("isCertified", false);
-			request.setAttribute("location", "/");
-			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}
-		
+
+//		if (!ServletFileUpload.isMultipartContent(request)) {
+//			request.getSession().setAttribute("isCertified", false);
+//			request.setAttribute("location", "/");
+//			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		}
+
 		String path = request.getServletContext().getRealPath("/images/profile_images");
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
@@ -46,32 +47,37 @@ public class DriverJoinServlet extends HttpServlet {
 		temp.setDateOfBirth(
 				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
 		temp.setCarType(Integer.parseInt(mul.getParameter("carType")));
+		
 		fileNames.add(mul.getFilesystemName("dLicense"));
-		fileNames.add(mul.getFilesystemName("bLincese"));
+		fileNames.add(mul.getFilesystemName("bLincense"));
 		fileNames.add(mul.getFilesystemName("carPic"));
 
 		for (int i = 0; i < fileNames.size(); i++) {
 			String dir = path + "/" + fileNames.get(i);
 			File oldFile = new File(dir);
-			dir = path + "/" + now + fileNames.get(i);
+			String tempDir = path + "/" + now + fileNames.get(i);
+			dir = now + fileNames.get(i);
 			dirs[i] = dir;
-			File newFile = new File(dir);
+			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
 		}
 		temp.setdLicense(dirs[0]);
 		temp.setbLicense(dirs[1]);
 		temp.setCarPic(dirs[2]);
+		
 
 		int result = new DriverService().joinDriver(temp);
 
 		if (result == 1) {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
-			response.getWriter().print("<script>alert('Upgrade Driver Success Move MainPage')</script>");
-			response.sendRedirect("http://www.truckta.com/index.jsp");
+			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.toString());
+			request.setAttribute("message", "신청하였습니다.");
+			request.setAttribute("location", "/success.html");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail");
-			response.getWriter().print("<script>alert('Upgrade Driver Fail Move MainPage')</script>");
-			response.sendRedirect("http://www.truckta.com/index.jsp");
+			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail" + temp.toString());
+			request.setAttribute("message", "오류.");
+			request.setAttribute("location", "/fail.html");
+			request.getRequestDispatcher("/").forward(request, response);
 		}
 	}
 

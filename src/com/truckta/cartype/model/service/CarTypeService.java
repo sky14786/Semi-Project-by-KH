@@ -1,6 +1,7 @@
 package com.truckta.cartype.model.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 
 import com.truckta.cartype.model.dao.CarTypeDao;
@@ -35,5 +36,12 @@ public class CarTypeService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public List<CarType> selectAll() {
+		Connection conn =JDBCTemplate.getConnection();
+		List<CarType> list = dao.selectAll(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

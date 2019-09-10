@@ -23,10 +23,12 @@ tr>td{
 	</button>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-		<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
+	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">건의사항</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/listCarType">운송수단추가</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminCarTypeList">운송수단추가</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/driverApproval">기사신청관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminDriverList">기사관리</a></li>
 		</ul>
 		&nbsp;&nbsp;
 		<form action="" method="post" class="form-inline">

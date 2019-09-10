@@ -152,6 +152,7 @@ public class ClientDao {
 				c.setRegDate(rs.getDate("regdate"));
 				c.setModDate(rs.getDate("moddate"));
 				c.setUserType(rs.getInt("user_type"));
+				c.setStatus(rs.getInt("status"));
 				list.add(c);
 			}
 
