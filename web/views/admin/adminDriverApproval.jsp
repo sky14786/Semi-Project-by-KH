@@ -86,11 +86,11 @@
 							<td>[등록안함]</td>
 						<%} %>
 						
-						<%if(d.getCarPic()!=null){ %>
+						<%-- <%if(d.getCarPic()!=null){ %>
 							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
 						<%}else { %>
 							<td>[등록안함]</td>
-						<%} %>
+						<%} %> --%>
 						<td><%=d.getRegDate() %></td>
 						<td>
 						<%if(d.getStatus()==0){%>

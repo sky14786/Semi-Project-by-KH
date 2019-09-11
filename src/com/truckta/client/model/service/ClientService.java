@@ -66,9 +66,9 @@ public class ClientService {
 	}
 	
 	public Client selectId(String id,String pw) {
-		Connection conn=getConnection();
+		Connection conn=JDBCTemplate.getConnection();
 		Client cl=dao.selectId(conn,id,pw);
-		close(conn);
+		JDBCTemplate.close(conn);
 		return cl;
 	}
 

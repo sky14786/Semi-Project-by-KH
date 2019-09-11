@@ -18,7 +18,7 @@ public class ClientDao {
 	Properties prop = new Properties();
 
 	public ClientDao() {
-		String path = getClass().getResource("/").getPath()+"sql/client/client-query.properties";
+		String path = getClass().getResource("/").getPath()+"/sql/client/client-query.properties";
 		try {
 			prop.load(new FileReader(path));
 		} catch (IOException e) {
@@ -174,8 +174,10 @@ public class ClientDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
+			System.out.println(id+"/"+pw);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
+				
 				c=new Client();
 				c.setId(rs.getString("id"));
 				c.setPw(rs.getString("pw"));
@@ -185,6 +187,7 @@ public class ClientDao {
 				c.setModDate(rs.getDate("regDate"));
 				c.setUserType(rs.getInt("user_Type"));
 				c.setStatus(rs.getInt("status"));
+				System.out.println(c);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
