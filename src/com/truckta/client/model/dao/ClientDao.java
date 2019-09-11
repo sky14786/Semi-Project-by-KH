@@ -164,4 +164,34 @@ public class ClientDao {
 		}
 		return list;
 	}
+	
+	public Client selectId(Connection conn,String id,String pw) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectId");
+		Client c=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				c=new Client();
+				c.setId(rs.getString("id"));
+				c.setPw(rs.getString("pw"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regDate"));
+				c.setModDate(rs.getDate("regDate"));
+				c.setUserType(rs.getInt("user_Type"));
+				c.setStatus(rs.getInt("status"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return c;
+	}
 }
