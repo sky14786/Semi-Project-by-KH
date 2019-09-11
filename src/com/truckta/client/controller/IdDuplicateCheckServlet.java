@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.client.model.service.ClientService;
 
-@WebServlet("/duplicateCheck.do")
+@WebServlet("/client/duplicateCheck")
 public class IdDuplicateCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

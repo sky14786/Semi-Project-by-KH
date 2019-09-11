@@ -1,6 +1,7 @@
 package com.truckta.driver.model.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.truckta.driver.model.dao.DriverDao;
 import com.truckta.driver.model.vo.Driver;
@@ -23,6 +24,18 @@ public class DriverService {
 		return result;
 	}
 
+	public int selectCountDriver(boolean isApprovaled) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectCountDriver(conn, isApprovaled);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
+	public List<Driver> selectListPage(int cPage, int numPerPage, boolean isApprovaled) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Driver> list = dao.selectListPage(conn, cPage, numPerPage, isApprovaled);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 
 }

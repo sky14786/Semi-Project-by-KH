@@ -8,18 +8,22 @@ public class BoardQnaQ {
 	private String title;
 	private String etc;
 	private Date hireDate;
+	private int status;
+	private int type;
 
 	public BoardQnaQ() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BoardQnaQ(int boardNo, String qUser, String title, String etc, Date hireDate) {
+	public BoardQnaQ(int boardNo, String qUser, String title, String etc, Date hireDate, int status, int type) {
 		super();
 		this.boardNo = boardNo;
 		this.qUser = qUser;
 		this.title = title;
 		this.etc = etc;
 		this.hireDate = hireDate;
+		this.status = status;
+		this.type = type;
 	}
 
 	public int getBoardNo() {
@@ -60,6 +64,28 @@ public class BoardQnaQ {
 
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardQnaQ [boardNo=" + boardNo + ", qUser=" + qUser + ", title=" + title + ", etc=" + etc
+				+ ", hireDate=" + hireDate + ", status=" + status + ", type=" + type + "]";
 	}
 
 }
