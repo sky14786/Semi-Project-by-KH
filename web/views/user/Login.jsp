@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
 <%
-	Client clientLogin=(Client)session.getAttribute("loginClient");
+	/* Client clientLogin=(Client)session.getAttribute("loginClient"); */
 	//쿠키값 확인해서 페이지에 반영하기
 	//쿠키는 key:value형식으로 여러개 저장이 가능하기 때문에
 	//쿠키객체가 배열로 저장이 됨.
