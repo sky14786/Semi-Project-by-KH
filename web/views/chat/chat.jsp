@@ -119,9 +119,10 @@
 
 <footer>
 	<div class="fixed-bottom msb-reply">
+		<Input type="hidden" id="userId" value="user01">
 		<textarea name="text" id="text" class="text"
 			placeholder="What's on your mind..."></textarea>
-		<button onclick="send();">
+		<button onclick="send();" id="enter">
 			<i class="far fa-paper-plane"></i>
 		</button>
 	</div>
@@ -129,9 +130,34 @@
 
 <!-- 메세지 보낼때 -->
 <script>
+
+//creating web socket
+	var socket = new WebSocket("ws://localhost:9393/<%=request.getContextPath()%>/messages/socket");
+	socket.onopen = function(e) {
+		//console.log(e);
+	}
+
+	socket.onmessage = function(e) {
+		console.log(e);
+		var d = JSON.parse(e.data);
+		console.log(d);
+		console.log(d["msg"]);
+	}
+
 	function send() {
+
+		// creating a JSON and Sending it to Java 
+		var msg = {
+			"userId" : "user01",
+			"msg" : $('#text').val(),
+			"room" : "01",
+			"flag" : "text-msg-yo",
+			"receiveId" : "user02"
+		};
+		socket.send(JSON.stringify(msg));
+
 		var date = document.createTextNode(formatAMPM(new Date()));
-		
+
 		var div = $("<div>").attr({
 			"class" : "mf-content bg-primary text-white"
 		});
@@ -151,19 +177,28 @@
 		$("#text-history").append(wrap);
 
 		$("#text").val("");
+		
+		socket.onclose;
 	}
-	
+
 	// 날짜/ 시간
 	function formatAMPM(date) {
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-        return strTime;
-    }
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var ampm = hours >= 12 ? 'PM' : 'AM';
+		hours = hours % 12;
+		hours = hours ? hours : 12; // the hour '0' should be '12'
+		minutes = minutes < 10 ? '0' + minutes : minutes;
+		var strTime = hours + ':' + minutes + ' ' + ampm;
+		return strTime;
+	}
+
+	$('#text').keyup(function(event) {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode == '13') {
+			send();
+		}
+	});
 </script>
 
 
