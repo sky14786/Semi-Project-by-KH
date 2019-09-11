@@ -11,11 +11,13 @@ public class Client {
 	private Date modDate;
 	private int userType;
 	private int status;
+	private int reportCount;
 
 	public Client() {
 	}
 
-	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType, int status) {
+	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType,
+			int status, int reportCount) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -25,6 +27,15 @@ public class Client {
 		this.modDate = modDate;
 		this.userType = userType;
 		this.status = status;
+		this.reportCount = reportCount;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 	public String getId() {
@@ -82,7 +93,7 @@ public class Client {
 	public void setUserType(int userType) {
 		this.userType = userType;
 	}
-	
+
 	public int getStatus() {
 		return status;
 	}

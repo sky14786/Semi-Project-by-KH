@@ -9,22 +9,21 @@ public class Driver {
 	private int carType;
 	private String dLicense;
 	private String bLicense;
-	private String carPic;
 	private Date regDate;
 	private int status;
 
 	public Driver() {
 	}
 
-	public Driver(String id, String dateOfBirth, int carType, String dLicense, String bLicense, String carPic,
-			Date regDate, int status) {
+	public Driver(String id, String dateOfBirth, int carType, String dLicense, String bLicense, Date regDate,
+			int status) {
 		super();
 		this.id = id;
 		this.dateOfBirth = dateOfBirth;
 		this.carType = carType;
 		this.dLicense = dLicense;
 		this.bLicense = bLicense;
-		this.carPic = carPic;
+
 		this.regDate = regDate;
 		this.status = status;
 	}
@@ -77,14 +76,6 @@ public class Driver {
 		this.bLicense = bLicense;
 	}
 
-	public String getCarPic() {
-		return carPic;
-	}
-
-	public void setCarPic(String carPic) {
-		this.carPic = carPic;
-	}
-
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -96,7 +87,7 @@ public class Driver {
 	@Override
 	public String toString() {
 		return "Driver [id=" + id + ", dateOfBirth=" + dateOfBirth + ", carType=" + carType + ", dLicense=" + dLicense
-				+ ", bLicense=" + bLicense + ", carPic=" + carPic + ", regDate=" + regDate + "]";
+				+ ", bLicense=" + bLicense + ", regDate=" + regDate + "]";
 	}
 
 }

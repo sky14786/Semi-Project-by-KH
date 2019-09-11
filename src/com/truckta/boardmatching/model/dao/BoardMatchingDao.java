@@ -90,15 +90,10 @@ public class BoardMatchingDao {
 				bm.setStartAddr(rs.getString("start_addr"));
 				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
-				bm.setStuffSize(rs.getString("stuff_size"));
+				bm.setCarTypeNo(rs.getInt("car_type_no"));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
-				bm.setPic1(rs.getString("pic1"));
-				bm.setPic2(rs.getString("pic2"));
-				bm.setPic3(rs.getString("pic3"));
-				bm.setPic4(rs.getString("pic4"));
-				bm.setPic5(rs.getString("pic5"));
 				bm.setCount(rs.getInt("count"));
 				list.add(bm);
 			}

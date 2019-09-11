@@ -47,7 +47,7 @@ public class DriverJoinServlet extends HttpServlet {
 		temp.setDateOfBirth(
 				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
 		temp.setCarType(Integer.parseInt(mul.getParameter("carType")));
-		
+
 		fileNames.add(mul.getFilesystemName("dLicense"));
 		fileNames.add(mul.getFilesystemName("bLincense"));
 		fileNames.add(mul.getFilesystemName("carPic"));
@@ -63,8 +63,7 @@ public class DriverJoinServlet extends HttpServlet {
 		}
 		temp.setdLicense(dirs[0]);
 		temp.setbLicense(dirs[1]);
-		temp.setCarPic(dirs[2]);
-		
+//		temp.setCarPic(dirs[2]);
 
 		int result = new DriverService().joinDriver(temp);
 
