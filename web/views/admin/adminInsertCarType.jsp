@@ -122,7 +122,7 @@ tr>td{
 				console.log(typeof(data));
 				if(data){
 					alert('성공');
-					location.href="<%=request.getContextPath()%>/admin/listCarType";
+					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
 				}else{
 					alert('실패');
 				}
