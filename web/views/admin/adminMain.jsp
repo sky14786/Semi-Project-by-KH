@@ -2,5 +2,4 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <%@ include file="/views/admin/adminHeader.jsp"%>
-
 <%@ include file="/views/common/footer.jsp"%>
