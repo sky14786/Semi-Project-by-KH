@@ -12,12 +12,13 @@ public class Client {
 	private int userType;
 	private int status;
 	private int reportCount;
+	private String email;
 
 	public Client() {
 	}
 
 	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType,
-			int status, int reportCount) {
+			int status, int reportCount, String email) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -28,14 +29,7 @@ public class Client {
 		this.userType = userType;
 		this.status = status;
 		this.reportCount = reportCount;
-	}
-
-	public int getReportCount() {
-		return reportCount;
-	}
-
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
+		this.email = email;
 	}
 
 	public String getId() {
@@ -102,10 +96,28 @@ public class Client {
 		this.status = status;
 	}
 
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", pw=" + pw + ", name=" + name + ", profile=" + profile + ", regDate=" + regDate
-				+ ", modDate=" + modDate + ", userType=" + userType + "]";
+				+ ", modDate=" + modDate + ", userType=" + userType + ", status=" + status + ", reportCount="
+				+ reportCount + ", email=" + email + "]";
 	}
-
+    
+	
 }

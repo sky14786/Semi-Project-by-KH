@@ -197,4 +197,21 @@ public class ClientDao {
 		}
 		return c;
 	}
+	public int updateClient(Connection conn,Client c) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateClient");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, c.getId());
+			pstmt.setString(2, c.getName());
+			pstmt.setString(3, c.getProfile());
+			pstmt.setString(4, c.getEmail());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
+	}
 }

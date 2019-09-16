@@ -71,7 +71,7 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
                     </tr>
                     <tr>
                         <td>
-                           <input type="button" value="내정보보기" onclick="location.href='<%=request.getContextPath()%>/mypage?userId=<%=clientLogin.getId()%>'"/>
+                           <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'"/>
                            <input type="button" value="로그아웃" onclick="location.href='<%=request.getContextPath()%>/logout '"/>
                               <!--window 요청 a태그  open location-->
                         </td>
