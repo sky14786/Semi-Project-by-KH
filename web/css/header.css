@@ -1,3 +1,25 @@
+.nav-bar {
+  width: 3em;
+  height: 3em;
+}
+
+.header-search-bar {
+  width: 100px;
+}
+
+.btn-bg-color {
+  background-color: rgb(178, 165, 159);
+}
+.bg-nav {
+  background-color: rgb(2, 52, 89);
+}
+
+.jumbotron {
+  background-image: url("/resource/project_images/banner_img2.jpg");
+  background-size: cover;
+  text-shadow: black 0.2em 0.2em 0.2em;
+  color: white;
+}
 /* nav > div > input[type="text"]  */
 .search-bar {
   width: 700px;

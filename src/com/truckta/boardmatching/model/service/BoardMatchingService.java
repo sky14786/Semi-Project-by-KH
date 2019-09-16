@@ -13,6 +13,7 @@ import common.template.JDBCTemplate;
 public class BoardMatchingService {
 	private BoardMatchingDao dao = new BoardMatchingDao();
 
+	// 기본 정보 글 입력
 	public int writeBoardMatching(BoardMatching bTemp) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.wrtieBoardMatching(conn, bTemp);

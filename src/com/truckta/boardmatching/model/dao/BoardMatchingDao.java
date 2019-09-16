@@ -49,6 +49,7 @@ public class BoardMatchingDao {
 		return result;
 	}
 
+	// 사용자매칭 업로드 글 전체 갯수
 	public int selectCountBoardMatching(Connection conn) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectCountBoardMatching");
@@ -71,6 +72,7 @@ public class BoardMatchingDao {
 
 	}
 
+	//  해당 페이지의 리스트목록을 불러옴
 	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
