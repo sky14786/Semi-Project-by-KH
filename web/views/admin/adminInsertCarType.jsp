@@ -15,35 +15,7 @@ tr>td{
 	vertical-align:middle!important;
 }
 </style>
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
-	<a class="navbar-brand" href="#">관리자</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#collapsibleNavbar">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="collapsibleNavbar">
-		<ul class="navbar-nav">
-	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminClientList">유저관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">건의사항</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminCarTypeList">운송수단추가</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/driverApproval">기사신청관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminDriverList">기사관리</a></li>
-		</ul>
-		&nbsp;&nbsp;
-		<form action="" method="post" class="form-inline">
-			<select id="searchType" name="searchType"
-				class="custom-select form-control">
-				<option selected>Type</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
-				<option value="level">권한</option>
-			</select> &nbsp; &nbsp; &nbsp; <input class="form-control" type="text" name=""
-				id="" placeholder="Keyword" />
-			<button type="submit" class="btn btn-success">검색</button>
-		</form>
-	</div>
-</div>
+<%@ include file="/views/admin/adminHeader.jsp"%>
 
 <div class="container" style=" margin-top: 3%">
 	<%-- <table class="table">
@@ -74,14 +46,14 @@ tr>td{
 						<td><%=ct.getTypeNo() %></td>
 						<td><%=ct.getCarType() %></td>
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" class="btn btn-sm" onclick="updateCarType();" name="btn_update" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" name="btn_del" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 					</tr>
 			<%	}
 			}%>
 			
-					
+					<%-- <input type="hidden" name="type_no" value="<%=ct.getTypeNo()%>"> --%>
 			
 		</tbody>
 	</table>
@@ -122,7 +94,7 @@ tr>td{
 				console.log(typeof(data));
 				if(data){
 					alert('성공');
-					location.href="<%=request.getContextPath()%>/admin/listCarType";
+					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
 				}else{
 					alert('실패');
 				}
@@ -132,7 +104,39 @@ tr>td{
 			}
 		});
 	}
-
-
+	$("button[name=btn_del]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var no = td.eq(0).text();
+		var car_type = td.eq(1).text();
+		
+		var isCheckDelete =  confirm(car_type+"운송수단을 삭제하시겠습니까?");
+		if(isCheckDelete){
+			console.log("dd");
+		 	deleteCarType(no); 
+		}
+	});
+	
+	function deleteCarType(target){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/deleteCarType",
+			type:"post",
+			dataType:"json",
+			data:{
+				"del_target":target
+			},
+			success:function(data){
+				console.log(data);
+				if(data){
+					alert("성공");
+					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
+				}else{
+					alert("실패");
+				}
+			}
+		});  
+	}
 </script>
 <%@ include file="/views/common/footer.jsp"%>
+

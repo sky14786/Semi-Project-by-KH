@@ -29,6 +29,42 @@ public class ClientDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public Client selectId(Connection conn,String id,String pw) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectId");
+		Client c=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			System.out.println(id+"/"+pw);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				
+				c=new Client();
+				c.setId(rs.getString("id"));
+				c.setPw(rs.getString("pw"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regDate"));
+				c.setModDate(rs.getDate("regDate"));
+				c.setUserType(rs.getInt("user_Type"));
+				c.setStatus(rs.getInt("status"));
+				System.out.println(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return c;
+	}
+
+	
+
 
 	public int joinClient(Connection conn, Client temp) {
 		PreparedStatement pstmt = null;
@@ -39,8 +75,9 @@ public class ClientDao {
 			pstmt.setString(1, temp.getId());
 			pstmt.setString(2, temp.getPw());
 			pstmt.setString(3, temp.getName());
-			pstmt.setString(4, temp.getProfile());
-			pstmt.setInt(5, temp.getUserType());
+			pstmt.setString(4, temp.getEmail());
+			pstmt.setString(5, temp.getProfile());
+//			pstmt.setInt(5, temp.getUserType());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException sqle) {
@@ -168,40 +205,6 @@ public class ClientDao {
 		}
 		return list;
 	}
-	
-	public Client selectId(Connection conn,String id,String pw) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql=prop.getProperty("selectId");
-		Client c=null;
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-			System.out.println(id+"/"+pw);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				
-				c=new Client();
-				c.setId(rs.getString("id"));
-				c.setPw(rs.getString("pw"));
-				c.setName(rs.getString("name"));
-				c.setProfile(rs.getString("profile"));
-				c.setRegDate(rs.getDate("regDate"));
-				c.setModDate(rs.getDate("regDate"));
-				c.setUserType(rs.getInt("user_Type"));
-				c.setStatus(rs.getInt("status"));
-				System.out.println(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
-		}
-		return c;
-	}
-
 	public int selectCountMessageList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -303,4 +306,5 @@ public class ClientDao {
 		} return result;
 		
 	}
+
 }
