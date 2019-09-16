@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
+
+<% 	
+Client clientLogin=(Client)session.getAttribute("loginClient");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,18 +48,38 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+         <%if(clientLogin==null) {%>
         <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
           <ul class="navbar-nav text-right">
             <li class="nav-item active">
-              <a class="nav-link" href="#">로그인</a>
+             <a class="nav-link" href="/views/user/Login.jsp">로그인</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">회원가입</a>
+              <a class="nav-link" href="/views/user/singUpClient.jsp">회원가입</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <%}
+    
+    if(clientLogin!=null) { %>
+            <table id="logged-in">
+                    <tr>
+                        <td>
+                            <%=clientLogin.getName()%>님 환영합니다.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'"/>
+                           <input type="button" value="로그아웃" onclick="location.href='<%=request.getContextPath()%>/logout '"/>
+                              <!--window 요청 a태그  open location-->
+                        </td>
+                    </tr>
+                </table>
+            
+            <%} %>
 
     <script>
       function redirect() {
@@ -64,3 +89,4 @@
   </header>
   <body>
 </html>
+
