@@ -9,17 +9,10 @@
 	
 <body>
 	<script>
-	setInterval(function() { 
+	<%-- setInterval(function() { 
 		location.href="<%=request.getContextPath()%>/mainpageload";
-	}, 1);
-
-		
-	
-	
-	
-	
+	}, 1); --%>
+	location.href="<%=request.getContextPath()%>/mainpageload";
 	</script>
-	
-	
 </body>
 </html>

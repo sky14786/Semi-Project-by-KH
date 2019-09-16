@@ -12,7 +12,7 @@
     	
     %>
     
-    <%@ include file="/header.jsp"%>
+    <%@ include file="/views/common/header.jsp"%>
     
 	<div class="container">
 

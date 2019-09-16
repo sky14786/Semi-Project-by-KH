@@ -18,8 +18,7 @@ import com.truckta.boardmatching.model.vo.BoardMatching;
 
 public class MainDao {
 	private Properties prop = new Properties();
-	
-	
+
 	public MainDao() {
 		String path = getClass().getResource("/").getPath() + "sql/boardmatching/boardmatching-query.properties";
 		try {
@@ -31,19 +30,12 @@ public class MainDao {
 	
 	
 	
+
 	public List<BoardMatching> selectList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<BoardMatching> list = new ArrayList();
-		/*
-		 * try { FileInputStream file = new FileInputStream(
-		 * "C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
-		 * prop.load(file); } catch (Exception e) { e.printStackTrace(); //
-		 * System.out.println("### member-query.properties ���� �о���� ���� "); }
-		 */
-
 		String sql = prop.getProperty("selectList");
-		System.out.println("### sql : " + sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -73,20 +65,12 @@ public class MainDao {
 
 	}
 
-	//////////////////////////// ����¡
 	public int selectCountMember(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		/////////
-		
-
 		String sql = prop.getProperty("selectCountMember");
-		System.out.println("### 페이징sql : " + sql);
-//////////////////
-
 		try {
-
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -95,7 +79,6 @@ public class MainDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -103,18 +86,11 @@ public class MainDao {
 		return result;
 	}
 
-	// page�� �ش��ϴ� �����͸� ��������
 	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		List<BoardMatching> list = new ArrayList();
-		//
-		
-
 		String sql = prop.getProperty("selectListPage");
-		System.out.println("### selectListPage sql : " + sql);
-		//
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
@@ -131,9 +107,7 @@ public class MainDao {
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
-
 				bm.setBoardState(rs.getInt("board_state"));
-
 				list.add(bm);
 			}
 		} catch (SQLException e) {
@@ -143,17 +117,12 @@ public class MainDao {
 			close(pstmt);
 		}
 		return list;
-
 	}
 
-	///////////////////////////////// �� ��///////////////////////////////////
 	public int selectCountMember(Connection conn, String key) {
 		Statement stmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		// String sql="select count(*) as cnt from truckta_notice where "+" like
-		// '%"+key+"%'";///////
-
 		String sql = "select count(*) as cnt from BoardMatching where title like '%" + key + "%' or start_addr like '%"
 				+ key + "%' or end_addr like '%" + key + "%'";
 		try {
@@ -161,11 +130,9 @@ public class MainDao {
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
 				result = rs.getInt("cnt");
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("### member-query.properties ���� �о���� ���� ");
 		} finally {
 			close(rs);
 			close(stmt);
@@ -173,7 +140,6 @@ public class MainDao {
 		}
 		return result;
 	}
-	////////////////
 
 	public List<BoardMatching> selectMemberList(Connection conn, String key, int cPage, int numPerPage) {
 		Statement stmt = null;
@@ -206,19 +172,14 @@ public class MainDao {
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
-
 				bm.setBoardState(rs.getInt("board_state"));
-
 				list.add(bm);
 			}
-			System.out.println("########dao list : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("### list member-query.properties 오류 ");
 		} finally {
 			close(rs);
 			close(stmt);
-
 		}
 		return list;
 	}
@@ -229,8 +190,6 @@ public class MainDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from BoardMatching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
-		//
-		System.out.println("### guSearchsql : " + sql);
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -245,19 +204,14 @@ public class MainDao {
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
-
 				bm.setBoardState(rs.getInt("board_state"));
-
 				list.add(bm);
 			}
-			System.out.println("########dao list : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("##### list member-query.properties 오류 ");
 		} finally {
 			close(rs);
 			close(stmt);
-
 		}
 		return list;
 	}
