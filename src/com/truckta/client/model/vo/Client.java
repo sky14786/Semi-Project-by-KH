@@ -6,23 +6,56 @@ public class Client {
 	private String id;
 	private String pw;
 	private String name;
+	private String email;
 	private String profile;
 	private Date regDate;
 	private Date modDate;
 	private int userType;
+	private int status;
+	private int reportCount;
 
 	public Client() {
 	}
 
-	public Client(String id, String pw, String name, String profile, Date regDate, Date modDate, int userType) {
+	public Client(String id, String pw, String name, String email, String profile, Date regDate, Date modDate,
+			int userType, int status, int reportCount) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
+		this.email = email;
 		this.profile = profile;
 		this.regDate = regDate;
 		this.modDate = modDate;
 		this.userType = userType;
+		this.status = status;
+		this.reportCount = reportCount;
+	}
+	
+	
+
+	public Client(String id, String pw, String name, String email) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 
 	public String getId() {
@@ -79,6 +112,14 @@ public class Client {
 
 	public void setUserType(int userType) {
 		this.userType = userType;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	@Override

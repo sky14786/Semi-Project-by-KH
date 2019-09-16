@@ -25,6 +25,11 @@ public class AdminBoardMatchingListServlet extends HttpServlet {
 //		Client loginClient = (Client) request.getSession().getAttribute("loginClient");
 //		if (loginClient != null && loginClient.getUserType() == 3) {
 //
+//			request.setAttribute("msg","잘못된 경로로 접근하셨습니다.");
+//			request.setAttribute("loc", "/");
+//			request.getRequestDispatcher("/views/common/msg.jsp")
+//			.forward(request, response);
+//			return;	
 //		}
 		int cPage;
 		try {

@@ -18,6 +18,7 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.oreilly.servlet.MultipartRequest;
+import com.truckta.boardmatching.model.vo.BoardMatching;
 
 import common.fileRename.BoFileRename;
 import jdk.nashorn.api.scripting.JSObject;
@@ -49,46 +50,50 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		System.out.println(saveDir);
 		int maxSize = 1024 * 1024 * 20; // 20M
 		
-		MultipartRequest mr= new MultipartRequest(
-				request,
-				saveDir,
-				maxSize,
-				"UTF-8",
-				new BoFileRename() //file Rename board_matching
-				);
-		
-		String boardStuff = mr.getParameter("boardStuff");
-		String stAddrPost = mr.getParameter("stAddrPost");
-		String stAddr = mr.getParameter("stAddr");
-		String stAddrDe = mr.getParameter("stAddrDe");
-		System.out.println(boardStuff + stAddrPost + stAddr + stAddrDe);
-		
-		String endAddrPost = mr.getParameter("endAddrPost");
-		String endAddr = mr.getParameter("endAddr");
-		String endAddrDe = mr.getParameter("endAddrDe");
-
-		System.out.println(endAddrPost + endAddr + endAddrDe);
-		
-		String textArea = mr.getParameter("boardTextA");
-		System.out.println(textArea);
-		
-		/* 1:일반 2:냉동차 3:탑차 4:리프트 5:기타*/
-		String carType = mr.getParameter("carType");
-		System.out.println(carType);
-		
-		String boardMemo = mr.getParameter("boardMemo");
-		String boardDate = mr.getParameter("boardDate");
-		
-		System.out.println(boardMemo + " / " + boardDate);
-
-		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-		try {
-			Date to = transFormat.parse(boardDate);
-			System.out.println(to);
-		} catch (java.text.ParseException e) {
-			e.printStackTrace();
-		}
+//		MultipartRequest mr= new MultipartRequest(
+//				request,
+//				saveDir,
+//				maxSize,
+//				"UTF-8",
+//				new BoFileRename() //file Rename board_matching
+//				);
+//		
+//		BoardMatching bm = new BoardMatching();
+//		
+//		String boardStuff = mr.getParameter("boardStuff");
+//		String stAddrPost = mr.getParameter("stAddrPost");
+//		String stAddr = mr.getParameter("stAddr");
+//		String stAddrDe = mr.getParameter("stAddrDe");
+//		System.out.println(boardStuff + stAddrPost + stAddr + stAddrDe);
+//		bm.setTitle(boardStuff);
+////		String startAddr = stAddrPost
+//		
+//		String endAddrPost = mr.getParameter("endAddrPost");
+//		String endAddr = mr.getParameter("endAddr");
+//		String endAddrDe = mr.getParameter("endAddrDe");
+//
+//		System.out.println(endAddrPost + endAddr + endAddrDe);
+//		
+//		String textArea = mr.getParameter("boardTextA");
+//		System.out.println(textArea);
+//		
+//		/* 1:일반 2:냉동차 3:탑차 4:리프트 5:기타*/
+//		String carType = mr.getParameter("carType");
+//		System.out.println(carType);
+//		
+//		String boardMemo = mr.getParameter("boardMemo");
+//		String boardDate = mr.getParameter("boardDate");
+//		
+//		System.out.println(boardMemo + " / " + boardDate);
+//
+//		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd/yyyy");
+//
+//		try {
+//			Date to = transFormat.parse(boardDate);
+//			System.out.println(to);
+//		} catch (java.text.ParseException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 
