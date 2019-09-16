@@ -3,33 +3,60 @@
 	
 	<link rel="stylesheet" type="text/css" href="/css/footer.css">
 
-	<footer id="footer" class="mastfoot mt-auto">
-    <ul class="footer-list">
-      <li class="footer-list-item"><a target="_blank" href="http://policy.daangn.com/terms.html">이용약관</a></li>
-      <li class="footer-list-item"><a target="_blank" href="http://policy.daangn.com/privacy.html">개인정보 취급방침</a></li>
-      <li class="footer-list-item"><a target="_blank" href="https://policy.daangn.com/location.html">위치기반서비스 이용약관</a></li>
-      <li class="footer-list-item text-bold"><a target="_blank" href="https://ad.daangn.com/">광고주센터</a></li>
-      <li class="footer-list-item"><a target="_blank" href="http://team.daangn.com">ABOUT US</a></li>
-    </ul>
-    <ul class="footer-list" id="footer-address-list">
-      <li class="footer-list-item">사업자 등록번호 : 000-00-00000</li>
-      <li class="footer-list-item"><address>서울특별시 어딘가의 건물</address></li>
-      <li class="footer-list-item"><a href="mailto:team@daangn.com">aaa@aaaa.com</a></li>
-    </ul>
-     <img class="rounded-circle"  id="rounded-circle" src="data:image/jpeg;base64,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"/>
-    <p id="ceo">
-      (주)truckta  대표 유병승
-    </p>
-    <div id="copyright" class="inner">
-      Copyright © 트럭타 Inc. All rights reserved.
-    </div>
-    <div id="social">
-      <ul class="footer-list">
-        <li class="footer-list-item"><a target="_blank" class="footer-facebook" href="https://www.facebook.com/daangn">facebook</a></li>
-        <li class="footer-list-item"><a target="_blank" class="footer-instagram" href="https://www.instagram.com/daangn.m/">instagram</a></li>
-      </ul>
-    </div>
+	<!--- Footer -->
+	<footer class="bg-dark text-white">
+		<div class="container-fluid padding">
+			<div class="row text-center">
+				<div class="col-md-4">
+					<img src="img/w3newbie.png" alt="">
+					<hr class="light">
+					<p>010-9442-1732</p>
+					<p>help@truckta.com</p>
+					<p>서울시 강남구 도곡동</p>
+					<p>군인공제회관 4층 203호</p>
+				</div>
 
-</footer>
+
+				<div class="col-md-4">
+					<hr class="light">
+					<h5>사무실 방문 가능 시간</h5>
+					<hr class="light">
+					<p>월요일: 아침 9시 - 오후 5시</p>
+					<p>토요일: 아침 10시 - 오후 4시</p>
+					<p>일요일: 문 닫음</p>
+				</div>
+
+
+				<div class="col-md-4">
+					<hr class="light">
+					<h5>Follow us on</h5>
+					<hr class="light">
+					<!--Facebook-->
+					<a class="btn-floating btn-lg btn-primary btn-fb" type="button" role="button"><i
+							class="fab fa-facebook-f"></i></a>
+					<!--Twitter-->
+					<a class="btn-floating btn-lg btn-tw" type="button" role="button"><i class="fab fa-twitter"></i></a>
+					<!--Google +-->
+					<a class="btn-floating btn-lg btn-gplus" type="button" role="button"><i
+							class="fab fa-google-plus-g"></i></a>
+					<!--Linkedin-->
+					<a class="btn-floating btn-lg btn-li" type="button" role="button"><i
+							class="fab fa-linkedin-in"></i></a>
+					<!--Instagram-->
+					<a class="btn-floating btn-lg btn-ins" type="button" role="button"><i
+							class="fab fa-instagram"></i></a>
+				</div>
+
+
+				<div class="col-12">
+					<hr class="light-100">
+					<h5>&copy; truckta.com</h5>
+				</div>
+
+
+
+
+			</div>
+		</div>
 </body>
 </html>
