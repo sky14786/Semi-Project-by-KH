@@ -1,6 +1,8 @@
 package com.truckta.boardmatching.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.oreilly.servlet.MultipartRequest;
 
 import common.fileRename.BoFileRename;
+import jdk.nashorn.api.scripting.JSObject;
 
 @WebServlet("/board/upload")
 public class BoardMatchingDataInputServelt extends HttpServlet {
@@ -23,8 +31,6 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
-//		System.out.println("보드서블릿 ㅇ");
 		
 		// 이미지 서버에 업로드
 		// 경로 : /images/boardMatching_images
@@ -48,88 +54,41 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 				saveDir,
 				maxSize,
 				"UTF-8",
-				new BoFileRename()
-//				new DefaultFileRenamePolicy()
+				new BoFileRename() //file Rename board_matching
 				);
-	        
-//		String test = mr.getParameter("test");
-//		Object o = mr.getParameter("test");
-//		System.out.println((Test)o.);
 		
-//		String h_date = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
-		//09/14/2019
+		String boardStuff = mr.getParameter("boardStuff");
+		String stAddrPost = mr.getParameter("stAddrPost");
+		String stAddr = mr.getParameter("stAddr");
+		String stAddrDe = mr.getParameter("stAddrDe");
+		System.out.println(boardStuff + stAddrPost + stAddr + stAddrDe);
 		
-//        String fi = mr.getParameter("imgNamess");
-//        String imgFiles[] = fi.split(",");
-//        System.out.println(fi);
-        
-        
-        
-//        for (int i = 0; i < imgFiles.length; i++) {
-//        	String dirTmp = saveDir + "/" + imgFiles[i];
-//        	File oldFile = new File(dirTmp);
-//        	dirTmp = saveDir + "/" + h_date + imgFiles[i];
-//        	File newFile = new File(dirTmp);
-//        	if( oldFile.exists() ) oldFile.renameTo(newFile);
-//        	System.out.println(oldFile);
-//        	System.out.println(dirTmp);
-//        	System.out.println(saveDir);
-////        	dirTmp += ("/" + imgFiles[i]);
-////			imgFiles[i] += h_date;
-//		}
-        
-//        for (String s : imgFiles) {
-//			System.out.println(s);
-//		}
-		
-//		Enumeration<String> e = mr.getFileNames();
-//		List<String> fileNames = new ArrayList<String>();
-//		
-//		int ck = 0;
-//		while (e.hasMoreElements()) {
-//			fileNames.add(mr.getFilesystemName( e.nextElement() ));
-//			System.out.println(fileNames);
-//			ck++;
-//		}
-//		System.out.println(ck);
-//		for (String s : fileNames) {
-//			System.out.println("s : " + s);
-//		}
+		String endAddrPost = mr.getParameter("endAddrPost");
+		String endAddr = mr.getParameter("endAddr");
+		String endAddrDe = mr.getParameter("endAddrDe");
 
-//		String[] strimg = mr.getFilesystemName("imgFileList");
+		System.out.println(endAddrPost + endAddr + endAddrDe);
 		
+		String textArea = mr.getParameter("boardTextA");
+		System.out.println(textArea);
 		
+		/* 1:일반 2:냉동차 3:탑차 4:리프트 5:기타*/
+		String carType = mr.getParameter("carType");
+		System.out.println(carType);
 		
-		/*
-		String stuff = mr.getParameter("stuff");
-		String price = mr.getParameter("price");
-		String postNum = mr.getParameter("post-number");
-		String startAddr = mr.getParameter("start-addr");
-		String startDetail = mr.getParameter("start-detail");
-		String stAddr = postNum + "," + startAddr + "," + startDetail;
+		String boardMemo = mr.getParameter("boardMemo");
+		String boardDate = mr.getParameter("boardDate");
 		
-		String postNum2 = mr.getParameter("post-number2");
-		String endAddr = mr.getParameter("end-addr");
-		String endDetail = mr.getParameter("end-detail");
-		String edAddr = postNum2 + "," + endAddr + "," + endDetail;
-		
-		String etc = mr.getParameter("etc");
-		String size = mr.getParameter("size");
-		String memo = mr.getParameter("memo");
-		String date = mr.getParameter("date");
-		
-		System.out.println(stuff + " / " + price);
-		System.out.println(stAddr);
-		System.out.println(edAddr);
-//		System.out.println(postNum + " / " + startAddr + " / " + startDetail);
-//		System.out.println(postNum2 + " / " + endAddr + " / " + endDetail);
-		System.out.println(etc);
-		System.out.println(size);
-		System.out.println(memo + " / " + date);
-	*/
-		
-		
-		
+		System.out.println(boardMemo + " / " + boardDate);
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+		try {
+			Date to = transFormat.parse(boardDate);
+			System.out.println(to);
+		} catch (java.text.ParseException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

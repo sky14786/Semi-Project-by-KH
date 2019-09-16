@@ -96,45 +96,21 @@ $(function() {
 		// $(this).siblings('.upload-name').val(filename); 
 	}); 
 	
+	
+	
 });
 
-//$(function () {
-    // $('#boardUpload').click(function () {
-		
-	// 	var boardFd = new FormData();
-
-	// 	$.each(boardUp.filenames.files, function (i, item) {
-	// 	boardFd.append("boardImages" + i, item);
-	// 	// console.log(item);
-	// 	});
-		
-	// 	/*  var test = {
-	// 	'123':'a', '345':'b'
-	// 	}; */
-	// 	// boardFd.append('test', test);
-	// 	// console.log(boardFd);
-		
-	// 	$.ajax({
-	// 		url:'<%=request.getContextPath()%>/board/upload',
-	// 		data: boardFd,
-	// 		type:'POST',
-	// 		processData:false,
-	// 		contentType:false,
-	// 		success:function (data) {
-	// 			console.log(data);
-	// 			alert('upload seccess!!');
-
-	// 		},
-	// 		error : function(er) {
-	// 			console.log('error');
-	// 			console.log(er);
-				
-	// 		}
+function boardDuple() {
+	//-------- 정규식 ----------
 	
-	// 	});
-	// });
-//});
+	var boardText = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
+	
+	if (!reg_hanengnum.test($('#board-stuff').val())) {
+	        alert("한글/영문/숫자만 입력 가능합니다.");
+	        return;
+	}
 
+}
 
 // 이미지 파일 리스트
 // function imgNames() {
@@ -147,5 +123,11 @@ $(function() {
 
 
 // 빈 값이 있는 지확인하는 스크립트 필요
+
+//정규식
+
+
+
+
 
 	
