@@ -1,0 +1,83 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+html,
+
+
+body {
+    /* background-image: url('../images/backgroundimage5.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    background-color: whitesmoke;
+}
+.front-logo{
+    width: auto;
+    height: 27px;
+    color: white;
+}
+.photo{
+    position:relative;
+    width:100px;
+    height:100px;
+    }
+
+    .img-log{
+        width: 100px;
+        height: 50px;
+        align-content: center;
+        border-radius: 100%;
+    }
+
+.container.sns {
+            font-family: "Noto Sans KR", sans-serif;
+            height: 100%;
+            align-content: center;
+}
+
+.change-logo{
+    width: auto;
+    height: 27px;
+    color: white;
+    align-content: center;
+    padding-left:50px;
+}
+.card2{
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 150px;
+    background-color: #4d3dc0; 
+}
+.rounded-circle{
+    width: 140px;
+    height: 120px;
+    margin-top:40px; 
+    margin-left:5px;
+}
+.card {
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 500px;
+    background-color: white; 
+}
+
+.card-header h3 {
+    color: black;
+}
+
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: lightgray;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+

@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
+encoding//web/views/user/myPage.jsp=UTF-8
 encoding//web/views/user/signUpClient.jsp=UTF-8
+=======
+eclipse.preferences.version=1
+encoding//web/views/user/board_qna_q.jsp=UTF-8
+encoding//web/views/user/signUpClient.jsp=UTF-8
+>>>>>>> 11e9e7ea4af0780d036dcd414480ffae99c92f91

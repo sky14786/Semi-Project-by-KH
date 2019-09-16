@@ -1,8 +1,9 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
 
-
-
-<% Client clientLogin=(Client)session.getAttribute("loginClient"); %>
+<% 	
+Client clientLogin=(Client)session.getAttribute("loginClient");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,19 +30,16 @@
     <!-- [End Import] -->
   </head>
 
- <header>
+  <header>
     <nav class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
       <div class="input-group">
         <img src="<%=request.getContextPath()%>/images/project_images/logo.png" alt="logo.png" class="front-logo mx-0" id="logo" />
         <form class="ml-4">
           <input type="text" name="search" placeholder="Search.." id="seachbar" class="search-bar"/>
         </form>
-        <!-- 메세지 버튼 -->
-        <form action = "<%=request.getContextPath() %>/messages" class = "navbar-right ml-auto mr-2 btn btn-primary">
-        <button class = "btn btn-primary">
+        <button class="navbar-right btn btn-primary ml-auto mr-2">
           <i class="fas fa-envelope"></i>
         </button>
-        </form>
         <button
           class="navbar-toggler"
           type="button"
@@ -50,18 +48,38 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+         <%if(clientLogin==null) {%>
         <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
           <ul class="navbar-nav text-right">
             <li class="nav-item active">
-              <a class="nav-link" href="#">로그인</a>
+             <a class="nav-link" href="/views/user/Login.jsp">로그인</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">회원가입</a>
+              <a class="nav-link" href="/views/user/singUpClient.jsp">회원가입</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <%}
+    
+    if(clientLogin!=null) { %>
+            <table id="logged-in">
+                    <tr>
+                        <td>
+                            <%=clientLogin.getName()%>님 환영합니다.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'"/>
+                           <input type="button" value="로그아웃" onclick="location.href='<%=request.getContextPath()%>/logout '"/>
+                              <!--window 요청 a태그  open location-->
+                        </td>
+                    </tr>
+                </table>
+            
+            <%} %>
 
     <script>
       function redirect() {

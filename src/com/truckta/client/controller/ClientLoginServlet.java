@@ -92,11 +92,11 @@ public class ClientLoginServlet extends HttpServlet {
 			//에러처리
 			//1.메세지처리페이지에서 에러메세지 띄운다(경고창) 로그인 거절!
 			//2.메인화면으로 이동시킨다.
-			String msg="아이디나 비밀번호가 일치하지 않습니다.";
-			request.setAttribute("msg",msg);
+			String message="아이디나 비밀번호가 일치하지 않습니다.";
+			request.setAttribute("message",message);
 			view="/views/common/msg.jsp";
-			String loc="/";
-			request.setAttribute("loc",loc);
+			String locaction="/";
+			request.setAttribute("location",locaction);
 			RequestDispatcher rd=request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}
