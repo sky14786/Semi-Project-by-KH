@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="com.truckta.client.model.vo.Client"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.truckta.chat.model.vo.MessageList"%>
+
+<%
+	Client c = (Client) request.getAttribute("loggedInClient");
+	List<MessageList> list = (List) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,165 +54,27 @@ form:active {
 		</div>
 
 
-		<a href="<%=request.getContextPath()%>/messages/chat">
+		<%
+			if (list != null && !list.isEmpty()) {
+				for (MessageList ml : list) {
+		%>
+		<a href="<%=request.getContextPath()%>/messages/chat?room=<%=ml.getRoomNo()%>">
 			<div class="d-flex mt-3 py-2 border-bottom">
 				<img class="img-sm rounded-circle"
 					src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
 					alt="profile image">
 				<div class="wrapper ml-2">
-					<p class="mb-n1 font-weight-semibold">Ray Douglas</p>
-					<small>162543</small>
+					<p class="mb-n1 font-weight-semibold"><%=ml.getUserA() %></p>
+					<small><%=ml.getRoomNo() %></small>
 				</div>
-				<small class="text-muted ml-auto">1 Hours ago</small>
+				<small class="text-muted ml-auto"><%=ml.getCreatedDate() %></small>
 			</div>
 		</a>
+		<%
+				}
+			}
+		%>
 
-		<div class="d-flex py-2 border-bottom">
-			<span class="img-sm rounded-circle bg-warning text-white text-avatar">OH</span>
-			<div class="wrapper ml-2">
-				<p class="mb-n1 font-weight-semibold">Ora Hill</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 02c.png"
-				alt="profile image">
-			<div class="wrapper ml-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 05b.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 06a.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 02b.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 03a.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 04a.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 05b.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 04c.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 01b.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 02c.png"
-				alt="profile image">
-			<div class="wrapper mal-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-
-		<div class="d-flex py-2 border-bottom">
-			<img class="img-sm rounded-circle"
-				src="<%=request.getContextPath()%>/images/avatars/User 03a.png"
-				alt="profile image">
-			<div class="wrapper ml-2">
-				<p class="mb-n1 font-weight-semibold">Brian Dean</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">4 Hours ago</small>
-		</div>
-
-
-
-
-
-
-		<div class="d-flex pt-2">
-			<span class="img-sm rounded-circle bg-success text-white text-avatar">OB</span>
-			<div class="wrapper ml-2">
-				<p class="mb-n1 font-weight-semibold">Olive Bridges</p>
-				<small>162543</small>
-			</div>
-			<small class="text-muted ml-auto">7 Hours ago</small>
-		</div>
-
-	</div>
 
 
 	<script>

@@ -1,5 +1,7 @@
 package com.truckta.client.model.dao;
 
+import static common.template.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.truckta.chat.model.vo.ChatHistory;
+import com.truckta.chat.model.vo.MessageList;
 import com.truckta.client.model.vo.Client;
 
 import common.template.JDBCTemplate;
@@ -196,5 +200,107 @@ public class ClientDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return c;
+	}
+
+	public int selectCountMessageList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectCountMessageList");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		} 
+		
+		System.out.println("result : " + result);
+		
+		return result;
+	}
+
+	public List<MessageList> selectMessageList(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectMessageList");
+		List<MessageList> list = new ArrayList();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MessageList ml = new MessageList();
+				ml.setRoomNo(rs.getInt("room_no"));
+				ml.setUserA(rs.getString("user_a"));
+				ml.setUserB(rs.getString("user_a"));
+				ml.setUserC(rs.getString("user_a"));
+				ml.setBoardNo(rs.getInt("board_no"));
+				ml.setCreatedDate(rs.getDate("created_date"));
+				list.add(ml);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public List<ChatHistory> selectChatHistory(Connection conn, String room) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ChatHistory> list = new ArrayList();
+		String sql = prop.getProperty("selectChatHistory");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(room));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ChatHistory ch = new ChatHistory();
+				ch.setRoomNo(Integer.parseInt(room));
+				ch.setSender(rs.getString("sender"));
+				ch.setChatText(rs.getString("chat_text"));
+				ch.setSentDate(rs.getDate("sent_date"));
+				list.add(ch);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	// DB 에 메세지 보낼때 기록 남기기
+	public int sendChat(Connection conn, ChatHistory ch) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("sendChat");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("//////////////////");
+			System.out.println(ch);
+			System.out.println(ch.getRoomNo());
+			pstmt.setInt(1, ch.getRoomNo());
+			pstmt.setString(2, ch.getSender());
+			pstmt.setString(3, ch.getChatText());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
 	}
 }
