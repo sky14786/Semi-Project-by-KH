@@ -46,14 +46,14 @@ tr>td{
 						<td><%=ct.getTypeNo() %></td>
 						<td><%=ct.getCarType() %></td>
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" class="btn btn-sm" onclick="updateCarType();" name="btn_update" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" name="btn_del" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 					</tr>
 			<%	}
 			}%>
 			
-					
+					<%-- <input type="hidden" name="type_no" value="<%=ct.getTypeNo()%>"> --%>
 			
 		</tbody>
 	</table>
@@ -104,7 +104,39 @@ tr>td{
 			}
 		});
 	}
-
-
+	$("button[name=btn_del]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var no = td.eq(0).text();
+		var car_type = td.eq(1).text();
+		
+		var isCheckDelete =  confirm(car_type+"운송수단을 삭제하시겠습니까?");
+		if(isCheckDelete){
+			console.log("dd");
+		 	deleteCarType(no); 
+		}
+	});
+	
+	function deleteCarType(target){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/deleteCarType",
+			type:"post",
+			dataType:"json",
+			data:{
+				"del_target":target
+			},
+			success:function(data){
+				console.log(data);
+				if(data){
+					alert("성공");
+					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
+				}else{
+					alert("실패");
+				}
+			}
+		});  
+	}
 </script>
 <%@ include file="/views/common/footer.jsp"%>
+
