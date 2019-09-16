@@ -18,7 +18,7 @@ public class ClientDao {
 	Properties prop = new Properties();
 
 	public ClientDao() {
-		String path = getClass().getResource("/").getPath()+"sql/client/client-query.properties";
+		String path = getClass().getResource("/").getPath() + "sql/client/client-query.properties";
 		try {
 			prop.load(new FileReader(path));
 		} catch (IOException e) {
@@ -35,8 +35,9 @@ public class ClientDao {
 			pstmt.setString(1, temp.getId());
 			pstmt.setString(2, temp.getPw());
 			pstmt.setString(3, temp.getName());
-			pstmt.setString(4, temp.getProfile());
-			pstmt.setInt(5, temp.getUserType());
+			pstmt.setString(4, temp.getEmail());
+			pstmt.setString(5, temp.getProfile());
+//			pstmt.setInt(5, temp.getUserType());
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException sqle) {
