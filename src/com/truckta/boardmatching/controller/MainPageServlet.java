@@ -93,7 +93,7 @@ public class MainPageServlet extends HttpServlet {
 		request.setAttribute("list_page", list_page);
 
 		// request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/mainList.jsp").forward(request, response);
+		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 	}
 
 	/**

@@ -3,6 +3,8 @@ package com.truckta.boardmatching.model.dao;
 import static common.template.JDBCTemplate.close;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,19 +18,29 @@ import com.truckta.boardmatching.model.vo.BoardMatching;
 
 public class MainDao {
 	private Properties prop = new Properties();
-
+	
+	
+	public MainDao() {
+		String path = getClass().getResource("/").getPath() + "sql/boardmatching/boardmatching-query.properties";
+		try {
+			prop.load(new FileReader(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	public List<BoardMatching> selectList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<BoardMatching> list = new ArrayList();
-		try {
-			FileInputStream file = new FileInputStream(
-					"C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
-			prop.load(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// System.out.println("### member-query.properties ���� �о���� ���� ");
-		}
+		/*
+		 * try { FileInputStream file = new FileInputStream(
+		 * "C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
+		 * prop.load(file); } catch (Exception e) { e.printStackTrace(); //
+		 * System.out.println("### member-query.properties ���� �о���� ���� "); }
+		 */
 
 		String sql = prop.getProperty("selectList");
 		System.out.println("### sql : " + sql);
@@ -67,14 +79,7 @@ public class MainDao {
 		ResultSet rs = null;
 		int result = 0;
 		/////////
-		try {
-			FileInputStream file = new FileInputStream(
-					"C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
-			prop.load(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// System.out.println("### member-query.properties ���� �о���� ���� ");
-		}
+		
 
 		String sql = prop.getProperty("selectCountMember");
 		System.out.println("### 페이징sql : " + sql);
@@ -105,14 +110,7 @@ public class MainDao {
 
 		List<BoardMatching> list = new ArrayList();
 		//
-		try {
-			FileInputStream file = new FileInputStream(
-					"C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
-			prop.load(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// System.out.println("### member-query.properties ���� �о���� ���� ");
-		}
+		
 
 		String sql = prop.getProperty("selectListPage");
 		System.out.println("### selectListPage sql : " + sql);
