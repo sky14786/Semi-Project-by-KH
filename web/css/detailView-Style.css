@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.container {
+  font-family: "Noto Sans KR", sans-serif;
+  margin-left: 570px;
+  border: solid 5px red;
+}
+
+.row > .col-xl-10 > div {
+  color: #333;
+  margin-bottom: 50px;
+  font-size: 18px;
+}
+
+.form-style {
+  text-align: center;
+}
+
+.form-style > .form-group > label {
+  font-size: 30px;
+}
+
+.content-background {
+  background-color: white;
+  padding: 20px 20px;
+}
+hr{
+  border: solid 2px yellow;
+}
