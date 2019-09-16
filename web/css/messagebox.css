@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+/* background colors */
+html{ 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+body{
+    display: grid;
+    /* putting the containter center */
+    place-items: center;
+    /* background: linear-gradient(to right, #57c1eb 0%, #246fa8 100%); */
+}
+
+#chat-container{
+    /* min-width: 300px;
+    max-width: 550px;
+    min-height: 300px;
+    max-height: 550px; */
+    width: 100%;
+    height: 95vh;
+    border-radius: 10px;
+    background: #FFF;
+    overflow-y:auto; /* to make it scroll / scrollable */
+}
+
+.chat-container-title{
+    font-size: 16px;
+}
+
+img{
+    width: 40px;
+    height: 40px;
+
+}
+
+.chat-index{
+    overflow-y:auto; /* to make it scroll / scrollable */
+}
+
+.chat-title{
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.chat-room{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px;
+    padding-top: 10px;
+}
+
+.chat-room:hover{
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    
+}
+
+.chat-container{
+    margin-top: 0.8rem;
+    margin-left: 20px;
+    line-height: 0.5;
+}
+
+.align-right{
+    display: flex !important;
+  align-items: center !important;
+}
+
+.input-group {
+    padding: 0 30px 15px;
+    background-color: transparent;
+    border-top: 1px solid transparent;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    position: fixed; 
+}
+
+
+.text-box{
+    position: relative;
+    display: block;
+    float: left;
+    padding: 8px 15px;
+    margin: 0 20px 10px 0;
+    clear: both;
+    color: black;
+    background-color: rgb(219, 6, 6);
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-size: 15px !important;
+ }
+
+ .text-left-box{
+    float: left;
+    background-color: lightgray;
+    color: black;
+    max-width: 150px;
+ }
+
+ .text-right-box{
+    position: relative;
+    display: block;
+    float: right;
+    padding: 8px 15px;
+    margin: 0 20px 10px 0;
+    clear: both;
+    color: black;
+    background-color: lightgray;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    max-width: 150px;
+ }

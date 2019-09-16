@@ -46,6 +46,10 @@
 						id="name" class="form-control" placeholder="NAME" />
 				</div>
 				<div class="form-group">
+					<label for="name">Email</label> <input type="text" name="email"
+						id="email" class="form-control" placeholder="EMAIL" />
+				</div>
+				<div class="form-group">
 					<label for="profile">Profile Picture</label> <input type="file"
 						name="profile" id="profile"
 						class="form-control btn btn-outline-secondary inputFile"

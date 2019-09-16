@@ -31,7 +31,7 @@ public class ClientJoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(!ServletFileUpload.isMultipartContent(request)) {
+		if (!ServletFileUpload.isMultipartContent(request)) {
 			request.getSession().setAttribute("isCertified", false);
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
@@ -44,14 +44,14 @@ public class ClientJoinServlet extends HttpServlet {
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		String fileName = mul.getFilesystemName("profile");
 		System.out.println(fileName);
-		
+
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
 		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
 		temp.setName(mul.getParameter("name"));
-		temp.setUserType(1);
-		
-		if(fileName!=null) {
+		temp.setEmail(mul.getParameter("email"));
+
+		if (fileName != null) {
 			String dir = path + "/" + fileName;
 
 			File oldFile = new File(dir);
@@ -61,7 +61,7 @@ public class ClientJoinServlet extends HttpServlet {
 			oldFile.renameTo(newFIle);
 			temp.setProfile(dir);
 		}
-		
+
 		ClientService cs = new ClientService();
 
 		int result = cs.JoinClient(temp);

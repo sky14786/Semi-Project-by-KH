@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
 
 <% 	
@@ -88,3 +89,4 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
   </header>
   <body>
 </html>
+
