@@ -23,7 +23,8 @@ public class ChattingServer {
      @OnMessage
      public void message(Session session, ChatHistory ch)  {
     	 // DB 에 기록 남기기
-    	 System.out.println(ch.getRoomNo());
+    	 System.out.println("Chatting server //////////////////////");
+    	 System.out.println(ch);
     	 int result = new ClientService().sendChat(ch);
     	 
           for (Session s : session.getOpenSessions()) {
