@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.truckta.boardmatching.model.vo.Board_Matching;
+import com.truckta.boardmatching.model.vo.BoardMatching;
 
 public class MainDao {
 	private Properties prop = new Properties();
 
-	public List<Board_Matching> selectList(Connection conn) {
+	public List<BoardMatching> selectList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Board_Matching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList();
 		try {
 			FileInputStream file = new FileInputStream(
 					"C:\\Semi-Project\\semi_project\\src\\sql\\member\\member-query.properties");
@@ -36,18 +36,18 @@ public class MainDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Board_Matching bm = new Board_Matching();
-				bm.setBoard_no(rs.getInt("board_no"));
-				bm.setWriter(rs.getString("writer"));
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStart_addr(rs.getString("start_addr"));
-				bm.setEnd_addr(rs.getString("end_addr"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
-				bm.setCar_type_no(rs.getString("car_type_no"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHire_date(rs.getDate("hire_date"));
+				bm.setHireDate(rs.getDate("hire_date"));
 
-				bm.setBoard_state(rs.getInt("board_state"));
+				bm.setBoardState(rs.getInt("board_state"));
 
 				list.add(bm);
 			}
@@ -99,11 +99,11 @@ public class MainDao {
 	}
 
 	// page�� �ش��ϴ� �����͸� ��������
-	public List<Board_Matching> selectListPage(Connection conn, int cPage, int numPerPage) {
+	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<Board_Matching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList();
 		//
 		try {
 			FileInputStream file = new FileInputStream(
@@ -123,18 +123,18 @@ public class MainDao {
 			pstmt.setInt(2, cPage * numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Board_Matching bm = new Board_Matching();
-				bm.setBoard_no(rs.getInt("board_no"));
-				bm.setWriter(rs.getString("writer"));
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStart_addr(rs.getString("start_addr"));
-				bm.setEnd_addr(rs.getString("end_addr"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
-				bm.setCar_type_no(rs.getString("car_type_no"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHire_date(rs.getDate("hire_date"));
+				bm.setHireDate(rs.getDate("hire_date"));
 
-				bm.setBoard_state(rs.getInt("board_state"));
+				bm.setBoardState(rs.getInt("board_state"));
 
 				list.add(bm);
 			}
@@ -156,7 +156,7 @@ public class MainDao {
 		// String sql="select count(*) as cnt from truckta_notice where "+" like
 		// '%"+key+"%'";///////
 
-		String sql = "select count(*) as cnt from board_matching where title like '%" + key + "%' or start_addr like '%"
+		String sql = "select count(*) as cnt from BoardMatching where title like '%" + key + "%' or start_addr like '%"
 				+ key + "%' or end_addr like '%" + key + "%'";
 		try {
 			stmt = conn.createStatement();
@@ -177,14 +177,14 @@ public class MainDao {
 	}
 	////////////////
 
-	public List<Board_Matching> selectMemberList(Connection conn, String key, int cPage, int numPerPage) {
+	public List<BoardMatching> selectMemberList(Connection conn, String key, int cPage, int numPerPage) {
 		Statement stmt = null;
 		ResultSet rs = null;
-		List<Board_Matching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList();
 
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
-		String sql = "select * from (" + "select rownum as rnum, a.*from(" + "select * from board_matching where title" //
+		String sql = "select * from (" + "select rownum as rnum, a.*from(" + "select * from BoardMatching where title" //
 				+ " like '%" + key + "%' or start_addr like '%" + key + "%' or end_addr like '%" + key + "%')a) "
 				+ "where rnum between " + start + " and " + end;
 //				String sql="select * from ("
@@ -198,18 +198,18 @@ public class MainDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				Board_Matching bm = new Board_Matching();
-				bm.setBoard_no(rs.getInt("board_no"));
-				bm.setWriter(rs.getString("writer"));
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStart_addr(rs.getString("start_addr"));
-				bm.setEnd_addr(rs.getString("end_addr"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
-				bm.setCar_type_no(rs.getString("car_type_no"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHire_date(rs.getDate("hire_date"));
+				bm.setHireDate(rs.getDate("hire_date"));
 
-				bm.setBoard_state(rs.getInt("board_state"));
+				bm.setBoardState(rs.getInt("board_state"));
 
 				list.add(bm);
 			}
@@ -225,30 +225,30 @@ public class MainDao {
 		return list;
 	}
 
-	public List<Board_Matching> guSearchList(Connection conn, String gu) {
+	public List<BoardMatching> guSearchList(Connection conn, String gu) {
 
-		List<Board_Matching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from board_matching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
+		String sql = "select * from BoardMatching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
 		//
 		System.out.println("### guSearchsql : " + sql);
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				Board_Matching bm = new Board_Matching();
-				bm.setBoard_no(rs.getInt("board_no"));
-				bm.setWriter(rs.getString("writer"));
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStart_addr(rs.getString("start_addr"));
-				bm.setEnd_addr(rs.getString("end_addr"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
-				bm.setCar_type_no(rs.getString("car_type_no"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHire_date(rs.getDate("hire_date"));
+				bm.setHireDate(rs.getDate("hire_date"));
 
-				bm.setBoard_state(rs.getInt("board_state"));
+				bm.setBoardState(rs.getInt("board_state"));
 
 				list.add(bm);
 			}
