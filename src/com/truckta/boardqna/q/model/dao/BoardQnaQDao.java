@@ -80,4 +80,49 @@ public class BoardQnaQDao {
 		}
 		return result;
 	}
+
+	public int deleteQnaQ(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteQnaQ");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public BoardQnaQ findBoardQnaQ(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("findBoardQnaQ");
+		BoardQnaQ temp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new BoardQnaQ();
+				temp.setBoardNo(no);
+				temp.setEtc(rs.getString("etc"));
+				temp.setHireDate(rs.getDate("hire_date"));
+				temp.setqUser(rs.getString("q_user"));
+				temp.setTitle(rs.getString("title"));
+				temp.setType(rs.getInt("type"));
+				temp.setStatus(rs.getInt("status"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
 }

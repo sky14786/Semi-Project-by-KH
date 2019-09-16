@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.truckta.cartype.model.service.CarTypeService;
 
 @WebServlet("/admin/insertCarType")
-public class AdminInsertCarType extends HttpServlet {
+public class AdminInsertCarTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminInsertCarType() {
+	public AdminInsertCarTypeServlet() {
 		super();
 	}
 

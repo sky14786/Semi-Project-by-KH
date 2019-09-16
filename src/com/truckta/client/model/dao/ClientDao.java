@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.truckta.chat.model.vo.ChatHistory;
 import com.truckta.chat.model.vo.MessageList;
 import com.truckta.client.model.vo.Client;
@@ -323,6 +324,36 @@ public class ClientDao {
 		}
 		return result;
 
+	}
+
+	public Client findClient(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		Client temp = null;
+		String sql = prop.getProperty("idFindClient");
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new Client();
+				temp.setId(id);
+				temp.setEmail(rs.getString("email"));
+				temp.setName(rs.getString("name"));
+				temp.setProfile(rs.getString("profile"));
+				temp.setRegDate(rs.getDate("regdate"));
+				temp.setModDate(rs.getDate("moddate"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setUserType(rs.getInt("user_type"));
+				temp.setReportCount(rs.getInt("report_count"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
 	}
 
 }
