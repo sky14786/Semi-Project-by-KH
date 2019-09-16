@@ -35,14 +35,6 @@ public class MainPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		List<BoardMatching> list = new MainService().selectList();
-		System.out.println("servlet");
-		System.out.println("##### list : " + list);
-		System.out.println("##### list : " + list.size());
-		// �� �������� ������ ����
-
-		//////////////////////// ����¡
-		// ����¡ó�� �߰��ϱ�
-
 		int cPage;// ���纸���ִ� ������
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -51,8 +43,6 @@ public class MainPageServlet extends HttpServlet {
 		}
 
 		int numPerPage = 8;// �������� ����� ������
-		// DB���� ������ ��Ȳ(�Ѽ�), �ʿ��� ������ ��ŭ�� ��ȸ�ؼ�
-		// ������(���Ŀ� ����)
 		int totalMember = new MainService().selectCountMember();
 
 //				List<Member> list=new MemberService().selectList();
@@ -62,9 +52,7 @@ public class MainPageServlet extends HttpServlet {
 		int totalPage = (int) Math.ceil((double) totalMember / numPerPage);
 		String pageBar = "";
 		int pageSizeBar = 5;
-		System.out.println("cpage : " + cPage);
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
-		System.out.println("pageNo : " + (cPage - 1) / pageSizeBar * pageSizeBar);
 		int pageEnd = pageNo + pageSizeBar - 1;
 		if (pageNo == 1) {
 			pageBar += "<span>[이전]</span>";
@@ -93,7 +81,7 @@ public class MainPageServlet extends HttpServlet {
 		request.setAttribute("list_page", list_page);
 
 		// request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/mainList.jsp").forward(request, response);
+		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 	}
 
 	/**
