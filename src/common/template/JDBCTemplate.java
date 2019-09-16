@@ -14,15 +14,12 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 
 public class JDBCTemplate {
-	
 
 	public static Connection getConnection() {
 		Properties prop = new Properties();
 		Connection conn = null;
 		String path=JDBCTemplate.class.getResource("/common/template/driver.properties").getPath();
-		System.out.println(path);
 		try {
-			System.out.println(path);
 			prop.load(new FileReader(path));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),

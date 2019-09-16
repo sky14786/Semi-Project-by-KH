@@ -15,13 +15,11 @@ public class MainService {
 	private MainDao dao = new MainDao();
 
 	public List<BoardMatching> selectList() {
-		System.out.println("servlet");
 		Connection conn = getConnection();
 		List<BoardMatching> list = dao.selectList(conn);
 		close(conn);
 		return list;
 	}
-	// ����¡ó���� ���� ������ ��ü����Ȯ��
 
 	public int selectCountMember() {
 		Connection conn = getConnection();
@@ -43,7 +41,6 @@ public class MainService {
 	public int selectCountMember(String key) {
 		Connection conn = getConnection();
 		int result = dao.selectCountMember(conn, key);
-		System.out.println("#########serviceresult:" + result);
 		close(conn);
 		return result;
 	}
@@ -51,7 +48,6 @@ public class MainService {
 	public List<BoardMatching> selectMemberList(String key, int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<BoardMatching> list = dao.selectMemberList(conn, key, cPage, numPerPage);
-		System.out.println("#########service list :" + list);
 		close(conn);
 		return list;
 	}
