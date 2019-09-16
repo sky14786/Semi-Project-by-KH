@@ -39,7 +39,9 @@ public class MainGuSearch extends HttpServlet {
 		String gu = request.getParameter("selectgu");
 		System.out.println("########guservlet:" + gu);
 		List<BoardMatching> list = new MainService().guSearchList(gu);
-
+		
+		response.getWriter().write("gu");
+		response.getWriter().flush();
 //		request.setAttribute("select_gu",gu);
 //		request.getRequestDispatcher("/views/mainList.jsp").forward(request, response);
 
