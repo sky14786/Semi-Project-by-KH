@@ -5,8 +5,6 @@
 <%@ page import="com.truckta.chat.model.vo.ChatHistory"%>
 <%
      Client c = (Client)   request.getAttribute("loggedInClient");
-	/* System.out.println("//////");
-	System.out.println(c.getId()); */
      List<ChatHistory> list = (List)   request.getAttribute("list");
      String room = (String)request.getAttribute("room");
 %>
