@@ -22,28 +22,28 @@ public class ClientDao {
 	Properties prop = new Properties();
 
 	public ClientDao() {
-		String path = getClass().getResource("/").getPath()+"/sql/client/client-query.properties";
+		String path = getClass().getResource("/").getPath() + "/sql/client/client-query.properties";
 		try {
 			prop.load(new FileReader(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public Client selectId(Connection conn,String id,String pw) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql=prop.getProperty("selectId");
-		Client c=null;
+
+	public Client selectId(Connection conn, String id, String pw) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectId");
+		Client c = null;
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
-			System.out.println(id+"/"+pw);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				
-				c=new Client();
+			System.out.println(id + "/" + pw);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+
+				c = new Client();
 				c.setId(rs.getString("id"));
 				c.setPw(rs.getString("pw"));
 				c.setName(rs.getString("name"));
@@ -54,17 +54,33 @@ public class ClientDao {
 				c.setStatus(rs.getInt("status"));
 				System.out.println(c);
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return c;
 	}
 
-	
-
+	public int updateClient(Connection conn, Client c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateClient");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getId());
+			pstmt.setString(2, c.getName());
+			pstmt.setString(3, c.getProfile());
+			pstmt.setString(4, c.getEmail());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	public int joinClient(Connection conn, Client temp) {
 		PreparedStatement pstmt = null;
@@ -205,16 +221,17 @@ public class ClientDao {
 		}
 		return list;
 	}
+
 	public int selectCountMessageList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectCountMessageList");
 		int result = 0;
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				result = rs.getInt(1);
 			}
 		} catch (Exception e) {
@@ -222,10 +239,10 @@ public class ClientDao {
 		} finally {
 			close(rs);
 			close(pstmt);
-		} 
-		
+		}
+
 		System.out.println("result : " + result);
-		
+
 		return result;
 	}
 
@@ -234,13 +251,13 @@ public class ClientDao {
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectMessageList");
 		List<MessageList> list = new ArrayList();
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				MessageList ml = new MessageList();
 				ml.setRoomNo(rs.getInt("room_no"));
 				ml.setUserA(rs.getString("user_a"));
@@ -268,7 +285,7 @@ public class ClientDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(room));
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				ChatHistory ch = new ChatHistory();
 				ch.setRoomNo(Integer.parseInt(room));
 				ch.setSender(rs.getString("sender"));
@@ -303,8 +320,9 @@ public class ClientDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		} return result;
-		
+		}
+		return result;
+
 	}
 
 }

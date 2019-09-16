@@ -71,12 +71,24 @@ public class ClientService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	
-	public Client selectId(String id,String pw) {
-		Connection conn=JDBCTemplate.getConnection();
-		Client cl=dao.selectId(conn,id,pw);
+
+	public Client selectId(String id, String pw) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client cl = dao.selectId(conn, id, pw);
 		JDBCTemplate.close(conn);
 		return cl;
+	}
+
+	public int updateClient(Client c) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateClient(conn, c);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 	public int selectCountMessageList() {
@@ -100,14 +112,15 @@ public class ClientService {
 	}
 
 	public int sendChat(ChatHistory ch) {
-		Connection  conn = getConnection();
+		Connection conn = getConnection();
 		int result = dao.sendChat(conn, ch);
-		if(result>0) {
+		if (result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
-		} return result;
-		
+		}
+		return result;
+
 	}
 
 }
