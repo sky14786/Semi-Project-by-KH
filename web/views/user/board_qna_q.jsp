@@ -4,7 +4,6 @@
 <%@ page import="java.util.List" %> 
 <%
 	List<BoardQnaQ> list=(List)request.getAttribute("list");
- ;
 %>
 
     
