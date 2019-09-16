@@ -57,6 +57,7 @@ public class BoardQnaQDao {
 		
 		try {
 		    pstmt=conn.prepareStatement(sql);
+		    
 			rs=pstmt.executeQuery();
 		while(rs.next()) {
 			BoardQnaQ q=new BoardQnaQ();

@@ -35,6 +35,7 @@ public class BoardQnaQListservlet extends HttpServlet {
 		List<BoardQnaQ> list=new boardQnaQService().selectBoardList();
 		request.setAttribute("list",list);
 		System.out.println(list);
+		
 		request.getRequestDispatcher("/views/user/board_qna_q.jsp").forward(request, response);
 	}
 
