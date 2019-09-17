@@ -339,6 +339,7 @@ public class ClientDao {
 			if (rs.next()) {
 				temp = new Client();
 				temp.setId(id);
+				temp.setPw(rs.getString("pw"));
 				temp.setEmail(rs.getString("email"));
 				temp.setName(rs.getString("name"));
 				temp.setProfile(rs.getString("profile"));
@@ -371,6 +372,49 @@ public class ClientDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return isReport;
+	}
+
+	public int deleteClinet(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteClient");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int copyClient(Connection conn, Client temp) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("copyClient");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, temp.getId());
+			pstmt.setString(2, temp.getPw());
+			pstmt.setString(3, temp.getName());
+			pstmt.setString(4, temp.getEmail());
+			pstmt.setString(5, temp.getProfile());
+			pstmt.setDate(6, temp.getRegDate());
+			pstmt.setInt(7, temp.getUserType());
+			pstmt.setInt(8, temp.getStatus());
+			pstmt.setInt(9, temp.getReportCount());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

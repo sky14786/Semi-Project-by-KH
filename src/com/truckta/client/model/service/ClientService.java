@@ -142,4 +142,28 @@ public class ClientService {
 		return isReport;
 	}
 
+	public int deleteClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteClinet(conn, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int copyClient(Client temp) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.copyClient(conn, temp);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

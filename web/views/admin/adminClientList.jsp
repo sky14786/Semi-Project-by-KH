@@ -61,7 +61,7 @@
 						<td><%=c.getReportCount() %></td>
 						<td>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						<%if(c.getStatus()==1) {%>
 						<button type="button" name="btn_report" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>
 						<%} %>
@@ -122,5 +122,34 @@ function reportUser(user){
 		}
 	})
 }
+
+$("button[name=btn_del]").click(function(){
+	var btn_del = $(this);
+	var tr = btn_del.parent().parent();
+	var td = tr.children();
+	var user = td.eq(0).text();
+	
+	var isDeleted = confirm(user+" 사용자를 삭제처리하시겠습니까?");
+	if(isDeleted){
+		deleteUser(user);
+	}
+});
+function deleteUser(user){
+	$.ajax({
+		url:"<%=request.getContextPath()%>/admin/adminClientDelete",
+		type:"post",
+		dataType:"json",
+		data:{"user":user},
+		success:function(data){
+			if(data){
+				alert("삭제되었습니다.");
+				location.href="<%=request.getContextPath()%>/admin/adminClientList";
+			}else{
+				alert("삭제 실패! 개발자에게 문의하세요.");				
+			}
+		}
+	})
+}
+
 </script>
 <%@ include file="/views/common/footer.jsp"%>
