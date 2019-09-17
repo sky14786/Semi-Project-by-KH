@@ -417,4 +417,34 @@ public class ClientDao {
 		return result;
 	}
 
+	public Client boardMatchingFindClient(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("boardMatchingFindClient");
+		ResultSet rs = null;
+		Client temp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new Client();
+				temp.setId(rs.getString("id"));
+				temp.setEmail(rs.getString("email"));
+				temp.setName(rs.getString("name"));
+				temp.setProfile(rs.getString("profile"));
+				temp.setRegDate(rs.getDate("regdate"));
+				temp.setModDate(rs.getDate("moddate"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setUserType(rs.getInt("user_type"));
+				temp.setReportCount(rs.getInt("report_count"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
+
 }

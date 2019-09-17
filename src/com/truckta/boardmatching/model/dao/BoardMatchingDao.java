@@ -72,7 +72,7 @@ public class BoardMatchingDao {
 
 	}
 
-	//  해당 페이지의 리스트목록을 불러옴
+	// 해당 페이지의 리스트목록을 불러옴
 	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -107,6 +107,23 @@ public class BoardMatchingDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+
+	public int deleteBoardMatching(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteBoardMatching");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

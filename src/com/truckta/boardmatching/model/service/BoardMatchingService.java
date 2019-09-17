@@ -41,4 +41,16 @@ public class BoardMatchingService {
 		return list;
 	}
 
+	public int deleteBoardMatching(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteBoardMatching(conn, no);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

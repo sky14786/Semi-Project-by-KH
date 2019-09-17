@@ -166,4 +166,11 @@ public class ClientService {
 		return result;
 	}
 
+	public Client boardMatchingFindClient(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client temp = dao.boardMatchingFindClient(conn, no);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
 }

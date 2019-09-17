@@ -50,7 +50,7 @@ tr>td{
 						<td>
 
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 						
 				</tr>
@@ -83,4 +83,34 @@ tr>td{
 	padding: 10px 5px;
 }
 </style>
+
+<script>
+	$("button[name=btn_del]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var no = td.eq(0).text();
+		
+		var isDeleted = confirm(no+"번 글을 삭제처리하시겠습니까?");
+		if(isDeleted){
+			deleteBoardMatching(no);
+		}
+	});
+	function deleteUser(no){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/adminDeleteBoardMatching",
+			type:"post",
+			dataType:"json",
+			data:{"user":no},
+			success:function(data){
+				if(data){
+					alert("삭제되었습니다.");
+					location.href="<%=request.getContextPath()%>/admin/adminBoardMatchingList";
+				}else{
+					alert("삭제 실패! 개발자에게 문의하세요.");				
+				}
+			}
+		})
+	}
+</script>
 <%@ include file="/views/common/footer.jsp"%>
