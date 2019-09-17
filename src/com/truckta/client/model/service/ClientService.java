@@ -123,4 +123,11 @@ public class ClientService {
 
 	}
 
+	public Client findClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client temp = dao.findClient(conn, id);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
 }
