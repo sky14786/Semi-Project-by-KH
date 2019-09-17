@@ -6,6 +6,7 @@
 <%
 	List<BoardQnaQ> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
+	int type = (int) request.getAttribute("type");
 %>
 <style>
 .container {
@@ -91,7 +92,7 @@
 			type:"post",
 			dataType:"json",
 			data:{
-				"no":no,
+				"no":no
 			},
 			success:function(data){
 				if(data){
@@ -103,5 +104,6 @@
 			}
 		});  
 	}
+	
 </script>
 <%@ include file="/views/common/footer.jsp"%>

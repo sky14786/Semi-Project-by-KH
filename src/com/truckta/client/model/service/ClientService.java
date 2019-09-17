@@ -130,4 +130,16 @@ public class ClientService {
 		return temp;
 	}
 
+	public int reportClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int isReport = dao.reportClient(conn, id);
+		if (isReport == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return isReport;
+	}
+
 }

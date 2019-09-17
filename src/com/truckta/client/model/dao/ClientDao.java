@@ -211,6 +211,7 @@ public class ClientDao {
 				c.setModDate(rs.getDate("moddate"));
 				c.setUserType(rs.getInt("user_type"));
 				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
 				list.add(c);
 			}
 
@@ -354,6 +355,22 @@ public class ClientDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
+	}
+
+	public int reportClient(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("reportClient");
+		int isReport = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			isReport = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return isReport;
 	}
 
 }
