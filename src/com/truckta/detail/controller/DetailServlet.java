@@ -38,6 +38,7 @@ public class DetailServlet extends HttpServlet {
 		Detail d = service.selectDetail(boardNo);
 		request.setAttribute("boardNo", boardNo);
 		request.setAttribute("d", d);
+		System.out.println(d);
 		request.getRequestDispatcher("/views/detail/detailView.jsp").forward(request, response);
 	}
 

@@ -39,14 +39,16 @@ public class DetailDao {
 				d.setBoardNo(rs.getInt("BOARD_NO"));
 				d.setWriter(rs.getString("WRITER"));
 				d.setTitle(rs.getString("TITLE"));
-				d.setStartAddr(rs.getString("STATR_ADDR"));
+				d.setStartAddr(rs.getString("START_ADDR"));
 				d.setEndAddr(rs.getString("END_ADDR"));
 				d.setEtc(rs.getString("ETC"));
-				d.setCarType(rs.getInt("CAR_TYPE_NO"));
+				d.setCarTypeNo(rs.getInt("CAR_TYPE_NO"));
 				d.setMemo(rs.getString("MEMO"));
 				d.setHireDate(rs.getDate("HIRE_DATE"));
 				d.setBoardState(rs.getInt("BOARD_STATE"));
 				d.setCount(rs.getInt("COUNT"));
+				d.setName(rs.getString("name"));
+				d.setCarType(rs.getString("car_type"));
 			}
 			
 		} catch (Exception e) {

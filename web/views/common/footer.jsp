@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/footer.css">
 
 	<!--- Footer -->
-	<footer class="bg-dark text-white">
+	<footer class="bg-dark text-white fixed-bottom">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">

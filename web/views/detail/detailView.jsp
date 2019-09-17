@@ -13,31 +13,31 @@
 <!-- This Page's Include and import Files -->
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+
 <%-- <link href="<%=request.getContextPath()%>/css/detailView-Style.css?ver=1.2" rel="stylesheet"> --%>
 
 <!-- ----------------End----------------- -->
 
+<!-- uploader's info -->
 
+<style>
+.img-sm{
+    width: 40px;
+    height: 40px;
 
-	<!-- uploader info -->
+}
+</style>
 
-
-
-
-	<div class="card-body">
-		<table class="table table-striped">
-			<thead>
-				<th class="py-1">
-					<img src="https://www.scripturaengage.com/wp-content/uploads/2018/01/Profile-Picture-Lee-Sneyers-Circle.png"
-						alt="image" width="50" height="50" /> </th>
-				<th> 권무관 </th>
-				<th> 울산 </th>
-			</thead>
-		</table>
-		<h4 class="card-title">서울에서 인천까지</h4>
-		<p class="card-description"> 여기는 썹타이틀. </p>
-	</div>
-
+<div class="d-flex py-2 border-bottom">
+			<img class="img-sm rounded-circle ml-4"
+				src="<%=request.getContextPath()%>/images/avatars/User 01b.png"
+				alt="profile image">
+			<div class="wrapper mal-2 ml-4">
+				<p class="mb-n1 font-weight-semibold"><%=d.getName() %></p>
+				<small><%=d.getCarType() %> 희망</small>
+			</div>
+			<small class="text-muted ml-auto mr-4">조회수 : <%=d.getCount() %></small>
+		</div>
 
 
 	<!-- images carousel -->
@@ -83,14 +83,14 @@
 			<!--/.Controls-->
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-thumb" data-slide-to="0" class="active">
-					<img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(88).jpg" width="100">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/2008-04-13_Expandable_table_expanding.jpg" width="100">
 				</li>
 				<li data-target="#carousel-thumb" data-slide-to="1">
-					<img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(121).jpg"
+					<img src="https://content3.jdmagicbox.com/comp/salem/46/0427p427std1300746/catalogue/sri-jayam-lakshmi-hayagreevar-furnitures-salem-1owngizfx8.jpg"
 						width="100">
 				</li>
 				<li data-target="#carousel-thumb" data-slide-to="2">
-					<img src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg" width="100">
+					<img src="https://cb2.scene7.com/is/image/CB2/062719_cat_m_furniture_bestsellers?wid=670&qlt=65" width="100">
 				</li>
 			</ol>
 		</div>
@@ -107,50 +107,26 @@
                 <img src="img/desk.png" class="img-fluid">
             </div> -->
 			<div class="col-md-12 col-lg-6">
-				<h2>여기는 제목</h2>
-				<p>래이에서 준비한 모바일 펫매거진
-					「펫메이트」 9월호를
-					보호자님께 보내 드립니다.
-
-
-					휘영청 밝은 보름달처럼
-					환한 웃음 가득한 한가위 맞으세요!
-
-
-					래이에서 준비한 모바일 펫매거진
-					「펫메이트」 9월호를
-					보호자님께 보내 드립니다.
-
-
-					휘영청 밝은 보름달처럼
-					환한 웃음 가득한 한가위 맞으세요!
-				</p>
-
-
-				<a href="#" class="btn btn-primary">Learn More</a>
+				<!-- start to destination -->
+				<h3><%=d.getStartAddr() %> ==> <%=d.getEndAddr() %></h3>
+				<!-- title -->
+				<h2><%=d.getTitle() %></h2>
+				<!-- description -->
+				<p><%=d.getEtc() %></p>
+				<!-- 메모 null 이면 숨기기 -->
+				<%if(d.getMemo()!=null) {%>
+				<p><%=d.getMemo() %></p>
+				<%} %>
+			<a href="#" class="btn btn-primary">Learn More</a>
 			</div>
+			
 		</div>
 	</div>
 	<hr class="my-4">
 	
-	<script>
-	var d = <%=d%>;
-	console.log(d);
+
 	
-	</script>
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
-<%@ include file="/views/common/footer.jsp"%>
+<%-- <%@ include file="/views/common/footer.jsp"%> --%>

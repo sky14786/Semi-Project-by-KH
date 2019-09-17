@@ -29,16 +29,19 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
     <!-- [End Import] -->
   </head>
 
-  <header>
+ <header>
     <nav class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
       <div class="input-group">
         <img src="<%=request.getContextPath()%>/images/project_images/logo.png" alt="logo.png" class="front-logo mx-0" id="logo" />
         <form class="ml-4">
           <input type="text" name="search" placeholder="Search.." id="seachbar" class="search-bar"/>
         </form>
-        <button class="navbar-right btn btn-primary ml-auto mr-2">
+        <!-- 메세지 버튼 -->
+        <form action = "<%=request.getContextPath() %>/messages" class = "navbar-right ml-auto mr-2 btn btn-primary">
+        <button class = "btn btn-primary">
           <i class="fas fa-envelope"></i>
         </button>
+        </form>
         <button
           class="navbar-toggler"
           type="button"
