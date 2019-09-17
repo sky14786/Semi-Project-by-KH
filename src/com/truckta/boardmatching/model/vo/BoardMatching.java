@@ -1,6 +1,6 @@
 package com.truckta.boardmatching.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BoardMatching {
 	private int boardNo;

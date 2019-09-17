@@ -7,12 +7,136 @@ import java.util.List;
 import com.truckta.boardmatching.model.dao.BoardMatchingDao;
 import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
+import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.template.JDBCTemplate;
 
 public class BoardMatchingService {
 	private BoardMatchingDao dao = new BoardMatchingDao();
+	
+	// 글 업로드
+	public int insertBoardMatching(BoardMatching bm) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertBoardMatching(conn, bm);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+	
+	// 글 수정
+	public int updateBoardMatching(BoardMatching bm) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateBoardMatching(conn, bm);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	// 글 불러오기
+	public BoardMatching loadBoardMatching(String wirter, int boardNum) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardMatching mb = dao.loadBoardMatching(conn, wirter, boardNum);
+		
+		if(mb != null) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return mb;
+	}
+	
+	// 보드넘버 얻어오기
+	public int searchBoardNum(BoardMatching bm) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.searchBoardNum(conn, bm);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
+	// 보드 이미지 경로 저장
+	public int insertImgBoardMatching(List<FileMatching> list) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertImgBoardMatching(conn, list);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	// 보드 이미지 삭제(실패시)
+	public int deleteImg(int resultBoNum) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteImg(conn, resultBoNum);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	// 부분 이미지 삭제
+	public int modImg(int boardNum, String imgTemp[]) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.modImg(conn, boardNum, imgTemp);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	// 보드 이미지 불러오기
+	public List<FileMatching> loadBoardImg(int boNum){
+		Connection conn = JDBCTemplate.getConnection();
+		List<FileMatching> list = dao.loadBoardImg(conn, boNum);
+		if (list != null) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 게시판 글 삭제(상태값 변경)
+	public int boardDelete(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.boardDelete(conn, boardNo);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
 	// 기본 정보 글 입력
 	public int writeBoardMatching(BoardMatching bTemp) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -24,7 +148,6 @@ public class BoardMatchingService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
-
 	}
 
 	public int selectCountBoardMatching() {

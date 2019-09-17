@@ -63,7 +63,7 @@
 			<div class="col-xl-1"></div>
 			<div class="col-xl-10" style="background-color: lightgray; padding: 60px 20px">
 				<div class="row placeholders">
-				<%for(Board_Matching bm : list_page){ %>
+				<%-- <%for(Board_Matching bm : list_page){ %>
 					<div class="col-xs-6 col-sm-3 placeholder trasition">
 					
 						<button class="but_1" onclick="location.href='<%=request.getContextPath()%>'">
@@ -73,7 +73,7 @@
 							<div class="trg" id='trg'>조회수 : <span class="text-muted" id="sp_1">0</span></div>
 					</div>
 					</button>
-					<%} %>
+					<%} %> --%>
 					
 					
 

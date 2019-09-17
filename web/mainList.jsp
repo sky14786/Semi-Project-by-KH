@@ -3,9 +3,9 @@
     <%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching" %>
     <%
         //List<Client_notice> list=(List)request.getAttribute("list");
-        List<Board_Matching> list_page=(List)request.getAttribute("list_page");
+        //List<Board_Matching> list_page=(List)request.getAttribute("list_page");
         //int numPerPage=(int)request.getAttribute("numPerPage");
-        List<Board_Matching> select_gu=(List)request.getAttribute("select_gu");
+        //List<Board_Matching> select_gu=(List)request.getAttribute("select_gu");
  		String searchKey=(String)request.getAttribute("searchKeyword");
         
     	
@@ -64,7 +64,7 @@
 			<div class="col-xl-1"></div>
 			<div class="col-xl-10" style="background-color: lightgray; padding: 60px 20px">
 				<div class="row placeholders">
-				<%for(Board_Matching bm : list_page){ %>
+				<%-- <%for(Board_Matching bm : list_page){ %>
 					<div class="col-xs-6 col-sm-3 placeholder trasition">
 					
 						<button class="but_1" onclick="location.href='<%=request.getContextPath()%>'">
@@ -74,7 +74,7 @@
 							<div class="trg" id='trg'>조회수 : <span class="text-muted" id="sp_1">0</span></div>
 					</div>
 					</button>
-					<%} %>
+					<%} %> --%>
 					
 					
 
