@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.truckta.admin.controller;
 
 import java.io.IOException;

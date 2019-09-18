@@ -188,7 +188,7 @@
 
 						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:50px;height:50px;" >
 
-					<%} %>
+					<%} %> 
 
 						<!-- 	<img src=> -->
 

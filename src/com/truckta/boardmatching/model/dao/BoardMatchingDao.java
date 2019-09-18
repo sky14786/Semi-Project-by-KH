@@ -157,7 +157,7 @@ public class BoardMatchingDao {
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, list.get(i).getBaordNo());
+				pstmt.setInt(1, list.get(i).getBoardNo());
 				pstmt.setString(2, list.get(i).getFileName());
 	
 				result = pstmt.executeUpdate();
@@ -226,7 +226,7 @@ public class BoardMatchingDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				fm = new FileMatching();
-				fm.setBaordNo(rs.getInt(1));
+				fm.setBoardNo(rs.getInt(1)); 
 				fm.setFileName(rs.getString(2));
 				list.add(fm);
 			}
