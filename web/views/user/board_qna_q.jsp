@@ -4,9 +4,12 @@
 <%@ page import="java.util.List" %> 
 <%
 	List<BoardQnaQ> list=(List)request.getAttribute("list");
+System.out.println(list.get(1).getqUser());
+    int cPage = (int) request.getAttribute("cPage");
+    BoardQnaQ qu=new BoardQnaQ();
 %>
 
-    
+   
 <!DOCTYPE html>
 <html>
 <%@ include file="/views/common/header.jsp"%>
@@ -14,38 +17,156 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <!-- <link  href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> -->
 <link href="<%=request.getContextPath()%>/css/board_qna.css?var=1.1" rel="stylesheet" />
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
+<script src="../../js/clientBoardList-js.js?ver=1.1" charset="utf-8"></script>
 <title>Insert title here</title>
 </head>
 <body>
 
-<table id="myTable" class="display table-striped" style="text-align :center; border: 1px">
+<div class="container-fluid" style="margin-top: 3%">
+	<table class="table">
+		<thead class="thead-light">
+			<tr style="text-align:center;">
+				
+					
+<%-- <%if(qu.getType()==0){ %>	 --%>		
 <h2>Q&A 게시판</h2>
-    <thead>
         <tr>
             <th style="background-color: #eeeeee; text-align :center;">번호</th>
             <th style="background-color: #eeeeee; text-align :center;">제목</th>
             <th style="background-color: #eeeeee; text-align :center;">작성자</th>
             <th style="background-color: #eeeeee; text-align :center;">작성일</th>
+            <th style="background-color: #eeeeee; text-align :center;">상태</th>
         </tr>
     </thead>
     <tbody>
            <%for(BoardQnaQ q : list) {%>
-				<tr>
+           <%if(clientLogin!=null&&
+				(clientLogin.getId().equals(q.getqUser())
+					|| clientLogin.getName().equals("admin"))) {%> 
+				<tr style="text-align:center;">
 					<td><%=q.getBoardNo() %></td>
-					<td><%=q.getTitle() %></td>
+				<td>
+						<a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=q.getBoardNo()%>">
+							<%=q.getTitle() %>
+						</a>
+					</td>
 					<td><%=q.getqUser() %></td>
 					<td><%=q.getHireDate() %></td>
+					
+					<td><%if(q.getStatus()==0){%>
+								답변전
+							<%}else if(q.getStatus()==1) {%>
+								답변후
+							<%}else if(q.getStatus()==2) {%>
+								완료
+							<%} %>						
+						</td>
+				</tr>
+			<%} %>   
+			<%} %>
+    </tbody>
+    </table>
+   <div id="pageBar" style="text-align:center;color:black;">
+			<%=request.getAttribute("pageBar")%>
+	</div>
+</div>
+ <%-- <%} %> --%>
+
+
+
+<%-- <%if(qu.getType()==1){ %>			
+<h2>Q&A 게시판</h2>
+        <tr>
+            <th style="background-color: #eeeeee; text-align :center;">번호</th>
+            <th style="background-color: #eeeeee; text-align :center;">제목</th>
+            <th style="background-color: #eeeeee; text-align :center;">작성자</th>
+            <th style="background-color: #eeeeee; text-align :center;">작성일</th>
+            <th style="background-color: #eeeeee; text-align :center;">상태</th>
+        </tr>
+    </thead>
+    <tbody>
+           <%for(BoardQnaQ q : list) {%>
+				<tr style="text-align:center;">
+					<td><%=q.getBoardNo() %></td>
+				<td>
+						<a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=q.getBoardNo()%>">
+							<%=q.getTitle() %>
+						</a>
+					</td>
+					<td><%=q.getqUser() %></td>
+					<td><%=q.getHireDate() %></td>
+					
+				
 				</tr>
 			<%} %>   
     </tbody>
     </table>
+   <div id="pageBar" style="text-align:center;color:black;">
+			<%=request.getAttribute("pageBar")%>
+	</div>
+</div>
+
+<%} %> 
+
+<%if(qu.getType()==2){ %>			
+<h2>Q&A 게시판</h2>
+        <tr>
+            <th style="background-color: #eeeeee; text-align :center;">번호</th>
+            <th style="background-color: #eeeeee; text-align :center;">제목</th>
+            <th style="background-color: #eeeeee; text-align :center;">작성자</th>
+            <th style="background-color: #eeeeee; text-align :center;">작성일</th>
+            <th style="background-color: #eeeeee; text-align :center;">상태</th>
+        </tr>
+    </thead>
+    <tbody>
+           <%for(BoardQnaQ q : list) {%>
+				<tr style="text-align:center;">
+					<td><%=q.getBoardNo() %></td>
+				<td>
+						<a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=q.getBoardNo()%>">
+							<%=q.getTitle() %>
+						</a>
+					</td>
+					<td><%=q.getqUser() %></td>
+					<td><%=q.getHireDate() %></td>
+					
+				
+				</tr>
+			<%} %>  --%>  
+    <%-- </tbody>
+    </table>
+   <div id="pageBar" style="text-align:center;color:black;">
+			<%=request.getAttribute("pageBar")%>
+	</div>
+</div>
+
+ <%} %>   --%>
  
-  <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-<script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
+ <%if(clientLogin!=null){ %>
+		<input type="button" value="글쓰기" id="btn-add"
+		onclick="fn_boardAdd()"/>
+		<%} %>
+		<script>
+			function fn_boardAdd(){
+				location.href="<%=request.getContextPath()%>/board/boardQnaForm";
+			}
+	   </script>
+<style>
+#pageBar>a{
+	color:black!important;
+	margin:4px!important;
+	font-size:20px;
+	
+}
+#pageBar> .cPage{
+	margin:4px!important;
+	color:grey!important;
+	font-size:22px;
+}
+.list-padding {
+	padding: 10px 5px;
+}
+</style>
 </body>
 </html>
