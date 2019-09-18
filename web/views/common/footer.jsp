@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/footer.css">
 
 	<!--- Footer -->
-	<footer class="bg-dark text-white fixed-bottom">
+	<footer class="bg-dark text-white bottom">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">
@@ -27,7 +27,7 @@
 				</div>
 
 
-				<div class="col-md-4">
+				<div class="col-md-4">w
 					<hr class="light">
 					<h5>Follow us on</h5>
 					<hr class="light">
