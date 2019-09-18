@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -124,6 +125,61 @@ public class BoardMatchingDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int selectSearchCountBoardMatching(Connection conn, String search, String searchKeyword) {
+		Statement stmt = null;
+		String sql = "select count(*) as cnt from board_matching where " + search + " like '%" + searchKeyword + "%'";
+		int result = 0;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+	public List<BoardMatching> selectSearchListPage(Connection conn, int cPage, int numPerPage, String search,
+			String searchKeyword) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from(select rownum as rnum, a.* from(select * from board_matching where " + search + " like '%"
+				+ searchKeyword + "%' order by hire_date desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
+				+ " and " + (cPage * numPerPage);
+		List<BoardMatching> list = new ArrayList();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(rs.getInt("car_type_no"));
+				bm.setMemo(rs.getString("memo"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				bm.setCount(rs.getInt("count"));
+				list.add(bm);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
 	}
 
 }

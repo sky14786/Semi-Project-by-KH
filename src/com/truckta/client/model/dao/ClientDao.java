@@ -472,8 +472,8 @@ public class ClientDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from(select rownum as rnum, a.* from(select * from client where " + search + " like '%"
-				+ searchKeyword + "%' order by regdate desc)a) where rnum between " + (cPage - 1) * numPerPage + 1
-				+ " and " + cPage * numPerPage;
+				+ searchKeyword + "%' order by regdate desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
+				+ " and " + (cPage * numPerPage);
 		List<Client> list = new ArrayList();
 		try {
 			stmt = conn.createStatement();
@@ -489,7 +489,6 @@ public class ClientDao {
 				c.setUserType(rs.getInt("user_type"));
 				c.setStatus(rs.getInt("status"));
 				c.setReportCount(rs.getInt("report_count"));
-				System.out.println(c);
 				list.add(c);
 			}
 		} catch (SQLException sqle) {

@@ -53,4 +53,18 @@ public class BoardMatchingService {
 		return result;
 	}
 
+	public int selectSearchCountBoardMatching(String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectSearchCountBoardMatching(conn, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<BoardMatching> selectSearchListPage(int cPage, int numPerPage, String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardMatching> list = dao.selectSearchListPage(conn, cPage, numPerPage, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

@@ -6,6 +6,8 @@
 <%
 	List<BoardMatching> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
+	String search = (String) request.getAttribute("search");
+	String searchKeyword = (String) request.getAttribute("searchKeyword");
 %>
 <style>
 .container-fluid {

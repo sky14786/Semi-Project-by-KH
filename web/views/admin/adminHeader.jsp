@@ -41,8 +41,7 @@
 			</select> &nbsp; &nbsp; &nbsp; 
 			<select id="search" name="search" class="custom-select form-control"></select>
 			&nbsp; &nbsp; &nbsp; 
-			<input class="form-control" type="text" name="searchKeyword"
-				id="searchKeyword" placeholder="Keyword" />
+			<input class="form-control" type="text" name="searchKeyword" id="searchKeyword" placeholder="Keyword" onkeypress="if(event.keyCode==13) {searching(); return false;}"/>
 			
 			<button type="button" id="btn_search" onclick="searching();" class="btn btn-success">검색</button>
 		</form>
