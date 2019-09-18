@@ -135,7 +135,7 @@
 			<img src="./t-logo-png-twitter-logo-18.png" alt="logo.png" class="front-logo" id="logo" />
 			<p>&nbsp&nbsp</p>
 			<!-- search bar -->
-			<form action="<%=request.getContextPath() %>/main/mainFinder"><!-- 폼 태그 없었음 해보기  -->
+			<form action="<%=request.getContextPath() %>/main/mainFinder">
 			<input type="text" class="form-control rounded search-bar" placeholder="Search" name="searchKeyword" aria-label="Small"
 				aria-describedby="inputGroup-sizing-sm" id="search-bar" value="search">
 				<button class="btn btn-warning btn-lg" type="submit">

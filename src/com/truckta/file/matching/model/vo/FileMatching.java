@@ -1,25 +1,25 @@
 package com.truckta.file.matching.model.vo;
 
 public class FileMatching {
-	private int baordNo;
+	private int boardNo;
 	private String fileName;
 
 	public FileMatching() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FileMatching(int baordNo, String fileName) {
+	public FileMatching(int boardNo, String fileName) {
 		super();
-		this.baordNo = baordNo;
+		this.boardNo = boardNo;
 		this.fileName = fileName;
 	}
 
-	public int getBaordNo() {
-		return baordNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setBaordNo(int baordNo) {
-		this.baordNo = baordNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public String getFileName() {

@@ -14,7 +14,7 @@ public class BoardMatching {
 	private Date hireDate;
 	private int boardState;
 	private int count;
-
+	
 	public BoardMatching() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,16 +35,6 @@ public class BoardMatching {
 		this.count = count;
 	}
 
-	public BoardMatching(String wrtier, int carTypeNo, String title, String startAddr, String endAddr, String etc) {
-		super();
-		this.wrtier = wrtier;
-		this.carTypeNo = carTypeNo;
-		this.title = title;
-		this.startAddr = startAddr;
-		this.endAddr = endAddr;
-		this.etc = etc;
-	}
-
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -61,20 +51,20 @@ public class BoardMatching {
 		this.wrtier = wrtier;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public int getCarTypeNo() {
 		return carTypeNo;
 	}
 
 	public void setCarTypeNo(int carTypeNo) {
 		this.carTypeNo = carTypeNo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getStartAddr() {
@@ -139,5 +129,6 @@ public class BoardMatching {
 				+ title + ", startAddr=" + startAddr + ", endAddr=" + endAddr + ", etc=" + etc + ", memo=" + memo
 				+ ", hireDate=" + hireDate + ", boardState=" + boardState + ", count=" + count + "]";
 	}
-
+	
+	
 }

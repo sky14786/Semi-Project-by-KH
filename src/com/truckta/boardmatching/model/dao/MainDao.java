@@ -2,7 +2,6 @@ package com.truckta.boardmatching.model.dao;
 
 import static common.template.JDBCTemplate.close;
 
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.file.matching.model.vo.FileMatching;
 
 public class MainDao {
 	private Properties prop = new Properties();
@@ -27,9 +27,6 @@ public class MainDao {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 
 	public List<BoardMatching> selectList(Connection conn) {
 		PreparedStatement pstmt = null;
@@ -41,6 +38,7 @@ public class MainDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardMatching bm = new BoardMatching();
+				
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
@@ -50,11 +48,12 @@ public class MainDao {
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
-
 				bm.setBoardState(rs.getInt("board_state"));
+				
 
 				list.add(bm);
 			}
+//			System.out.println("파일경로불러와졋니?dao"+list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -64,7 +63,7 @@ public class MainDao {
 		return list;
 
 	}
-
+	
 	public int selectCountMember(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -108,6 +107,7 @@ public class MainDao {
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
+				
 				list.add(bm);
 			}
 		} catch (SQLException e) {
@@ -118,12 +118,13 @@ public class MainDao {
 		}
 		return list;
 	}
-
+	
+	
 	public int selectCountMember(Connection conn, String key) {
 		Statement stmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		String sql = "select count(*) as cnt from BoardMatching where title like '%" + key + "%' or start_addr like '%"
+		String sql = "select count(*) as cnt from Board_Matching where title like '%" + key + "%' or start_addr like '%"
 				+ key + "%' or end_addr like '%" + key + "%'";
 		try {
 			stmt = conn.createStatement();
@@ -148,7 +149,7 @@ public class MainDao {
 
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
-		String sql = "select * from (" + "select rownum as rnum, a.*from(" + "select * from BoardMatching where title" //
+		String sql = "select * from (" + "select rownum as rnum, a.*from(" + "select * from Board_Matching where title" //
 				+ " like '%" + key + "%' or start_addr like '%" + key + "%' or end_addr like '%" + key + "%')a) "
 				+ "where rnum between " + start + " and " + end;
 //				String sql="select * from ("
@@ -175,6 +176,7 @@ public class MainDao {
 				bm.setBoardState(rs.getInt("board_state"));
 				list.add(bm);
 			}
+			System.out.println("#####search dao : "+list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -189,9 +191,104 @@ public class MainDao {
 		List<BoardMatching> list = new ArrayList();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from BoardMatching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
+		String sql = "select * from Board_Matching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
+		System.out.println("#####maindao:" + sql);
 		try {
 			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
+				bm.setMemo(rs.getString("memo"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				list.add(bm);
+			}
+			System.out.println("#########dao:" + list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
+
+	public List<FileMatching> fileSearch(Connection conn) {
+		List<FileMatching> list = new ArrayList();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select*from file_matching";
+		System.out.println("#######file_matching sql:" + sql);
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				FileMatching fm = new FileMatching();
+				fm.setBoardNo(rs.getInt("BOARD_NO"));
+				fm.setFileName(rs.getString("FILE_NAME"));
+				list.add(fm);
+			}
+			System.out.println("#########file_matching dao:" + list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
+
+	public int selectCountBoardMatching(Connection conn, String selectGu) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select count(*) as cnt from Board_Matching where start_addr like '%" + selectGu
+				+ "%' or end_addr like '%" + selectGu + "%'";
+		System.out.println("#######boardmatching dao:"+sql);
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+
+		}
+		return result;
+	}
+
+	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage, String selectGu) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<BoardMatching> list = new ArrayList();
+
+		//from Board_Matching where start_addr like '%"+ key + "%' or end_addr like '%" + key + "%'"
+		
+		int start = (cPage - 1) * numPerPage + 1;
+		int end = cPage * numPerPage;
+		String sql = "select * from(select rownum as rnum, a.* from("
+				+ "select * from board_matching where start_addr like '%"+ selectGu + "%' or end_addr like '%" + selectGu + "%' order by hire_date desc)a)"
+				+ " where rnum between "+ start+" and "+ end;
+
+		try {
+			/*
+			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
+			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
+			 * end);
+			 */
+			System.out.println("#####list selectListpagegu dao:"+sql);
+			 stmt=conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				BoardMatching bm = new BoardMatching();

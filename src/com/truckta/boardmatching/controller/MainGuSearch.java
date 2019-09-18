@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.truckta.boardmatching.model.service.MainService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.file.matching.model.service.FileMatchingService;
+import com.truckta.file.matching.model.vo.FileMatching;
 
 /**
  * Servlet implementation class MainGuSearch
  */
-@WebServlet("/admin/gusearch")
+@WebServlet("/gusearch")
 public class MainGuSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,37 +36,86 @@ public class MainGuSearch extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+//		request.setCharacterEncoding("UTF-8");
+//		response.setContentType("text/html; charset=UTF-8");
+//
+//		String gu = request.getParameter("selectgu");
+//		System.out.println("########guservlet:" + gu);
+//		List<BoardMatching> list = new MainService().guSearchList(gu);
+//		
+//		
+//		
+//		
+//		request.setAttribute("select_gu",list);
+//		System.out.println("#####select_gu"+list);
+//		/*
+//		 * request.setAttribute("imgsearch", list);
+//		 * System.out.println("######servlet imgsearch :"+list);
+//		 */
+//		
+//		
+//		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+		int cPage;
+		String selectGu = request.getParameter("selectGu");
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (NumberFormatException e) {
+			cPage = 1;
+		}
 
-		String gu = request.getParameter("selectgu");
-		System.out.println("########guservlet:" + gu);
-		List<BoardMatching> list = new MainService().guSearchList(gu);
+		int numPerPage = 8;
+		int totalBaordMatching = new MainService().selectCountBoardMatching(selectGu);
+		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage, selectGu);
+		//사진
+		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		
+		int totalPage = (int) Math.ceil((double) totalBaordMatching / numPerPage);
+		String pageBar = "";
+		int pageSizeBar = 5;
+		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
+		int pageEnd = pageNo + pageSizeBar - 1;
+		if (pageNo == 1) {
+			pageBar += "<span>[이전]</span>";
+		} else {
+			pageBar += "<a href=" + request.getContextPath() + "/gusearch?cPage=" + (pageNo - 1) + "&selectGu="
+					+ selectGu + ">[이전]</a>";
+		}
 		
+		while (!(pageNo > pageEnd || pageNo > totalPage)) {
+			if (pageNo == cPage) {
+				pageBar += "<span class='cPage'>" + pageNo + "</span>";
+			} else {
+				pageBar += "<a href=" + request.getContextPath() + "/gusearch?cPage=" + pageNo + "&selectGu="
+						+ selectGu + ">" + pageNo + "</a>";
+			}
+			pageNo++;
+		}
 		
-		
-		request.setAttribute("select_gu",list);
-		System.out.println("#####select_gu"+list);
-//		request.getRequestDispatcher("/views/mainList.jsp").forward(request, response);
-		response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-       
-        //DTO 타입의 어레이리스트를 json 형태로 바꿔주는 구문(라이브러리 필수, zip->jar 확장자명 꼭 확인)
-        String gson = new Gson().toJson(list);
-        System.out.println("########gson:"+gson);
-        try {
-            //ajax로 리턴해주는 부분
-            response.getWriter().write(gson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		if (pageNo > totalPage) {
+			pageBar += "<span>[다음]</span>";
+		} else {
+			pageBar += "<a href=" + request.getContextPath() + "/gusearch?cPage=" + (pageNo) + "&selectGu="
+					+ selectGu + ">[다음]</a>";
+		}
+		////////////
+//		List<FileMatching> file_matching = new MainService().fileSearch();
+
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("cPage", cPage);
+		// request.setAttribute("members",list1);//??
+//		request.setAttribute("numPerPage", numPerPage);// ?
+		request.setAttribute("list_page", list_page);
+		request.setAttribute("selectGu", selectGu);
+
+		// request.setAttribute("list", list);
+		//사진
+		request.setAttribute("fileList", fileList);
+//		request.setAttribute("imgsearch", file_matching);
+//		System.out.println("######servlet imgsearch :" + file_matching);
+
+		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
