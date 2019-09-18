@@ -13,7 +13,7 @@
 	font-family: "Noto Sans KR", sans-serif;
 }
 </style>
-<%@ include file="/views/admin/adminHeader.jsp"%>
+
 
 <div class="container-fluid" style="margin-top: 3%">
 	<table class="table">

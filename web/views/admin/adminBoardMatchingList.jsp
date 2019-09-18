@@ -6,6 +6,8 @@
 <%
 	List<BoardMatching> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
+	String search = (String) request.getAttribute("search");
+	String searchKeyword = (String) request.getAttribute("searchKeyword");
 %>
 <style>
 .container-fluid {
@@ -15,10 +17,10 @@ tr>td{
 	vertical-align:middle!important;
 }
 </style>
-<%@ include file="/views/admin/adminHeader.jsp"%>
+
 
 <div class="container-fluid" style=" margin-top: 3%">
-	<table class="table">
+	<table class="table" style="font-size:10px">
 		<thead class="thead-light">
 			<tr style="text-align:center;">
 				<th>글번호</th>
@@ -26,6 +28,7 @@ tr>td{
 				<th>작성자</th>
 				<th>출발지</th>
 				<th>도착지</th>
+				<th>희망도착일</th>
 				<th>작성일</th>
 				<th>조회수</th>
 				<th>글상태</th>
@@ -43,6 +46,7 @@ tr>td{
 						<td><%=bm.getWrtier() %></td>
 						<td><%=bm.getStartAddr() %></td>
 						<td><%=bm.getEndAddr() %></td>
+						<td><%=bm.getTkDate() %></td>
 						<td><%=bm.getHireDate() %></td>
 						<td><%=bm.getCount() %></td>
 						<td><%=bm.getBoardState() == 1?"정상":"삭제" %></td>

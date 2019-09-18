@@ -40,9 +40,23 @@ public class BoardQnaQService {
 
 	public BoardQnaQ findBoardQnaQ(int no) {
 		Connection conn = JDBCTemplate.getConnection();
-		BoardQnaQ temp = dao.findBoardQnaQ(conn,no);
+		BoardQnaQ temp = dao.findBoardQnaQ(conn, no);
 		JDBCTemplate.close(conn);
 		return temp;
+	}
+
+	public int selectSearchCountBoardQnaQ(String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectSearchCountBoardQnaQ(conn, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<BoardQnaQ> selectSearchListPage(int cPage, int numPerPage, String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardQnaQ> list = dao.selectSearchListPage(conn, cPage, numPerPage, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }

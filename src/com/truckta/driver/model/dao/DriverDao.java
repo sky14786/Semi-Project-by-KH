@@ -91,7 +91,6 @@ public class DriverDao {
 				d.setDateOfBirth(rs.getString("date_of_birth"));
 				d.setdLicense(rs.getString("d_license"));
 				d.setbLicense(rs.getString("b_license"));
-//				d.setCarPic(rs.getString("carpic"));
 				d.setRegDate(rs.getDate("regdate"));
 				list.add(d);
 			}
@@ -102,6 +101,23 @@ public class DriverDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+	
+	// 드라이버 확인
+	public int driverCheck(Connection conn, String user) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverCheck");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

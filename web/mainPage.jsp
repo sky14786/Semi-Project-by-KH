@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, com.truckta.boardmatching.model.vo.BoardMatching" %>
-    <%
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="java.util.List, com.truckta.boardmatching.model.vo.BoardMatching"%>
+<%
         //List<Client_notice> list=(List)request.getAttribute("list");
-        
         List<BoardMatching> list_page=(List)request.getAttribute("list_page");
         //int numPerPage=(int)request.getAttribute("numPerPage");
         //String searchType=(String)request.getAttribute("searchType");
  		//String searchKey=(String)request.getAttribute("searchKeyword");
-        
-    	
-    %>
-    
-    <%@ include file="/views/common/header.jsp"%>
+%>
+<%@ include file="/views/common/header.jsp"%>
     
 	<div class="container">
 
@@ -63,7 +60,11 @@
 			<div class="col-xl-1"></div>
 			<div class="col-xl-10" style="background-color: lightgray; padding: 60px 20px">
 				<div class="row placeholders">
+<<<<<<< HEAD
 				<%for(BoardMatching bm : list_page){ %>
+=======
+				<%-- <%for(Board_Matching bm : list_page){ %>
+>>>>>>> 97142a3eaa668972cd8e1a170b0d35fff86b54eb
 					<div class="col-xs-6 col-sm-3 placeholder trasition">
 					
 						<button class="but_1" onclick="location.href='<%=request.getContextPath()%>'">
@@ -73,7 +74,7 @@
 							<div class="trg" id='trg'>조회수 : <span class="text-muted" id="sp_1">0</span></div>
 					</div>
 					</button>
-					<%} %>
+					<%} %> --%>
 					
 					
 

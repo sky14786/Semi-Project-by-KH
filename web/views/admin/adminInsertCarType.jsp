@@ -15,7 +15,7 @@ tr>td{
 	vertical-align:middle!important;
 }
 </style>
-<%@ include file="/views/admin/adminHeader.jsp"%>
+
 
 <div class="container" style=" margin-top: 3%">
 	<%-- <table class="table">

@@ -136,7 +136,7 @@ nav, aside {
 				<form action="" method="post" id="boardUp" name="boardUp" class="needs-validation" enctype="multipart/form-data" >
 					<div class="row">
 						<div class="col-md-12 mb-3">
-							<label for="firstName">화물 정보</label> <input type="text"
+							<label for="firstName">화물 정보(제목)</label> <input type="text"
 								class="form-control" name="stuff" id="board-stuff"
 								placeholder="제목) 침대, 이사, 소파 배송" value="" required>
 						</div>
@@ -155,7 +155,7 @@ nav, aside {
 					</div>
 					<input type="text" class="form-control start-addr-detail"
 						name="start-detail" id="address" placeholder="상세 주소를 입력해주세요"
-						required>
+						value="" required>
 
 					<div class="mb-4"></div>
 					<label for="address2">목적지 주소</label>
@@ -185,12 +185,14 @@ nav, aside {
 						<div class="col-8">
 							<div class="form-group">
 								<select class="form-control main" id="select-car" name="select-car">
-							      <option>Car Type</option>
-							      <option value="1">일반</option>
-							      <option value="2">냉동차</option>
-							      <option value="3">탑차</option>
-							      <option value="4">리프트</option>
-							      <option value="5">기타</option>
+							      <option value="0">Car Type</option>
+							      <option value="2">1.5톤 일반</option>
+							      <option value="3">1.5톤 냉각차</option>
+							      <option value="4">1.5톤 탑차</option>
+							      <option value="5">2.5톤 일반</option>
+							      <option value="6">2.5톤 탑차</option>
+							      <option value="7">2.5톤 냉각차</option>
+							      <option value="8">1톤 일반</option>
 							    </select>
 							</div>
 						</div>
@@ -258,64 +260,85 @@ nav, aside {
 			</form>
 		
 			</div>
+			<div>
+			<button type="button" onclick="test();">test button</button>
+			<script>
+				function test() {
+					location.href = '<%=request.getContextPath()%>/board/updateLoad';
+				}
+			</script>
+      		<button type="button" onclick="test1();">myTop button</button>
+			<script>
+				function test1() {
+					location.href = '<%=request.getContextPath()%>/my/pageTop';
+				}
+			</script>
+			<button type="button" onclick="test2();">mySchedule button</button>
+			<script>
+				function test2() {
+					location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
+				}
+			</script>
+			</div>
+      
       
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
 				<aside>aside</aside>
 			</div>
 		</div>
-     </div>
-    <script>
-    
-    	function cancle() {
-			console.log('이전 페이지로 이동함');
-		}
-    
-        $('#boardUpload').click(function () {
-    
-          
-			//fd.append("bs",ajaxFile.ajaxFileTest.files[0]);
-			//여러개파일 업로드
-	      	//console.log("<%=request.getContextPath()%>");
-			var boardFd=new FormData();
+	</div>
+	<script>
+		$('#boardUpload').click(function () {
 			
-			$.each(boardUp.ajaxFilenames.files,function(i,item){
-           		boardFd.append("boardImages" + i, item);
-            	// console.log(item);
-			});
+			var du = boardDuple();	//유효성 검사
 			
-			boardFd.append("boardStuff", $('#board-stuff').val());
-			boardFd.append("stAddrPost", $('#st-addr-post').val());
-			boardFd.append("stAddr", $('#st-addr').val());
-			boardFd.append("stAddrDe", $('#address').val());
-			boardFd.append("endAddrPost", $('#end-addr-post').val());
-			boardFd.append("endAddr", $('#end-addr').val());
-			boardFd.append("endAddrDe", $('#address2').val());
+			if(du != 0){
+				//fd.append("bs",ajaxFile.ajaxFileTest.files[0]);
+				//여러개파일 업로드
+				// $.each(boardUp.ajaxFilenames.files,function(i,item){
+				// 	boardFd.append("boardImages" + i, item);
+				// 	console.log(item);
+				// });
+				
+				boardFd.append("boardStuff", $('#board-stuff').val()); //title
+				boardFd.append("stAddrPost", $('#st-addr-post').val());
+				boardFd.append("stAddr", $('#st-addr').val());
+				boardFd.append("stAddrDe", $('#address').val());
+				boardFd.append("endAddrPost", $('#end-addr-post').val());
+				boardFd.append("endAddr", $('#end-addr').val());
+				boardFd.append("endAddrDe", $('#address2').val());
+				
+				boardFd.append("boardTextA", $('#board-mat-textarea').val());
+				if($("#select-car option:selected").val() == "0"){
+					boardFd.append("carType", "8");
+				}else{
+					boardFd.append("carType", $("#select-car option:selected").val());
+				}
+				boardFd.append("boardMemo", $('#board-memo').val());
+				boardFd.append("boardDate", $('#datepicker').val());
+				
+				$.ajax({
+					url:'<%=request.getContextPath()%>/board/upload.do',
+					data:boardFd,
+					type:'post',
+					processData:false,
+					contentType:false,
+					success:function (data) {
+						alert('upload seccess!!');
+					},
+					error : function(er) {
+						console.log('error');
+						console.log(er);
+					}
+				});//ajax
+				
+			}else{ // 유효성 검사 실패
+				console.log('input error');
+			}
 			
-			boardFd.append("boardTextA", $('#board-mat-textarea').val());			
-			boardFd.append("carType", $("#select-car option:selected").val());
-			boardFd.append("boardMemo", $('#board-memo').val());
-			boardFd.append("boardDate", $('#datepicker').val());
-	          
-        $.ajax({
-          url:'<%=request.getContextPath()%>/board/upload',
-          data: boardFd,
-          type:'post',
-          processData:false,
-          contentType:false,
-          success:function (data) {
-            //console.log(data);
-            alert('upload seccess!!');
-
-          },
-          error : function(er) {
-            console.log('error');
-            console.log(er);
-        }
-	
-      });
-    });
-    </script>
+		});
+	</script>
 
 </body>
 
