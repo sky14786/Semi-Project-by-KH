@@ -173,4 +173,18 @@ public class ClientService {
 		return temp;
 	}
 
+	public int selectSearchCountClient(String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectSearchCountClient(conn, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<Client> selectSearchListPage(int cPage, int numPerPage, String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Client> list = dao.selectSearchListPage(conn, cPage, numPerPage, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

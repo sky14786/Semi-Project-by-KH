@@ -8,11 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.truckta.chat.model.vo.ChatHistory;
 import com.truckta.chat.model.vo.MessageList;
 import com.truckta.client.model.vo.Client;
@@ -445,6 +445,60 @@ public class ClientDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
+	}
+
+	public int selectSearchCountClient(Connection conn, String search, String searchKeyword) {
+		Statement stmt = null;
+		String sql = "select count(*) as cnt from client where " + search + " like '%" + searchKeyword + "%'";
+		int result = 0;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public List<Client> selectSearchListPage(Connection conn, int cPage, int numPerPage, String search,
+			String searchKeyword) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from(select rownum as rnum, a.* from(select * from client where " + search + " like '%"
+				+ searchKeyword + "%' order by regdate desc)a) where rnum between " + (cPage - 1) * numPerPage + 1
+				+ " and " + cPage * numPerPage;
+		List<Client> list = new ArrayList();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				Client c = new Client();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regdate"));
+				c.setModDate(rs.getDate("moddate"));
+				c.setUserType(rs.getInt("user_type"));
+				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
+				System.out.println(c);
+				list.add(c);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
 	}
 
 }

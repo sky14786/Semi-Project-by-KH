@@ -31,16 +31,84 @@
 		</ul>
 		
 		&nbsp;&nbsp;
-		<form action="" method="post" class="form-inline">
+		<form id="searchForm" method="post" class="form-inline">
 			<select id="searchType" name="searchType"
-				class="custom-select form-control">
+				class="custom-select form-control" onchange="itemChange();">
 				<option selected>Type</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
-				<option value="level">권한</option>
-			</select> &nbsp; &nbsp; &nbsp; <input class="form-control" type="text" name=""
-				id="" placeholder="Keyword" />
-			<button type="submit" class="btn btn-success">검색</button>
+				<option value="typeUser">회원</option>
+				<option value="typeBoardMatching">매칭게시판</option>
+				<option value="typeQna">건의게시판</option>
+			</select> &nbsp; &nbsp; &nbsp; 
+			<select id="search" name="search" class="custom-select form-control"></select>
+			&nbsp; &nbsp; &nbsp; 
+			<input class="form-control" type="text" name="searchKeyword"
+				id="searchKeyword" placeholder="Keyword" />
+			
+			<button type="button" id="btn_search" onclick="searching();" class="btn btn-success">검색</button>
 		</form>
 	</div>
 </div>
+<script>
+	function itemChange(){
+		var typeUser = ["휴대폰번호","이름"];
+		var typeBoardMatching = ["글번호","제목","작성자"];
+		var typeQna = ["글번호","제목","작성자"];
+		var selectItem = $("#searchType").val();
+		var changeItem;
+		
+		
+		
+		if(selectItem == "typeUser"){
+			changeItem = typeUser;
+			console.log(selectItem);
+		}else if(selectItem == "typeBoardMatching"){
+			console.log(selectItem);
+			changeItem = typeBoardMatching;
+		}else if(selectItem == "typeQna"){
+			console.log(selectItem);
+			changeItem = typeQna;
+		}
+		
+		$("#search").empty();
+		
+		for(var count = 0 ; count <  changeItem.length;count++){
+			var option = $("<option>"+changeItem[count]+"</option>");
+			console.log(changeItem[count]);
+			$("#search").append(option);
+		}
+	}
+	function searching(){
+		var searchType = $("#searchType").val();
+		var searchKeyword = $("#searchKeyword").val();
+		var search = $("#search").val();
+		console.log(searchType);	
+		var url;
+		
+	
+	switch (searchType) {
+		case "typeUser":
+			url = "adminUserSearch";
+			break;
+		case "typeBoardMatching":
+			url = "adminBMatchingSearch";
+			break;
+		case "typeQna":
+			url = "adminQnaSearch";
+			break;
+		}
+	
+	var form = document.getElementById("searchForm");
+	  form.action = "<%=request.getContextPath()%>/admin/"+url;
+	  form.submit();
+
+		<%-- $.ajax({
+			url : "<%=request.getContextPath()%>/admin/"+url,
+			type:"post",
+			dataType:"json",
+			data:{
+				"search":search,
+				"searchKeyword":searchKeyword
+			}
+		});  --%>
+	}
+</script>

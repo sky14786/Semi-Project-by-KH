@@ -6,6 +6,8 @@
 <%
 	List<Client> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
+	/* String searchKeyWord = (String) request.getAttribute("searchKeyword");
+	String search = (String) request.getAttribute("search"); */
 %>
 <style>
 .container {
