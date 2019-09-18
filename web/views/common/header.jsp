@@ -33,11 +33,13 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
     <nav class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
       <div class="input-group">
         <img src="<%=request.getContextPath()%>/images/project_images/logo.png" alt="logo.png" class="front-logo mx-0" id="logo" />
-        <form class="ml-4">
-          <input type="text" name="search" placeholder="Search.." id="seachbar" class="search-bar"/>
+        <!-- 현식씨의 searchbar -->
+        <form class="ml-4 allsearch" action="<%=request.getContextPath() %>/main/mainFinder">
+        	<input type="text" class="float form-control rounded search-bar" placeholder="Search" name="searchKeyword" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm" id="search-bar seachbar" value="">
         </form>
         <!-- 메세지 버튼 -->
-        <form action = "<%=request.getContextPath() %>/messages" class = "navbar-right ml-auto mr-2 btn btn-primary">
+     <form action = "<%=request.getContextPath() %>/messages" class = "navbar-right ml-auto mr-2 btn btn-primary">
         <button class = "btn btn-primary">
           <i class="fas fa-envelope"></i>
         </button>
@@ -82,12 +84,6 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
                 </table>
             
             <%} %>
-
-    <script>
-      function redirect() {
-        location.replace("./chat.html");
-      }
-    </script>
   </header>
   <body>
 </html>

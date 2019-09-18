@@ -30,10 +30,8 @@ public class DetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String boardNo = request.getParameter("boardNo");
-		//String boardNo = "194";
-		String boardNo = "197";
-		
+		String boardNo = request.getParameter("boardNo");
+		System.out.println(boardNo);
 		
 		DetailService service = new DetailService();
 		
