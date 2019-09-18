@@ -40,11 +40,12 @@
 		&nbsp;&nbsp;
 		<form id="searchForm" method="post" class="form-inline">
 			<select id="searchType" name="searchType"
-				class="custom-select form-control" onchange="itemChange();">
+				class="custom-select form-control" onchange="searchTypeChange();">
 				<option selected>Type</option>
 				<option value="typeUser">회원</option>
 				<option value="typeBoardMatching">매칭게시판</option>
 				<option value="typeQna">건의게시판</option>
+				<option value="typeMatching">매칭</option>
 			</select> &nbsp; &nbsp; &nbsp; 
 			<select id="search" name="search" class="custom-select form-control"></select>
 			&nbsp; &nbsp; &nbsp; 
@@ -55,7 +56,7 @@
 	</div>
 </div>
 <script>
-	function itemChange(){
+	function searchTypeChange(){
 		var typeUser = ["휴대폰번호","이름"];
 		var typeBoardMatching = ["글번호","제목","작성자"];
 		var typeQna = ["글번호","제목","작성자"];
@@ -105,7 +106,7 @@
 			url = "adminMatchingSearch";
 			break;
 		}
-	}
+	
 	
 	var form = document.getElementById("searchForm");
 	  form.action = "<%=request.getContextPath()%>/admin/"+url;

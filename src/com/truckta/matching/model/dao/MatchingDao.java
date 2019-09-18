@@ -129,7 +129,6 @@ public class MatchingDao {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-
 				Matching m = new Matching();
 				m.setMatNo(rs.getInt("mat_no"));
 				m.setBoardNo(rs.getInt("board_no"));
