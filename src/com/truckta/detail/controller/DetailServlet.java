@@ -31,14 +31,25 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String boardNo = request.getParameter("boardNo");
-		String boardNo = "3";
+		//String boardNo = "194";
+		String boardNo = "197";
+		
 		
 		DetailService service = new DetailService();
 		
 		Detail d = service.selectDetail(boardNo);
+		String startAddr[] = d.getStartAddr().split(",");
+		String endAddr[] = d.getEndAddr().split(",");
+		
+		
+//		System.out.println(startAddr[1]);
+//		System.out.println(endAddr[1]);
+		
+		request.setAttribute("startAddr", startAddr[1]);
+		request.setAttribute("endAddr", endAddr[1]);
 		request.setAttribute("boardNo", boardNo);
 		request.setAttribute("d", d);
-		System.out.println(d);
+		
 		request.getRequestDispatcher("/views/detail/detailView.jsp").forward(request, response);
 	}
 

@@ -34,7 +34,6 @@ public class DetailDao {
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
-				
 				d= new Detail();
 				d.setBoardNo(rs.getInt("BOARD_NO"));
 				d.setWriter(rs.getString("WRITER"));
