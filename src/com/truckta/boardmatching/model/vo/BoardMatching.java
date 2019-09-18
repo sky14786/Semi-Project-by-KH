@@ -109,13 +109,6 @@ public class BoardMatching {
 		this.memo = memo;
 	}
 
-	public Date getTkDate() {
-		return tkDate;
-	}
-
-	public void setTkDate(Date tkDate) {
-		this.tkDate = tkDate;
-	}
 
 	public int getBoardState() {
 		return boardState;
