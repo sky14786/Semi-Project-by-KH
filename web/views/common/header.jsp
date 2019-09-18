@@ -29,23 +29,19 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
     <!-- [End Import] -->
   </head>
 
-<style>
-	.float{
-		display: inline-block;
-	}
-</style>
+
 
   <header>
     <nav class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
       <div class="input-group">
         <img src="<%=request.getContextPath()%>/images/project_images/logo.png" alt="logo.png" class="front-logo mx-0" id="logo" />
         
-        <form class="ml-4" action="<%=request.getContextPath() %>/main/mainFinder">
+        <form class="ml-4 allsearch" action="<%=request.getContextPath() %>/main/mainFinder">
         
-        <input type="text" class="form-control rounded search-bar" placeholder="Search" name="searchKeyword" aria-label="Small"
+        <input type="text" class="float form-control rounded search-bar" placeholder="Search" name="searchKeyword" aria-label="Small"
 				aria-describedby="inputGroup-sizing-sm" id="search-bar" value="search">
-		<button class="float btn btn-warning btn-lg" type="submit">
-					<i class="fas fa-search"></i></button>
+		<!-- <button class="float btn btn-warning btn-lg" type="submit">
+					<i class="fas fa-search"></i></button> -->
         </form>
         
         <button class="navbar-right btn btn-primary ml-auto mr-2">

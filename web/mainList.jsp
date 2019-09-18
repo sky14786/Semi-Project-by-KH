@@ -89,7 +89,7 @@
 				<%for(BoardMatching bm : list_page){
 					boolean isNotNull = false;%>
 				<div class="col-xs-6 col-sm-3 placeholder trasition">
-					<button class="but_1" onclick="location.href='<%=request.getContextPath()%>'">
+					<button class="but_1" name="<%=bm.getBoardNo() %>" onclick="location.href='<%=request.getContextPath()%>'">
 					
 					<%for(int i = 0 ; i<fileList.size();i++){
 						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){
