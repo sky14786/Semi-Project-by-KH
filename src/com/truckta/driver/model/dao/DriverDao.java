@@ -102,5 +102,22 @@ public class DriverDao {
 		}
 		return list;
 	}
+	
+	// 드라이버 확인
+	public int driverCheck(Connection conn, String user) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverCheck");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 }

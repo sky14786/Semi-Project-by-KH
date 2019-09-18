@@ -1,5 +1,18 @@
+<%@page import="java.util.List"%>
+<%@page import="com.truckta.file.matching.model.vo.FileMatching"%>
+<%@page import="com.truckta.boardmatching.model.vo.BoardMatching"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	BoardMatching bm = (BoardMatching)request.getAttribute("board");
+	List<FileMatching> list = (List)request.getAttribute("boardImgs");
+	if(bm == null){
+		//errorpage redirect
+	}
+	String newStartAddr[] = bm.getStartAddr().split(",");
+	String newEndAddr[] = bm.getEndAddr().split(",");
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,57 +77,7 @@ nav, aside {
 			<!-- 헤더 수정 -->
 
 
-			<!-- <nav class="navbar navbar-expand-sm bg-nav sticky-top">
-
-				<div class="row" style="height: 50; padding: 2 50;">
-
-					<div class="col-md-1 .d-none .d-sm-block">
-						<img
-							src="<%=request.getContextPath()%>/images/project_images/t-logo.png"
-							alt="logo.png" class="nav-bar" />
-					</div>
-					<div class="col-md-2 .d-none .d-sm-block">
-
-
-						<p style="font-size: 28px; color: #ffffff;">This is Truckta</p>
-
-					</div>
-					<div class="col-md-6">
-						<form>
-							<div class="input-group">
-								<input type="text" class="form-control header-search-bar"
-									placeholder="Input your search_keyword" size="120"
-									style="height: 45px;" />
-								<div class="input-group-append">
-									<button type="button" class="btn btn-bg-color ">검색</button>
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<div class="col-md-2 mb-1"
-						style="display: inline-flex; margin-left: 60px;">
-						<button type="button" class="btn btn-bg-color "
-							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Login</button>
-						<button type="button" class="btn btn-bg-color "
-							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Sign
-							Up</button>
-					</div>
-					<div class="col-md-1"></div>
-
-				</div>
-			</nav> -->
-
-
-
-
-
-
-
-
-
-
-
+			
 
 
 
@@ -129,7 +92,7 @@ nav, aside {
 			
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
-				<h4 class="mb-3">배달 정보</h4>
+				<h4 class="mb-3">배달 정보<h3>(수정)</h3></h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
 				
@@ -138,46 +101,46 @@ nav, aside {
 						<div class="col-md-12 mb-3">
 							<label for="firstName">화물 정보(제목)</label> <input type="text"
 								class="form-control" name="stuff" id="board-stuff"
-								placeholder="제목) 침대, 이사, 소파 배송" value="" required>
+								value="<%=bm.getTitle() %>" readonly>
 						</div>
 					</div>
 
 					<label for="address">출발지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control start-postcode" name="post-number"
-							placeholder="우 편 번 호" style="text-align: center" id="st-addr-post" readonly> 
+							placeholder="우 편 번 호" style="text-align: center" id="st-addr-post" value="<%=newStartAddr[0]%>" readonly> 
 						<input type="text" class="form-control start-addr" name="start-addr"
-							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(1);" id="st-addr" readonly>
+							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(1);" id="st-addr" value="<%=newStartAddr[1]%>" readonly>
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary start-btn" type="button"
 								id="button-addon1" onclick="execDaumPostcode(1)">주소 찾기</button>
 						</div>
 					</div>
 					<input type="text" class="form-control start-addr-detail"
-						name="start-detail" id="address" placeholder="상세 주소를 입력해주세요"
-						value="" required>
+						name="start-detail" id="address" placeholder="상세 주소를 입력해주세요" value="<%=newStartAddr[2]==" "?"":newStartAddr[2]%>"
+						required>
 
 					<div class="mb-4"></div>
 					<label for="address2">목적지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control end-postcode" name="post-number2"
-							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" readonly> <input
+							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" value="<%=newEndAddr[0]%>" readonly> <input
 							type="text" class="form-control end-addr" name="end-addr"
-							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(2);" id="end-addr" readonly>
+							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(2);" id="end-addr" value="<%=newEndAddr[1]%>" readonly>
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary" type="button"
 								id="button-addon2" onclick="execDaumPostcode(2)">주소 찾기</button>
 						</div>
 					</div>
 					<input type="text" class="form-control end-addr-detail"
-						name="end-detail" id="address2" placeholder="상세 주소를 입력해주세요"
+						name="end-detail" id="address2" placeholder="상세 주소를 입력해주세요" value="<%=newEndAddr[2]==" "?"":newEndAddr[2]%>"
 						required> <br>
 						
 					<!-- 설명 -->
 					<div class="mb-3">
 						<label for="">설명</label>
 						<textarea class="form-control" name="etc" id="board-mat-textarea"
-							rows="3" placeholder="여기에는 배송관련 정보를 입력해주세요"></textarea>
+							rows="3" placeholder="여기에는 배송관련 정보를 입력해주세요" ><%=bm.getEtc()==""?"":bm.getEtc()%></textarea>
 					</div>
 					<!-- 화물 차종 선택 -->
 					<div class="mb-3">
@@ -185,14 +148,14 @@ nav, aside {
 						<div class="col-8">
 							<div class="form-group">
 								<select class="form-control main" id="select-car" name="select-car">
-							      <option value="0">Car Type</option>
-							      <option value="2">1.5톤 일반</option>
-							      <option value="3">1.5톤 냉각차</option>
-							      <option value="4">1.5톤 탑차</option>
-							      <option value="5">2.5톤 일반</option>
-							      <option value="6">2.5톤 탑차</option>
-							      <option value="7">2.5톤 냉각차</option>
-							      <option value="8">1톤 일반</option>
+									<option value="0" <%=bm.getCarTypeNo()==0?"selected":""%>>Car Type</option>
+									<option value="2" <%=bm.getCarTypeNo()==2?"selected":""%>>1.5톤 일반</option>
+									<option value="3" <%=bm.getCarTypeNo()==3?"selected":""%>>1.5톤 냉각차</option>
+									<option value="4" <%=bm.getCarTypeNo()==4?"selected":""%>>1.5톤 탑차</option>
+									<option value="5" <%=bm.getCarTypeNo()==5?"selected":""%>>2.5톤 일반</option>
+									<option value="6" <%=bm.getCarTypeNo()==6?"selected":""%>>2.5톤 탑차</option>
+									<option value="7" <%=bm.getCarTypeNo()==7?"selected":""%>>2.5톤 냉각차</option>
+									<option value="8" <%=bm.getCarTypeNo()==8?"selected":""%>>1톤 일반</option>
 							    </select>
 							</div>
 						</div>
@@ -204,10 +167,10 @@ nav, aside {
 						<label for="">희망 배송일</label>
 						<div class="col-8">
 							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="배송 메모">
+								placeholder="배송 메모" value="<%=bm.getMemo()%>">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
-								placeholder="일 / 월 / 년" readonly />
+								placeholder="일 / 월 / 년" value="<%=bm.getHireDate()%>" day="<%=bm.getHireDate()%>" readonly />
 						</div>
 					</div>
 
@@ -234,11 +197,26 @@ nav, aside {
 
 					<div class="mb-2">
 						<button class="btn btn-primary btn-sm col-3" type="button"
-							onclick="imgUpload()">사진 올리기</button>
+							onclick="imgUpload()">사진 변경</button>
 						<small class="text-muted"> &nbsp;최대 5장까지 업로드가 가능</small>
 					</div>
 					<div class="notice-img-list notice-img">
 						<!-- 이미지 생성 공간 -->
+						<script type="text/javascript">
+							imgCk = <%=list.size()%>;
+						</script>
+						<% if(list.size() > 0){
+							for(int i=0; i<list.size(); i++){ 
+						%>
+								<div class="input-group mb-1 notice-img-div<%=i%>">
+									<input type="text" class="form-control col-md12 notice-img-lb<%=i%>" placeholder="사진경로 / 이름" required="required" value="<%=list.get(i).getFileName()%>">
+									<button type="button" class="btn btn-danger notice-img-check<%=i%>" onclick="imgDels(<%=i%>);" value="<%=i%>">사진 삭제</button>
+								</div>
+						<%
+							}//for
+						}else
+							System.out.println("이미지 없음");
+						%>
 					</div>
 					<div class='col-md12' hidden>
 						<input class='imgNames' type="text" name='imgNamess'></input>
@@ -247,60 +225,34 @@ nav, aside {
 			<hr class="mb-6">
 			<!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
 			<button class="btn btn-primary btn-lg btn-block" id="boardUpload"
-				type="button">글 올리기</button>
+				type="button">수정글 올리기</button>
 				
 			<div class="input-group mb-1">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
+				<div class="col-md-6">
+					<button class="btn btn-danger btn-sm" type="button" onclick="boardDel();">삭제하기</button>
+				</div>
+				<div class="col-md-6">
 					<button class="btn btn-danger btn-sm" type="button" onclick="cancle();">뒤로가기</button>
 				</div>
-				
 			</div>
 			
 			</form>
 		
 			</div>
-			<div>
-			<button type="button" onclick="test();">test button</button>
-			<script>
-				function test() {
-					location.href = '<%=request.getContextPath()%>/board/updateLoad';
-				}
-			</script>
-      		<button type="button" onclick="test1();">myTop button</button>
-			<script>
-				function test1() {
-					location.href = '<%=request.getContextPath()%>/my/pageTop';
-				}
-			</script>
-			<button type="button" onclick="test2();">mySchedule button</button>
-			<script>
-				function test2() {
-					location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
-				}
-			</script>
-			</div>
-      
       
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
 				<aside>aside</aside>
 			</div>
 		</div>
-	</div>
-	<script>
+     </div>
+    <script>
 		$('#boardUpload').click(function () {
 			
 			var du = boardDuple();	//유효성 검사
 			
 			if(du != 0){
-				//fd.append("bs",ajaxFile.ajaxFileTest.files[0]);
-				//여러개파일 업로드
-				// $.each(boardUp.ajaxFilenames.files,function(i,item){
-				// 	boardFd.append("boardImages" + i, item);
-				// 	console.log(item);
-				// });
-				
+				boardFd.append("boardNo", <%=bm.getBoardNo()%>);
 				boardFd.append("boardStuff", $('#board-stuff').val()); //title
 				boardFd.append("stAddrPost", $('#st-addr-post').val());
 				boardFd.append("stAddr", $('#st-addr').val());
@@ -317,9 +269,10 @@ nav, aside {
 				}
 				boardFd.append("boardMemo", $('#board-memo').val());
 				boardFd.append("boardDate", $('#datepicker').val());
-				
+				boardFd.append("imgTemp", imgTemp);
+
 				$.ajax({
-					url:'<%=request.getContextPath()%>/board/upload.do',
+					url:'<%=request.getContextPath()%>/board/update',
 					data:boardFd,
 					type:'post',
 					processData:false,
@@ -338,6 +291,19 @@ nav, aside {
 			}
 			
 		});
+
+		// 글 삭제
+		function boardDel() {
+			// 삭제 확인 여부
+			if (confirm("정말 삭제하시겠습니까?") == true){
+				alert("삭제 되었습니다")
+				console.log('<%=bm.getBoardNo()%>');
+				
+				location.href = '<%=request.getContextPath()%>/board/delete?boNum=<%=bm.getBoardNo()%>';
+			}else{	//취소
+				return false;
+			}
+		}
 	</script>
 
 </body>
