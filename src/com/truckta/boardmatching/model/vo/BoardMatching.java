@@ -11,16 +11,17 @@ public class BoardMatching {
 	private String endAddr;
 	private String etc;
 	private String memo;
-	private Date hireDate;
+	private Date tkDate;
 	private int boardState;
 	private int count;
-
+	private Date hireDate;
+	
 	public BoardMatching() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public BoardMatching(int boardNo, String wrtier, int carTypeNo, String title, String startAddr, String endAddr,
-			String etc, String memo, Date hireDate, int boardState, int count) {
+			String etc, String memo, Date tkDate, int boardState, int count, Date hireDate) {
 		super();
 		this.boardNo = boardNo;
 		this.wrtier = wrtier;
@@ -30,19 +31,10 @@ public class BoardMatching {
 		this.endAddr = endAddr;
 		this.etc = etc;
 		this.memo = memo;
-		this.hireDate = hireDate;
+		this.tkDate = tkDate;
 		this.boardState = boardState;
 		this.count = count;
-	}
-
-	public BoardMatching(String wrtier, int carTypeNo, String title, String startAddr, String endAddr, String etc) {
-		super();
-		this.wrtier = wrtier;
-		this.carTypeNo = carTypeNo;
-		this.title = title;
-		this.startAddr = startAddr;
-		this.endAddr = endAddr;
-		this.etc = etc;
+		this.hireDate = hireDate;
 	}
 
 	public int getBoardNo() {
@@ -61,20 +53,20 @@ public class BoardMatching {
 		this.wrtier = wrtier;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public int getCarTypeNo() {
 		return carTypeNo;
 	}
 
 	public void setCarTypeNo(int carTypeNo) {
 		this.carTypeNo = carTypeNo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getStartAddr() {
@@ -109,12 +101,12 @@ public class BoardMatching {
 		this.memo = memo;
 	}
 
-	public Date getHireDate() {
-		return hireDate;
+	public Date getTkDate() {
+		return tkDate;
 	}
 
-	public void setHireDate(Date hireDate) {
-		this.hireDate = hireDate;
+	public void setTkDate(Date tkDate) {
+		this.tkDate = tkDate;
 	}
 
 	public int getBoardState() {
@@ -133,11 +125,20 @@ public class BoardMatching {
 		this.count = count;
 	}
 
+	public Date getHireDate() {
+		return hireDate;
+	}
+
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardMatching [boardNo=" + boardNo + ", wrtier=" + wrtier + ", carTypeNo=" + carTypeNo + ", title="
 				+ title + ", startAddr=" + startAddr + ", endAddr=" + endAddr + ", etc=" + etc + ", memo=" + memo
-				+ ", hireDate=" + hireDate + ", boardState=" + boardState + ", count=" + count + "]";
+				+ ", tkDate=" + tkDate + ", boardState=" + boardState + ", count=" + count + ", hireDate=" + hireDate
+				+ "]";
 	}
-
+	
 }

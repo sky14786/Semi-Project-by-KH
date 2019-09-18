@@ -260,12 +260,27 @@ nav, aside {
 			</form>
 		
 			</div>
+			<div>
 			<button type="button" onclick="test();">test button</button>
 			<script>
 				function test() {
 					location.href = '<%=request.getContextPath()%>/board/updateLoad';
 				}
 			</script>
+      		<button type="button" onclick="test1();">myTop button</button>
+			<script>
+				function test1() {
+					location.href = '<%=request.getContextPath()%>/my/pageTop';
+				}
+			</script>
+			<button type="button" onclick="test2();">mySchedule button</button>
+			<script>
+				function test2() {
+					location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
+				}
+			</script>
+			</div>
+      
       
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">

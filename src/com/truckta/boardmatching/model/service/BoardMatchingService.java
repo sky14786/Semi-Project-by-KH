@@ -163,5 +163,42 @@ public class BoardMatchingService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-
+	
+	// 전체 리스트(마이페이지)
+	public List<BoardMatching> myAllList(String writer){
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardMatching> list = dao.myAllList(conn, writer);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	//보드매칭테이블 / 매칭태이블 / 드라이버
+	public List<List> matchingList(String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.matchingList(conn, writer);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	//보드매칭완료 / 보드매칭/ 드라이버 / 보드매칭테이블
+	public List<List> matchingCompleteList(String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.matchingCompleteList(conn, writer);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	//마이 페이지 보드매칭 top3
+	public List<BoardMatching> mypageTop(String writer){
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardMatching> list = dao.mypageTop(conn, writer);
+		if(list.size() > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
 }

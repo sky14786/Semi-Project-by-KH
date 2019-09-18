@@ -3,7 +3,6 @@ package com.truckta.boardmatching.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.truckta.boardmatching.model.vo.BoardMatching;
-import com.truckta.client.model.vo.Client;
 import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.template.JDBCTemplate;
@@ -65,7 +63,6 @@ public class BoardMatchingDao {
 		String sql = prop.getProperty("updateBoardMatching");
 		int result = 0;
 		try {
-			//update board_matching set start_addr=?, end_addr=?, etc=?, car_type_no=?, memo=?, hire_date=? where board_no=?
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bm.getStartAddr());
 			pstmt.setString(2, bm.getEndAddr());
@@ -110,9 +107,10 @@ public class BoardMatchingDao {
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(rs.getInt("car_type_no"));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setTkDate(rs.getDate("tk_date"));
 				bm.setBoardState(rs.getInt("board_state"));
 				bm.setCount(rs.getInt("count"));
+				bm.setHireDate(rs.getDate("hire_date"));
 			}
 			
 		} catch (SQLException e) {
@@ -220,7 +218,6 @@ public class BoardMatchingDao {
 		ResultSet rs = null;
 		List<FileMatching> list = new ArrayList<FileMatching>();
 		FileMatching fm = null;
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boNum);
@@ -327,9 +324,10 @@ public class BoardMatchingDao {
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(rs.getInt("car_type_no"));
 				bm.setMemo(rs.getString("memo"));
-				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setTkDate(rs.getDate("tk_date"));
 				bm.setBoardState(rs.getInt("board_state"));
 				bm.setCount(rs.getInt("count"));
+				bm.setHireDate(rs.getDate("hire_date"));
 				list.add(bm);
 			}
 
@@ -340,6 +338,141 @@ public class BoardMatchingDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+	
+	// 전체 리스트(마이페이지)
+	public List<BoardMatching> myAllList(Connection conn, String writer){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("myAllList");
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
+		BoardMatching bm = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(rs.getInt("car_type_no"));
+				bm.setMemo(rs.getString("memo"));
+				bm.setTkDate(rs.getDate("tk_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				bm.setCount(rs.getInt("count"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				list.add(bm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+
+	}
+	
+	//보드매칭테이블 / 매칭태이블 / 드라이버
+	public List<List> matchingList(Connection conn, String writer) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("matchingList");
+		ResultSet rs = null;
+		List<List> list = new ArrayList<List>();
+		List listTmp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				//배송날짜 목적지-도착지 id pay
+				listTmp = new ArrayList();
+				listTmp.add(rs.getDate("tk_date"));
+				listTmp.add(rs.getString("start_addr"));
+				listTmp.add(rs.getString("end_addr"));
+				listTmp.add(rs.getString("id"));
+				listTmp.add(rs.getInt("pay"));
+				list.add(listTmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	
+	//보드매칭완료 / 보드매칭/ 드라이버 / 보드매칭테이블
+	public List<List> matchingCompleteList(Connection conn, String writer) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("matchingCompleteList");
+		ResultSet rs = null;
+		List<List> list = new ArrayList<List>();
+		List listTmp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			
+			listTmp = new ArrayList();
+			while(rs.next()) {
+				listTmp.add(rs.getDate("com_date"));
+				listTmp.add(rs.getString("id"));
+				listTmp.add(rs.getString("end_addr"));
+				listTmp.add(rs.getInt("pay"));
+			}
+			list.add(listTmp);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	
+	//마이 페이지 보드매칭 top3
+	public List<BoardMatching> mypageTop(Connection conn, String writer){
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("myAllListTop");
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
+		ResultSet rs = null;
+		BoardMatching bm = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(rs.getInt("car_type_no"));
+				bm.setMemo(rs.getString("memo"));
+				bm.setTkDate(rs.getDate("tk_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				bm.setCount(rs.getInt("count"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				list.add(bm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+
 	}
 
 }

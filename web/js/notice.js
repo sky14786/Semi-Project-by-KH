@@ -121,11 +121,21 @@ function isNull(elStr)
 
 function boardDuple() {
 	//-------- 정규식 ----------
+
+
+	var regExp1 = /^[0-9]+$/; //숫자
+	var regExp2 = /^[a-zA-Z]+$/; //영문
+	var regExp3 = /^[a-zA-Z\s]+$/; //영문+공백
+	var regExp4 = /^[가-힣]+$/; //한글
+	var regExp5 = /^[가-힣\s]+$/; //한글+공백 
+	var regExp6 = /^[가-힣a-zA-Z]+$/; //한
+
 	var ck = 0;
 	var boardText = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	
 	if (!boardText.test($('#board-stuff').val()) || $('#board-stuff').val() == "") {
-	    alert("비어 있거나 한글/영문/숫자만 입력 가능합니다");
+		alert("비어(공백) 있거나 한글/영문/숫자만 입력 가능합니다");
+		console.log('titile error');
 	    return ck;
 	}
 

@@ -19,6 +19,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.driver.model.service.DriverService;
 import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.fileRename.BoFileRename;
@@ -94,7 +95,14 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		// boardNo(int), boardState(int), count(int)
 //		String writer = (String)request.getSession().getAttribute("writer");
 //		String writer = "writer";
-		bm.setWrtier("010-5327-3738");
+		bm.setWrtier("010-0335-0361");
+		
+		// 유저 - 드라이버 확인
+		int userDriver = new DriverService().driverCheck(bm.getWrtier());
+		if(userDriver == 0) {
+			response.sendRedirect(request.getContextPath()+"/views/user/notice.jsp");
+			return;
+		}
 		
 		int result = new BoardMatchingService().insertBoardMatching(bm);
 		System.out.println("입력 성공 : " + result);
@@ -130,7 +138,21 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 				}//for
 			}
 			
-		}//if
+		}else {
+			// 서버에 이미지 삭제
+			List<FileMatching> list = new ArrayList<FileMatching>();
+			Enumeration<String> e = mr.getFileNames();
+			List<String> fns = new ArrayList<String>();
+			while (e.hasMoreElements()) {
+				fns.add(mr.getFilesystemName((String)e.nextElement()));
+			}
+
+			for (int i = 0; i < fns.size(); i++) {
+				String imgFileName = fns.get(i);
+				File file = new File(saveDir+ "/" + imgFileName);
+				if(file.exists()) file.delete();
+			}//for
+		}//endif
 		
 		
 	}
