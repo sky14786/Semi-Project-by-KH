@@ -45,7 +45,7 @@ public class AdminQnaQListServlet extends HttpServlet {
 		int totalPage = (int) Math.ceil((double) totalBoardQna / numPerPage);
 
 		String pageBar = "";
-		int pageSizeBar = 5;
+		int pageSizeBar = 15;
 
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;

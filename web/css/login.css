@@ -26,7 +26,7 @@ body, html {
     padding: 40px 40px;
 }
 
-.btn {
+.form-signin.btn {
     font-weight: 700;
     height: 36px;
     -moz-user-select: none;
@@ -207,7 +207,7 @@ ul.main-nav li:hover>a{
 div.login-container table#logged-in{
     border-spacing:10px;
 }
-div.login-container table#logged-in input[type=button]{
+div.login-container table#logged-in input[type=submit]{
     border-radius: 3px;
 }
 

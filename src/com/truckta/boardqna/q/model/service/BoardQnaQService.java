@@ -24,5 +24,41 @@ public class BoardQnaQService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	
+	public int insertBoard(BoardQnaQ q)  {
+		 Connection conn=JDBCTemplate.getConnection();
+		 int result=dao.insertBoard(conn,q);
+		 if(result>0) {
+//			 for() {
+//			     result=dao.insertAttachment(conn,list.get(i))
+//				 if(result<0) break;
+//			 }
+			 JDBCTemplate.commit(conn);
+			 result=dao.selectSeqBoard(conn);
+			 
+	     }
+		 else {
+			 JDBCTemplate.rollback(conn);
+		 }
+		 JDBCTemplate.close(conn);
+		 return result;
+	}
+	public BoardQnaQ selectBoard(String no) {
+		Connection conn=JDBCTemplate.getConnection();
+		BoardQnaQ q=dao.selectBoard(conn,no);
+		
+		/*
+		 * //조회수! if(!hasRead) {
+		 */
+		/*
+		 * int result=0; if(result>0) {JDBCTemplate.commit(conn);} else
+		 * {JDBCTemplate.rollback(conn);}
+		 */		
+		/*}*/
+		JDBCTemplate.close(conn);
+		return q;
+	
+	}
 
 }

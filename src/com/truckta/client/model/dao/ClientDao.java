@@ -34,7 +34,7 @@ public class ClientDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectId");
-		Client c = null;
+		Client cl = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -42,17 +42,16 @@ public class ClientDao {
 			System.out.println(id + "/" + pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-
-				c = new Client();
-				c.setId(rs.getString("id"));
-				c.setPw(rs.getString("pw"));
-				c.setName(rs.getString("name"));
-				c.setProfile(rs.getString("profile"));
-				c.setRegDate(rs.getDate("regDate"));
-				c.setModDate(rs.getDate("regDate"));
-				c.setUserType(rs.getInt("user_Type"));
-				c.setStatus(rs.getInt("status"));
-				System.out.println(c);
+				cl = new Client();
+				cl.setId(rs.getString("id"));
+				cl.setPw(rs.getString("pw"));
+				cl.setName(rs.getString("name"));
+				cl.setProfile(rs.getString("profile"));
+				cl.setRegDate(rs.getDate("regDate"));
+				cl.setModDate(rs.getDate("modDate"));
+				cl.setUserType(rs.getInt("user_Type"));
+				cl.setStatus(rs.getInt("status"));
+				System.out.println(cl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +59,7 @@ public class ClientDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
-		return c;
+		return cl;
 	}
 
 	public int updateClient(Connection conn, Client c) {

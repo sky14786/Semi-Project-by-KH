@@ -1,29 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
 <%
-	//Client clientLogin=(Client)session.getAttribute("loginClient");
+	/* Client clientLogin=(Client)session.getAttribute("loginClient"); */
 	//쿠키값 확인해서 페이지에 반영하기
 	//쿠키는 key:value형식으로 여러개 저장이 가능하기 때문에
 	//쿠키객체가 배열로 저장이 됨.
-	Client cl=new Client();
+	Client cl = new Client();
 	System.out.println(cl);
-	
-	Cookie[] cookies=request.getCookies();
-	String saveId=null;
+
+	Cookie[] cookies = request.getCookies();
+	String saveId = null;
 	//내가 원하는 cookie객체를 찾아서 값을 처리
-	if(cookies!=null) {
-	for(Cookie c : cookies) {
-		//key, value를 매소드를 이용해서 가져올 수 있음
-		String key=c.getName();
-		String value=c.getValue();
-		System.out.println("key : "+key);
-		System.out.println("value : "+value);
-		if(key.equals("saveId")){
-			saveId=value;
+	if (cookies != null) {
+		for (Cookie c : cookies) {
+			//key, value를 매소드를 이용해서 가져올 수 있음
+			String key = c.getName();
+			String value = c.getValue();
+			System.out.println("key : " + key);
+			System.out.println("value : " + value);
+			if (key.equals("saveId")) {
+				saveId = value;
+			}
 		}
 	}
-	}
 %>
+
 <%@ include file="/views/common/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,8 @@
 <title>Insert title here</title>
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
-<link href="<%=request.getContextPath()%>/css/login.css?var=1.1" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/login.css?var=1.1"
+	rel="stylesheet" />
 
 
 <link
@@ -42,58 +44,111 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
+<style>
+@media ( max-width : 1200px) input[type="text"] { width 
+	 : 
+	 
+	 950 px 
+	 ;
+	@media ( max-width : 1200px) input[type="submit"] {
+		font-weight
+		:
+		 
+		700;
+		height
+		:
+		 
+		36
+		px
+		;
+		
+    
+		-moz-user-select
+		:
+		 
+		none
+		;
+		
+    
+		-webkit-user-select
+		:
+		 
+		none
+		;
+		
+    
+		user-select
+		:
+		 
+		none
+		;
+		
+    
+		cursor
+		:
+		 
+		default
+		;
+		
+
+
+	}
+}
+</style>
+
 </head>
 <body>
 
 	<div class="container">
-	<div class="row">
-	
-		<div class="card card-container">
-			<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-			<img id="profile-img" class="profile-img-card"
-				src="/images/project_images/Truck.png" />
-			<p id="profile-name" class="profile-name-card"></p>
-			<!-- <form class="form-signin"> -->
+		<div class="row" style="padding-top: 10%">
 
-			<!-- 로그인 메뉴 -->
-			<div class="login-container">
-			    
-				<%if(clientLogin==null) {%>
-				<form class="form-signin" id='loginFrm'
-					action="<%=request.getContextPath() %>/login" method="post"
-					onsubmit="return validate();">
+			<div class="card card-container">
+				<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+				<img id="profile-img" class="profile-img-card"
+					src="/images/project_images/Truck.png" />
+				<p id="profile-name" class="profile-name-card"></p>
+				<!-- <form class="form-signin"> -->
+
+				<!-- 로그인 메뉴 -->
+				<div class="login-container">
+
+					<%
+						if (clientLogin == null) {
+					%>
+					<form class="form-signin" id='loginFrm'
+						action="<%=request.getContextPath()%>/login" method="post"
+						onsubmit="return validate();">
 
 
-					    <input type="text" id="id" name="id" class="form-control LoginInputId"
-						placeholder="아이디 (:숫자, - 를 포함한 숫자만)"
-						value='<%=saveId!=null?saveId:"" %>' required autofocus /> 
+						<input type="text" id="id" name="id"
+							class="form-control LoginInputId"
+							placeholder="아이디 (:숫자, - 를 포함한 숫자만)"
+							value='<%=saveId != null ? saveId : ""%>' required autofocus />
 						<input type="password" id="pw" name="pw" class="form-control"
-						placeholder="비밀번호" required> 
+							placeholder="비밀번호" required> 
 						<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-						value="로그인">
-				</form>
-				<%} %>
-			  <style>
-			  
-			  @media (max-width: 1200px)
-input[type="text"] {
+							value="로그인">
+					</form>
+					
 
-    width: 950px;
-}
-			  </style>
-				
+					<%
+						}
+					%>
 
-				<div id="saveId" class="checkbox">
-					<label> <input type="checkbox" value="remember-me">
-						Remember me
-					</label>
+
+
+
+					<div id="saveId" class="checkbox">
+						<label> <input type="checkbox" value="remember-me">
+							Remember me
+						</label>
+					</div>
 				</div>
+				<!-- </form> -->
+				<!-- /form -->
+				<a href="<%=request.getContextPath()%>/views/user/resetpassword.jsp"
+					class="forgot-password"> Forgot the password? </a>
 			</div>
-			<!-- </form> -->
-			<!-- /form -->
-			<a href="<%=request.getContextPath() %>/views/user/resetpassword.jsp"
-				class="forgot-password"> Forgot the password? </a>
-		</div>
 		</div>
 		<!-- /card-container -->
 	</div>
@@ -176,5 +231,5 @@ input[type="text"] {
          return true;
      }  
     </script>
->>>>>>> 9d684ca19750ddd1f835ef140275b09a088057fe
+
 </html>
