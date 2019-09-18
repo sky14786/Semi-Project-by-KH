@@ -11,20 +11,20 @@ import com.truckta.boardqna.q.model.vo.BoardQnaQ;
 
 public class boardQnaQService {
 
-	private BoardQnaQDao dao=new BoardQnaQDao();
-	
-	public int selectCountBoard() {
-		Connection conn=getConnection();
-		int result=dao.selectCountBoard(conn);
+	private BoardQnaQDao dao = new BoardQnaQDao();
+
+	public int selectCountBoard(int type) {
+		Connection conn = getConnection();
+		int result = dao.selectCountBoard(conn, type);
 		close(conn);
 		return result;
 	}
-	
-	public List<BoardQnaQ> selectBoardList() {
-		Connection conn=getConnection();
-		List<BoardQnaQ> list=dao.selectBoardList(conn);
+
+	public List<BoardQnaQ> selectBoardList(int type) {
+		Connection conn = getConnection();
+		List<BoardQnaQ> list = dao.selectBoardList(conn, type);
 		close(conn);
 		return list;
 	}
-	
+
 }

@@ -113,4 +113,20 @@ public class CarTypeDao {
 		return list;
 	}
 
+	public int deleteCarType(Connection conn, int delTarget) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCarType");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, delTarget);
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

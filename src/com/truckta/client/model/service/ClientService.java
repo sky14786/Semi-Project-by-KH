@@ -123,4 +123,54 @@ public class ClientService {
 
 	}
 
+	public Client findClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client temp = dao.findClient(conn, id);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
+	public int reportClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int isReport = dao.reportClient(conn, id);
+		if (isReport == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return isReport;
+	}
+
+	public int deleteClient(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteClinet(conn, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int copyClient(Client temp) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.copyClient(conn, temp);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Client boardMatchingFindClient(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client temp = dao.boardMatchingFindClient(conn, no);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
 }

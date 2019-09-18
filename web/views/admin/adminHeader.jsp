@@ -21,9 +21,9 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminQnaQList">질문관리</a>
-						<a class="dropdown-item" href="#">건의관리</a>
-						<a class="dropdown-item" href="#">신고관리</a>
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminQnaQList?type=0">질문관리</a>
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminQnaQList?type=1">건의관리</a>
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminQnaQList?type=2">신고관리</a>
 					</div>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminBoardMatchingList">게시글관리</a></li>

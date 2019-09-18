@@ -25,4 +25,24 @@ public class BoardQnaQService {
 		return result;
 	}
 
+	public int deleteQnaQ(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteQnaQ(conn, no);
+
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public BoardQnaQ findBoardQnaQ(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaQ temp = dao.findBoardQnaQ(conn,no);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
 }

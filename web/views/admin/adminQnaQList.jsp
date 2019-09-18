@@ -6,6 +6,7 @@
 <%
 	List<BoardQnaQ> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
+	int type = (int) request.getAttribute("type");
 %>
 <style>
 .container {
@@ -45,7 +46,7 @@
 						</td>
 						<td>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">답변</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 				</tr>
 			<%	}
@@ -72,4 +73,37 @@
 	padding: 10px 5px;
 }
 </style>
+<script>
+	$("button[name=btn_del]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var no = td.eq(0).text();
+		var question = td.eq(2).text();
+		
+		var isCheckDelete =  confirm(no+"번 질문 "+question+"을 삭제하시겠습니까?");
+		if(isCheckDelete){
+		 	deleteQuestion(no); 
+		} 
+	});
+	function deleteQuestion(no){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/adminDeleteQnaQ",
+			type:"post",
+			dataType:"json",
+			data:{
+				"no":no
+			},
+			success:function(data){
+				if(data){
+					alert("삭제에 성공했습니다.");
+					location.href="<%=request.getContextPath()%>/admin/adminQnaQList";
+				}else{
+					alert("삭제에 실패했습니다. 개발자에게 문의하세요.");
+				}
+			}
+		});  
+	}
+	
+</script>
 <%@ include file="/views/common/footer.jsp"%>

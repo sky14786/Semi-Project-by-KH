@@ -13,10 +13,10 @@ import com.truckta.cartype.model.service.CarTypeService;
 import com.truckta.cartype.model.vo.CarType;
 
 @WebServlet("/admin/adminCarTypeList")
-public class AdminListCarType extends HttpServlet {
+public class AdminListCarTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminListCarType() {
+	public AdminListCarTypeServlet() {
 		super();
 	}
 

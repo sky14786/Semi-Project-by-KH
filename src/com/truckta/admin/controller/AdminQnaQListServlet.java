@@ -27,21 +27,16 @@ public class AdminQnaQListServlet extends HttpServlet {
 //
 //		}
 		int cPage;
-//		int type;
+		int type = Integer.parseInt(request.getParameter("type"));
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
-//			type = Integer.parseInt(request.getParameter("type"));
-//			if (!(type == 0 || type == 1 || type == 2)) {
-//				type = 0;
-//			}
 		} catch (NumberFormatException nfe) {
 			cPage = 1;
-//			type = 0;
 		}
 
 		int numPerPage = 15;
-		int totalBoardQna = new BoardQnaQService().selectCountBoardQnaQ(0);
-		List<BoardQnaQ> list = new BoardQnaQService().selectListPage(cPage, numPerPage, 0);
+		int totalBoardQna = new BoardQnaQService().selectCountBoardQnaQ(type);
+		List<BoardQnaQ> list = new BoardQnaQService().selectListPage(cPage, numPerPage, type);
 		int totalPage = (int) Math.ceil((double) totalBoardQna / numPerPage);
 
 		String pageBar = "";
@@ -53,15 +48,15 @@ public class AdminQnaQListServlet extends HttpServlet {
 		if (pageNo == 1) {
 			pageBar += "<span>[이전]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminQna?cPage=" + (pageNo - 1)
-					+ ">[이전]</a>";
+			pageBar += "<a href=" + request.getContextPath() + "/admin/adminQnaQList?cPage=" + (pageNo - 1)
+					+"&type="+type+ ">[이전]</a>";
 		}
 
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (pageNo == cPage) {
 				pageBar += "<span class='cPage'>" + pageNo + "</span>";
 			} else {
-				pageBar += "<a href=" + request.getContextPath() + "/admin/adminQna?cPage=" + pageNo + ">"
+				pageBar += "<a href=" + request.getContextPath() + "/admin/adminQnaQList?cPage=" + pageNo +"&type="+type+ ">"
 						+ pageNo + "</a>";
 			}
 			pageNo++;
@@ -70,13 +65,13 @@ public class AdminQnaQListServlet extends HttpServlet {
 		if (pageNo > totalPage) {
 			pageBar += "<span>[다음]</span>";
 		} else {
-			pageBar += "<a href=" + request.getContextPath() + "/admin/adminQna?cPage=" + (pageNo) + ">[다음]</a>";
+			pageBar += "<a href=" + request.getContextPath() + "/admin/adminQnaQList?cPage=" + (pageNo) +"&type="+type+">[다음]</a>";
 		}
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list", list);
-//		request.setAttribute("type", type);
+		request.setAttribute("type", type);
 		request.getRequestDispatcher("/views/admin/adminQnaQList.jsp").forward(request, response);
 
 	}
