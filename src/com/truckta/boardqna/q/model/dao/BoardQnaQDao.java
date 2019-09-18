@@ -6,11 +6,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
+import com.truckta.client.model.vo.Client;
 
 import common.template.JDBCTemplate;
 
@@ -124,5 +126,57 @@ public class BoardQnaQDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
+	}
+
+	public int selectSearchCountBoardQnaQ(Connection conn, String search, String searchKeyword) {
+		Statement stmt = null;
+		String sql = "select count(*) as cnt from board_qna_q where " + search + " like '%" + searchKeyword + "%'";
+		int result = 0;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public List<BoardQnaQ> selectSearchListPage(Connection conn, int cPage, int numPerPage, String search,
+			String searchKeyword) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from(select rownum as rnum, a.* from(select * from board_qna_q where " + search + " like '%"
+				+ searchKeyword + "%' order by hire_date desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
+				+ " and " + (cPage * numPerPage);
+		List<BoardQnaQ> list = new ArrayList();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				BoardQnaQ temp = new BoardQnaQ();
+				temp.setBoardNo(rs.getInt("board_no"));
+				temp.setqUser(rs.getString("q_user"));
+				temp.setTitle(rs.getString("title"));
+				temp.setEtc(rs.getString("etc"));
+				temp.setHireDate(rs.getDate("hire_date"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setType(rs.getInt("type"));
+				list.add(temp);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
 	}
 }

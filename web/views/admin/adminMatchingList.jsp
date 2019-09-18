@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching" %>
+<%@ page import="java.util.List,com.truckta.matching.model.vo.Matching" %>
 
 <%
-	List<BoardMatching> list = (List) request.getAttribute("list");
+	List<Matching> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
 	String search = (String) request.getAttribute("search");
 	String searchKeyword = (String) request.getAttribute("searchKeyword");
@@ -20,37 +20,31 @@ tr>td{
 
 
 <div class="container-fluid" style=" margin-top: 3%">
-	<table class="table" style="font-size:10px">
+	<table class="table" >
 		<thead class="thead-light">
 			<tr style="text-align:center;">
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>출발지</th>
-				<th>도착지</th>
-				<th>희망도착일</th>
-				<th>작성일</th>
-				<th>조회수</th>
-				<th>글상태</th>
-				<th>메모</th>
+				<th>매칭번호</th>
+				<th>원글번호</th>
+				<th>고객</th>
+				<th>기사</th>
+				<th>금액</th>
+				<th>코맨트</th>
+				<th>신청날자</th>
 				<th>기타</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%if(list!=null){ 
-				for(BoardMatching bm : list){
+				for(Matching m : list){
 			%>
 					<tr style="text-align:center;">
-						<td><%=bm.getBoardNo() %></td>
-						<td><a href="#" style="color:inherit;"><%=bm.getTitle() %></a></td>
-						<td><%=bm.getWrtier() %></td>
-						<td><%=bm.getStartAddr() %></td>
-						<td><%=bm.getEndAddr() %></td>
-						<td><%=bm.getTkDate() %></td>
-						<td><%=bm.getHireDate() %></td>
-						<td><%=bm.getCount() %></td>
-						<td><%=bm.getBoardState() == 1?"정상":"삭제" %></td>
-						<td><%=bm.getMemo()!=null?bm.getMemo():"X" %></td>
+						<td><%=m.getMatNo() %></td>
+						<td><a href="#" style="color:inherit;"><%=m.getBoardNo() %></a></td>
+						<td><%=m.getRequestor() %></td>
+						<td><%=m.getResponser() %></td>
+						<td><%=m.getPay() %></td>
+						<td><%=m.getMemo() %></td>
+						<td><%=m.getTryDate() %></td>
 						<td>
 
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
@@ -100,7 +94,7 @@ tr>td{
 			deleteBoardMatching(no);
 		}
 	});
-	function deleteUser(no){
+	function deleteBoardMatching(no){
 		$.ajax({
 			url:"<%=request.getContextPath()%>/admin/adminDeleteBoardMatching",
 			type:"post",

@@ -97,6 +97,7 @@ public class BoardMatchingDao {
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
+				bm.setTkDate(rs.getDate("tk_date"));
 				bm.setCount(rs.getInt("count"));
 				list.add(bm);
 			}
@@ -169,6 +170,7 @@ public class BoardMatchingDao {
 				bm.setCarTypeNo(rs.getInt("car_type_no"));
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setTkDate(rs.getDate("tk_date"));
 				bm.setBoardState(rs.getInt("board_state"));
 				bm.setCount(rs.getInt("count"));
 				list.add(bm);

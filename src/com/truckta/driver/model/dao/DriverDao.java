@@ -91,7 +91,6 @@ public class DriverDao {
 				d.setDateOfBirth(rs.getString("date_of_birth"));
 				d.setdLicense(rs.getString("d_license"));
 				d.setbLicense(rs.getString("b_license"));
-//				d.setCarPic(rs.getString("carpic"));
 				d.setRegDate(rs.getDate("regdate"));
 				list.add(d);
 			}

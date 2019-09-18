@@ -54,7 +54,7 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
              <a class="nav-link" href="/views/user/Login.jsp">로그인</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/views/user/singUpClient.jsp">회원가입</a>
+              <a class="nav-link" href="/views/user/signUpClient.jsp">회원가입</a>
             </li>
           </ul>
         </div>
@@ -79,13 +79,17 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
                 </table>
             
             <%} %>
-
+	
+	
     <script>
       function redirect() {
         location.replace("./chat.html");
       }
     </script>
   </header>
+  <%if(clientLogin!=null && clientLogin.getName().equals("admin")){ %>
+		<%@ include file="/views/admin/adminHeader.jsp" %>
+	<%} %>
   <body>
 </html>
 

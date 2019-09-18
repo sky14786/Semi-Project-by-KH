@@ -6,20 +6,26 @@
 <%
 	List<BoardQnaQ> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
-	int type = (int) request.getAttribute("type");
+	String search = (String) request.getAttribute("search");
+	String searchKeyword = (String) request.getAttribute("searchKeyword");
+
+	if(request.getAttribute("type")!=null){
+		int type = (int) request.getAttribute("type");
+	}
 %>
 <style>
 .container {
 	font-family: "Noto Sans KR", sans-serif;
 }
 </style>
-<%@ include file="/views/admin/adminHeader.jsp"%>
+
 
 <div class="container-fluid" style="margin-top: 3%">
 	<table class="table">
 		<thead class="thead-light">
 			<tr style="text-align:center;">
 				<th>번호</th>
+				<th>분류</th>
 				<th>사용자</th>
 				<th>제목</th>
 				<th>일자</th>
@@ -33,6 +39,14 @@
 			%>
 					<tr style="text-align:center;">
 						<td><%=b.getBoardNo() %></td>
+						<td><%if(b.getType()==0) {%>
+							질문
+							<%}else if(b.getType()==1){ %>
+							건의
+							<%}else if(b.getType()==2){ %>
+							신고
+							<%} %>
+						</td>
 						<td><%=b.getqUser() %></td>
 						<td><a href="#" style="color:inherit;"><%=b.getTitle() %></a></td>
 						<td><%=b.getHireDate() %></td>

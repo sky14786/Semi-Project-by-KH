@@ -12,6 +12,7 @@ public class BoardMatching {
 	private String etc;
 	private String memo;
 	private Date hireDate;
+	private Date tkDate;
 	private int boardState;
 	private int count;
 
@@ -19,8 +20,16 @@ public class BoardMatching {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Date getTkDate() {
+		return tkDate;
+	}
+
+	public void setTkDate(Date tkDate) {
+		this.tkDate = tkDate;
+	}
+
 	public BoardMatching(int boardNo, String wrtier, int carTypeNo, String title, String startAddr, String endAddr,
-			String etc, String memo, Date hireDate, int boardState, int count) {
+			String etc, String memo, Date hireDate, Date tkDate, int boardState, int count) {
 		super();
 		this.boardNo = boardNo;
 		this.wrtier = wrtier;
@@ -31,6 +40,7 @@ public class BoardMatching {
 		this.etc = etc;
 		this.memo = memo;
 		this.hireDate = hireDate;
+		this.tkDate = tkDate;
 		this.boardState = boardState;
 		this.count = count;
 	}

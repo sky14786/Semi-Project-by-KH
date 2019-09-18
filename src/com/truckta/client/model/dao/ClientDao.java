@@ -94,7 +94,7 @@ public class ClientDao {
 			pstmt.setString(3, temp.getName());
 			pstmt.setString(4, temp.getEmail());
 			pstmt.setString(5, temp.getProfile());
-//			pstmt.setInt(5, temp.getUserType());
+			pstmt.setInt(6, 1);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException sqle) {
