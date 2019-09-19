@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.truckta.file.matching.model.vo.FileMatching"%>
@@ -6,9 +7,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	List<BoardMatching> list = (List)request.getAttribute("boardTop");
-	List<List> imgTop = (List)request.getAttribute("imgTop");
-	//int boTmp = ((FileMatching)imgTop.get(0).get(0)).getBaordNo();
+	int boardTopNull = 0;
+	int imgTopNull = 0;
+	
+	List<BoardMatching> list = new ArrayList<BoardMatching>();
+	if((List)request.getAttribute("boardTop") != null){
+		list = (List)request.getAttribute("boardTop");
+	}else boardTopNull = 1;
+	
+	List<List> imgTop = new ArrayList<List>();
+	if((List)request.getAttribute("imgTop") != null){
+		imgTop = (List)request.getAttribute("imgTop");
+	}else imgTopNull = 1;
 	
 %>
 
@@ -20,7 +30,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
 <script
@@ -31,10 +41,10 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-
-<link
+ -->
+<%-- <link
 	href="<%=request.getContextPath()%>/plugins/mypage/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> --%>
 <link
 	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -42,12 +52,11 @@
 	rel="stylesheet">
 <title>mypage test</title>
 </head>
+<%@ include file="/views/user/myPageHeader.jsp"%>
 <body class="body-wrapper">
-
 	<!--================================
     =            Page Title            =
     =================================-->
-
 	<section class="page-title bg-title overlay-dark">
 		<div class="container">
 			<div class="row">
@@ -56,26 +65,25 @@
 						<h3>운반 정보</h3>
 					</div>
 					<ol class="breadcrumb p-0 m-0 ">
-						<li class="breadcrumb-item"><a href="<%=request.getContextPath() %>/mainPage.jsp">홈으로</a></li>
-						<li class="breadcrumb-item">운송정보</li>
+						<%-- <li class="breadcrumb-item"><a href="<%=request.getContextPath() %>/mainPage.jsp">홈으로</a></li>
+						<li class="breadcrumb-item">운송정보</li> --%>
 					</ol>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<!--====  End of Page Title  ====-->
 
 
 	<!--================================
-    =            News Posts            =
+    =            Driver Posts            =
     =================================-->
-
 	<section class="news section">
 		<div class="container">
 			<div class="row mt-40">
 				<!-- 내부 상세데이 -->
 				<%
+					if(boardTopNull == 0 || imgTopNull == 0){
 					int size = 1;
 					if(list.size() >= 3){
 						size = 3;
@@ -170,8 +178,45 @@
 						</div>
 					</div>
 				</div>
-				<%} %>
-
+				<%} }else{%>
+				<!-- ---------- 빈데이터 ---------- -->
+                <div class="col-lg-4 col-md-6 col-sm-8 col-sx-9 col-10 m-auto">
+                    <div class="blog-post">
+                        <div class="post-thumb">
+                            <a href="#">
+                                <img src="<%=request.getContextPath()%>/views/images/038.jpg" alt="post-image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <div class="date">
+                                <h4>01<span>1월</span></h4>
+                            </div>
+                            <div class="post-title">
+                                <!-- 상세 운반정보로 이동 -->
+                                <p class="mt-1 mb-0">제목</p>
+                                <h2 style="font-size: 0.5rem" class="mb-0 mt-0"><a href="#">운반 지역 내용</a></h2>
+                            </div>
+                            <div class="post-meta">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-o"></i>
+                                        <a href="#">글쓴이</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-heart-o"></i>
+                                        <a href="#">조회수</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-comments-o"></i>
+                                        <a href="#">30???</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        		<%} %>
+				
 
 			</div>
 		</div>
@@ -182,8 +227,7 @@
 
 	<section class="section schedule">
 		<div class="container">
-			s
-
+	
 			<!-- -- 리스트 --  -->
 
 			<div class="row">

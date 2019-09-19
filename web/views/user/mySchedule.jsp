@@ -24,6 +24,8 @@
 		matCompleList = (List)request.getAttribute("matCompleList");
 	}else comNull = 1;
 	
+	String pageBar = (String)request.getAttribute("pageBar");
+	
 %>
 <!DOCTYPE html>
 <html lang="kr">
@@ -32,32 +34,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<%@ include file="/views/common/header.jsp"%>
 <!-- 부트스트랩 4 -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<link
-	href="<%=request.getContextPath()%>/plugins/mypage/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css"
-	rel="stylesheet">
+<%-- <link href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css" rel="stylesheet"> --%>
+<link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css" rel="stylesheet">
 
-<!-- FAVICON -->
+
+
+<!-- FAVICON -->`
 <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
 
 <title>mypage test</title>
 </head>
+
+<%@ include file="/views/user/myPageHeader.jsp"%>
 <body class="body-wrapper">
 
 
@@ -114,15 +104,15 @@
 									<%for(int i=0; i<list.size(); i++){ %>
 									<li class="schedule-details">
 										<div class="block">
-											<!-- time -->
+											<!-- 화물정보 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
 												<%=list.get(i).getTitle() %>
 												</span>
 											</div>
-											<!-- Speaker -->
+											<!-- 도착지 -->
 											<div class="speaker">
-												<img src="images/speakers/speaker-thumb-one.jpg"
+												<img src="images/one.jpg"
 													> <span class="name">
 													<%
 														String edAddr = list.get(i).getEndAddr();
@@ -135,9 +125,9 @@
 													<%=edAddr %>
 													</span>
 											</div>
-											<!-- Subject -->
+											<!-- 메모 -->
 											<div class="subject"><%=list.get(i).getMemo() %></div>
-											<!-- Venue -->
+											<!-- 요청만료날짜 -->
 											<div class="venue"><%=list.get(i).getTkDate() %></div>
 										</div>
 									</li>
@@ -155,26 +145,24 @@
 										<div class="time">배송날짜</div>
 										<div class="speaker">목적지-도착지</div>
 										<div class="subject">연락처</div>
-										<div class="venue">가격</div>
+										<div class="venue">협상가격</div>
 									</li>
 									
 									<%if(matNull != 1){ %>
 									<%for(int i=0; i<matList.size(); i++){ %>
 									
-<!-- 									for (int j = 0; j < list.get(0).size(); j++) {
-					System.out.print(list.get(0).get(j) + " "); -->
 									<!-- Schedule Details -->
 									<li class="schedule-details">
 										<div class="block">
-											<!-- time -->
+											<!-- 배송날 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
 												<%=matList.get(i).get(0) %>
 												</span>
 											</div>
-											<!-- Speaker -->
+											<!-- 목적지-도착지 -->
 											<div class="speaker">
-												<img src="images/speakers/speaker-thumb-one.jpg"
+												<img src="images/one.jpg"
 													> <span class="name">
 													<%
 													String stAddr = (String)(matList.get(i)).get(1);
@@ -197,9 +185,9 @@
 													<%=stAddr %>
 													</span>
 											</div>
-											<!-- Subject -->
+											<!-- 연락처 -->
 											<div class="subject"><%=matList.get(i).get(3) %></div>
-											<!-- Venue -->
+											<!-- 가격 -->
 											<div class="venue"><%=matList.get(i).get(4) %></div>
 										</div>
 									</li>
@@ -222,20 +210,20 @@
 									<!-- Schedule Details -->
 									<li class="schedule-details">
 										<div class="block">
-											<!-- time -->
+											<!-- 거래완료 일자 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
 												<%=matCompleList.get(i).get(0) %>
 											</span>
 											</div>
-											<!-- Speaker -->
+											<!-- 운송자 -->
 											<div class="speaker">
-												<img src="images/speakers/speaker-thumb-four.jpg"
+												<img src="images/four.jpg"
 													> <span class="name">
 													<%=matCompleList.get(i).get(1) %>
 													</span>
 											</div>
-											<!-- Subject -->
+											<!-- 도착지 -->
 											<div class="subject">
 												<%
 													String edAddr = (String)(matCompleList.get(i)).get(2);
@@ -246,7 +234,7 @@
 													%>
 													<%=edAddr %>
 											</div>
-											<!-- Venue -->
+											<!-- 가격 -->
 											<div class="venue"><%=matCompleList.get(i).get(3) %></div>
 										</div>
 									</li>
@@ -264,16 +252,7 @@
 					<div class="col-12 text-center ">
 						<nav class="d-flex justify-content-center">
 							<ul class="pagination">
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="prev"> <span aria-hidden="true"><i
-											class="fa fa-angle-left"></i></span> <span class="sr-only">prev</span>
-								</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true"><i
-											class="fa fa-angle-right"></i></span> <span class="sr-only">Next</span>
-								</a></li>
+								<%=pageBar %>
 							</ul>
 						</nav>
 					</div>
@@ -291,7 +270,7 @@
     =            Footer            =
     =============================-->
 	<!-- Subfooter -->
-	<footer class="subfooter">
+	<!-- <footer class="subfooter">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 align-self-center">
@@ -306,35 +285,20 @@
 				</div>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
+	<%@ include file="/views/common/footer.jsp"%>
 
-
-
-	<!-- JAVASCRIPTS -->
-	<!-- jQuey -->
-	<!-- <script src="plugins/jquery/jquery.js"></script> -->
-	<!-- Popper js -->
-	<!-- <script src="plugins/popper/popper.min.js"></script> -->
-	<!-- Bootstrap 4 -->
-	<!-- <script src="plugins/bootstrap/js/bootstrap.min.js"></script> -->
-	<!-- Smooth Scroll -->
-	<!-- <script src="plugins/mypage/smoothscroll/SmoothScroll.min.js"></script>   -->
-	<!-- Isotope -->
-	<!-- <script src="plugins/isotope/mixitup.min.js"></script>   -->
-	<!-- Magnific Popup -->
-	<!-- <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script> -->
-	<!-- Slick Carousel -->
-	<!-- <script src="plugins/slick/slick.min.js"></script>   -->
-	<!-- Custom Script -->
 	<script src="<%=request.getContextPath()%>/plugins/mypage/js/custom.js"></script>
+	<script src="<%=request.getContextPath()%>/plugins/mypage/popper/popper.min.js"></script>
+  	<script src="<%=request.getContextPath()%>/plugins/mypage/bootstrap/js/bootstrap.min.js"></script>
 
-	<script>
+	<!-- <script>
             $(function(){
                 $('.schedule-details').click(function () {
                     console.log('스케쥴 상세페이지로 전환');
                     
                 });
             });
-        </script>
+    </script> -->
 </body>
 </html>

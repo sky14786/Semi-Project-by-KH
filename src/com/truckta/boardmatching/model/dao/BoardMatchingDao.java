@@ -440,6 +440,27 @@ public class BoardMatchingDao {
 		}
 		return list;
 	}
+	// count
+	public int matchingListCount(Connection conn, String writer) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("matchingListCount");
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 	
 	//마이 페이지 보드매칭 top3
 	public List<BoardMatching> mypageTop(Connection conn, String writer){
