@@ -85,7 +85,7 @@ public class ClientLoginServlet extends HttpServlet {
 			}
 			
 			
-			view="/views/common/header.jsp";
+			view="/index.jsp";
 			response.sendRedirect(request.getContextPath()+view);
 			
 		}

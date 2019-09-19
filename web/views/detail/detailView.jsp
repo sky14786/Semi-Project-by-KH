@@ -24,7 +24,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
-<link href="/css/detailView-Style.css" rel="stylesheet"/> 
+<link href="<%=request.getContextPath() %>/css/detailView-Style.css" rel="stylesheet"/> 
 
 <!-- ----------------End----------------- -->
 

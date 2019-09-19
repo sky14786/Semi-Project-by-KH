@@ -42,9 +42,10 @@
 				src="<%=request.getContextPath()%>/images/project_images/logo.png"
 				alt="logo.png" class="front-logo mx-0" id="logo"
 				onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' />
-			<form class="ml-4">
-				<input type="text" name="search" placeholder="Search.."
-					id="seachbar" class="search-bar" />
+				
+			<form class="ml-4 allsearch" action="<%=request.getContextPath() %>/main/mainFinder">
+				<input type="text" placeholder="Search.." name = "searchKeyword"
+					id="seachbar" class="search-bar" id="search-bar seachbar" value="" />
 			</form>
 			<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
 				<i class="fas fa-envelope"></i>
