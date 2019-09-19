@@ -52,7 +52,7 @@
 			<%
 				if (clientLogin == null) {
 			%>
-			<button class="navbar-right btn-lg active btn-outline-light ml-auto mr-2" onclick = 'deny()'>
+			<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'deny()'>
 				<i class="fas fa-envelope"></i>
 			</button>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
