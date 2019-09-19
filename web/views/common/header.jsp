@@ -76,8 +76,9 @@
 			<td><%=clientLogin.getName()%>님 환영합니다.</td>
 		</tr>
 		<tr>
-			<td><input type="button" value="내정보변경"
-				onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'" />
+			<td>
+			<%-- <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'" /> --%>
+			<input type="button" value="MY PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
 				<input type="button" value="로그아웃"
 				onclick="location.href='<%=request.getContextPath()%>/logout '" />
 				<!--window 요청 a태그  open location--></td>
