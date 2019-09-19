@@ -33,7 +33,7 @@
 <!-- [End Import] -->
 </head>
 
-<header>
+<header class = "fixed-top">
 	<nav
 		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
 		<div class="input-group">

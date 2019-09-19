@@ -55,20 +55,26 @@
 
 @media (max-width: 500px) {
   .search-bar {
-    width: 200px;
+    width: 180px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .search-bar {
-    width: 170px;
+    width: 130px;
   }
 }
 
 
-@media (max-width: 300px) {
+@media (max-width: 370px) {
   .search-bar {
     width: 100px;
+  }
+}
+
+@media (max-width: 340px) {
+  .search-bar {
+    width: 80px;
   }
 }
 
