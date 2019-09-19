@@ -38,7 +38,6 @@ public class DriverDao {
 			pstmt.setString(3, temp.getDateOfBirth());
 			pstmt.setString(4, temp.getdLicense());
 			pstmt.setString(5, temp.getbLicense());
-//			pstmt.setString(6, temp.getCarPic());
 
 			result = pstmt.executeUpdate();
 

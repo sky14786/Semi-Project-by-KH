@@ -49,7 +49,7 @@ tr>td{
 						</td>
 						<td>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">원글보기</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">매칭정보보기</button>
+						<!-- <button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">매칭정보보기</button> -->
 						</td>
 						
 				</tr>

@@ -48,7 +48,7 @@
 							<%} %>
 						</td>
 						<td><%=b.getqUser() %></td>
-						<td><a href="#" style="color:inherit;"><%=b.getTitle() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=b.getBoardNo() %>" style="color:inherit;"><%=b.getTitle() %></a></td>
 						<td><%=b.getHireDate() %></td>
 						<td><%if(b.getStatus()==0){%>
 								답변전

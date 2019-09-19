@@ -62,7 +62,11 @@
 						<%} %>
 						<td><%=c.getReportCount() %></td>
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
+							<a href="<%=request.getContextPath()%>/views/user/clientUpdate.jsp" style="color:inherit;">
+							수정
+							</a>
+						</button>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						<%if(c.getStatus()==1) {%>
 						<button type="button" name="btn_report" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>

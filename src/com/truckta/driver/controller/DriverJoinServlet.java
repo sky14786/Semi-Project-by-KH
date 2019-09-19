@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.truckta.driver.model.service.DriverService;
 import com.truckta.driver.model.vo.Driver;
+import com.truckta.file.driver.model.service.FileDriverService;
+import com.truckta.file.driver.model.vo.FileDriver;
 
 @WebServlet("/driverSignUp")
 public class DriverJoinServlet extends HttpServlet {
@@ -47,33 +48,42 @@ public class DriverJoinServlet extends HttpServlet {
 		temp.setDateOfBirth(
 				mul.getParameter("birth1") + "-" + mul.getParameter("birth2") + "-" + mul.getParameter("birth3"));
 		temp.setCarType(Integer.parseInt(mul.getParameter("carType")));
+		temp.setbLicense(mul.getParameter("bLicense"));
+		temp.setdLicense(mul.getParameter("dLicense"));
 
-		fileNames.add(mul.getFilesystemName("dLicense"));
-		fileNames.add(mul.getFilesystemName("bLincense"));
-		fileNames.add(mul.getFilesystemName("carPic"));
+		fileNames.add(mul.getFilesystemName("carpic1"));
+		fileNames.add(mul.getFilesystemName("carpic2"));
+		fileNames.add(mul.getFilesystemName("carpic3"));
+		fileNames.add(mul.getFilesystemName("carpic4"));
+		fileNames.add(mul.getFilesystemName("carpic5"));
 
+		List<FileDriver> files = new ArrayList<FileDriver>();
 		for (int i = 0; i < fileNames.size(); i++) {
 			String dir = path + "/" + fileNames.get(i);
 			File oldFile = new File(dir);
-			String tempDir = path + "/" + now + fileNames.get(i);
-			dir = now + fileNames.get(i);
-			dirs[i] = dir;
+
+			String tempDir = path + "/" + temp.getId() + "_" + now + "_" + fileNames.get(i);
+			String tempFileName = temp.getId() + "_" + now + "_" + fileNames.get(i);
+			FileDriver fd = new FileDriver(temp.getId(), tempFileName);
+			files.add(fd);
+
 			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
 		}
-		temp.setdLicense(dirs[0]);
-		temp.setbLicense(dirs[1]);
-//		temp.setCarPic(dirs[2]);
 
 		int result = new DriverService().joinDriver(temp);
+		int isUpload = 0;
+		for (; isUpload < files.size(); isUpload++) {
+			new FileDriverService().joinDriver(files.get(isUpload));
+		}
 
 		if (result == 1) {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.toString());
+			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add : " + temp.toString());
 			request.setAttribute("message", "신청하였습니다.");
 			request.setAttribute("location", "/success.html");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail" + temp.toString());
+			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add Fail" + temp.toString());
 			request.setAttribute("message", "오류.");
 			request.setAttribute("location", "/fail.html");
 			request.getRequestDispatcher("/").forward(request, response);

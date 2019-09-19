@@ -9,13 +9,13 @@ public class DataEncryptionTemplate {
 		MessageDigest md = null;
 		try {
 			String key = "www.truckta.com" + temp;
-			md = MessageDigest.getInstance("SHA-256");
+			md = MessageDigest.getInstance("SHA-512");
 			md.update(key.getBytes());
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(":: LOG :: Input_PW :: " + temp);
+			System.out.println(":: LOG :: Encryption_Try :: " + temp);
 			return byteToHex(md.digest());
 		}
 

@@ -29,7 +29,6 @@ public class DriverJoinTryServlet extends HttpServlet {
 		
 		
 		if (carTypeList != null && carTypeList.size() > 0) {
-			System.out.println("드라이버진입");
 			request.setAttribute("carTypeList", carTypeList);
 			request.getRequestDispatcher("/views/user/signUpDriver.jsp").forward(request, response);
 		} else {
@@ -37,7 +36,6 @@ public class DriverJoinTryServlet extends HttpServlet {
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/").forward(request, response);
 		}
-		System.out.println("ㅇㅅㅇ");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
