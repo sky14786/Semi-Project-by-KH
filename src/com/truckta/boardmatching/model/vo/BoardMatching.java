@@ -28,23 +28,6 @@ public class BoardMatching {
 		this.tkDate = tkDate;
 	}
 
-	public BoardMatching(int boardNo, String wrtier, int carTypeNo, String title, String startAddr, String endAddr,
-			String etc, String memo, Date tkDate, int boardState, int count, Date hireDate) {
-		super();
-		this.boardNo = boardNo;
-		this.wrtier = wrtier;
-		this.carTypeNo = carTypeNo;
-		this.title = title;
-		this.startAddr = startAddr;
-		this.endAddr = endAddr;
-		this.etc = etc;
-		this.memo = memo;
-		this.tkDate = tkDate;
-		this.boardState = boardState;
-		this.count = count;
-		this.hireDate = hireDate;
-	}
-
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -109,7 +92,6 @@ public class BoardMatching {
 		this.memo = memo;
 	}
 
-
 	public int getBoardState() {
 		return boardState;
 	}
@@ -140,6 +122,23 @@ public class BoardMatching {
 				+ title + ", startAddr=" + startAddr + ", endAddr=" + endAddr + ", etc=" + etc + ", memo=" + memo
 				+ ", tkDate=" + tkDate + ", boardState=" + boardState + ", count=" + count + ", hireDate=" + hireDate
 				+ "]";
+	}
+
+	public BoardMatching(int boardNo, String wrtier, int carTypeNo, String title, String startAddr, String endAddr,
+			String etc, String memo, Date hireDate, int boardState, int count, Date tkDate) {
+		super();
+		this.boardNo = boardNo;
+		this.wrtier = wrtier;
+		this.carTypeNo = carTypeNo;
+		this.title = title;
+		this.startAddr = startAddr;
+		this.endAddr = endAddr;
+		this.etc = etc;
+		this.memo = memo;
+		this.hireDate = hireDate;
+		this.boardState = boardState;
+		this.count = count;
+		this.tkDate = tkDate;
 	}
 
 }

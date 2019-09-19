@@ -11,44 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.boardmatching.model.service.MainService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.file.matching.model.service.FileMatchingService;
+import com.truckta.file.matching.model.vo.FileMatching;
 
-/**
- * Servlet implementation class MainPageServlet
- */
 @WebServlet("/mainpageload")
 public class MainPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public MainPageServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<BoardMatching> list = new MainService().selectList();
-		int cPage;// ���纸���ִ� ������
+//		List<BoardMatching> list = new MainService().selectList();
+		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException e) {
 			cPage = 1;
 		}
 
-		int numPerPage = 8;// �������� ����� ������
+		int numPerPage = 8;
 		int totalMember = new MainService().selectCountMember();
-
+		int totalFile = new FileMatchingService().selectCountFileMatching();
 //				List<Member> list=new MemberService().selectList();
 		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage);
-
-		// pageBar����! �����ϴ� ���ڿ��ۼ�(�ڵ�)
+		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
+		
 		int totalPage = (int) Math.ceil((double) totalMember / numPerPage);
 		String pageBar = "";
 		int pageSizeBar = 5;
@@ -73,21 +65,27 @@ public class MainPageServlet extends HttpServlet {
 		} else {
 			pageBar += "<a href=" + request.getContextPath() + "/mainpageload?cPage=" + (pageNo) + ">[다음]</a>";
 		}
+		////////////
+		//List<FileMatching> file_matching = new MainService().fileSearch();
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
 		// request.setAttribute("members",list1);//??
 		request.setAttribute("numPerPage", numPerPage);// ?
 		request.setAttribute("list_page", list_page);
+		request.setAttribute("fileList", fileList);
+		
+		//System.out.println(list_page);
+		//request.setAttribute("list", list);
 
-		// request.setAttribute("list", list);
+		//request.setAttribute("imgsearch", file_matching);
+		//System.out.println("######servlet imgsearch :" + file_matching);
+//		request.setAttribute("filematching", filematching);
+//		System.out.println("servlet:"+filematching);
+
 		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

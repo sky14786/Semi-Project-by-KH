@@ -1,6 +1,9 @@
 package com.truckta.boardmatching.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,52 +12,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.truckta.boardmatching.model.service.MainService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.file.matching.model.service.FileMatchingService;
 import com.truckta.file.matching.model.vo.FileMatching;
 
 /**
- * Servlet implementation class MainGuSearch
+ * Servlet implementation class MainDateSearch
  */
-@WebServlet("/gusearch")
-public class MainGuSearch extends HttpServlet {
+@WebServlet("/maindatesearch")
+public class MainDateSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MainDateSearch() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public MainGuSearch() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-//		request.setCharacterEncoding("UTF-8");
-//		response.setContentType("text/html; charset=UTF-8");
-//
-//		String gu = request.getParameter("selectgu");
-//		System.out.println("########guservlet:" + gu);
-//		List<BoardMatching> list = new MainService().guSearchList(gu);
-//		
-//		
-//		
-//		
-//		request.setAttribute("select_gu",list);
-//		System.out.println("#####select_gu"+list);
-//		/*
-//		 * request.setAttribute("imgsearch", list);
-//		 * System.out.println("######servlet imgsearch :"+list);
-//		 */
-//		
-//		
-//		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//날짜
+		String searchdate = request.getParameter("datesearch");
+		System.out.println("#######################################");
+		System.out.println(searchdate);
+//		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(searchdate);
+//		System.out.println("!!!!!!!!searchdate"+searchdate);
+		//List<BoardMatching> datesearch= new MainService().searchDate();
+		
 		int cPage;
 		String selectGu = request.getParameter("selectGu");
 		try {
@@ -65,10 +54,9 @@ public class MainGuSearch extends HttpServlet {
 
 		int numPerPage = 8;
 		int totalBaordMatching = new MainService().selectCountBoardMatching(selectGu);
-		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage, selectGu);
+		List<BoardMatching> list_page = new MainService().searchDate(cPage, numPerPage, searchdate); //selectGu ->searchdate
 		//사진
 		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
-		
 		int totalPage = (int) Math.ceil((double) totalBaordMatching / numPerPage);
 		String pageBar = "";
 		int pageSizeBar = 5;
@@ -115,9 +103,7 @@ public class MainGuSearch extends HttpServlet {
 
 		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
