@@ -226,5 +226,12 @@ public class BoardMatchingService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	
+	public int matchingListCount(String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.matchingListCount(conn, writer);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }
