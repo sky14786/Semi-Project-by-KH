@@ -1,0 +1,13 @@
+.but_1{
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+a#calendar, a.calendar {
+	overflow: hidden;
+    display: inline-block;
+	background: url(https://farm4.staticflickr.com/3854/14472313019_867d34c90c_s.jpg) no-repeat;
+    background-size: 32px;
+	text-indent: -2000em;
+}
+.ui-datepicker-trigger{display: none;}
