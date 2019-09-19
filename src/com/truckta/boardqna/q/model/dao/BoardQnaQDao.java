@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
 
 import common.template.JDBCTemplate;
@@ -151,6 +152,67 @@ public class BoardQnaQDao {
 		}
 		return q;
 
+	}
+	public int insertComment(Connection conn,BoardQnaA a) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt( 1 , a.getaNo());
+			pstmt.setInt( 2 , a.getqNo());
+			pstmt.setString(3, a.getWriter());
+			pstmt.setString(4 , a.getEtc());
+			pstmt.setDate(5 , a.getHireDate());
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
+	}
+	public int selectSeqComment(Connection conn) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select qna_a_pk_seq.currval from dual";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+	public List<BoardQnaA> selectBoardComment(Connection conn, String boardNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<BoardQnaA> list=new ArrayList();
+		String sql=prop.getProperty("selectBoardComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(boardNo));
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				BoardQnaA a=new BoardQnaA();
+				a.setaNo(rs.getInt("a_no"));
+				a.setqNo(rs.getInt("q_no"));
+				a.setWriter(rs.getString("writer"));
+				a.setEtc(rs.getString("etc"));
+				a.setHireDate(rs.getDate("hire_date"));
+                list.add(a);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}return list;
 	}
 
 }

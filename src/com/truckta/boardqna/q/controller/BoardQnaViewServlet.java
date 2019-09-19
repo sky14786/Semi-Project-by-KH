@@ -1,15 +1,15 @@
-package com.truckta.boardqna.q.controll;
+package com.truckta.boardqna.q.controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.service.BoardQnaQService;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
 
@@ -54,9 +54,9 @@ public class BoardQnaViewServlet extends HttpServlet {
 		 */
 
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
-	    System.out.println(q);
-		/* List<BoardComment> list=new BoardService().selectBoardComment(boardNo); */
+		 List<BoardQnaA> list=new BoardQnaQService().selectBoardComment(boardNo); 
 		request.setAttribute("board_qna_q", q);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher(request.getContextPath()+"/views/user/board_qna_q_view.jsp").forward(request, response);
 	}
 

@@ -12,6 +12,13 @@ public class BoardQnaA {
 	public BoardQnaA() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public BoardQnaA(int qNo,String writer,String etc) {
+		super();
+		this.qNo = qNo;
+		this.writer = writer;
+		this.etc = etc;
+	}
 
 	public BoardQnaA(int aNo, int qNo, String writer, String etc, Date hireDate) {
 		super();

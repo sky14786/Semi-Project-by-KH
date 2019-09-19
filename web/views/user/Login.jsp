@@ -50,49 +50,6 @@
 	 
 	 950 px 
 	 ;
-	@media ( max-width : 1200px) input[type="submit"] {
-		font-weight
-		:
-		 
-		700;
-		height
-		:
-		 
-		36
-		px
-		;
-		
-    
-		-moz-user-select
-		:
-		 
-		none
-		;
-		
-    
-		-webkit-user-select
-		:
-		 
-		none
-		;
-		
-    
-		user-select
-		:
-		 
-		none
-		;
-		
-    
-		cursor
-		:
-		 
-		default
-		;
-		
-
-
-	}
 }
 </style>
 
@@ -126,7 +83,7 @@
 							value='<%=saveId != null ? saveId : ""%>' required autofocus />
 						<input type="password" id="pw" name="pw" class="form-control"
 							placeholder="비밀번호" required> 
-						<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+						<input class="btn btn-lg btn-primary btn-block btn-signin" id="btn" name="btn" type="submit"
 							value="로그인">
 					</form>
 					

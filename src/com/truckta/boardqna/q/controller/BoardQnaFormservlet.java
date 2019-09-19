@@ -1,4 +1,4 @@
-package com.truckta.boardqna.q.controll;
+package com.truckta.boardqna.q.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
