@@ -7,10 +7,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
+<%@ include file="/views/common/header.jsp"%>
 <title>배달 정보 업로드</title>
 
 <!-- 부트스트랩 4 -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
@@ -22,7 +23,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
 <!-- date picker -->
-<script src="../../js/jquery-3.4.1.js" charset="utf-8"></script>
+<!-- <script src="../../js/jquery-3.4.1.js" charset="utf-8"></script> -->
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
@@ -59,66 +60,9 @@ nav, aside {
 
 <body class="bg-light">
 	<div class="container">
-		<div class="py-1 text-center">
+	<!-- 	<div class="py-1 text-center">
 			<h2>header</h2>
-			<!-- 헤더 수정 -->
-
-
-			<!-- <nav class="navbar navbar-expand-sm bg-nav sticky-top">
-
-				<div class="row" style="height: 50; padding: 2 50;">
-
-					<div class="col-md-1 .d-none .d-sm-block">
-						<img
-							src="<%=request.getContextPath()%>/images/project_images/t-logo.png"
-							alt="logo.png" class="nav-bar" />
-					</div>
-					<div class="col-md-2 .d-none .d-sm-block">
-
-
-						<p style="font-size: 28px; color: #ffffff;">This is Truckta</p>
-
-					</div>
-					<div class="col-md-6">
-						<form>
-							<div class="input-group">
-								<input type="text" class="form-control header-search-bar"
-									placeholder="Input your search_keyword" size="120"
-									style="height: 45px;" />
-								<div class="input-group-append">
-									<button type="button" class="btn btn-bg-color ">검색</button>
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<div class="col-md-2 mb-1"
-						style="display: inline-flex; margin-left: 60px;">
-						<button type="button" class="btn btn-bg-color "
-							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Login</button>
-						<button type="button" class="btn btn-bg-color "
-							style="width: 100px; height: 40px; margin-top: 2px; margin-right: 10px;">Sign
-							Up</button>
-					</div>
-					<div class="col-md-1"></div>
-
-				</div>
-			</nav> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</div>
+		</div> -->
 
 		<div class="row">
 			<div class="col-md-2 order-md-1 mb-1">
@@ -254,32 +198,31 @@ nav, aside {
 				<div class="col-md-4">
 					<button class="btn btn-danger btn-sm" type="button" onclick="cancle();">뒤로가기</button>
 				</div>
-				
+			</div>
+			</form>
+				<!-- //---------// -->
+				<div>
+					<button type="button" onclick="test();">update button</button>
+					<script>
+						function test() {
+							location.href = '<%=request.getContextPath()%>/board/updateLoad';
+						}
+					</script>
+		      		<button type="button" onclick="test1();">myTop button</button>
+					<script>
+						function test1() {
+							location.href = '<%=request.getContextPath()%>/my/pageTop';
+						}
+					</script>
+					<button type="button" onclick="test2();">mySchedule button</button>
+					<script>
+						function test2() {
+							location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
+						}
+					</script>
+				</div>
 			</div>
 			
-			</form>
-		
-			</div>
-			<div>
-			<button type="button" onclick="test();">test button</button>
-			<script>
-				function test() {
-					location.href = '<%=request.getContextPath()%>/board/updateLoad';
-				}
-			</script>
-      		<button type="button" onclick="test1();">myTop button</button>
-			<script>
-				function test1() {
-					location.href = '<%=request.getContextPath()%>/my/pageTop';
-				}
-			</script>
-			<button type="button" onclick="test2();">mySchedule button</button>
-			<script>
-				function test2() {
-					location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
-				}
-			</script>
-			</div>
       
       
 			<!-- aside -->

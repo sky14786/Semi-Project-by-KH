@@ -187,6 +187,13 @@ public class BoardMatchingService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	// count
+	public int matchingListCount(String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.matchingListCount(conn, writer);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	//마이 페이지 보드매칭 top3
 	public List<BoardMatching> mypageTop(String writer){
