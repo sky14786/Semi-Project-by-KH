@@ -339,7 +339,7 @@
      --%>
     
     
-    ////////////////////
+  
    /* 
  	$(document).ready(function() {
 	  $('#target').click(function() {
@@ -359,7 +359,7 @@
 	      console.log(html);
 	      $('#dictionary').html(html);
 	    });
-	    return false;
+	    return false; 
 	  });
 	});*/
 	//encodeURLComponent();
