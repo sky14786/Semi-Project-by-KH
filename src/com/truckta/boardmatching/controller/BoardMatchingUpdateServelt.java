@@ -91,9 +91,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 		// boardNo(int), boardState(int), count(int)
 //				String writer = (String)request.getSession().getAttribute("writer");
 //				String writer = "writer";
-		bm.setWrtier("010-5327-3738");
+		bm.setWrtier("010-0335-0361");
 
-		int boardNum = 169; //해당 글번호
+		int boardNum = 199; //해당 글번호
 		bm.setBoardNo(boardNum);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
