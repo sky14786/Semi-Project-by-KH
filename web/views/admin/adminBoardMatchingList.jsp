@@ -42,7 +42,7 @@ tr>td{
 			%>
 					<tr style="text-align:center;">
 						<td><%=bm.getBoardNo() %></td>
-						<td><a href="#" style="color:inherit;"><%=bm.getTitle() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/detail?boardNo=<%=bm.getBoardNo() %>" style="color:inherit;"><%=bm.getTitle() %></a></td>
 						<td><%=bm.getWrtier() %></td>
 						<td><%=bm.getStartAddr() %></td>
 						<td><%=bm.getEndAddr() %></td>
