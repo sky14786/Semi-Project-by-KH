@@ -56,15 +56,14 @@
 				
 			<div class="col-md-4 mb-3">
 				<label for="state">날짜별</label>
-				<select class="custom-select d-block w-100" id=paymentDate required>
+				<select class="custom-select d-block w-100" id=paymentDate required onchange="dateSearch()">
 					
 					<option>California</option>
-					 
-    				
 				</select>
-				<input type="text" id="payday" style="display: none;" />
-					
-				<a name="show1up" ID="show1up" class="calendar">Choose a payment date</a>
+				<!-- <form action="<%=request.getContextPath() %>/maindatesearch"> -->
+				<input type="text" id="payday" name="searchdate" style="display: none;"/>
+				<!-- </form>	 -->
+				<!-- <a name="show1up" ID="show1up" class="calendar">Choose a payment date</a> -->
 				<div class="invalid-feedback">
 					Please provide a valid state.
 				</div>
@@ -95,6 +94,7 @@
 						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:50px;height:50px;" >
 					<%} %>
 						<!-- 	<img src=> -->
+							<h5><%=bm.getTitle() %></h5>
 							<h5><%=bm.getStartAddr() %></h5>
 							<h5><%=bm.getEndAddr() %></h5>
 							
@@ -125,8 +125,9 @@
 
     </div>
 
-
+		<%if(list_page.size()>1){ %>
 		<div class="pagebar" id="pagebar"><%=request.getAttribute("pageBar")%></div>
+		<%} %>
 		<div class="col-xl-1" >
 		
 		</div>
@@ -134,6 +135,11 @@
 	</div>
 
 	<script>
+	function dateSearch(datesearch){
+		var datesearch=$("#paymentDate").val();
+		console.log(datesearch);
+		location.href="<%=request.getContextPath()%>/maindatesearch?datesearch="+datesearch;
+	}
   	function guSelect(selectgu){
 		
 		var selectgu=$("#select2").val();
@@ -241,20 +247,20 @@
     })
     };  */
     $(document).ready(function(){
-        var options;
-        for(i=0;i<10;i++){
-            dte = new Date();
-            dte.setDate(dte.getDate() + i);
-            
-            var dd = dte.getDate();
-            var mm = dte.getMonth() + 1;
-            var y = dte.getFullYear();
+  	    var options;
+  	    for(i=0;i<10;i++){
+  	        dte = new Date();
+  	        dte.setDate(dte.getDate() + i);
+  	        
+  	        var y = dte.getFullYear();
+  	        var mm = dte.getMonth() + 1;
+  	        var dd = dte.getDate();
 
-            var formattedDate = mm + '/'+ dd + '/'+ y;        
-            options += '<option value="'+formattedDate+'">'+formattedDate+'</option>';
-        }    
-        
-        $("#paymentDate").html(options);
+  	        var formattedDate = y + '/'+ mm + '/'+ dd;        
+  	        options += '<option value="'+formattedDate+'" id="datesearch">'+formattedDate+'</option>';
+  	    }    
+  	    
+  	    $("#paymentDate").html(options);
         
     var calendarShown = false;
     $.datepicker.setDefaults({

@@ -82,4 +82,11 @@ public class MainService {
 		close(conn);
 		return list;
 	}
+	//날짜
+	public List<BoardMatching> searchDate(int cPage, int numPerPage, String searchdate) {
+		Connection conn = getConnection();
+		List<BoardMatching> list = dao.searchDate(conn, cPage, numPerPage,searchdate);
+		close(conn);
+		return list;
+	}
 }

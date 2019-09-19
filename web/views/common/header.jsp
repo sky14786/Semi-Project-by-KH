@@ -26,6 +26,7 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- style.css -->
     <link href="<%=request.getContextPath()%>/css/header.css?ver=1.1" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/css/mainListStyle.css?ver=1.1" rel="stylesheet" />
     <!-- [End Import] -->
   </head>
 
