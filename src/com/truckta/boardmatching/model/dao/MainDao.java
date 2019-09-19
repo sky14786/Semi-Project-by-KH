@@ -42,7 +42,7 @@ public class MainDao {
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setStartAddr(rs.getString("start_addr").substring(7,15));
 				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
@@ -53,7 +53,7 @@ public class MainDao {
 
 				list.add(bm);
 			}
-//			System.out.println("파일경로불러와졋니?dao"+list);
+			System.out.println("파일경로불러와졋니?dao"+list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -100,8 +100,8 @@ public class MainDao {
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStartAddr(rs.getString("start_addr"));
-				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setStartAddr(rs.getString("start_addr").substring(6,15));
+				bm.setEndAddr(rs.getString("end_addr").substring(6,15));
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
@@ -110,6 +110,7 @@ public class MainDao {
 				
 				list.add(bm);
 			}
+			System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -302,6 +303,53 @@ public class MainDao {
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
+				list.add(bm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
+	public List<BoardMatching> searchDate(Connection conn, int cPage, int numPerPage, String searchdate) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<BoardMatching> list = new ArrayList();
+
+		//from Board_Matching where start_addr like '%"+ key + "%' or end_addr like '%" + key + "%'"
+		
+		int start = (cPage - 1) * numPerPage + 1;
+		int end = cPage * numPerPage;
+//		String sql = "select * from(select rownum as rnum, a.* from("
+//				+ "select * from board_matching where start_addr like '%"+ searchdate + "%' or end_addr like '%" + searchdate + "%' order by hire_date desc)a)"
+//				+ " where rnum between "+ start+" and "+ end;
+		String sql="select * from board_matching where tk_date="+"'"+searchdate+"'";
+
+
+		try {
+			/*
+			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
+			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
+			 * end);
+			 */
+			System.out.println("#####list selectListpagegu dao:"+sql);
+			 stmt=conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				BoardMatching bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
+				bm.setMemo(rs.getString("memo"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				bm.setTkDate(rs.getDate("tk_date"));
 				list.add(bm);
 			}
 		} catch (SQLException e) {

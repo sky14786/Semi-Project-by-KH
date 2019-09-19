@@ -7,7 +7,7 @@
         //System.out.print("#####getlist_page"+list_page);
         //int numPerPage=(int)request.getAttribute("numPerPage");
         List<BoardMatching> select_gu=(List)request.getAttribute("select_gu");
-        //System.out.print("####getselect_gu+"+select_gu);
+        //System.out.print("####getselect_gu+"+select_gcssu);
  		String searchKey=(String)request.getAttribute("searchKeyword");
  		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		
@@ -60,18 +60,17 @@
 				</div>
 			</div>
 			
-				
+				<!-- ########################################################################## -->
 			<div class="col-md-4 mb-3">
 				<label for="state">날짜별</label>
-				<select class="custom-select d-block w-100" id=paymentDate required>
+				<select class="custom-select d-block w-100" id=paymentDate required onchange="dateSearch()">
 					
 					<option>California</option>
-					 
-    				
 				</select>
-				<input type="text" id="payday" style="display: none;" />
-					
-				<a name="show1up" ID="show1up" class="calendar">Choose a payment date</a>
+				<!-- <form action="<%=request.getContextPath() %>/maindatesearch"> -->
+				<input type="text" id="payday" name="searchdate" style="display: none;"/>
+				<!-- </form>	 -->
+				<!-- <a name="show1up" ID="show1up" class="calendar">Choose a payment date</a> -->
 				<div class="invalid-feedback">
 					Please provide a valid state.
 				</div>
@@ -98,12 +97,13 @@
 							}
 						}
 					if(isNotNull){%>
-						<img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:50px;height:50px;" >
+						<img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:100px;height:100px;" >
 						<%-- <img src="<%=request.getContextPath()%>/images/posted_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" > --%>
 					<%}else{ %>
-						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:50px;height:50px;" >
+						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:100px;height:100px;" >
 					<%} %> 
 						<!-- 	<img src=> -->
+							<h5><%=bm.getTitle() %></h5>
 							<h5><%=bm.getStartAddr() %></h5>
 							<h5><%=bm.getEndAddr() %></h5>
 							
@@ -136,6 +136,12 @@
 	</div>
 
 	<script>
+	function dateSearch(datesearch){
+		var datesearch=$("#paymentDate").val();
+		console.log(datesearch);
+		location.href="<%=request.getContextPath()%>/maindatesearch?datesearch="+datesearch;
+	}
+	
   	function guSelect(selectGu){
 		
 		var selectGu=$("#select2").val();
@@ -228,6 +234,62 @@
 		            }
 		
 		}
+  	
+  	
+  		$(document).ready(function(){
+  	    var options;
+  	    for(i=0;i<10;i++){
+  	        dte = new Date();
+  	        dte.setDate(dte.getDate() + i);
+  	        
+  	        var y = dte.getFullYear();
+  	        var mm = dte.getMonth() + 1;
+  	        var dd = dte.getDate();
+
+  	        var formattedDate = y + '/'+ mm + '/'+ dd;        
+  	        options += '<option value="'+formattedDate+'" id="datesearch">'+formattedDate+'</option>';
+  	    }    
+  	    
+  	    $("#paymentDate").html(options);
+  	    
+  	var calendarShown = false;
+  	$.datepicker.setDefaults({
+  	  showOn: "both",
+  	  buttonImageOnly: true,
+  	  buttonImage: "",
+  	  buttonText: "Calendar",
+  	  dateFormat: "m/d/yy"
+  	});
+
+  	$( "#payday" ).datepicker({
+  			beforeShow: readSelected, 
+  			onSelect: updateSelected,
+  			maxDate: $("select#paymentDate option").length - 1,
+  			minDate: "0"
+  		});
+
+  	$("#show1up").click(function(){	
+  		if(!calendarShown || !$("#ui-datepicker-div").is(":visible") ){
+  			$(".ui-datepicker-trigger").trigger("click");
+  			calendarShown = true;
+  		}
+  		else
+  			calendarShown = false;
+  	});	
+
+  	});
+
+
+  	function readSelected() {
+  	}
+
+  	function updateSelected(date) {
+  	    $("#paymentDate option").each(function(index){        
+  	     	if($(this).val() == date)
+  	     		$('#paymentDate option').eq(index).prop('selected', true);
+  		});
+  	    
+  	}
 /*    function guSelect(select){
     $.ajax({
         url: "/admin/gusearch",

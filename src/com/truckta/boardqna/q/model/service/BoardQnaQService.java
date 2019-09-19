@@ -25,4 +25,72 @@ public class BoardQnaQService {
 		return result;
 	}
 
+	public int deleteQnaQ(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteQnaQ(conn, no);
+
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public BoardQnaQ findBoardQnaQ(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaQ temp = dao.findBoardQnaQ(conn, no);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
+	public int selectSearchCountBoardQnaQ(String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectSearchCountBoardQnaQ(conn, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public List<BoardQnaQ> selectSearchListPage(int cPage, int numPerPage, String search, String searchKeyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardQnaQ> list = dao.selectSearchListPage(conn, cPage, numPerPage, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public int insertBoard(BoardQnaQ q) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertBoard(conn, q);
+		if (result > 0) {
+			// for() {
+			// result=dao.insertAttachment(conn,list.get(i))
+			// if(result<0) break;
+			// }
+			JDBCTemplate.commit(conn);
+			result = dao.selectSeqBoard(conn);
+
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public BoardQnaQ selectBoard(String no) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaQ q = dao.selectBoard(conn, no);
+
+		/*
+		 * //조회수! if(!hasRead) {
+		 */
+		/*
+		 * int result=0; if(result>0) {JDBCTemplate.commit(conn);} else
+		 * {JDBCTemplate.rollback(conn);}
+		 */
+		/* } */
+		JDBCTemplate.close(conn);
+		return q;
+
+	}
 }

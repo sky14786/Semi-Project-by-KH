@@ -31,6 +31,11 @@ public class CreateChatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		 
+		
+		
 		Client loggedInClient =(Client)request.getSession().getAttribute("loginClient");
 		String driverId = request.getParameter("driverId");
 		String writerId = request.getParameter("writerId");

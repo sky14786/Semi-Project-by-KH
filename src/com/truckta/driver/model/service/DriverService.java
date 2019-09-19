@@ -37,5 +37,13 @@ public class DriverService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	
+	// 드라이버 확인
+	public int driverCheck(String user) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.driverCheck(conn, user);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }

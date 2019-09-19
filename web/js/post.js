@@ -51,10 +51,12 @@ function execDaumPostcode(d) {
 			if(d === 1 ){
 				$(".start-postcode").val(data.zonecode);
 				$(".start-addr").val(addr);
+				$("#address").val("");
 				$(".start-addr-detail").focus();
 			}else{
 				$(".end-postcode").val(data.zonecode);
 				$(".end-addr").val(addr);
+				$("#address2").val("");
 				$(".end-addr-detail").focus();
 			}
 		}

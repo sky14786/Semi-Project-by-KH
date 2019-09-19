@@ -33,10 +33,9 @@ public class ClientLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");
-		
 		//로그인에 대한 비지니스 로직
 		ClientService service=new ClientService();
 		Client cl=service.selectId(id,pw);
@@ -44,6 +43,7 @@ public class ClientLoginServlet extends HttpServlet {
 		
 		//DB결과에 따라서 view화면을 선택~
 		String view="";
+	
 		if(cl!=null) {			
 			//로그인 처리
 			
@@ -85,8 +85,9 @@ public class ClientLoginServlet extends HttpServlet {
 			}
 			
 			
-			view="/";//index.jsp연결~~
+			view="/views/common/header.jsp";
 			response.sendRedirect(request.getContextPath()+view);
+			
 		}
 		else {
 			//에러처리

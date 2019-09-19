@@ -125,5 +125,4 @@ public class Client {
 		return "Client [id=" + id + ", pw=" + pw + ", name=" + name + ", profile=" + profile + ", regDate=" + regDate
 				+ ", modDate=" + modDate + ", userType=" + userType + "]";
 	}
-
 }

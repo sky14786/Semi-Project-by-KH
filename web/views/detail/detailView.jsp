@@ -4,7 +4,7 @@
 
 <%@ page import = "com.truckta.detail.model.vo.Detail" %>
 <%@ page import = "com.truckta.client.model.vo.Client" %>
-
+<%@page import = "com.truckta.matching.model.vo.Matching"%>
 
 <%
 	String boardNo = (String)request.getAttribute("boardNo");
@@ -12,8 +12,8 @@
 	String endAddr = (String)request.getAttribute("endAddr");
 	Detail d = (Detail)request.getAttribute("d");
 	Client c = (Client)session.getAttribute("loginClient");
-	System.out.println("cccccccccccccccccc");
-	System.out.println("헌수헌수"+d);
+	/* System.out.println("cccccccccccccccccc");
+	System.out.println("헌수헌수"+d); */
 	
 %>
 
@@ -24,7 +24,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
-<%-- <link href="<%=request.getContextPath()%>/css/detailView-Style.css?ver=1.2" rel="stylesheet"> --%>
+<link href="/css/detailView-Style.css" rel="stylesheet"/> 
 
 <!-- ----------------End----------------- -->
 
@@ -93,20 +93,6 @@
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
-			<!--/.Controls // Thumbnail-->
-			<style>
-        #img-carousel {
-            width: 200px;
-            /* You can set the dimensions to whatever you want */
-            height: 300px;
-            object-fit: cover;
-            
-        }
-        .carousel-indicators li{
-            text-indent: 0;
-            width: unset !important;
-        }
-    </style>
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-thumb" data-slide-to="0" class="active">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/2008-04-13_Expandable_table_expanding.jpg" width="100">
@@ -124,32 +110,35 @@
 
 
 
-	<!--- Two Column Section -->
-	<br>
-	<div class="container padding">
-		<div class="row padding">
+	   <!--- Two Column Section -->
+   <br>
+   <div class="container padding">
+      <div class="row padding">
 
-			<!-- <div class="col-lg-6">
+         <!-- <div class="col-lg-10">
                 <img src="img/desk.png" class="img-fluid">
             </div> -->
-			<div class="col-md-12 col-lg-6">
-				<!-- start to destination -->
-				<h3><%=d.getStartAddr() %> ==> <%=d.getEndAddr() %></h3>
-				<!-- title -->
-				<h2><%=d.getTitle() %></h2>
-				<!-- description -->
-				<p><%=d.getEtc() %></p>
-				<!-- 메모 null 이면 숨기기 -->
-				<%if(d.getMemo()!=null) {%>
-				<p><%=d.getMemo() %></p>
-				<%} %>
-				
-				<p><%=startAddr %></p>
-				<br>
-				<p><%=endAddr %></p>
-				
-				
-				<!-- 메세지방을 생성하기 위해 보낼 값들 -->
+         <div class="col-md-12 col-lg-10">
+            <!-- start to destination -->
+            <div class="addr">
+            <hr>
+            <h4>출발지 주소</h4><%=d.getStartAddr() %>
+            <hr>
+            <h4>목적지 주소 </h4><%=d.getEndAddr() %>
+            <hr>
+            </div>
+            <!-- title -->
+            <div class="height">
+            <h1><%=d.getTitle() %></h1>
+            <!-- description -->
+            <p><%=d.getEtc() %></p>
+            <!-- 메모 null 이면 숨기기 -->
+            <%if(d.getMemo()!=null) {%>
+            <p><%=d.getMemo() %></p>
+            <%} %>
+            </div>
+            
+             <!-- 메세지방을 생성하기 위해 보낼 값들 -->
 				<%if(c!=null && c.getUserType()==2){ %>
 				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
 					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
@@ -167,77 +156,77 @@
 					<button type = "submit" class = "btn btn-primary">연락하기</button>
 				</form>
 				<%} %>
-				
-		</div>
-	</div>
-	<hr class="my-4">
-	
-	
-	
-	
-	
-	
-	
-	<div id="container">
-      <div class="main">
-        <div class="main__header">
-          <span class="main__header__result"> </span>
-        </div>
-        <div class="main__map main__map-empty" id="map"></div> <!-- 지도 보이는 곳 --> 
+            
+         
+   <hr>
+      <h1>네비게이션</h1>
+   <hr>   
+            <p>출발지 주소 : <%=startAddr %></p>
+   <hr>
+            <p>도착지 주소 : <%=endAddr %></p>
+   <hr>
+          <span class="main__header__result"></span>
+    <hr>
+   <div class="main__map main__map-empty" id="map"></div> <!-- 지도 보이는 곳 --> 
+   <div class="request">
+   <hr>
+   <h3>신청현황
+   </div>
+         </div>
       </div>
-    </div>
+   </div>
 
 
     
        
-	
-	<script>
-	
-	
+   
+   <script>
+   
+   
 
-	var addr = ["<%=startAddr%>", "<%=endAddr%>"];
-	newAddr = [];
-		search(addr[0]);
-		search(addr[1]);
-	function search(addr) {
-	  if(addr=="") {
-	      alert("주소를 차지 못 하였습니다");
-	  } else {
-	      textSearch(addr);
-	  }
-	}
+   var addr = ["<%=startAddr%>", "<%=endAddr%>"];
+   newAddr = [];
+      search(addr[0]);
+      search(addr[1]);
+   function search(addr) {
+     if(addr=="") {
+         alert("주소를 차지 못 하였습니다");
+     } else {
+         textSearch(addr);
+     }
+   }
 
-	function textSearch(addr) {
-	  if(addr != null) {
-	      $.ajax({
-	          method: "GET",
-	          url: "https://api2.sktelecom.com/tmap/geo/fullAddrGeo?version=1",
-	          data: {
-	             fullAddr: addr,
-	             appKey: "4b65ed0f-8a23-4128-abf7-7df859e62126"
-	          },
-	          success: function(data) {
-	              var obj = JSON.stringify(data);
-	              obj = JSON.parse(obj);
-	              console.log(obj.coordinateInfo.coordinate[0]);
-	              newAddr.push(obj.coordinateInfo.coordinate[0].newLat);
-	              newAddr.push(obj.coordinateInfo.coordinate[0].newLon);
-	              console.log(newAddr.length)
-	              if( newAddr.length == 4){
-	            	  startingMap();
-	              }
-	          },
-	          error:function(request,status,error){
-	              console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	              
-	          }
-	      });
-	  }
-	}
-	
+   function textSearch(addr) {
+     if(addr != null) {
+         $.ajax({
+             method: "GET",
+             url: "https://api2.sktelecom.com/tmap/geo/fullAddrGeo?version=1",
+             data: {
+                fullAddr: addr,
+                appKey: "4b65ed0f-8a23-4128-abf7-7df859e62126"
+             },
+             success: function(data) {
+                 var obj = JSON.stringify(data);
+                 obj = JSON.parse(obj);
+                 console.log(obj.coordinateInfo.coordinate[0]);
+                 newAddr.push(obj.coordinateInfo.coordinate[0].newLat);
+                 newAddr.push(obj.coordinateInfo.coordinate[0].newLon);
+                 console.log(newAddr.length)
+                 if( newAddr.length == 4){
+                    startingMap();
+                 }
+             },
+             error:function(request,status,error){
+                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                 
+             }
+         });
+     }
+   }
+   
 
-	
-	 var authKey = "4b65ed0f-8a23-4128-abf7-7df859e62126";
+   
+    var authKey = "4b65ed0f-8a23-4128-abf7-7df859e62126";
      var route1 = ["startingAddress", "destinationAddress"];
      var places = {
        startingAddress: {
@@ -275,11 +264,11 @@
       
      function findpath() {
        // 지도 삽입 전 map div 초기화
-	     var map = new Tmap.Map({
-	        div: "map", // 결과 지도를 표시할 곳
-	        height: "300px",
-	        width: "100"
-	      });
+        var map = new Tmap.Map({
+           div: "map", // 결과 지도를 표시할 곳
+           height: "300px",
+           width: "100"
+         });
        
        initMap();
        
@@ -357,14 +346,18 @@
          }
        });
      }
-	
-	
-	
-	</script>
+   
+   
+   
+   </script>
 
 
-	
-	
+   
+   
 
 
-<%@ include file="/views/common/footer.jsp"%>
+ <%@ include file="/views/common/footer.jsp"%> 
+
+    
+   
+    

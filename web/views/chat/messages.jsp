@@ -45,7 +45,7 @@ form:active {
 	<div id="chat-container" class="container-fluid ">
 
 		<div class="navbar">
-			<a href="<%=request.getContextPath()%>/views/common/header.jsp"
+			<a href="<%=request.getContextPath()%>/index.jsp"
 				class="p-2 "> <i class="fas fa-chevron-left fa-3x"></i></a>
 			<div class="p-2 chat-container-title ">
 				<i class="far fa-envelope fa-2x"></i>

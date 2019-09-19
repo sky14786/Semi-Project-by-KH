@@ -35,19 +35,19 @@
 /*---Media Queries --*/
 
 @media (max-width: 1200px) {
-  input[type="text"] {
+  .search-bar {
     width: 550px;
   }
 }
 
 @media (max-width: 900px) {
-  input[type="text"] {
+  .search-bar {
     width: 250px;
   }
 }
 
 @media (max-width: 500px) {
-  input[type="text"] {
+  .search-bar {
     width: 70px;
   }
 }
