@@ -59,9 +59,9 @@
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
 					<li class="nav-item active"><a class="nav-link"
-						href="/views/user/Login.jsp">로그인</a></li>
+						href="<%=request.getContextPath() %>/views/user/Login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="/views/user/singUpClient.jsp">회원가입</a></li>
+						href="<%=request.getContextPath() %>/views/user/singUpClient.jsp">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
