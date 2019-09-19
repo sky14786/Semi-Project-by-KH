@@ -249,7 +249,7 @@
     =            Footer            =
     =============================-->
 	<!-- Subfooter -->
-	<footer class="subfooter">
+	<!-- <footer class="subfooter">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 align-self-center">
@@ -264,7 +264,7 @@
 				</div>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 
 
 

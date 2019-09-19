@@ -103,14 +103,14 @@
 	
 	
     
-    <%
+    <%-- <%
 		if (clientLogin != null && !clientLogin.getName().equals("admin") ) {
 	%>
 	<%@ include file="/views/common/clientHeader.jsp"%>
 	 
 	<%
 		}
-	%>
+	%> --%>
 	<%
 		if (clientLogin != null && clientLogin.getName().equals("admin")) {
 	%>
