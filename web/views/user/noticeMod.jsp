@@ -21,7 +21,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <%@ include file="/views/common/header.jsp"%>
-<%@ include file="/views/user/myPageHeader.jsp"%>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <title>배달 정보 업로드</title>
 
 <!-- 부트스트랩 4 -->

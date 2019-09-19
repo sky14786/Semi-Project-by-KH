@@ -52,7 +52,7 @@
 	rel="stylesheet">
 <title>mypage test</title>
 </head>
-<%@ include file="/views/user/myPageHeader.jsp"%>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
 	<!--================================
     =            Page Title            =

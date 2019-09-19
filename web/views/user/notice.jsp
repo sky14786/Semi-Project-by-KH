@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <%@ include file="/views/common/header.jsp"%>
-<%@ include file="/views/user/myPageHeader.jsp"%>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <title>배달 정보 업로드</title>
 
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
@@ -17,15 +17,15 @@
 	rel="stylesheet" type="text/css" />
 
 <!-- notice -->
-<script src="../../js/notice.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
 <!-- post -->
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script src="../../js/post.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 
 <style>
-nav, aside {
+/* nav, aside {
 	color: red;
-}
+} */
 
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -52,7 +52,7 @@ nav, aside {
 
 		<div class="row">
 			<div class="col-md-2 order-md-1 mb-1">
-				<nav>nav</nav>
+				<!-- <nav>nav</nav> -->
 
 				<!-- ---------------------------------------- -->
 			</div>
@@ -272,7 +272,7 @@ nav, aside {
 </body>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-	<p class="mb-1">footer</p>
+	<!-- <p class="mb-1">footer</p> -->
 </footer>
 
 
