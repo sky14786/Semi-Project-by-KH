@@ -26,135 +26,75 @@
 %>
 
 <%@ include file="/views/common/header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
-<link href="<%=request.getContextPath()%>/css/login.css?var=1.1"
+<link href="<%=request.getContextPath()%>/css/login.css"
 	rel="stylesheet" />
-
-
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-
-<style>
-@media ( max-width : 1200px) input[type="text"] { width 
-	 : 
-	 
-	 950 px 
-	 ;
-	@media ( max-width : 1200px) input[type="submit"] {
-		font-weight
-		:
-		 
-		700;
-		height
-		:
-		 
-		36
-		px
-		;
-		
-    
-		-moz-user-select
-		:
-		 
-		none
-		;
-		
-    
-		-webkit-user-select
-		:
-		 
-		none
-		;
-		
-    
-		user-select
-		:
-		 
-		none
-		;
-		
-    
-		cursor
-		:
-		 
-		default
-		;
-		
-
-
-	}
-}
-</style>
-
 </head>
 <body>
 
-	<div class="container">
-		<div class="row" style="padding-top: 10%">
-
-			<div class="card card-container">
-				<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-				<img id="profile-img" class="profile-img-card"
-					src="/images/project_images/Truck.png" />
-				<p id="profile-name" class="profile-name-card"></p>
-				<!-- <form class="form-signin"> -->
-
-				<!-- 로그인 메뉴 -->
-				<div class="login-container">
-
-					<%
-						if (clientLogin == null) {
-					%>
-					<form class="form-signin" id='loginFrm'
+	<form class="form-signin ml-4" id='loginFrm'
 						action="<%=request.getContextPath()%>/login" method="post"
 						onsubmit="return validate();">
-
-
-						<input type="text" id="id" name="id"
+	<div class="container-scroller"  style="
+    margin-top: 4em4;
+    margin-top: 10em;">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+          <div class="row w-100">
+            <div class="col-lg-4 mx-auto">
+              <div class="auto-form-wrapper">
+                  <div class="form-group">
+                    <label class="label">핸드폰 번호</label>
+                    <div class="input-group">
+                     <input type="text" id="id" name="id"
 							class="form-control LoginInputId"
-							placeholder="아이디 (:숫자, - 를 포함한 숫자만)"
+							placeholder=""
 							value='<%=saveId != null ? saveId : ""%>' required autofocus />
-						<input type="password" id="pw" name="pw" class="form-control"
-							placeholder="비밀번호" required> 
-						<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-							value="로그인">
-					</form>
-					
+                       <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="label">비밀번호</label>
+                    <div class="input-group">
+                      <input type="password" id="pw" name="pw" class="form-control"
+							placeholder="*********" required> 
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type = "submit" class="btn btn-primary submit-btn btn-block">로그인</button>
+                  </div>
+                  <div class="form-group d-flex justify-content-between">
+                    <div class="form-check form-check-flat mt-0">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
+                    </div>
+                    <a href="<%=request.getContextPath()%>/views/user/resetpassword.jsp" class="text-small forgot-password text-black">Forgot Password</a>
+                  </div> 
+                  <div class="text-block text-center my-3">
+                    <span class="text-small font-weight-semibold">Not a member ?</span>
+                    <a href="<%=request.getContextPath() %>/user/resetpassword.jsp" class="text-black text-small">Create new account</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+	
+	</form>
 
-					<%
-						}
-					%>
-
-
-
-
-					<div id="saveId" class="checkbox">
-						<label> <input type="checkbox" value="remember-me">
-							Remember me
-						</label>
-					</div>
-				</div>
-				<!-- </form> -->
-				<!-- /form -->
-				<a href="<%=request.getContextPath()%>/views/user/resetpassword.jsp"
-					class="forgot-password"> Forgot the password? </a>
-			</div>
-		</div>
-		<!-- /card-container -->
-	</div>
-	<!-- /container -->
-
-
+	
 </body>
 <script>
 

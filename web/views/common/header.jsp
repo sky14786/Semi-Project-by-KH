@@ -36,7 +36,7 @@
 
 <header>
 	<nav
-		class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
+		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
 		<div class="input-group">
 			<img
 				src="<%=request.getContextPath()%>/images/project_images/logo.png"
@@ -47,47 +47,50 @@
 				<input type="text" placeholder="Search.." name = "searchKeyword"
 					id="seachbar" class="search-bar" id="search-bar seachbar" value="" />
 			</form>
-			<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
+			
+			
+			<%
+				if (clientLogin == null) {
+			%>
+			<button class="navbar-right btn-lg active btn-outline-light ml-auto mr-2" onclick = 'deny()'>
 				<i class="fas fa-envelope"></i>
 			</button>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<%
-				if (clientLogin == null) {
-			%>
 			<div class="collapse navbar-collapse flex-grow-0"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
 					<li class="nav-item active"><a class="nav-link"
 						href="<%=request.getContextPath() %>/views/user/Login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="<%=request.getContextPath() %>/views/user/singUpClient.jsp">회원가입</a></li>
+						href="<%=request.getContextPath() %>/views/user/signUpClient.jsp">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<%
-		}
-
-		if (clientLogin != null) {
+		} else{
 	%>
-	<table id="logged-in">
-		<tr>
-			<td><%=clientLogin.getName()%>님 환영합니다.</td>
-		</tr>
-		<tr>
-			<td>
-			<%-- <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'" /> --%>
-			<input type="button" value="MY PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
-				<input type="button" value="로그아웃"
-				onclick="location.href='<%=request.getContextPath()%>/logout '" />
-				<!--window 요청 a태그  open location--></td>
-		</tr>
-	</table>
-
-
+	<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
+				<i class="fas fa-envelope"></i>
+			</button>
+<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+<div class="collapse navbar-collapse flex-grow-0"
+				id="navbarSupportedContent">
+				<ul class="navbar-nav text-right">
+					<li class="nav-item active"><a class="nav-link"
+						href="location.href='<%=request.getContextPath()%>/my/pageTop'">마이 페이지</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 	<%
 		}
@@ -109,8 +112,14 @@
 	<%
 		}%>
 	
-	
 </header>
+<script>
+function deny(){
+	alert("로그인 후 이용하세요");
+}
+
+</script>
+
 <body>
 </body>
 </html>
