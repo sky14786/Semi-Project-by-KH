@@ -3,6 +3,7 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%@ page import = "com.truckta.detail.model.vo.Detail" %>
+<%@page import = "com.truckta.matching.model.vo.Matching"%>
 
 <%
 	Detail d = (Detail)request.getAttribute("d");
@@ -16,7 +17,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
-<%-- <link href="<%=request.getContextPath()%>/css/detailView-Style.css?ver=1.2" rel="stylesheet"> --%>
+<link href="/css/detailView-Style.css" rel="stylesheet"/> 
 
 <!-- ----------------End----------------- -->
 
@@ -85,20 +86,6 @@
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
-			<!--/.Controls // Thumbnail-->
-			<style>
-        #img-carousel {
-            width: 200px;
-            /* You can set the dimensions to whatever you want */
-            height: 300px;
-            object-fit: cover;
-            
-        }
-        .carousel-indicators li{
-            text-indent: 0;
-            width: unset !important;
-        }
-    </style>
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-thumb" data-slide-to="0" class="active">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/2008-04-13_Expandable_table_expanding.jpg" width="100">
@@ -121,46 +108,55 @@
 	<div class="container padding">
 		<div class="row padding">
 
-			<!-- <div class="col-lg-6">
+			<!-- <div class="col-lg-10">
                 <img src="img/desk.png" class="img-fluid">
             </div> -->
-			<div class="col-md-12 col-lg-6">
+			<div class="col-md-12 col-lg-10">
 				<!-- start to destination -->
-				<h3><%=d.getStartAddr() %> ==> <%=d.getEndAddr() %></h3>
+				<div class="addr">
+				<hr>
+				<h4>출발지 주소</h4><%=d.getStartAddr() %>
+				<hr>
+				<h4>목적지 주소 </h4><%=d.getEndAddr() %>
+				<hr>
+				</div>
 				<!-- title -->
-				<h2><%=d.getTitle() %></h2>
+				<div class="height">
+				<h1><%=d.getTitle() %></h1>
 				<!-- description -->
 				<p><%=d.getEtc() %></p>
 				<!-- 메모 null 이면 숨기기 -->
 				<%if(d.getMemo()!=null) {%>
 				<p><%=d.getMemo() %></p>
 				<%} %>
-				
-				<p><%=startAddr %></p>
-				<br>
-				<p><%=endAddr %></p>
+				</div>
 			<a href="#" class="btn btn-primary">Learn More</a>
+	<hr>
+		<h1>네비게이션</h1>
+	<hr>	
+				<p>출발지 주소 : <%=startAddr %></p>
+	<hr>
+				<p>도착지 주소 : <%=endAddr %></p>
+	<hr>
+          <span class="main__header__result"></span>
+    <hr>
+	<div class="main__map main__map-empty" id="map"></div> <!-- 지도 보이는 곳 --> 
+	<div class="request">
+	<hr>
+	<h3>신청현황
+	</div>
 			</div>
-			
 		</div>
 	</div>
-	<hr class="my-4">
-	
-	
-	
-	
-	
-	
 	<!-- ////////////////////////////////////////////////// -->
-	
+<!-- 	
 	<div id="container">
       <div class="main">
         <div class="main__header">
-          <span class="main__header__result"> </span>
         </div>
-        <div class="main__map main__map-empty" id="map"></div> <!-- 지도 보이는 곳 --> 
+        <div class="main__map main__map-empty" id="map"></div> 지도 보이는 곳 
       </div>
-    </div>
+    </div> -->
 
 
     
@@ -342,4 +338,4 @@
 	
 
 
-<%-- <%@ include file="/views/common/footer.jsp"%> --%>
+ <%@ include file="/views/common/footer.jsp"%> 
