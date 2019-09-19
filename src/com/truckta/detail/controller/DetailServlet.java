@@ -31,7 +31,6 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		boardNo = "191";
 		
 		DetailService service = new DetailService();
 		

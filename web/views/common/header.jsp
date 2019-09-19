@@ -11,8 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.
-    0" />
+	content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Welcome to Truck~ta!!</title>
 <!--[Start Import ] This Page Import Script and External Library -->
@@ -38,11 +37,7 @@
 	<nav
 		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
 		<div class="input-group">
-			<img
-				src="<%=request.getContextPath()%>/images/project_images/logo.png"
-				alt="logo.png" class="front-logo mx-0" id="logo"
-				onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' />
-				
+			<i class="fas fa-shipping-fast fa-3x" onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' style = "color: white; cursor: pointer;"></i>
 			<form class="ml-4 allsearch" action="<%=request.getContextPath() %>/main/mainFinder">
 				<input type="text" placeholder="Search.." name = "searchKeyword"
 					id="seachbar" class="search-bar" id="search-bar seachbar" value="" />
@@ -52,8 +47,9 @@
 			<%
 				if (clientLogin == null) {
 			%>
+			<!-- logo -->
 			<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'deny()'>
-				<i class="fas fa-envelope"></i>
+				<i class="fas fa-envelope fa-lg"></i>
 			</button>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent">
@@ -74,7 +70,7 @@
 		} else{
 	%>
 	<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
-				<i class="fas fa-envelope"></i>
+				<i class="fas fa-envelope fa-lg"></i>
 			</button>
 <button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent">
@@ -84,7 +80,7 @@
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
 					<li class="nav-item active"><a class="nav-link"
-						href="location.href='<%=request.getContextPath()%>/my/pageTop'">마이 페이지</a></li>
+						href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
 				</ul>
