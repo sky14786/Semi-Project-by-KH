@@ -34,9 +34,9 @@ public class BoardMatchingPageLoadServlet extends HttpServlet {
 			request.setAttribute("message", "업로드페이지 불러오기에 실패했습니다");
 			String path = "/mainPage.jsp";
 			request.setAttribute("location", path);
-			request.getRequestDispatcher(request.getContextPath()+"/views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher(request.getContextPath()+"/views/user/notice.jsp").forward(request,response);
+			request.getRequestDispatcher("/views/user/notice.jsp").forward(request,response);
 		}
 	}
 

@@ -30,7 +30,7 @@ public class BoardMatchingDeleteServelt extends HttpServlet {
 			//삭제 실패
 			request.setAttribute("message", "글 삭제가 되지 않았습니다.");
 			request.setAttribute("location", "/");
-			request.getRequestDispatcher(request.getContextPath()+"/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/common/msg.jsp").forward(request, response);
 		}
 		
 	}

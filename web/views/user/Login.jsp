@@ -105,7 +105,7 @@
 			<div class="card card-container">
 				<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
 				<img id="profile-img" class="profile-img-card"
-					src="/images/project_images/Truck.png" />
+					src="<%=request.getContextPath() %>/images/project_images/Truck.png" />
 				<p id="profile-name" class="profile-name-card"></p>
 				<!-- <form class="form-signin"> -->
 
