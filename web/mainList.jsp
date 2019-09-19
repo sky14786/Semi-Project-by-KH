@@ -17,7 +17,7 @@
     	
     %>
     
-    <%@ include file="/views/common/header.jsp"%> 
+    <%@ include file="/views/common/header.jsp"%>
     
     
 	<div class="container">
