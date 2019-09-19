@@ -3,13 +3,21 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%@ page import = "com.truckta.detail.model.vo.Detail" %>
+<%@ page import = "com.truckta.client.model.vo.Client" %>
+
 
 <%
-	Detail d = (Detail)request.getAttribute("d");
 	String boardNo = (String)request.getAttribute("boardNo");
 	String startAddr = (String)request.getAttribute("startAddr");
 	String endAddr = (String)request.getAttribute("endAddr");
+	Detail d = (Detail)request.getAttribute("d");
+	Client c = (Client)session.getAttribute("loginClient");
+	System.out.println("cccccccccccccccccc");
+	System.out.println("헌수헌수"+d);
+	
 %>
+
+
 
 
 <!-- This Page's Include and import Files -->
@@ -139,9 +147,27 @@
 				<p><%=startAddr %></p>
 				<br>
 				<p><%=endAddr %></p>
-			<a href="#" class="btn btn-primary">Learn More</a>
-			</div>
-			
+				
+				
+				<!-- 메세지방을 생성하기 위해 보낼 값들 -->
+				<%if(c!=null && c.getUserType()==2){ %>
+				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+					<button type = "submit" class = "btn btn-primary">연락하기</button>
+				</form>
+				<%} %>
+				
+				<%if(c!=null && c.getId()==d.getWriter()){ %>
+				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+					<button type = "submit" class = "btn btn-primary">연락하기</button>
+				</form>
+				<%} %>
+				
 		</div>
 	</div>
 	<hr class="my-4">
@@ -151,7 +177,6 @@
 	
 	
 	
-	<!-- ////////////////////////////////////////////////// -->
 	
 	<div id="container">
       <div class="main">
@@ -342,4 +367,4 @@
 	
 
 
-<%-- <%@ include file="/views/common/footer.jsp"%> --%>
+<%@ include file="/views/common/footer.jsp"%>

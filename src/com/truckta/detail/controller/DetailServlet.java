@@ -31,7 +31,7 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		System.out.println(boardNo);
+		boardNo = "191";
 		
 		DetailService service = new DetailService();
 		
@@ -39,9 +39,13 @@ public class DetailServlet extends HttpServlet {
 		String startAddr[] = d.getStartAddr().split(",");
 		String endAddr[] = d.getEndAddr().split(",");
 		
-		
+//		System.out.println("///////////////////////");
+//		System.out.println(d);
+//		
 //		System.out.println(startAddr[1]);
 //		System.out.println(endAddr[1]);
+//		System.out.println("///////////////////////");
+		
 		
 		request.setAttribute("startAddr", startAddr[1]);
 		request.setAttribute("endAddr", endAddr[1]);
