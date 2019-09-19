@@ -214,5 +214,20 @@ public class BoardQnaQDao {
 			JDBCTemplate.close(pstmt);
 		}return list;
 	}
+	public int deleteBoard(Connection conn, int boardNo,int type) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteBoard");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, type);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
+	}
 
 }

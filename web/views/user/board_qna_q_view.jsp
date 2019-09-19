@@ -118,6 +118,16 @@ table#tbl-comment tr.level2 sub.comment-date {
 			</div>
 		</div>
 	</div>
+	<%if(clientLogin!=null&&
+				(clientLogin.getId().equals(q.getqUser())
+					|| clientLogin.getId().equals("admin"))) {%>
+			<tr>
+				<td colspan='2' style="text-align:center;">
+					<input type="button" value="수정하기" onclick="<%=request.getContextPath()%>"/>
+					<button class="btn-delete" onclick="" value="<%=q.getType() %>"/>삭제하기</button>
+	            </td>
+			</tr>
+			<%} %>		
 
 	<%--  <section id="board-container">
 		<h2>게 시 판</h2>
@@ -148,7 +158,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 
 
 	<!-- 댓글화면 구현 -->
-	<div id="comment-container">
+	<div id="comment-container" style="padding-top: 10%">
 		<div class="comment-editor">
 			<form
 				action="<%=request.getContextPath() %>/boardqnacomment/commentInsert"
@@ -197,19 +207,40 @@ table#tbl-comment tr.level2 sub.comment-date {
 		<%}
 		}
 		%>
+		
+<script>
+<%-- function deleteBoard(){
+	   if(confirm("정말로 삭제하시겠습니까?")){
+	   var url="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
+	   location.href=url;
+	   }
+} --%>
 
+<%-- $(function(){
+	$('.btn-delete').click(function(){
+		if(<%=clientLogin==null%>){
+			alert("로그인 후 사용이 가능합니다.");
+			return
+		}
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
+		}
+	})  --%>
+</script>
 	</table>
 	<script>
-		$(function(){
+	
+	 
+		 $(function(){
 			$('.btn-delete').click(function(){
 				if(<%=clientLogin==null%>){
 					alert("로그인 후 사용이 가능합니다.");
 					return
 				}
 				if(confirm("정말로 삭제하시겠습니까?")){
-					location.href="<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=q.getBoardNo()%>&commentNo="+$(this).val();
+					location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
 				}
-			})
+			}) 
 			$('.btn-reply').click(function(){
 				
 				if(<%=clientLogin!=null%>){

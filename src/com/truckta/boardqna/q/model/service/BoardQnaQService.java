@@ -66,6 +66,14 @@ public class BoardQnaQService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	
+	public int deleteBoard(int boardNo, int type) {
+		Connection conn=JDBCTemplate.getConnection();
+		int result=dao.deleteBoard(conn,boardNo,type);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {JDBCTemplate.rollback(conn);}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }
