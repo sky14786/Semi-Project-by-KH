@@ -115,7 +115,7 @@
 </header>
 <script>
 function deny(){
-	alert("로그인 후 이용하세요");
+	alert("로그인 후 이용 가능합니다");
 }
 
 </script>
