@@ -22,14 +22,13 @@
 		<div class="col-1"></div>
 		<div class="col-6"><br><br><br><br>
 			<h2>Sign Up</h2><hr>
-			<form action="/clientSignUp.do" method="post" name="sendform"
+			<form action="/clientSignUp" method="post" name="sendform"
 				enctype="multipart/form-data">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" placeholder="Phone Number" <%--   value="<%=id%>"
-                readonly --%>
-              />
+						class="form-control" placeholder="Phone Number" <%-- value="<%=id%>"
+						readonly --%> />
 				</div>
 				<div class="form-group">
 					<label for="pw">Pw</label> <input type="password" name="pw" id="pw"

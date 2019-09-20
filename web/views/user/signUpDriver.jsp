@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,com.truckta.cartype.model.vo.CarType" %>
+<%@ page import="java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.client.model.vo.Client" %>
 <%@ include file="/views/common/header.jsp"%>	
 
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("phone_number");
 	List<CarType> list = (List) request.getAttribute("carTypeList");
-
 %>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.2" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.1" charset="utf-8"></script>
 
 
 <script>
@@ -32,7 +31,7 @@
 				enctype="multipart/form-data" onsubmit="return checkData();">
 				<div class="form-group">
 					<label for="id">Id</label> <input type="text" name="id" id="id"
-						class="form-control" placeholder="Phone Number" 
+						class="form-control" placeholder="Phone Number" value="<%=clientLogin.getId() %>" readonly
 					/>
 				</div>
 				<div class="form-group form-group-1">
@@ -52,23 +51,29 @@
 				</div>
 
 				<div class="form-group">
-					<label for="dLicense">Driver License</label> <input type="file"
-						name="dLicense" id="dLicense"
-						class="form-control btn btn-outline-secondary inputFile"
-						accept=".jpg, .png, .pdf" />
+					<label for="dLicense">Driver License</label> <input type="text" name="dLicense" id="dLicense"
+						class="form-control" placeholder="ex.??-??-??????-??" 
+					/>
 				</div>
 				<div class="form-group">
-					<label for="bLicense">Business License</label> <input type="file"
-						name="bLicense" id="bLicense"
-						class="form-control btn btn-outline-secondary inputFile"
-						accept=".jpg, .png, .pdf" />
+					<label for="bLicense">Business License</label> <input type="text" name="bLicense" id="bLicense"
+						class="form-control" placeholder="ex.???-??-?????" 
+					/>
 				</div>
 				<div class="form-group">
-					<label for="carPic">Truck Picture</label> <input type="file"
-						name="carPic" id="carPic"
-						class="form-control btn btn-outline-secondary inputFile"
-						accept=".jpg, .png, .pdf" />
+					<label for="carPic">Truck Picture</label> 
+					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic5" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />		
 				</div>
+				
 				<div class="form-group form-check">
 					<label for="isAgree" class="form-check-label"> <input
 						type="checkbox" name="isAgree" id="isAgree" />&nbsp;&nbsp;Agree

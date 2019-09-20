@@ -30,4 +30,9 @@ public class FileDriver {
 		this.fileName = fileName;
 	}
 
+	@Override
+	public String toString() {
+		return "FileDriver [id=" + id + ", fileName=" + fileName + "]";
+	}
+
 }

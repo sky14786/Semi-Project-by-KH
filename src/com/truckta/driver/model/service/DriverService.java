@@ -37,13 +37,32 @@ public class DriverService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	
+
 	// 드라이버 확인
 	public int driverCheck(String user) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.driverCheck(conn, user);
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public int driverRightModfiy(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.driverRightModfiy(conn, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Driver findDriver(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Driver temp = dao.findDriver(conn,id);
+		JDBCTemplate.close(conn);
+		return temp;
 	}
 
 }

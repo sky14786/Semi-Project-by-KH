@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.truckta.boardmatching.controller;
 
 import java.io.IOException;

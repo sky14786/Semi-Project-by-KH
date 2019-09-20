@@ -72,7 +72,7 @@
 						</td>
 						
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">승인</button>
+						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 						

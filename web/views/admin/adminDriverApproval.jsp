@@ -24,7 +24,6 @@
 				<th>생년월일</th>
 				<th>운전면허</th>
 				<th>사업자등록증</th>
-				<th>차사진</th>
 				<th>신청일자</th>
 				<th>상태</th>
 				<th>기타</th>
@@ -44,34 +43,18 @@
 							} %>
 						</td>
 						<td><%=d.getDateOfBirth()%></td>
-						
-						<%if(d.getdLicense()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %>
-						
-						<%if(d.getbLicense()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %>
-						
-					<%-- 	<%if(d.getCarPic()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %> --%>
-						<td><%=d.getRegDate() %></td>
-						<td>
-						<%if(d.getStatus()==0){%>
-							신청
-						<%}%>
-						</td>
+						<td><%=d.getdLicense()%></td>
+						<td><%=d.getbLicense()%></td>
+						<td><%=d.getRegDate()%></td>
+						<td><%
+							if(d.getStatus() == 0) {
+						%> 신청 <%
+							}
+						%></td>
 						
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">승인</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" name="btn_right" class="btn btn-sm" style="background-color:#17a2b8;color:white;">승인</button>
+						<button type="button" name="btn_detail"class="btn btn-sm" style="background-color:#17a2b8;color:white;">보기</button>
 						</td>
 						
 				</tr>
@@ -99,4 +82,45 @@
 	padding: 10px 5px;
 }
 </style>
+
+<script>
+	$("button[name=btn_right]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var id = td.eq(0).text();
+		
+		var isModify = confirm("["+id+"]사용자의 드라이버 권한을 승인하겠습니까?");
+		if(isModify){
+			modifyRight(id);
+		}
+	});
+	
+	function modifyRight(id){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/adminDriverRightModify",
+			type:"post",
+			dataType:"json",
+			data:{"id":id},
+			success:function(data){
+				if(data){
+					alert("승인했습니다.");
+					location.href="<%=request.getContextPath()%>/admin/driverApproval";
+				}else{
+					alert("실패! 개발자에게 문의하세요.");
+				}
+				
+			}
+		})
+	}
+	$("button[name=btn_detail]").click(function(){
+		var btn_del = $(this);
+		var tr = btn_del.parent().parent();
+		var td = tr.children();
+		var id = td.eq(0).text();
+		
+		location.href="<%=request.getContextPath()%>/admin/adminUserDetail?isDriverView=true&id="+id;
+	});
+	
+</script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -36,6 +36,7 @@ public class DriverJoinTryServlet extends HttpServlet {
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/").forward(request, response);
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

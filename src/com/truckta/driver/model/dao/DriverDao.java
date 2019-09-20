@@ -102,28 +102,6 @@ public class DriverDao {
 		return list;
 	}
 
-	public int selectCountDriver(Connection conn, boolean isApprovaled) {
-		PreparedStatement pstmt = null;
-		String sql = isApprovaled == true ? prop.getProperty("selectCountApprovalDriver")
-				: prop.getProperty("selectCountDriver");
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
-
 	// 드라이버 확인
 	public int driverCheck(Connection conn, String user) {
 		PreparedStatement pstmt = null;
@@ -139,6 +117,51 @@ public class DriverDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int driverRightModfiy(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverRightModify");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Driver findDriver(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findDriver");
+		ResultSet rs = null;
+		Driver driver = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				driver = new Driver();
+				driver.setId(rs.getString("id"));
+				driver.setCarType(rs.getInt("type_no"));
+				driver.setDateOfBirth(rs.getString("date_of_birth"));
+				driver.setdLicense(rs.getString("d_license"));
+				driver.setbLicense(rs.getString("b_license"));
+				driver.setRegDate(rs.getDate("regdate"));
+				driver.setStatus(rs.getInt("status"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return driver;
 	}
 
 }

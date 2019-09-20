@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/common/header.jsp"%> 
 <%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching" %>
 
 <%

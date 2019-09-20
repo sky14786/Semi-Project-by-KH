@@ -14,11 +14,18 @@ public class FileDriverService {
 	public int joinDriver(List<FileDriver> files) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.joinDriver(conn, files);
-		if (result == 1) {
+		if (result == files.size()) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		return result;
+	}
+
+	public List<String> findDriverFile(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<String> fileNames = dao.findDriverFile(conn, id);
+		JDBCTemplate.close(conn);
+		return fileNames;
 	}
 }
