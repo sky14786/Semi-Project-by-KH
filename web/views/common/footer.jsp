@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/footer.css">
 
 	<!--- Footer -->
-	<footer class="bg-dark text-white bottom">
+	<footer class="bg-dark text-white bottom" style="margin-top:30px;">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">

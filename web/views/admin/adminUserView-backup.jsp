@@ -42,25 +42,40 @@
 						class="form-control" value="<%=client.getId()%>" readonly />
 				</div>
 				<div class="form-group">
+					<label for="pw">Pw</label> <input type="password" name="pw" id="pw"
+						class="form-control" placeholder="Password" />
+				</div>
+				<div class="form-group">
+					<label for="pwCheck">Pw Check</label> <input type="password"
+						name="pwCheck" id="pwCheck" class="form-control"
+						placeholder="Password Check" />
+				</div>
+
+				<div class="form-group">
 					<label for="name">Name</label> <input type="text" name="name"
 						id="name" class="form-control" value="<%=client.getName()%>"
-						readonly/>
+						/>
 				</div>
 				<div class="form-group">
 					<label for="name">Email</label> <input type="text" name="email"
 						id="email" class="form-control"
-						value="<%=client.getEmail()%>" placeholder="EMAIL" readonly />
+						value="<%=client.getEmail()%>" placeholder="EMAIL" />
 				</div>
 				<div class="form-group">
 					<%
 						if (client.getProfile() != null) {
 					%>
 						<label for="profile">Profile Picture</label><hr>
-						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="500px" height="300px">
+						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="200px" height="200px">
 						<hr>
 					<%
 						}
 					%>
+					<label for="profile">프로필 사진 수정</label><hr> 
+					<input type="file"
+						name="profile" id="profile"
+						class="form-control btn btn-outline-secondary inputFile"
+						accept=".jpg, .png, .pdf" />
 				</div>
 				<div class="form-group form-group-1">
 					<%
@@ -76,11 +91,11 @@
 				
 				<div class="form-group">
 					<label for="dLicense">Driver License</label> <input type="text" name="dLicense" id="dLicense"
-						class="form-control" placeholder="ex.??-??-??????-??" value="<%=driver.getdLicense()%>"readonly/>
+						class="form-control" placeholder="ex.??-??-??????-??" value="<%=driver.getdLicense()%>"/>
 				</div>
 				<div class="form-group">
 					<label for="bLicense">Business License</label> <input type="text" name="bLicense" id="bLicense"
-						class="form-control" placeholder="ex.???-??-?????" value="<%=driver.getbLicense()%>"readonly/>
+						class="form-control" placeholder="ex.???-??-?????" value="<%=driver.getbLicense()%>"/>
 				</div>
 				<div class="form-group">
 					<div class='bigPictureWrapper'>
@@ -93,18 +108,28 @@
 								for (int i = 0; i < fileList.size(); i++) {
 					%>
 				
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i) %>" width="100px" height="100px">
+					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i) %>" width="200px" height="200px">
 					<%
-								}
+						}
 							}
 					%>
 					<hr>
+					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<input type="file" name="carPic5" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />		
 				</div>
 				<%
 					}
 				%>
 				<div style="text-align: center;">
-					<button type="button" onclick="history.back();" class="btn btn-primary">Back</button>
+					<button type="submit" class="btn  btn-primary">Send</button>
 				</div>
 			</form>
 		</div>
