@@ -37,7 +37,7 @@ public class BoardQnaViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String boardNo = request.getParameter("boardNo");
-		System.out.println(boardNo + "+++++");
+		
 		// 쿠키통해서 제한
 		/*
 		 * Cookie[] cookies=request.getCookies(); String boardCookieVal=""; boolean
