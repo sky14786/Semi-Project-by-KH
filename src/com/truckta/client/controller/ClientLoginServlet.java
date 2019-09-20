@@ -64,7 +64,6 @@ public class ClientLoginServlet extends HttpServlet {
 			
 			//쿠키에 아이디 저장하기
 			String saveId=request.getParameter("saveId");
-			System.out.println(saveId);
 			//saveId = check가 되면 on, check안하면 null
 			if(saveId!=null) {
 				//쿠키에 저장하는 방법

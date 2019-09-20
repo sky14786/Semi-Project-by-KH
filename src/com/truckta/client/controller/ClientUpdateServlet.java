@@ -31,21 +31,21 @@ public class ClientUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Client c=new Client();
-		c.setId(request.getParameter("id"));
-		c.setName(request.getParameter("name"));
-		c.setProfile(request.getParameter("profile"));
-		c.setEmail(request.getParameter("email"));
-		
-		
-		int result=new ClientService().updateClient(c);
-		
-		String msg=result>0?"회원수정이 완료되었습니다.":"회원수정을 실패하였습니다";
-		String loc="/clientUpdate?id="+c.getId();
-		
-		request.setAttribute("msg",msg );
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		/*
+		 * Client c=new Client(); c.setName(request.getParameter("name"));
+		 * c.setProfile(request.getParameter("profile"));
+		 * c.setEmail(request.getParameter("email"));
+		 * 
+		 * 
+		 * int result=new ClientService().updateClient(c);
+		 * 
+		 * String msg=result>0?"회원수정이 완료되었습니다.":"회원수정을 실패하였습니다"; String
+		 * loc="/clientUpdate?id="+c.getId();
+		 * 
+		 * request.setAttribute("msg",msg ); request.setAttribute("loc", loc);
+		 * request.getRequestDispatcher("/views/common/msg.jsp").forward(request,
+		 * response);
+		 */
 	}
 
 	/**

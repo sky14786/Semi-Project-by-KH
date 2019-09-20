@@ -6,7 +6,7 @@
 <%
 	BoardQnaQ q = (BoardQnaQ) request.getAttribute("board_qna_q");
 
-	 List<BoardQnaA> list=(List)request.getAttribute("list"); 
+	List<BoardQnaA> list = (List) request.getAttribute("list");
 %>
 
 <%@ include file="/views/common/header.jsp"%>
@@ -118,16 +118,23 @@ table#tbl-comment tr.level2 sub.comment-date {
 			</div>
 		</div>
 	</div>
-	<%if(clientLogin!=null&&
-				(clientLogin.getId().equals(q.getqUser())
-					|| clientLogin.getId().equals("admin"))) {%>
-			<tr>
-				<td colspan='2' style="text-align:center;">
-					<input type="button" value="수정하기" onclick="<%=request.getContextPath()%>"/>
-					<button class="btn-delete" onclick="" value="<%=q.getType() %>"/>삭제하기</button>
-	            </td>
-			</tr>
-			<%} %>		
+	<%
+		if (clientLogin != null
+				&& (clientLogin.getId().equals(q.getqUser()) || clientLogin.getId().equals("admin"))) {
+	%>
+	<tr>
+		<td colspan='2' style="text-align: center;">
+			<button class="btn-update" value="<%=q.getType()%>" />수정하기
+			</button>
+		</td>
+		<button class="btn-delete" onclick="" value="<%=q.getType()%>" />
+		삭제하기
+		</button>
+		</td>
+	</tr>
+	<%
+		}
+	%>
 
 	<%--  <section id="board-container">
 		<h2>게 시 판</h2>
@@ -161,11 +168,11 @@ table#tbl-comment tr.level2 sub.comment-date {
 	<div id="comment-container" style="padding-top: 10%">
 		<div class="comment-editor">
 			<form
-				action="<%=request.getContextPath() %>/boardqnacomment/commentInsert"
+				action="<%=request.getContextPath()%>/boardqnacomment/commentInsert"
 				method="post">
-				<input type="hidden" name="boardRef" value="<%=q.getBoardNo() %>" />
+				<input type="hidden" name="boardRef" value="<%=q.getBoardNo()%>" />
 				<input type="hidden" name="boardCommentWriter"
-					value="<%=clientLogin!=null?clientLogin.getId():""%>" /> <input
+					value="<%=clientLogin != null ? clientLogin.getId() : ""%>" /> <input
 					type="hidden" name="boardCommentLevel" value="1" /> <input
 					type="hidden" name="boardCommentRef" value="0" />
 				<textarea name="boardCommentContent" rows="3" cols="60"></textarea>
@@ -176,7 +183,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 	<script>
 			$(function(){
 				$("textarea[name=boardCommentContent]").focus(function(){
-					if(<%=clientLogin==null%>){
+					if(<%=clientLogin == null%>){
 						alert("로그인 후 등록할 수 있습니다.!");
 						$("#userId").focus();
 					}
@@ -187,28 +194,31 @@ table#tbl-comment tr.level2 sub.comment-date {
 		</script>
 	<table id="tbl-comment">
 
-		<%if(list!=null && !list.isEmpty()){
-			for(BoardQnaA a : list){ 
-				
-			%>
+		<%
+			if (list != null && !list.isEmpty()) {
+				for (BoardQnaA a : list) {
+		%>
 
 		<tr class="level1">
-			<td><sub class="comment-writer"> <%=a.getWriter() %>
-			</sub> <sub class="comment-date"> <%=a.getHireDate() %>
-			</sub> <br /> <%=a.getEtc() %></td>
+			<td><sub class="comment-writer"> <%=a.getWriter()%>
+			</sub> <sub class="comment-date"> <%=a.getHireDate()%>
+			</sub> <br /> <%=a.getEtc()%></td>
 			<td>
-				<button class="btn-reply" value="<%=a.getaNo() %>">답글</button> <%if(clientLogin!=null
-							&&("admin".equals(clientLogin.getName())
-							||a.getWriter()
-							.equals(clientLogin.getId()))) {%>
-				<button class="btn-delete" value="<%=a.getaNo() %>">삭제</button> <%} %>
+				<button class="btn-reply" value="<%=a.getaNo()%>">답글</button> <%
+ 	if (clientLogin != null
+ 					&& ("admin".equals(clientLogin.getName()) || a.getWriter().equals(clientLogin.getId()))) {
+ %>
+				<button class="btn-delete" value="<%=a.getaNo()%>">삭제</button> <%
+ 	}
+ %>
 			</td>
 		</tr>
-		<%}
-		}
+		<%
+			}
+			}
 		%>
-		
-<script>
+
+		<!-- <script> -->
 <%-- function deleteBoard(){
 	   if(confirm("정말로 삭제하시겠습니까?")){
 	   var url="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
@@ -226,24 +236,48 @@ table#tbl-comment tr.level2 sub.comment-date {
 			location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
 		}
 	})  --%>
-</script>
+<!-- </script> -->
 	</table>
 	<script>
 	
+	    <%--  $(function(){
+			$('.btn-update').click(function(){
+				if(<%=clientLogin == null%>){
+					alert("로그인 후 사용이 가능합니다.");
+					return
+				}
+				if(confirm("정말로 수정하시겠습니까?")){
+					location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
+				}
+			})  --%>
+	
+			
+
+			<%-- $('.btn-update').click(function(){
+			location.href="<%=request.getContextPath()%>/borard/boardFormUpdate"; --%>
+			
+				   
+				 
 	 
 		 $(function(){
 			$('.btn-delete').click(function(){
-				if(<%=clientLogin==null%>){
+				if(<%=clientLogin == null%>){
 					alert("로그인 후 사용이 가능합니다.");
 					return
 				}
 				if(confirm("정말로 삭제하시겠습니까?")){
 					location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
 				}
-			}) 
+			}) ;
+			
+			$('.btn-update').click(function(){
+			location.href="<%=request.getContextPath()%>/borard/boardFormUpdate";
+			
+			});
+			
 			$('.btn-reply').click(function(){
 				
-				if(<%=clientLogin!=null%>){
+				if(<%=clientLogin != null%>){
 					var tr=$('<tr>');
 					var td=$("<td>").css({"display":"none","text-align":"left"}).attr("colspan",2);
 					var form=$("<form>").attr({
@@ -256,7 +290,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 						});
 					var writer=$("<input>").attr({
 							"type":"hidden","name":"writer",
-							"value":"<%=clientLogin!=null?clientLogin.getId():""%>"
+							"value":"<%=clientLogin != null ? clientLogin.getId() : ""%>"
 						});
 					
 					var content=$("<textarea>").attr({
@@ -275,7 +309,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 
 	 //자료저장 이벤트등록
 					tr.find("form").submit(function(e){
-						if(<%=clientLogin==null%>){
+						if(<%=clientLogin == null%>){
 							alert("로그인 후에 이용해주세요!");
 							e.preventDefault();
 						}

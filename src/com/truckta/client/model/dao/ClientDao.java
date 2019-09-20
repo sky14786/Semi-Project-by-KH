@@ -51,6 +51,7 @@ public class ClientDao {
 				cl.setModDate(rs.getDate("modDate"));
 				cl.setUserType(rs.getInt("user_Type"));
 				cl.setStatus(rs.getInt("status"));
+				cl.setEmail(rs.getString("email"));
 				System.out.println(cl);
 			}
 		} catch (SQLException e) {
@@ -68,10 +69,10 @@ public class ClientDao {
 		String sql = prop.getProperty("updateClient");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, c.getId());
-			pstmt.setString(2, c.getName());
-			pstmt.setString(3, c.getProfile());
-			pstmt.setString(4, c.getEmail());
+			pstmt.setString(1, c.getPw());
+			pstmt.setString(2, c.getProfile());
+			pstmt.setString(3, c.getEmail());
+			pstmt.setString(4, c.getId());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
