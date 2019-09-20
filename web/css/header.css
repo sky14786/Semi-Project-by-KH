@@ -1,3 +1,9 @@
+.backimg{
+	background-image: url("/resource/project_images/op.jpg");
+}
+.ulbtm{
+	margin-bottom: 8px;
+}
 .nav-bar {
   width: 3em;
   height: 3em;

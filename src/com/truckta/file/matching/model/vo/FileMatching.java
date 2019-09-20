@@ -30,4 +30,10 @@ public class FileMatching {
 		this.fileName = fileName;
 	}
 
+	@Override
+	public String toString() {
+		return "FileMatching [boardNo=" + boardNo + ", fileName=" + fileName + "]";
+	}
+	
+
 }

@@ -34,7 +34,7 @@ public class MainPageServlet extends HttpServlet {
 			cPage = 1;
 		}
 
-		int numPerPage = 8;
+		int numPerPage = 9;
 		int totalMember = new MainService().selectCountMember();
 		int totalFile = new FileMatchingService().selectCountFileMatching();
 //				List<Member> list=new MemberService().selectList();
@@ -83,7 +83,9 @@ public class MainPageServlet extends HttpServlet {
 //		request.setAttribute("filematching", filematching);
 //		System.out.println("servlet:"+filematching);
 
+		//request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

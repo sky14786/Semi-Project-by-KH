@@ -110,6 +110,7 @@ public class MainGuSearch extends HttpServlet {
 		// request.setAttribute("list", list);
 		//사진
 		request.setAttribute("fileList", fileList);
+		//System.out.println(fileList);
 //		request.setAttribute("imgsearch", file_matching);
 //		System.out.println("######servlet imgsearch :" + file_matching);
 

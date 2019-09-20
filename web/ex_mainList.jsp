@@ -134,22 +134,21 @@
 										for(int j=1; j<stTmp.length-1; j++){
 											stAddr = stTmp[j];
 										}
-										stAddr = stAddr.substring(0, 6);
-										stAddr += " - 출발 ";
+										stAddr = stAddr.substring(0, 7);
+										stAddr += " - ";
 										
 										for(int j=1; j<edTmp.length-1; j++){
 											edAddr = edTmp[j];
 										}
 										edAddr = edAddr.substring(0, 7);
-											edAddr += " - 도착";
-										//stAddr += edAddr;
+										stAddr += edAddr;
 									%>
 													
 							<h6><%=stAddr %></h6>
 							<hr>
 							</div>
 							<div class="post-title">	
-							<h6><%=edAddr %></h6>
+							<h6><%=stAddr %></h6>
 							<hr>
 							</div>
 							<div class="post-meta">

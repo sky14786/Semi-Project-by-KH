@@ -87,5 +87,6 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
             <%} %>
   </header>
   <body>
+  <div class="backimg">
 </html>
 
