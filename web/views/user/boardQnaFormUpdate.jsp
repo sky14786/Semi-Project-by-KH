@@ -8,7 +8,7 @@
     System.out.println(q+"+++++++++aaaaaaaaa");
 %>
 
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/common/header.jsp"%> 
 <style>
 section#board-container {
 	width: 600px;

@@ -39,6 +39,8 @@ public class ClientLoginServlet extends HttpServlet {
 		//로그인에 대한 비지니스 로직
 		ClientService service=new ClientService();
 		Client cl=service.selectId(id,pw);
+		
+		
 		//DB결과에 따라서 view화면을 선택~
 		String view="";
 	
@@ -82,7 +84,7 @@ public class ClientLoginServlet extends HttpServlet {
 			}
 			
 			
-			view="/views/common/header.jsp";
+			view="/index.jsp";
 			response.sendRedirect(request.getContextPath()+view);
 			
 		}

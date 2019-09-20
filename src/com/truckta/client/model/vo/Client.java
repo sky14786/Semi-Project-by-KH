@@ -31,8 +31,6 @@ public class Client {
 		this.status = status;
 		this.reportCount = reportCount;
 	}
-	
-	
 
 	public Client(String id, String pw, String name, String email) {
 		super();

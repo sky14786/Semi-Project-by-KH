@@ -4,9 +4,11 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.truckta.chat.model.vo.ChatHistory"%>
 <%
-     Client c = (Client)   request.getAttribute("loggedInClient");
-     List<ChatHistory> list = (List)   request.getAttribute("list");
+     Client c = (Client) request.getAttribute("loggedInClient");
+     List<ChatHistory> list = (List) request.getAttribute("list");
      String room = (String)request.getAttribute("room");
+     String id = c.getId();
+     
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,9 @@
      rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/chat.css"   rel="stylesheet">
 </head>
+
 <header>
+
      <div id="chat-container" class="container-fluid ">
           
           <div class="navbar">
@@ -33,20 +37,22 @@
               <div class="p-2 chat-container-title ">
                    <i class="far fa-envelope-open   fa-2x"></i>
               </div>
-              <div></div>
           </div>
-          
+     </div>
+
 </header>
-<body>
+<div></div>
+
+<body onload = "scrollDown();">
+     <div class="text-history" name="text-history"    id="text-history">
      <%
           if (list != null || !list.isEmpty()) {
               for (ChatHistory ch : list) {
                 if(!c.getId().equals(ch.getSender())){
      %>
-     <div class="text-history" name="text-history"    id="text-history">
           <div class="message-feed feed" id="msg"    name="msg">
               <div class="pull-left">
-                   <img    src="<%=request.getContextPath()%>/images/avatars/User  01a.png"
+                   <img    src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
                         alt="" class="mr-2 img-avatar">
               </div>
               <div class="media-body">
@@ -69,8 +75,14 @@
               }
               }
           %>
+          
+          </div>
+          <br/><br/><br/>
+          
+</body>
 </body>
 <footer>
+
      <div class="fixed-bottom msb-reply">
           <Input type="hidden" id="userId" value="user01">
           <textarea name="text" id="text" class="text"
@@ -82,6 +94,18 @@
 </footer>
 <!-- 메세지 보낼때 -->
 <script>
+
+
+// method to scroll down
+	function scrollDown(){
+		console.log("waaaaaaaaaaaa!!!!!!")
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+
+window.onload = function(){
+	scrollDown();
+}
+	
 //creating web socket
      var socket = new  WebSocket("ws://localhost:9090/<%=request.getContextPath()%>/messages/socket");
      socket.onopen = function(e) {
@@ -92,33 +116,69 @@
      socket.onmessage = function(e) {
           //console.log(e);
           d = JSON.parse(e.data);
-          console.log(d);
-          console.log(d["chatText"]);
-          receive(d["chatText"]);
+          receive(d);
      }
      
-     function receive(chatText){
+     function receive(d){
+    	 
           var msg = {
         		  "roomNo" : <%=room%>,
-                  "sender" : <%=c.getId()%>,
-                  "chatText" : chatText
+                  "sender" : d["sender"],
+                  "chatText" : d["chatText"]
               };
-          console.log(chatText);
           var date =  document.createTextNode(formatAMPM(new Date()));
-          var div = $("<div>").attr({
-              "class" : "mf-content bg-warning  text-white"
-          });
-          var small = $("<small>").attr({
-              "class" : "mf-date"
-          });
-          var wrap = $("<div>").attr({
-              "class" : "message-feed right"
-          });
-          div.append(msg["chatText"]);
-          small.append("<i class='far fa-clock'></i>  ").append(date);
-          wrap.append(div).append(small);
-          $("#text-history").append(wrap);
-          $("#text").val("");
+          
+          
+          if(msg["sender"] !== "<%=id%>"){
+        	  
+        	  /* inputting image */
+        	  var imgDiv = $("<div>").attr({
+        		 "class" : "pull-left" 
+        	  });
+        	  
+        	  var img = $("<img>").attr({
+        		 "src" :  "<%=request.getContextPath()%>/images/avatars/User 01a.png",
+        		 "class" : "mr-2 img-avatar"
+        	  });
+				imgDiv.append(img);
+				
+        	  /* inputting text */
+        	  var div = $("<div>").attr({
+	              "class" : "mf-content bg-secondary  text-dark"
+	          });
+	          var small = $("<small>").attr({
+	              "class" : "mf-date"
+	          });
+	          var wrap = $("<div>").attr({
+	              "class" : "message-feed feed",
+	              "id" : "msg",
+	              "name" : "msg"
+	          });
+	          div.append(msg["chatText"]);
+	          small.append("<i class='far fa-clock'></i>  ").append(date);
+	          wrap.append(imgDiv);
+	          wrap.append(div).append(small);
+	          $("#text-history").append(wrap);
+	          $("#text").val("");
+	          
+          } else{
+        	  
+	          var div = $("<div>").attr({
+	              "class" : "mf-content bg-primary  text-white"
+	          });
+	          var small = $("<small>").attr({
+	              "class" : "mf-date"
+	          });
+	          var wrap = $("<div>").attr({
+	              "class" : "message-feed right"
+	          });
+	          div.append(msg["chatText"]);
+	          small.append("<i class='far fa-clock'></i>  ").append(date);
+	          wrap.append(div).append(small);
+	          $("#text-history").append(wrap);
+	          $("#text").val("");
+          }
+	          scrollDown();
      }
      
      
@@ -126,10 +186,13 @@
           // creating a JSON and Sending it to Java
           var msg = {
               "roomNo" : <%=room%>,
-              "sender" : <%=c.getId()%>,
+              "sender" : "<%=id%>",
               "chatText" : $('#text').val()
               //,"sentDate" :  document.createTextNode(formatAMPM(new Date()))
           };
+          //console.log("sender /////////////////");
+          //console.log(msg["sender"]);
+          //console.log(typeof msg["sender"]);
           socket.send(JSON.stringify(msg));
      }
      // 날짜/ 시간

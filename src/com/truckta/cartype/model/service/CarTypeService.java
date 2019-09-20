@@ -39,9 +39,21 @@ public class CarTypeService {
 	}
 
 	public List<CarType> selectAll() {
-		Connection conn =JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		List<CarType> list = dao.selectAll(conn);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+
+	public int deleteCarType(int delTarget) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteCarType(conn, delTarget);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }

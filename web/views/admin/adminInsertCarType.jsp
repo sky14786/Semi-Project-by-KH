@@ -15,7 +15,7 @@ tr>td{
 	vertical-align:middle!important;
 }
 </style>
-<%@ include file="/views/admin/adminHeader.jsp"%>
+
 
 <div class="container" style=" margin-top: 3%">
 	<%-- <table class="table">
@@ -113,7 +113,6 @@ tr>td{
 		
 		var isCheckDelete =  confirm(car_type+"운송수단을 삭제하시겠습니까?");
 		if(isCheckDelete){
-			console.log("dd");
 		 	deleteCarType(no); 
 		}
 	});
@@ -127,12 +126,11 @@ tr>td{
 				"del_target":target
 			},
 			success:function(data){
-				console.log(data);
 				if(data){
-					alert("성공");
+					alert("삭제에 성공했습니다.");
 					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
 				}else{
-					alert("실패");
+					alert("해당 운송수단을 등록한 사용자가 있습니다. 개발자에게 문의하세요.");
 				}
 			}
 		});  

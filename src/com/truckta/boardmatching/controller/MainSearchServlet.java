@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.boardmatching.model.service.MainService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.file.matching.model.service.FileMatchingService;
+import com.truckta.file.matching.model.vo.FileMatching;
 
 /**
  * Servlet implementation class MainSearchFinderServlet
@@ -47,13 +49,13 @@ public class MainSearchServlet extends HttpServlet {
 		int numPerPage = 8;
 		int totalData = new MainService().selectCountMember(keyword);
 		List<BoardMatching> list = new MainService().selectMemberList(keyword, cPage, numPerPage);
-
+		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		// ��ü ������ ��� (����¡ó��)
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
 
 		// �������� ����
-		int pageSizeBar = 5;// �������� ũ�� (������ ���ڰ���)
-		String pageBar = ""; // ������ �ڵ�(pageBar����) ������ ���忭
+		int pageSizeBar = 5;
+		String pageBar = ""; 
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;
 
@@ -80,11 +82,14 @@ public class MainSearchServlet extends HttpServlet {
 					+ "&searchKeyword=" + keyword + "'>[����]</a>";
 		}
 		request.setAttribute("pageBar", pageBar);
-
+		request.setAttribute("fileList", fileList);
 		request.setAttribute("searchKeyword", keyword);
+		System.out.println("####setattribute"+keyword);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list_page", list);
-		request.getRequestDispatcher("/views/mainList.jsp").forward(request, response);
+		System.out.println("#####setattributelist_page:"+list);
+		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
+		///views
 	}
 
 	/**

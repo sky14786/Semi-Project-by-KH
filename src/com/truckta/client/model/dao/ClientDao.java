@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -93,7 +94,7 @@ public class ClientDao {
 			pstmt.setString(3, temp.getName());
 			pstmt.setString(4, temp.getEmail());
 			pstmt.setString(5, temp.getProfile());
-//			pstmt.setInt(5, temp.getUserType());
+			pstmt.setInt(6, 1);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException sqle) {
@@ -210,6 +211,7 @@ public class ClientDao {
 				c.setModDate(rs.getDate("moddate"));
 				c.setUserType(rs.getInt("user_type"));
 				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
 				list.add(c);
 			}
 
@@ -283,6 +285,7 @@ public class ClientDao {
 		String sql = prop.getProperty("selectChatHistory");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(room);
 			pstmt.setInt(1, Integer.parseInt(room));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -323,6 +326,179 @@ public class ClientDao {
 		}
 		return result;
 
+	}
+
+	public Client findClient(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		Client temp = null;
+		String sql = prop.getProperty("idFindClient");
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new Client();
+				temp.setId(id);
+				temp.setPw(rs.getString("pw"));
+				temp.setEmail(rs.getString("email"));
+				temp.setName(rs.getString("name"));
+				temp.setProfile(rs.getString("profile"));
+				temp.setRegDate(rs.getDate("regdate"));
+				temp.setModDate(rs.getDate("moddate"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setUserType(rs.getInt("user_type"));
+				temp.setReportCount(rs.getInt("report_count"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
+
+	public int reportClient(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("reportClient");
+		int isReport = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			isReport = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return isReport;
+	}
+
+	public int deleteClinet(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteClient");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int copyClient(Connection conn, Client temp) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("copyClient");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, temp.getId());
+			pstmt.setString(2, temp.getPw());
+			pstmt.setString(3, temp.getName());
+			pstmt.setString(4, temp.getEmail());
+			pstmt.setString(5, temp.getProfile());
+			pstmt.setDate(6, temp.getRegDate());
+			pstmt.setInt(7, temp.getUserType());
+			pstmt.setInt(8, temp.getStatus());
+			pstmt.setInt(9, temp.getReportCount());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Client boardMatchingFindClient(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("boardMatchingFindClient");
+		ResultSet rs = null;
+		Client temp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new Client();
+				temp.setId(rs.getString("id"));
+				temp.setEmail(rs.getString("email"));
+				temp.setName(rs.getString("name"));
+				temp.setProfile(rs.getString("profile"));
+				temp.setRegDate(rs.getDate("regdate"));
+				temp.setModDate(rs.getDate("moddate"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setUserType(rs.getInt("user_type"));
+				temp.setReportCount(rs.getInt("report_count"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
+
+	public int selectSearchCountClient(Connection conn, String search, String searchKeyword) {
+		Statement stmt = null;
+		String sql = "select count(*) as cnt from client where " + search + " like '%" + searchKeyword + "%'";
+		int result = 0;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public List<Client> selectSearchListPage(Connection conn, int cPage, int numPerPage, String search,
+			String searchKeyword) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from(select rownum as rnum, a.* from(select * from client where " + search + " like '%"
+				+ searchKeyword + "%' order by regdate desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
+				+ " and " + (cPage * numPerPage);
+		List<Client> list = new ArrayList();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				Client c = new Client();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regdate"));
+				c.setModDate(rs.getDate("moddate"));
+				c.setUserType(rs.getInt("user_type"));
+				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
+				list.add(c);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
 	}
 
 }

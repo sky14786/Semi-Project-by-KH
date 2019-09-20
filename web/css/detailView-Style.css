@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.addr{
+	margin-top : 60px;
+	
+}
+.height{
+	
+	line-height:330%;
+}
+.request{
+	
+}
+#img-carousel {
+            width: 200px;
+            /* You can set the dimensions to whatever you want */
+            height: 300px;
+            object-fit: cover;
+            
+        }
+        .carousel-indicators li{
+            text-indent: 0;
+            width: unset !important;
+        }

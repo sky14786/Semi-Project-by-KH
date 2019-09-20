@@ -33,7 +33,7 @@ public class ClientLogoutServlet extends HttpServlet {
 				HttpSession session=request.getSession(false);
 				if(session!=null) {
 					session.invalidate();
-					response.sendRedirect(request.getContextPath()+"/views/common/header.jsp");
+					response.sendRedirect(request.getContextPath()+"/index.jsp");
 				}
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.truckta.boardmatching.model.dao.MainDao;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.template.JDBCTemplate;
 
@@ -15,13 +16,14 @@ public class MainService {
 	private MainDao dao = new MainDao();
 
 	public List<BoardMatching> selectList() {
-		System.out.println("servlet");
 		Connection conn = getConnection();
 		List<BoardMatching> list = dao.selectList(conn);
+		
 		close(conn);
+		
 		return list;
 	}
-	// ����¡ó���� ���� ������ ��ü����Ȯ��
+
 
 	public int selectCountMember() {
 		Connection conn = getConnection();
@@ -43,7 +45,6 @@ public class MainService {
 	public int selectCountMember(String key) {
 		Connection conn = getConnection();
 		int result = dao.selectCountMember(conn, key);
-		System.out.println("#########serviceresult:" + result);
 		close(conn);
 		return result;
 	}
@@ -51,7 +52,6 @@ public class MainService {
 	public List<BoardMatching> selectMemberList(String key, int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<BoardMatching> list = dao.selectMemberList(conn, key, cPage, numPerPage);
-		System.out.println("#########service list :" + list);
 		close(conn);
 		return list;
 	}
@@ -59,6 +59,33 @@ public class MainService {
 	public List<BoardMatching> guSearchList(String gu) {
 		Connection conn = JDBCTemplate.getConnection();
 		List<BoardMatching> list = dao.guSearchList(conn, gu);
+		close(conn);
+		return list;
+	}
+	public List<FileMatching> fileSearch(){
+		Connection conn=getConnection();
+		List<FileMatching> list=dao.fileSearch(conn);
+		close(conn);
+		return list;
+	}
+
+	public int selectCountBoardMatching(String selectGu) {
+		Connection conn = getConnection();
+		int result = dao.selectCountBoardMatching(conn,selectGu);
+		close(conn);
+		return result;
+	}
+
+	public List<BoardMatching> selectListPage(int cPage, int numPerPage, String selectGu) {
+		Connection conn = getConnection();
+		List<BoardMatching> list = dao.selectListPage(conn, cPage, numPerPage,selectGu);
+		close(conn);
+		return list;
+	}
+	//날짜
+	public List<BoardMatching> searchDate(int cPage, int numPerPage, String searchdate) {
+		Connection conn = getConnection();
+		List<BoardMatching> list = dao.searchDate(conn, cPage, numPerPage,searchdate);
 		close(conn);
 		return list;
 	}
