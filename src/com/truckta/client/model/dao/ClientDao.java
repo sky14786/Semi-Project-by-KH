@@ -306,9 +306,9 @@ public class ClientDao {
 		String sql = prop.getProperty("sendChat");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("//////////////////");
-			System.out.println(ch);
-			System.out.println(ch.getRoomNo());
+//			System.out.println("//////////////////");
+//			System.out.println(ch);
+//			System.out.println(ch.getRoomNo());
 			pstmt.setInt(1, ch.getRoomNo());
 			pstmt.setString(2, ch.getSender());
 			pstmt.setString(3, ch.getChatText());

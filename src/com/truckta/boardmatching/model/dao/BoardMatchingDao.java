@@ -424,8 +424,8 @@ public class BoardMatchingDao {
 			pstmt.setString(1, writer);
 			rs = pstmt.executeQuery();
 			
-			listTmp = new ArrayList();
 			while(rs.next()) {
+				listTmp = new ArrayList();
 				listTmp.add(rs.getDate("com_date"));
 				listTmp.add(rs.getString("id"));
 				listTmp.add(rs.getString("end_addr"));

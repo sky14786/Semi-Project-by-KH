@@ -1,5 +1,4 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.truckta.boardmatching.model.vo.BoardMatching"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,7 +7,7 @@
 	int matNull = 0;
 	int comNull = 0;
 	
-	List<BoardMatching> list = new ArrayList<BoardMatching>();
+	List<List> list = new ArrayList<List>();
 	if((List)request.getAttribute("boardMatching") != null){
 		list = (List)request.getAttribute("boardMatching");
 	}else bmNull = 1;
@@ -23,24 +22,16 @@
 		//System.out.println("null");
 		matCompleList = (List)request.getAttribute("matCompleList");
 	}else comNull = 1;
-	
+		
 	String pageBar = (String)request.getAttribute("pageBar");
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
-<!-- <!DOCTYPE html>
-<html lang="kr">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
- -->
-<!-- 부트스트랩 4 -->
-<%-- <link href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css" rel="stylesheet"> --%>
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css" rel="stylesheet">
 <!-- FAVICON -->
 <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
 
-<title>MY PAGE</title>
+<title>Driver Info</title>
 </head>
 
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
@@ -51,9 +42,9 @@
 				<div class="col-12">
 					<div class="section-title">
 						<h3>
-							운송 요청 <span class="alternate">Schedule</span>
+							운송 목록 <span class="alternate">Schedule</span>
 						</h3>
-						<p>화물 운송정보 리스목록</p>
+						<p>화물 운송정보 목록</p>
 						<hr>
 					</div>
 				</div>
@@ -66,15 +57,15 @@
 
 					<!-- 타이틀 (제목) -->
 					<div class="schedule-tab">
-						<ul class="nav nav-pills text-center">
-							<li class="nav-item"><a class="nav-link active"
-								href="#nov20" data-toggle="pill"> 전 체 <span>게시글 요청목록</span>
+						<ul class="nav nav-pills text-center ">
+							<li class="nav-item" value='0'><a class="nav-link active navC"
+								href="#nov20" data-toggle="pill"> 신 청 <span>게시글 요청목록</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#nov21"
-								data-toggle="pill"> 운송현황 <span>진행중인 운송목록</span>
+							<li class="nav-item" value='1'><a class="nav-link navC" href="#nov21"
+								data-toggle="pill"> 진행현황 <span>진행중인 운송목록</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#nov22"
-								data-toggle="pill"> 운송완료 <span>완료 된 운송목록</span>
+							<li class="nav-item" value='2'><a class="nav-link navC" href="#nov22"
+								data-toggle="pill"> 거래완료 <span>완료된 운송목록</span>
 							</a></li>
 						</ul>
 					</div>
@@ -86,12 +77,12 @@
 								<ul class="m-0 p-0">
 									<li class="headings">
 										<div class="time">화물정보</div>
-										<div class="speaker">도착지</div>
-										<div class="subject">메모</div>
-										<div class="venue">요청만료날짜</div>
+										<div class="speaker">지역</div>
+										<div class="subject">신청자</div>
+										<div class="venue">신청날짜</div>
 									</li>
 
-<!-- ------------------------------------------------------------------------------------------------------------- -->
+<!-- 1------------------------------------------------------------------------------------------------------------- -->
 									<!-- Schedule Details -->
 									<%if(bmNull != 1){ %>
 									<%for(int i=0; i<list.size(); i++){ %>
@@ -101,10 +92,9 @@
 											<!-- 화물정보 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
-												<%-- <%=list.get(i).getTitle() %> --%>
 												<%
-													String title = list.get(i).getTitle();
-													if(list.get(i).getTitle().length() > 8){
+													String title = (String)list.get(i).get(0);
+													if(((String)list.get(i).get(0)).length() > 8){
 														title = title.substring(0, 6);
 														title += "..";
 													}
@@ -112,30 +102,43 @@
 												<%=title%>
 												</span>
 											</div>
-											<!-- 도착지 -->
+											<!-- 지역 -->
 											<div class="speaker">
 												<img src="#"
 													> <span class="name">
 													<%
-														String edAddr = list.get(i).getEndAddr();
-														String edTmp[] = edAddr.split(",");
-														for(int j=1; j<edTmp.length-1; j++){
-															edAddr = edTmp[j];
-														}
-														edAddr = edAddr.substring(0, 6);
+													String stAddr = (String)(list.get(i)).get(1);
+													String edAddr = (String)(list.get(i)).get(2);
+													String stTmp[] = stAddr.split(",");
+													String edTmp[] = edAddr.split(",");
+													for(int j=1; j<stTmp.length-1; j++){
+														stAddr = stTmp[j];
+													}
+													stAddr = stAddr.substring(0, 6);
+													stAddr += " - ";
+													
+													for(int j=1; j<edTmp.length-1; j++){
+														edAddr = edTmp[j];
+													}
+													edAddr = edAddr.substring(0, 6);
+													stAddr += edAddr;
+
 													%>
-													<%=edAddr %>
+													<%=stAddr %>
 													</span>
 											</div>
-											<!-- 메모 -->
+											<!-- 신청자 -->
 											<div class="subject">
-												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>" >
-													
-												<%=list.get(i).getMemo() %>
+												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).get(5) %>" >
+												<%
+													String phone = (String)list.get(i).get(3);
+													phone = phone.substring(9, 13);
+												%>
+												<%=phone%>
 												</a>
 											</div>
-											<!-- 요청만료날짜 -->
-											<div class="venue"><%=list.get(i).getTkDate() %></div>
+											<!-- 신청날짜 -->
+											<div class="venue"><%=list.get(i).get(4) %></div>
 										</div>
 									</li>
 									<%} %>
@@ -144,15 +147,15 @@
 								</ul>
 							</div>
 							
-<!-- ------------------------------------------------------------------------------------------------------------- -->							
+<!-- 2------------------------------------------------------------------------------------------------------------- -->							
 							<div class="tab-pane fade schedule-item" id="nov21">
 								<!-- Headings -->
 								<ul class="m-0 p-0">
 									<li class="headings">
-										<div class="time">배송날짜</div>
-										<div class="speaker">목적지-도착지</div>
-										<div class="subject">연락처</div>
-										<div class="venue">협상가격</div>
+										<div class="time">화물정보</div>
+										<div class="speaker">지역</div>
+										<div class="subject">신청날짜</div>
+										<div class="venue">금액</div>
 										
 									</li>
 									
@@ -163,13 +166,13 @@
 									<li class="schedule-details">
 										<div class="block">
 											
-											<!-- 배송날 -->
+											<!-- 화물 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
 												<%=matList.get(i).get(0) %>
 												</span>
 											</div>
-											<!-- 목적지-도착지 -->
+											<!-- 지역 -->
 											<div class="speaker">
 												<img src="#"
 													> <span class="name">
@@ -194,16 +197,19 @@
 													<%=stAddr %>
 													</span>
 											</div>
-											<!-- 연락처 -->
+											<!-- 신청날짜 -->
 											<div class="subject">
 												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=matList.get(i).get(5) %>" >
 												<%=matList.get(i).get(3) %>
 												</a>
 											</div>
-											<!-- 가격 -->
+											<!-- 금액 -->
+											
+											
 											<div class="venue">
 												<%=matList.get(i).get(4) %>
-												<a href="#" onClick="matConfirm(); return false;">수락</a>
+												<a href="<%=request.getContextPath()%>/driverConfirm?boardNo=<%=matList.get(i).get(5) %>" onClick="matConfirm(); return false;">
+												배송완료</a>											
 											</div>
 											
 										</div>
@@ -212,13 +218,13 @@
 									<%} %>
 								</ul>
 							</div>
-<!-- ------------------------------------------------------------------------------------------------------------- -->
+<!-- 3------------------------------------------------------------------------------------------------------------- -->
 							<div class="tab-pane fade schedule-item" id="nov22">
 								<!-- Headings -->
 								<ul class="m-0 p-0">
 									<li class="headings">
 										<div class="time">거래완료 일자</div>
-										<div class="speaker">운송자</div>
+										<div class="speaker">요청자</div>
 										<div class="subject">도착지</div>
 										<div class="venue">금액</div>
 									</li>
@@ -245,19 +251,17 @@
 											<!-- 도착지 -->
 											<div class="subject">
 												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=matCompleList.get(i).get(4) %>" >
-														
-														
 												<%
 													String edAddr = (String)(matCompleList.get(i)).get(2);
 													String edTmp[] = edAddr.split(",");
 													for(int j=0; j<edTmp.length-1; j++){
 														edAddr = edTmp[j];
 													}
-													%>
+												%>
 												<%=edAddr %>
 												</a>
 											</div>
-											<!-- 가격 -->
+											<!-- 금액 -->
 											<div class="venue"><%=matCompleList.get(i).get(3) %></div>
 										</div>
 									</li>
@@ -284,13 +288,20 @@
 		</div>
 		<script type="text/javascript">
 			function matConfirm() {
-				var cf = confirm("수락하시겠습니까?");
+				var cf = confirm("배송완료 하시겠습니까?");
 				if(cf == true){
-				  //document.write("확인");
-				  location.href="<%=request.getContextPath()%>/confirm";
+				  	//document.write("확인");
+				  	return true;
 				}else
 					return false;
 			}
+			
+			$(function () {
+				$('.navC').click(function () {
+					console.log($(this).parent().attr('value'));
+				});
+			});
+			
 		</script>
 	
 	</section>

@@ -38,8 +38,8 @@ public class MainDateSearch extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//날짜
 		String searchdate = request.getParameter("datesearch");
-		System.out.println("#######################################");
-		System.out.println(searchdate);
+//		System.out.println("#######################################");
+//		System.out.println(searchdate);
 //		Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(searchdate);
 //		System.out.println("!!!!!!!!searchdate"+searchdate);
 		//List<BoardMatching> datesearch= new MainService().searchDate();

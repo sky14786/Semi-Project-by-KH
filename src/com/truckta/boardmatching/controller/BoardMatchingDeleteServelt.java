@@ -24,7 +24,7 @@ public class BoardMatchingDeleteServelt extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getStatus() == 2 || cl.getStatus() == 3) {
+		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
 			request.setAttribute("message", "잘못된 접근입니다.");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);

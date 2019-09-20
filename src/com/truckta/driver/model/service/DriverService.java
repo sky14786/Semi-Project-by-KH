@@ -3,6 +3,7 @@ package com.truckta.driver.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.driver.model.dao.DriverDao;
 import com.truckta.driver.model.vo.Driver;
 
@@ -46,4 +47,43 @@ public class DriverService {
 		return result;
 	}
 
+	// 드라이 진행중인 리스트(top)
+	public List<BoardMatching> driverTopList(String driver){
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardMatching> list = dao.driverTopList(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 매칭 성사전 매칭 신청한 리스트
+	public List<List> myPageDriverMatching(String driver){
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.myPageDriverMatching(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 운송 완료 리스트
+	public List<List> myPageDriverMatchingCom(String driver){
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.myPageDriverMatchingCom(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 전체 리스트
+	public List<List> driverReqAllList(){
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.driverReqAllList(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// count
+	public int matchingListCount() {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.matchingListCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

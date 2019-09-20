@@ -24,14 +24,14 @@
 	</button>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="#">유저/기사 정보</a></li>
+			<!-- 유저 메뉴 -->
+			<% if(cl.getUserType()==1){ %>
+			<li class="nav-item"><a class="nav-link" href="#">유저 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/mySchedule.do">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageTop">현재 정보</a></li>
-				<% if(cl.getStatus()==1){ %>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/userToDriver">기사신청 </a></li>
-				<%} %>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
 				<div class="dropdown-menu">
@@ -42,6 +42,25 @@
 					<a class="dropdown-item" href="#">신고게시판</a>
 				</div>
 			</li>
+			<%} %>
+			<!-- 기사 메뉴 -->
+			<% if(cl.getUserType()==2){ %>
+			<li class="nav-item"><a class="nav-link" href="#">기사 정보</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<%=request.getContextPath()%>/my/pageScheduleDriver.do">운송 정보</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<%=request.getContextPath()%>/my/pageTopDriver">현재 정보</a></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item"
+						href="<%=request.getContextPath()%>/board/boardQnaQList">질문게시판</a>
+					<a class="dropdown-item"
+						href="<%=request.getContextPath()%>/board/boardQnaQList">건의게시판</a>
+					<a class="dropdown-item" href="#">신고게시판</a>
+				</div>
+			</li>
+			<%} %>
 		</ul>
 
 	</div>

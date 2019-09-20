@@ -14,58 +14,66 @@ import javax.servlet.http.HttpSession;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
+import com.truckta.driver.model.service.DriverService;
 
-@WebServlet("/my/mySchedule.do")
-public class MyPageScheduleServlet extends HttpServlet {
+@WebServlet("/my/pageScheduleDriver.do")
+public class MypageDriverScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MyPageScheduleServlet() {
-        super();
-    }
+
+
+	public MypageDriverScheduleServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 세션에서 접속자를 받아옴
 		HttpSession session = request.getSession();
 		String writer = "";
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 2 || cl.getStatus() == 0 ) {
-			request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
+		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 1 || cl.getStatus() == 0 ) {
+			request.setAttribute("message", "드라이버 페이지 불러오기에 실패했습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		writer = cl.getId();
 		
-		// 올린글 전체를 받아옴
-		List<BoardMatching> list = new BoardMatchingService().myAllList(writer);
+		/* title | start_addr | end_addr | responser | try_date | board_no */
+		List<List> list = new DriverService().driverReqAllList();
+//		System.out.println("       ;; " +  list.size());
+//		System.out.println("       ;;;" + list.get(0).get(0));
 		
-		/* hire_date | start_addr | end_addr | id | pay */
-		List<List> matList = new BoardMatchingService().matchingList(writer);
-		/* com_date | id | end_addr | pay */
-		List<List> matCompleList = new BoardMatchingService().matchingCompleteList(writer);
-		int ck = 0;
+		
+		/* title | start_addr | end_addr | try_date | pay | board_no */
+		List<List> matList = new DriverService().myPageDriverMatching(writer);
+		/* com_date | requestor | end_addr | pay | board_no */
+		List<List> matCompleList = new DriverService().myPageDriverMatchingCom(writer);
+		
 		if(list.size() > 0) request.setAttribute("boardMatching", list);
 		if(matList.size() > 0) request.setAttribute("matList", matList);
 		if(matCompleList.size() > 0) request.setAttribute("matCompleList", matCompleList);	
-		
+
 		//page
 		List pageList = new ArrayList();
 		pageList = paging(request, writer);
-		
+
 		String pageBar = (String)pageList.get(0);
 		int cPage = (int)pageList.get(1);
-		
+
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		request.getRequestDispatcher("/views/myPage/mySchedule.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/views/myPage/myPageDriverSchedule.jsp").forward(request, response);
+
+
+
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
+
 	private List paging(HttpServletRequest request, String writer) {
 		//paging
 		List list = new ArrayList();
@@ -77,7 +85,8 @@ public class MyPageScheduleServlet extends HttpServlet {
 		}
 
 		int numPerPage = 10;
-		int totalCount = new BoardMatchingService().matchingListCount(writer);
+		int totalCount = new DriverService().matchingListCount();
+//		int totalCount = new BoardMatchingService().matchingListCount(writer);
 		
 		int totalPage = (int) Math.ceil((double) totalCount / numPerPage);
 
@@ -127,5 +136,7 @@ public class MyPageScheduleServlet extends HttpServlet {
 
 		return list; 
 	}
-
+	
+	
+	
 }

@@ -68,12 +68,12 @@ public class DriverJoinServlet extends HttpServlet {
 		int result = new DriverService().joinDriver(temp);
 
 		if (result == 1) {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.toString());
+//			System.out.println(":: LOG :: " + now + " :: " + " Driver Add : " + temp.toString());
 			request.setAttribute("message", "신청하였습니다.");
 			request.setAttribute("location", "/success.html");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail" + temp.toString());
+//			System.out.println(":: LOG :: " + now + " :: " + " Driver Add Fail" + temp.toString());
 			request.setAttribute("message", "오류.");
 			request.setAttribute("location", "/fail.html");
 			request.getRequestDispatcher("/").forward(request, response);

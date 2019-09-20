@@ -78,8 +78,14 @@
 		<tr>
 			<td>
 			<%-- <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'" /> --%>
-			<input type="button" value="MY PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
-				<input type="button" value="로그아웃"
+			<%if(clientLogin.getUserType() == 1){ %>
+				<input type="button" value="MY PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
+			<%}else if(clientLogin.getUserType() == 2){ %>
+				<input type="button" value="DRIVER" onclick="location.href='<%=request.getContextPath()%>/my/pageTopDriver'" />
+			<%}else{ %>
+				<input type="button" value="ADMIN PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
+			<%} %>
+			<input type="button" value="로그아웃"
 				onclick="location.href='<%=request.getContextPath()%>/logout '" />
 				<!--window 요청 a태그  open location--></td>
 		</tr>
