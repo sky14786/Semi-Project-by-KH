@@ -171,13 +171,7 @@
 
         <div class="col-md-6 about-content">
           <h2 class="about-title">제목 : <%=d.getTitle() %></h2>
-           <p class="about-text">
-            <%if(d.getMemo() != null) {%>
-            <%=d.getMemo() %>
-            <%} else { %>
-            	많은 분들께서 연락을 주셨으면 좋겠습니다 :)
-            <%} %>
-          </p>
+           
           <!--
           <p class="about-text">
             Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
@@ -195,10 +189,39 @@
   Services Section
   ============================-->
   <section id="services">
-    <div class="container wow fadeInUp">
+    <div class="container wow fadeInUp justify-content-center">
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">내용 : <br><br><%=d.getEtc() %></h3>
+          <br>
+          <p class="about-text">
+            <%if(d.getMemo() != null) {%>
+            <%=d.getMemo() %>
+            <%} else { %>
+            	많은 분들께서 연락을 주셨으면 좋겠습니다 :)
+            <%} %>
+          </p>
+          <br><br>
+          <!--  -->
+          <!-- 메세지방을 생성하기 위해 보낼 값들 -->
+				<%if(c!=null && c.getUserType()==2){ %>
+				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+					<button type = "submit" class = "btn btn-primary">연락하기</button>
+				</form>
+				<%} %>
+				
+				<%if(c!=null && c.getId()==d.getWriter()){ %>
+				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+					<button type = "submit" class = "btn btn-primary">연락하기</button>
+				</form>
+				<%} %>
+            
           <div class="section-title-divider"></div>
          <!--  <p class="section-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p> -->
         </div>
@@ -257,25 +280,7 @@
             <!-- title -->
             <div class="height">
            
-             <!-- 메세지방을 생성하기 위해 보낼 값들 -->
-				<%if(c!=null && c.getUserType()==2){ %>
-				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
-					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
-					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
-					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
-					<button type = "submit" class = "btn btn-primary">연락하기</button>
-				</form>
-				<%} %>
-				
-				<%if(c!=null && c.getId()==d.getWriter()){ %>
-				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
-					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
-					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
-					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
-					<button type = "submit" class = "btn btn-primary">연락하기</button>
-				</form>
-				<%} %>
-            
+             
          
    
           <span class="main__header__result"></span>
@@ -288,7 +293,7 @@
          </div>
       </div>
    </div>
-
+</div>
 
 
  <!-- JavaScript Libraries -->
