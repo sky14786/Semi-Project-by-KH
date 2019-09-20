@@ -284,6 +284,7 @@ public class ClientDao {
 		String sql = prop.getProperty("selectChatHistory");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(room);
 			pstmt.setInt(1, Integer.parseInt(room));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

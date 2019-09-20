@@ -26,7 +26,9 @@
      rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/chat.css"   rel="stylesheet">
 </head>
+
 <header>
+
      <div id="chat-container" class="container-fluid ">
           
           <div class="navbar">
@@ -35,17 +37,19 @@
               <div class="p-2 chat-container-title ">
                    <i class="far fa-envelope-open   fa-2x"></i>
               </div>
-              <div></div>
           </div>
-          
+     </div>
+
 </header>
-<body>
+<div></div>
+
+<body onload = "scrollDown();">
+     <div class="text-history" name="text-history"    id="text-history">
      <%
           if (list != null || !list.isEmpty()) {
               for (ChatHistory ch : list) {
                 if(!c.getId().equals(ch.getSender())){
      %>
-     <div class="text-history" name="text-history"    id="text-history">
           <div class="message-feed feed" id="msg"    name="msg">
               <div class="pull-left">
                    <img    src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
@@ -72,6 +76,10 @@
               }
           %>
           
+          </div>
+          <br/><br/><br/>
+          
+</body>
 </body>
 <footer>
 
@@ -86,6 +94,18 @@
 </footer>
 <!-- 메세지 보낼때 -->
 <script>
+
+
+// method to scroll down
+	function scrollDown(){
+		console.log("waaaaaaaaaaaa!!!!!!")
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+
+window.onload = function(){
+	scrollDown();
+}
+	
 //creating web socket
      var socket = new  WebSocket("ws://localhost:9090/<%=request.getContextPath()%>/messages/socket");
      socket.onopen = function(e) {
@@ -158,6 +178,7 @@
 	          $("#text-history").append(wrap);
 	          $("#text").val("");
           }
+	          scrollDown();
      }
      
      

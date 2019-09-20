@@ -101,7 +101,29 @@ public class DriverDao {
 		}
 		return list;
 	}
-	
+
+	public int selectCountDriver(Connection conn, boolean isApprovaled) {
+		PreparedStatement pstmt = null;
+		String sql = isApprovaled == true ? prop.getProperty("selectCountApprovalDriver")
+				: prop.getProperty("selectCountDriver");
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	// 드라이버 확인
 	public int driverCheck(Connection conn, String user) {
 		PreparedStatement pstmt = null;

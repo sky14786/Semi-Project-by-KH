@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	<link rel="stylesheet" type="text/css" href="/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/footer.css">
 
 	<!--- Footer -->
 	<footer class="bg-dark text-white bottom">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">
-					<img src="img/w3newbie.png" alt="">
+					<!-- 주석 처리된 부분에 로고 들어감 -->
+					<!-- <img src="img/w3newbie.png" alt=""> -->
 					<hr class="light">
 					<p>010-9442-1732</p>
 					<p>help@truckta.com</p>
@@ -52,6 +53,7 @@
 					<hr class="light-100">
 					<h5>&copy; truckta.com</h5>
 				</div>
+
 
 
 

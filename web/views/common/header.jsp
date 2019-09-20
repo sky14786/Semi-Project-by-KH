@@ -11,8 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.
-    0" />
+	content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Welcome to Truck~ta!!</title>
 <!--[Start Import ] This Page Import Script and External Library -->
@@ -31,61 +30,66 @@
 <!-- style.css -->
 <link href="<%=request.getContextPath()%>/css/header.css?ver=1.1"
 	rel="stylesheet" />
+	
+<!-- font awesome cdn -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">	
 <!-- [End Import] -->
 </head>
 
-<header>
+<header class = "fixed-top">
 	<nav
-		class="navbar navbar-expand-md sticky-top d-flex bg-info navbar-dark">
+		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
 		<div class="input-group">
-			<img
-				src="<%=request.getContextPath()%>/images/project_images/logo.png"
-				alt="logo.png" class="front-logo mx-0" id="logo" />
-			<form class="ml-4">
-				<input type="text" name="search" placeholder="Search.."
-					id="seachbar" class="search-bar" />
+			<i class="fas fa-shipping-fast fa-3x" onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' style = "color: white; cursor: pointer;"></i>
+			<form class="ml-4 allsearch ml-1" action="<%=request.getContextPath() %>/main/mainFinder">
+				<input type="text" placeholder="Search.." name = "searchKeyword"
+					id="seachbar" class="pl-3 search-bar" id="search-bar seachbar" value="" />
 			</form>
-			<button class="navbar-right btn btn-primary ml-auto mr-2">
-				<i class="fas fa-envelope"></i>
+			
+			
+			<%
+				if (clientLogin == null) {
+			%>
+			<!-- logo -->
+			<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'deny()'>
+				<i class="fas fa-envelope fa-lg"></i>
 			</button>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<%
-				if (clientLogin == null) {
-			%>
 			<div class="collapse navbar-collapse flex-grow-0"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
 					<li class="nav-item active"><a class="nav-link"
 						href="<%=request.getContextPath() %>/views/user/Login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="<%=request.getContextPath() %>/views/user/signUpMain.jsp">회원가입</a></li>
+						href="<%=request.getContextPath() %>/views/user/signUpClient.jsp">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<%
-		}
-
-		if (clientLogin != null) {
+		} else{
 	%>
-	<table id="logged-in">
-		<tr>
-			<td><%=clientLogin.getName()%>님 환영합니다.</td>
-		</tr>
-		<tr>
-			<td>
-			<%-- <input type="button" value="내정보변경" onclick="location.href='<%=request.getContextPath()%>/views/user/clientUpdate.jsp?Id=<%=clientLogin.getId()%>'" /> --%>
-			<input type="button" value="MY PAGE" onclick="location.href='<%=request.getContextPath()%>/my/pageTop'" />
-				<input type="button" value="로그아웃"
-				onclick="location.href='<%=request.getContextPath()%>/logout '" />
-				<!--window 요청 a태그  open location--></td>
-		</tr>
-	</table>
-
-
+	<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
+				<i class="fas fa-envelope fa-lg"></i>
+			</button>
+<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+<div class="collapse navbar-collapse flex-grow-0"
+				id="navbarSupportedContent">
+				<ul class="navbar-nav text-right">
+					<li class="nav-item active"><a class="nav-link"
+						href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 	<%
 		}
@@ -100,17 +104,6 @@
 </header>
 <header>
    
-	
-	
-    
-    <%-- <%
-		if (clientLogin != null && !clientLogin.getName().equals("admin") ) {
-	%>
-	<%@ include file="/views/common/clientHeader.jsp"%>
-	 
-	<%
-		}
-	%> --%>
 	<%
 		if (clientLogin != null && clientLogin.getName().equals("admin")) {
 	%>
@@ -118,8 +111,14 @@
 	<%
 		}%>
 	
-	
 </header>
+<script>
+function deny(){
+	alert("로그인 후 이용 가능합니다");
+}
+
+</script>
+
 <body>
 </body>
 </html>
