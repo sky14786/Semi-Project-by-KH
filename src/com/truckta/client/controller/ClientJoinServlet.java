@@ -43,7 +43,6 @@ public class ClientJoinServlet extends HttpServlet {
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", policy);
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		String fileName = mul.getFilesystemName("profile");
-		System.out.println(fileName);
 
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
@@ -66,11 +65,11 @@ public class ClientJoinServlet extends HttpServlet {
 
 		int result = cs.JoinClient(temp);
 		if (result == 1) {
-			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
+//			System.out.println(":: LOG :: " + now + " :: " + " Client Add : " + temp.getId());
 			response.getWriter().print("<script>alert('회원가입에 성공했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect(request.getContextPath()+"/");
 		} else {
-			System.out.println(":: LOG :: " + now + " :: " + " Client Add Fail");
+//			System.out.println(":: LOG :: " + now + " :: " + " Client Add Fail");
 			response.getWriter().print("<script>alert('회원가입에 실패했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect(request.getContextPath()+"/");
 		}

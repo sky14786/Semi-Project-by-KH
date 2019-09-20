@@ -11,10 +11,8 @@
  		String searchKey=(String)request.getAttribute("searchKeyword");
  		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		
- 		System.out.println("//////////////////////////////////////////////////////////////////////");
  		List<FileMatching> fileList = (List)request.getAttribute("fileList");
- 		System.out.print("#####getfileList"+fileList);
-    	
+ 		
     %>
     
     <%@ include file="/views/common/header.jsp"%>

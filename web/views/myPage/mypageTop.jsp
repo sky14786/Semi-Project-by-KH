@@ -30,21 +30,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
- -->
-<%-- <link
-	href="<%=request.getContextPath()%>/plugins/mypage/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet"> --%>
 <link
 	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -54,9 +39,6 @@
 </head>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
-	<!--================================
-    =            Page Title            =
-    =================================-->
 	<section class="page-title bg-title overlay-dark">
 		<div class="container">
 			<div class="row">
@@ -72,12 +54,19 @@
 			</div>
 		</div>
 	</section>
-	<!--====  End of Page Title  ====-->
-
 
 	<!--================================
-    =            Driver Posts            =
+    =            Driver Posts          =
     =================================-->
+    <style>
+    	.img-fluid {
+			height: 200px;
+    	}
+		.post-thumb{
+			background-color: black;
+			text-align: center;
+		}
+	</style>
 	<section class="news section">
 		<div class="container">
 			<div class="row mt-40">
@@ -106,7 +95,8 @@
 
 							<!-- 상세 운반정보 -->
 							<a href="#"> <img
-								src="<%=request.getContextPath()%>/images/boardMatching_images/defaultImg.jpg"
+								src="<%=request.getContextPath()%>/images/boardMatching_images/
+								<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"
 								alt="post-image" class="img-fluid">
 							</a>
 						</div>

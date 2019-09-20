@@ -27,20 +27,16 @@
 	String pageBar = (String)request.getAttribute("pageBar");
 	
 %>
-<!DOCTYPE html>
+<%@ include file="/views/common/header.jsp"%>
+<!-- <!DOCTYPE html>
 <html lang="kr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-<%@ include file="/views/common/header.jsp"%>
+ -->
 <!-- 부트스트랩 4 -->
 <%-- <link href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css" rel="stylesheet"> --%>
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css" rel="stylesheet">
-
-
-
 <!-- FAVICON -->
 <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
 
@@ -49,9 +45,6 @@
 
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
-
-
-
 	<section class="section schedule">
 		<div class="container">
 			<div class="row">
@@ -104,15 +97,24 @@
 									<%for(int i=0; i<list.size(); i++){ %>
 									<li class="schedule-details">
 										<div class="block">
+											
 											<!-- 화물정보 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
-												<%=list.get(i).getTitle() %>
+												<%-- <%=list.get(i).getTitle() %> --%>
+												<%
+													String title = list.get(i).getTitle();
+													if(list.get(i).getTitle().length() > 8){
+														title = title.substring(0, 6);
+														title += "..";
+													}
+												%>
+												<%=title%>
 												</span>
 											</div>
 											<!-- 도착지 -->
 											<div class="speaker">
-												<img src="images/one.jpg"
+												<img src="#"
 													> <span class="name">
 													<%
 														String edAddr = list.get(i).getEndAddr();
@@ -126,7 +128,12 @@
 													</span>
 											</div>
 											<!-- 메모 -->
-											<div class="subject"><%=list.get(i).getMemo() %></div>
+											<div class="subject">
+												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>" >
+													
+												<%=list.get(i).getMemo() %>
+												</a>
+											</div>
 											<!-- 요청만료날짜 -->
 											<div class="venue"><%=list.get(i).getTkDate() %></div>
 										</div>
@@ -137,7 +144,7 @@
 								</ul>
 							</div>
 							
-							
+<!-- ------------------------------------------------------------------------------------------------------------- -->							
 							<div class="tab-pane fade schedule-item" id="nov21">
 								<!-- Headings -->
 								<ul class="m-0 p-0">
@@ -146,6 +153,7 @@
 										<div class="speaker">목적지-도착지</div>
 										<div class="subject">연락처</div>
 										<div class="venue">협상가격</div>
+										
 									</li>
 									
 									<%if(matNull != 1){ %>
@@ -154,6 +162,7 @@
 									<!-- Schedule Details -->
 									<li class="schedule-details">
 										<div class="block">
+											
 											<!-- 배송날 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
@@ -162,7 +171,7 @@
 											</div>
 											<!-- 목적지-도착지 -->
 											<div class="speaker">
-												<img src="images/one.jpg"
+												<img src="#"
 													> <span class="name">
 													<%
 													String stAddr = (String)(matList.get(i)).get(1);
@@ -186,15 +195,24 @@
 													</span>
 											</div>
 											<!-- 연락처 -->
-											<div class="subject"><%=matList.get(i).get(3) %></div>
+											<div class="subject">
+												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=matList.get(i).get(5) %>" >
+												<%=matList.get(i).get(3) %>
+												</a>
+											</div>
 											<!-- 가격 -->
-											<div class="venue"><%=matList.get(i).get(4) %></div>
+											<div class="venue">
+												<%=matList.get(i).get(4) %>
+												<a href="#" onClick="matConfirm(); return false;">수락</a>
+											</div>
+											
 										</div>
 									</li>
 									<%} %>
 									<%} %>
 								</ul>
 							</div>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 							<div class="tab-pane fade schedule-item" id="nov22">
 								<!-- Headings -->
 								<ul class="m-0 p-0">
@@ -210,6 +228,7 @@
 									<!-- Schedule Details -->
 									<li class="schedule-details">
 										<div class="block">
+					
 											<!-- 거래완료 일자 -->
 											<div class="time">
 												<i class="fa fa-clock-o"></i> <span class="time">
@@ -218,13 +237,16 @@
 											</div>
 											<!-- 운송자 -->
 											<div class="speaker">
-												<img src="images/four.jpg"
+												<img src="#"
 													> <span class="name">
 													<%=matCompleList.get(i).get(1) %>
 													</span>
 											</div>
 											<!-- 도착지 -->
 											<div class="subject">
+												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=matCompleList.get(i).get(4) %>" >
+														
+														
 												<%
 													String edAddr = (String)(matCompleList.get(i)).get(2);
 													String edTmp[] = edAddr.split(",");
@@ -232,7 +254,8 @@
 														edAddr = edTmp[j];
 													}
 													%>
-													<%=edAddr %>
+												<%=edAddr %>
+												</a>
 											</div>
 											<!-- 가격 -->
 											<div class="venue"><%=matCompleList.get(i).get(3) %></div>
@@ -246,8 +269,6 @@
 						</div>
 					</div>
 
-
-
 					<!-- Pagination -->
 					<div class="col-12 text-center ">
 						<nav class="d-flex justify-content-center">
@@ -258,47 +279,26 @@
 					</div>
 					<!-- Pagination -->
 
-
-
-
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function matConfirm() {
+				var cf = confirm("수락하시겠습니까?");
+				if(cf == true){
+				  //document.write("확인");
+				  location.href="<%=request.getContextPath()%>/confirm";
+				}else
+					return false;
+			}
+		</script>
+	
 	</section>
-
-	<!--============================
-    =            Footer            =
-    =============================-->
-	<!-- Subfooter -->
-	<!-- <footer class="subfooter">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 align-self-center">
-					<div class="copyright-text">
-						<p>
-							<a href="#">TruckTa</a> &#169; 2019 All Right Reserved
-						</p>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<a href="#" class="to-top"><i class="fa fa-angle-up"></i></a>
-				</div>
-			</div>
-		</div>
-	</footer> -->
 	<%@ include file="/views/common/footer.jsp"%>
 
 	<script src="<%=request.getContextPath()%>/plugins/mypage/js/custom.js"></script>
 	<script src="<%=request.getContextPath()%>/plugins/mypage/popper/popper.min.js"></script>
   	<script src="<%=request.getContextPath()%>/plugins/mypage/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- <script>
-            $(function(){
-                $('.schedule-details').click(function () {
-                    console.log('스케쥴 상세페이지로 전환');
-                    
-                });
-            });
-    </script> -->
 </body>
 </html>

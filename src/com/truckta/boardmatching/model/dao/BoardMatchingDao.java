@@ -400,6 +400,7 @@ public class BoardMatchingDao {
 				listTmp.add(rs.getString("end_addr"));
 				listTmp.add(rs.getString("id"));
 				listTmp.add(rs.getInt("pay"));
+				listTmp.add(rs.getString("board_no"));
 				list.add(listTmp);
 			}
 		} catch (SQLException e) {
@@ -429,8 +430,9 @@ public class BoardMatchingDao {
 				listTmp.add(rs.getString("id"));
 				listTmp.add(rs.getString("end_addr"));
 				listTmp.add(rs.getInt("pay"));
+				listTmp.add(rs.getString("board_no"));
+				list.add(listTmp);
 			}
-			list.add(listTmp);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

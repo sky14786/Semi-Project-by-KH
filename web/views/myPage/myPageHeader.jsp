@@ -1,5 +1,20 @@
+<%@page import="com.truckta.client.model.vo.Client"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+
+	Client cl = new Client();
+	if((Client)session.getAttribute("loginClient")!=null){
+		cl = (Client)session.getAttribute("loginClient");
+	}
+	
+	/* Client cl = new Client();
+	if((Client)request.getAttribute("client") != null){
+		cl = (Client)request.getAttribute("client");
+	}else{
+		response.sendRedirect("/");
+	} */
+%>
 <!DOCTYPE html>
 <div class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<a class="navbar-brand" href="<%=request.getContextPath()%>/my/pageTop">My Page</a>
@@ -14,7 +29,9 @@
 				href="<%=request.getContextPath()%>/my/mySchedule.do">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageTop">현재 정보</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">기사신청 </a></li>
+				<% if(cl.getStatus()==1){ %>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/userToDriver">기사신청 </a></li>
+				<%} %>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
 				<div class="dropdown-menu">
@@ -23,23 +40,9 @@
 					<a class="dropdown-item"
 						href="<%=request.getContextPath()%>/board/boardQnaQList">건의게시판</a>
 					<a class="dropdown-item" href="#">신고게시판</a>
-				</div></li>
+				</div>
+			</li>
 		</ul>
-
-		<form action="" method="post" class="form-inline">
-			<select id="searchType" name="searchType"
-				class="custom-select form-control">
-				<option selected>Type</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
-				<option value="level">권한</option>
-			</select> &nbsp; &nbsp; &nbsp; <input class="form-control" type="text" name=""
-				id="" placeholder="Keyword" />
-			<button type="submit" class="btn btn-success">검색</button>
-			<button type="button" class="btn board-upload">
-				<a class='boardUpload'href="<%=request.getContextPath()%>/board/pageLoad">글올리기</a>
-			</button>
-		</form>
 
 	</div>
 </div>

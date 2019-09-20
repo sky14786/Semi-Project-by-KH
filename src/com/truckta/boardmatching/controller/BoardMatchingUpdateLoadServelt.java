@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.client.model.vo.Client;
 import com.truckta.file.matching.model.vo.FileMatching;
 
 @WebServlet("/board/updateLoad")
@@ -22,11 +24,20 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* 보드매칭 글 업데이 */
-		//010-5327-3738
+
+		HttpSession session = request.getSession();
+		Client cl = (Client)session.getAttribute("loginClient");
+		if(cl == null || cl.getStatus() == 2 || cl.getStatus() == 3) {
+			request.setAttribute("message", "잘못된 접속입니다.");
+			String path = "/index.jsp";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
 		
-//		String writer = (String)request.getSession().getAttribute("writer");
-		String writer = "010-0335-0361";
+		
+		/* 보드매칭 글 업데이 */
+//		String writer = "010-0335-0361";
+		String writer = cl.getId();
 		int boardNum = 199; //해당 글번호
 		BoardMatching bm = new BoardMatchingService().loadBoardMatching(writer, boardNum);
 		List<FileMatching> list = new BoardMatchingService().loadBoardImg(boardNum);

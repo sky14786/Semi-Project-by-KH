@@ -20,7 +20,6 @@ public class EncyptWrapper extends HttpServletRequestWrapper {
 		if(name!=null && (name.equals("pw")||name.equals("passwordNew"))) {
 			super.getParameter(name);//client 보낸실제값
 			value=getSha512(super.getParameter(name));
-			System.out.println("암호화된 비번 : "+value);
 			return value;
 		}
 		else {
