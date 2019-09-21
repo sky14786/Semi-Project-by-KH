@@ -3,6 +3,7 @@ package com.truckta.driver.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.truckta.client.model.vo.Client;
 import com.truckta.driver.model.dao.DriverDao;
 import com.truckta.driver.model.vo.Driver;
 
@@ -64,5 +65,19 @@ public class DriverService {
 		JDBCTemplate.close(conn);
 		return temp;
 	}
+
+	public int adminUpdateDriver(Driver d,String target) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.adminUpdateDriver(conn,d,target);
+		if(result ==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
 
 }

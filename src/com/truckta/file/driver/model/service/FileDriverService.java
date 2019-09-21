@@ -19,13 +19,40 @@ public class FileDriverService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int joinDriver(FileDriver fd) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.joinDriver(conn, fd);
+		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 
-	public List<String> findDriverFile(String id) {
+	public List<FileDriver> findDriverFile(String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		List<String> fileNames = dao.findDriverFile(conn, id);
+		List<FileDriver> fileNames = dao.findDriverFile(conn, id);
 		JDBCTemplate.close(conn);
+		System.out.println("service"+fileNames.toString());
 		return fileNames;
 	}
+
+	public int deleteDriverFile(String fileName) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteDriverFile(conn, fileName);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

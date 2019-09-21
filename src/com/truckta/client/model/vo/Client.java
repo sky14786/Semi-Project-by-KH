@@ -16,6 +16,15 @@ public class Client {
 
 	public Client() {
 	}
+	
+	
+
+	public Client(String id, String name, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
 
 	public Client(String id, String pw, String name, String email, String profile, Date regDate, Date modDate,
 			int userType, int status, int reportCount) {

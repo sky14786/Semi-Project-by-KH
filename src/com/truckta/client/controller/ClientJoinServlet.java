@@ -43,7 +43,6 @@ public class ClientJoinServlet extends HttpServlet {
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", policy);
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		String fileName = mul.getFilesystemName("profile");
-		System.out.println(fileName);
 
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
@@ -53,9 +52,7 @@ public class ClientJoinServlet extends HttpServlet {
 
 		if (fileName != null) {
 			String dir = path + "/" + fileName;
-
 			File oldFile = new File(dir);
-
 			String tempDir = path + "/" + temp.getId() + "_" + now + "_" + fileName;
 			String tempFileName = temp.getId() + "_" + now + "_" + fileName;
 			temp.setProfile(tempFileName);

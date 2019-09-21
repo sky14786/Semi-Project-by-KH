@@ -164,4 +164,26 @@ public class DriverDao {
 		return driver;
 	}
 
+	public int adminUpdateDriver(Connection conn, Driver d, String target) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateDriver");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, d.getId());
+			pstmt.setString(2, d.getDateOfBirth());
+			pstmt.setString(3, d.getdLicense());
+			pstmt.setString(4, d.getbLicense());
+			pstmt.setInt(5, d.getCarType());
+			pstmt.setString(6, target);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

@@ -43,7 +43,6 @@ public class DriverJoinServlet extends HttpServlet {
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		ArrayList<String> fileNames = new ArrayList<String>();
-		String dirs[] = new String[3];
 		Driver temp = new Driver();
 		temp.setId(mul.getParameter("id"));
 		temp.setDateOfBirth(
@@ -73,7 +72,6 @@ public class DriverJoinServlet extends HttpServlet {
 			
 			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
-			System.out.println(files.get(i).toString());
 		}
 
 

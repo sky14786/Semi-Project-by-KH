@@ -7,13 +7,14 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.1" charset="utf-8"></script>
-<%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List"%>
+<%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	Client client = (Client) request.getAttribute("client");
 	Driver driver = (Driver) request.getAttribute("driver");
-	List<String> fileList = (List) request.getAttribute("fileList");
+	List<FileDriver> fileList = (List) request.getAttribute("fileList");
 	boolean isDriverView = (boolean) request.getAttribute("isDriverView");
+	List<CarType> carTypeList = (List) request.getAttribute("carType");
 %>
 <%-- <div class="container"> --%>
 <!-- <br /> <br /> <br /> -->
@@ -61,6 +62,10 @@
 					<%
 						}
 					%>
+					<div class='bigPictureWrapper'>
+						<div class='bigPicture'>
+						</div>
+					</div>
 				</div>
 				<div class="form-group form-group-1">
 					<%
@@ -69,10 +74,23 @@
 
 					<label>Date of Birth</label><br />
 
-					<script>
-						createInputDate();
-					</script>
+					<input type="text" name="dateOfBirth" id="dateOfBirth"
+						class="form-control"  value="<%=driver.getDateOfBirth()%>" readonly/>
 				</div>
+				<div class="form-group">
+					<label for="dLicense">Driver License</label>
+					<%
+						for (int i = 0; i < carTypeList.size(); i++) {
+								if (carTypeList.get(i).getTypeNo() == driver.getCarType()) {
+					%>
+					<input type="text" name="dLicense" id="dLicense"
+						class="form-control" placeholder="ex.??-??-??????-??" value="<%=carTypeList.get(i).getCarType()%>"readonly/>
+					<%
+						}
+							}
+					%>
+				</div>
+				
 				
 				<div class="form-group">
 					<label for="dLicense">Driver License</label> <input type="text" name="dLicense" id="dLicense"
@@ -83,17 +101,13 @@
 						class="form-control" placeholder="ex.???-??-?????" value="<%=driver.getbLicense()%>"readonly/>
 				</div>
 				<div class="form-group">
-					<div class='bigPictureWrapper'>
-						<div class='bigPicture'>
-						</div>
-					</div>
 					<label for="carPic">Truck Picture</label><hr>
 					<%
-						if (fileList != null) {
+						if (fileList != null) { 
 								for (int i = 0; i < fileList.size(); i++) {
 					%>
 				
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i) %>" width="100px" height="100px">
+					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
 					<%
 								}
 							}

@@ -6,14 +6,15 @@
 <script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.1" charset="utf-8"></script>
-<%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List"%>
+<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.3" charset="utf-8"></script>
+<%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	Client client = (Client) request.getAttribute("client");
 	Driver driver = (Driver) request.getAttribute("driver");
-	List<String> fileList = (List) request.getAttribute("fileList");
+	List<FileDriver> fileList = (List) request.getAttribute("fileList");
 	boolean isDriverView = (boolean) request.getAttribute("isDriverView");
+	List<CarType> carTypeList = (List) request.getAttribute("carType");
 %>
 <%-- <div class="container"> --%>
 <!-- <br /> <br /> <br /> -->
@@ -34,23 +35,13 @@
 			<h2>Modify information</h2>
 			<hr>
 			<form
-				action="<%=request.getContextPath()%>/ClientUpdateEndServlet.do"
+				action="<%=request.getContextPath()%>/admin/adminUserUpdate"
 				method="post" name="sendform" enctype="multipart/form-data">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" value="<%=client.getId()%>" readonly />
+						class="form-control" value="<%=client.getId()%>"  />
 				</div>
-				<div class="form-group">
-					<label for="pw">Pw</label> <input type="password" name="pw" id="pw"
-						class="form-control" placeholder="Password" />
-				</div>
-				<div class="form-group">
-					<label for="pwCheck">Pw Check</label> <input type="password"
-						name="pwCheck" id="pwCheck" class="form-control"
-						placeholder="Password Check" />
-				</div>
-
 				<div class="form-group">
 					<label for="name">Name</label> <input type="text" name="name"
 						id="name" class="form-control" value="<%=client.getName()%>"
@@ -59,34 +50,63 @@
 				<div class="form-group">
 					<label for="name">Email</label> <input type="text" name="email"
 						id="email" class="form-control"
-						value="<%=client.getEmail()%>" placeholder="EMAIL" />
+						value="<%=client.getEmail()%>" placeholder="EMAIL"  />
 				</div>
 				<div class="form-group">
 					<%
 						if (client.getProfile() != null) {
 					%>
 						<label for="profile">Profile Picture</label><hr>
-						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="200px" height="200px">
+						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="500px" height="300px">
+						<br>
+						업로드된 파일 : <%=client.getProfile() %>
+						<input type="hidden" name ="org_profile" id="org_profile" value="<%=client.getProfile() %>">
+						<input type="file" name="profile" id="profile" class="form-control btn btn-outline-secondary inputFile" 
+								accept=".jpg, .png, .pdf" style="margin-top: 5px; "/>
+						
 						<hr>
+					<%
+						} else {
+					%>
+							<input type="file" name="profile" id="profile" class="form-control btn btn-outline-secondary inputFile" 
+								accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
 					<%
 						}
 					%>
-					<label for="profile">프로필 사진 수정</label><hr> 
-					<input type="file"
-						name="profile" id="profile"
-						class="form-control btn btn-outline-secondary inputFile"
-						accept=".jpg, .png, .pdf" />
+
+					<div class='bigPictureWrapper'>
+						<div class='bigPicture'>
+						</div>
+					</div>
 				</div>
 				<div class="form-group form-group-1">
 					<%
-						if (driver != null && (isDriverView || client.getUserType() == 2)) {
+						if (driver != null && client.getUserType() == 1) {
 					%>
 
 					<label>Date of Birth</label><br />
 
-					<script>
-						createInputDate();
-					</script>
+					<input type="text" name="dateOfBirth" id="dateOfBirth"
+						class="form-control"  value="<%=driver.getDateOfBirth()%>"/>
+				</div>
+					<div class="form-group">
+					<label for="carType">Truck Category</label><br /> <select
+						name="carType" id="carType"class="custom-select-sm select-cartype-input">
+						<%
+							for (CarType ct : carTypeList) {
+									if (ct.getTypeNo() == driver.getCarType()) {
+						%>
+						<option value="<%=ct.getTypeNo() %>" selected><%=ct.getCarType() %></option>
+						<%
+							} else {
+						%>
+						<option value="<%=ct.getTypeNo() %>"><%=ct.getCarType() %></option>
+
+						<%
+							}
+								}
+						%>
+					</select>
 				</div>
 				
 				<div class="form-group">
@@ -98,38 +118,37 @@
 						class="form-control" placeholder="ex.???-??-?????" value="<%=driver.getbLicense()%>"/>
 				</div>
 				<div class="form-group">
-					<div class='bigPictureWrapper'>
-						<div class='bigPicture'>
-						</div>
-					</div>
 					<label for="carPic">Truck Picture</label><hr>
 					<%
 						if (fileList != null) {
-								for (int i = 0; i < fileList.size(); i++) {
+								for (int i = 0;i < fileList.size(); i++) {
 					%>
 				
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i) %>" width="200px" height="200px">
+					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
 					<%
 						}
 							}
 					%>
-					<hr>
-					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
+					
+					<input type="file" name="carPic1" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
+					<input type="file" name="carPic2" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
 					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
+					<input type="file" name="carPic4" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic5" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
+					<input type="file" name="carPic5" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />		
+					<hr>
 				</div>
 				<%
 					}
 				%>
 				<div style="text-align: center;">
-					<button type="submit" class="btn  btn-primary">Send</button>
+					<button type="submit" onclick="checkData();" class="btn btn-primary">수정</button>
+					<button type="button" onclick="history.back();" class="btn btn-primary">뒤로</button>
 				</div>
 			</form>
 		</div>
@@ -165,6 +184,8 @@ $(document).ready(function (e){
 	  });//end bigWrapperClick event
 });
 </script>
+
+
 <style>
 		.bigPictureWrapper {
 			position: absolute;

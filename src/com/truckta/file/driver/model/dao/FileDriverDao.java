@@ -46,18 +46,23 @@ public class FileDriverDao {
 		return result;
 	}
 
-	public List<String> findDriverFile(Connection conn, String id) {
+	public List<FileDriver> findDriverFile(Connection conn, String id) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("findDriverFile");
-		List<String> fileList = new ArrayList<String>();
+		List<FileDriver> fileList = new ArrayList<FileDriver>();
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
-				fileList.add(rs.getString("file_name"));
+				FileDriver fd = new FileDriver();
+				fd.setFileName(rs.getString("file_name"));
+				fd.setId(rs.getString("id"));
+				fileList.add(fd);
 			}
+			System.out.println("DAO"+fileList.toString());
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -65,6 +70,40 @@ public class FileDriverDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return fileList;
+	}
+
+	public int deleteDriverFile(Connection conn, String fileName) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteDriverFile");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fileName);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int joinDriver(Connection conn, FileDriver fd) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("joinDriver");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fd.getId());
+			pstmt.setString(2, fd.getFileName());
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

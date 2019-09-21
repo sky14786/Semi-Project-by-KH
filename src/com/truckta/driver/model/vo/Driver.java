@@ -15,6 +15,19 @@ public class Driver {
 	public Driver() {
 	}
 
+	
+	
+	public Driver(String id, String dateOfBirth, int carType, String dLicense, String bLicense) {
+		super();
+		this.id = id;
+		this.dateOfBirth = dateOfBirth;
+		this.carType = carType;
+		this.dLicense = dLicense;
+		this.bLicense = bLicense;
+	}
+
+
+
 	public Driver(String id, String dateOfBirth, int carType, String dLicense, String bLicense, Date regDate,
 			int status) {
 		super();

@@ -24,8 +24,7 @@
 				<th>생년월일</th>
 				<th>운전면허</th>
 				<th>사업자등록증</th>
-				<th>차사진</th>
-				<th>신청일자</th>
+				<th>등록일자</th>
 				<th>상태</th>
 				<th>기타</th>
 			</tr>
@@ -35,7 +34,7 @@
 				for(Driver d : dList){
 			%>
 					<tr style="text-align:center;">
-						<td><a href="#" style="color:inherit;"><%=d.getId() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/admin/adminUserDetail?isDriverView=true&id=<%=d.getId() %>" style="color:inherit;"><%=d.getId() %></a></td>
 						<td>
 						<%for(int i = 0 ; i<cList.size();i++){
 							if(d.getCarType()==cList.get(i).getTypeNo()){%>
@@ -44,24 +43,9 @@
 							} %>
 						</td>
 						<td><%=d.getDateOfBirth()%></td>
+						<td><%=d.getdLicense() %></td>
+						<td><%=d.getbLicense() %></td>
 						
-						<%if(d.getdLicense()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %>
-						
-						<%if(d.getbLicense()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %>
-						
-						<%-- <%if(d.getCarPic()!=null){ %>
-							<td><img src="<%=request.getContextPath()%>/images/profile_images/file.png"></td>
-						<%}else { %>
-							<td>[등록안함]</td>
-						<%} %> --%>
 						<td><%=d.getRegDate() %></td>
 						<td>
 						<%if(d.getStatus()==1){%>

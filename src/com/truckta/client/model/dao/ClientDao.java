@@ -500,4 +500,25 @@ public class ClientDao {
 		return list;
 	}
 
+	public int adminUpdateClient(Connection conn, Client c, String target) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminUpdateClient");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getId());
+			pstmt.setString(2, c.getName());
+			pstmt.setString(3, c.getEmail());
+			pstmt.setString(4, c.getProfile());
+			pstmt.setString(5,target);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

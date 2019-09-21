@@ -34,7 +34,7 @@
 				for(Driver d : dList){
 			%>
 					<tr style="text-align:center;">
-						<td><a href="#" style="color:inherit;"><%=d.getId() %></a></td>
+						<td><%=d.getId() %></td>
 						<td>
 						<%for(int i = 0 ; i<cList.size();i++){
 							if(d.getCarType()==cList.get(i).getTypeNo()){%>

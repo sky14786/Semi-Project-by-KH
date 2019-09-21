@@ -187,4 +187,16 @@ public class ClientService {
 		return list;
 	}
 
+	public int adminUpdateClient(Client c, String target) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.adminUpdateClient(conn, c, target);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }
