@@ -156,11 +156,9 @@ public class ClientDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
