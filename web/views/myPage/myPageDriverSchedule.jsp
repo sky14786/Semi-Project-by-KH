@@ -274,7 +274,7 @@
 					</div>
 
 					<!-- Pagination -->
-					<div class="col-12 text-center ">
+					<div class="col-12 text-center pagin">
 						<nav class="d-flex justify-content-center">
 							<ul class="pagination">
 								<%=pageBar %>
@@ -298,7 +298,26 @@
 			
 			$(function () {
 				$('.navC').click(function () {
-					console.log($(this).parent().attr('value'));
+					//console.log($(this).parent().attr('value'));
+					 var ckp = $(this).parent().attr('value');
+					//pagination
+					//console.log(ckp);
+					//$('.pagin').attr('visibility', 'visible');
+
+					var myPage = $('.pagination');
+					if(ckp == 0){
+						console.log('true');
+						console.log(myPage);
+						
+						myPage.prop('visibility','visible');
+					}else{
+						console.log('else');
+						$('.pagin').prop('visibility', 'hidden');
+						//$('.pagin').text('fddfddf');
+						//$('.pagination').attr('visibility', 'hidden');
+						
+						//myPage.attr('visibility','hidden');
+					}
 				});
 			});
 			

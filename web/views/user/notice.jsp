@@ -55,23 +55,15 @@
 
 <body class="bg-light">
 	<div class="container">
-	<!-- 	<div class="py-1 text-center">
-			<h2>header</h2>
-		</div> -->
-
+		<!-- <nav></nav> -->
 		<div class="row">
 			<div class="col-md-2 order-md-1 mb-1">
-				<!-- <nav>nav</nav> -->
-
-				<!-- ---------------------------------------- -->
 			</div>
-			
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
 				<h4 class="mb-3">배달 정보</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
-				
 				<form action="" method="post" id="boardUp" name="boardUp" class="needs-validation" enctype="multipart/form-data" >
 					<div class="row">
 						<div class="col-md-12 mb-3">
@@ -197,32 +189,17 @@
 			</form>
 				<!-- //---------// -->
 				<div>
-					<button type="button" onclick="test();">update button</button>
+					<button type="button" onclick="test();">수정하기 button</button>
 					<script>
 						function test() {
 							location.href = '<%=request.getContextPath()%>/board/updateLoad';
 						}
 					</script>
-		      		<button type="button" onclick="test1();">myTop button</button>
-					<script>
-						function test1() {
-							location.href = '<%=request.getContextPath()%>/my/pageTop';
-						}
-					</script>
-					<button type="button" onclick="test2();">mySchedule button</button>
-					<script>
-						function test2() {
-							location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
-						}
-					</script>
 				</div>
 			</div>
-			
-      
-      
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
-				<aside>aside</aside>
+				<!-- <aside>aside</aside> -->
 			</div>
 		</div>
 	</div>

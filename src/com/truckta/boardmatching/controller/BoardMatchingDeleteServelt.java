@@ -35,6 +35,7 @@ public class BoardMatchingDeleteServelt extends HttpServlet {
 		int boardNo = Integer.parseInt(request.getParameter("boNum"));
 		int result = new BoardMatchingService().boardDelete(boardNo);
 		if(result > 0) {
+			//삭제 성공
 			response.sendRedirect(request.getContextPath()+"/mainPage.jsp");
 			return;
 		}else {

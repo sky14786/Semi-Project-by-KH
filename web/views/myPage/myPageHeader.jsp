@@ -42,6 +42,8 @@
 					<a class="dropdown-item" href="#">신고게시판</a>
 				</div>
 			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="<%=request.getContextPath()%>/board/pageLoad">배송 요청하기</a></li>
 			<%} %>
 			<!-- 기사 메뉴 -->
 			<% if(cl.getUserType()==2){ %>

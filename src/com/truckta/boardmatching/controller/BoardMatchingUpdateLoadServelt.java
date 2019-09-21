@@ -28,7 +28,7 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
 		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
-			request.setAttribute("message", "잘못된 접속입니다.");
+			request.setAttribute("message", "수정 페이지를 불러올 수 없습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
@@ -45,10 +45,7 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		if(bm.getMemo().equals("null")) {
 			bm.setMemo("");
 		}
-		
-//		System.out.println("update : "+ bm);
-//		System.out.println("imgList : " + list.size());
-		
+
 		request.setAttribute("board", bm);
 		request.setAttribute("boardImgs", list);
 		request.getRequestDispatcher(request.getContextPath() + "/views/user/noticeMod.jsp").forward(request, response);

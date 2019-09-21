@@ -34,6 +34,7 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// 수정된 데이터를 저장
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
 		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
@@ -99,16 +100,14 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// boardNo(int), boardState(int), count(int)
-//				String writer = (String)request.getSession().getAttribute("writer");
-//				String writer = "writer";
-		bm.setWrtier("010-0335-0361");
+		bm.setWrtier(cl.getId());
 
-		int boardNum = 199; //해당 글번호
+//		int boardNum = request.getAttribute("boardNum"); //해당 글번호
+		int boardNum = 199;
 		bm.setBoardNo(boardNum);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
-		System.out.println("입력 성공 : " + result);
+		System.out.println("수정 성공 : " + result);
 		
 		if(result == 1) {
 			//기존 이미지 삭제
@@ -116,10 +115,10 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 			if(listImg.size() > 0) {
 				int imgCk = new BoardMatchingService().modImg(bm.getBoardNo(), imgTemp); //db에서 이미지 삭제
-				System.out.println("db 부분삭제 : " + imgCk);
+//				System.out.println("db 부분삭제 : " + imgCk);
 				if(imgCk > 0) {
 					for (int i = 0; i < imgTemp.length; i++) {
-						System.out.println("delete save img dir : " + saveDir + "/" + imgTemp[i]);
+//						System.out.println("delete save img dir : " + saveDir + "/" + imgTemp[i]);
 						File file = new File(saveDir+ "/" + imgTemp[i]);
 						if(file.exists()) file.delete(); // 서버에서 파일 삭제
 //						int imgCk = new BoardMatchingService().deleteImg(bm.getBoardNo()); //삭제후 db에서 삭제

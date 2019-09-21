@@ -106,7 +106,8 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		// boardNo(int), boardState(int), count(int)
 //		String writer = (String)request.getSession().getAttribute("writer");
 //		String writer = "writer";
-		bm.setWrtier("010-0335-0361");
+		//bm.setWrtier("010-0335-0361");
+		bm.setWrtier(cl.getId());
 		
 		// 유저 - 드라이버 확인
 		int userDriver = new DriverService().driverCheck(bm.getWrtier());
