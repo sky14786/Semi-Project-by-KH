@@ -36,10 +36,8 @@
 				</div>
 				<div class="form-group form-group-1">
 					<label>Date of Birth</label><br />
-
-					<script>
-						createInputDate();
-					</script>
+					<input type="text" name="dateOfBirth" id="dateOfBirth"
+						class="form-control"  placeholder="YYYYMMDD"/>
 				</div>
 				<div class="form-group">
 					<label for="carType">Truck Category</label><br /> <select

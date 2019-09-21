@@ -26,14 +26,15 @@ public class AdminDriverRightModifyServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 
-		int result = new DriverService().driverRightModfiy(id);
+		int isCompleted = new DriverService().driverRightModify(id);
+		isCompleted += new ClientService().driverRightModify(id);
 
-		if (result == 1) {
+		if (isCompleted == 2) {
 			Client temp = new ClientService().findClient(id);
 			String content = "<hr><h1>" + temp.getName() + "님 안녕하세요?</h1><hr>회원님은 관리자에 의해 드라이버신청이 승인되었습니다.";
 			String subject = temp.getName() + "님 트럭타에서 알립니다.";
 			SMTPAuthentication.sendmail(content, temp.getEmail(), subject);
-			
+
 			System.out.println(":: Truckta_LOG :: " + " ADMIN_Driver Right Modify : " + temp.getId());
 			response.getWriter().write("true");
 		} else {

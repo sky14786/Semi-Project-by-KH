@@ -13,15 +13,45 @@ function checkData() {
   var formatChecking = /\.(jpg|pdf|jpeg|png)$/i;
   var sizeChecking = 1024 * 1024 * 3;
 
-  if (!(idChecking.test($("input[name=id]").val()) || $("input[name=id]").val())) {
-    alert("아이디가 정상적이지 못합니다.");
-    return false;
-  }
-  if (!$("input[name=name]").val()) {
+	  if (!(idChecking.test($("input[name=id]").val()) || $("input[name=id]")
+			.val())) {
+		alert("아이디가 정상적이지 못합니다.");
+		return false;
+	}
+	  if (!$("input[name=name]").val()) {
 		alert("이름을 입력해 주세요.");
 		return false;
 	}
-  if (!$("input[name=dateOfBirth]").val()) {
+	  if ($("input[name=profile]").val()) {
+		if (!formatChecking.test($("input[name=profile]").val().toLowerCase())) {
+			alert("프로필사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
+			$("input[name=profile]").val("");
+			return false;
+		}
+	}
+	  if ($("input[name=profile]").val()) {
+		var size = document.getElementById("profile").files[0].size;
+		if (sizeChecking < size) {
+			alert("프로필사진의 용량을 확인해 주세요. [3MB]");
+			$("input[name=profile]").val("");
+			return false;
+		}
+	}
+	  
+	if($("input[name=isChecking]").val()||$("input[name=isDriver]").val()==2){
+		isDriverDataCheck(formatChecking,sizeChecking);
+		isValiDate($("input[name=dateOfBirth]").val());
+	}
+	
+	
+
+ 
+
+ 
+}
+
+function isDriverDataCheck(formatChecking,sizeChecking){
+	if (!$("input[name=dateOfBirth]").val()) {
 		alert("생년월일을 입력해 주세요.");
 		return false;
 	}
@@ -44,25 +74,15 @@ function checkData() {
 		}
 	}
 	for(var i=1;i<6;i++){
-		if ($("input[name=carPic]").val()) {
-			var size = document.getElementById("carPic").files[0].size;
+		if ($("input[name=carpic"+i+"]").val()) {
+			var size = document.getElementById("carPic"+i).files[0].size;
 			if (sizeChecking < size) {
 				alert("차사진의 용량을 확인해 주세요. [3MB]");
-				$("input[name=carPic]").val("");
+				$("input[name=carpic"+i+"]").val("");
 				return false;
 			}
 		}
 	}
-	
-	isValiDate($("input[name=dateOfBirth]").val());
-	
-
-	  if (!$("input:checkbox[name=isAgree]").is(":checked")) {
-		alert("이용약관에 동의해 주세요.");
-		return false;
-	}
-	sessionStorage.removeItem("isCertified");
- 
 }
 
 function isDateCheck(dateStr) {

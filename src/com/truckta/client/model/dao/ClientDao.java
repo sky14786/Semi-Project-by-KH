@@ -526,4 +526,20 @@ public class ClientDao {
 		return result;
 	}
 
+	public int driverRightModify(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverRightModify");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

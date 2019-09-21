@@ -6,7 +6,7 @@
 <script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.3" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.3" charset="utf-8"></script>
 <%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -34,6 +34,8 @@
 			<br>
 			<h2>Modify information</h2>
 			<hr>
+			<input type="hidden" name = "isChecking" value = "<%=isDriverView %>" readonly/>
+			<input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
 			<form
 				action="<%=request.getContextPath()%>/admin/adminUserUpdate"
 				method="post" name="sendform" enctype="multipart/form-data">
@@ -81,7 +83,7 @@
 				</div>
 				<div class="form-group form-group-1">
 					<%
-						if (driver != null && client.getUserType() == 1) {
+						if (driver != null && client.getUserType() == 2) {
 					%>
 
 					<label>Date of Birth</label><br />
@@ -121,16 +123,35 @@
 					<label for="carPic">Truck Picture</label><hr>
 					<%
 						if (fileList != null) {
-								for (int i = 0;i < fileList.size(); i++) {
+								for (int i = 0;i < 5; i++) {
+									if(fileList.get(i)!=null){
 					%>
 				
 					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
-					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />	<input type="file" name="carPic<%=i+1 %>" id="carPic<%=i+1 %>" class="form-control btn btn-outline-secondary inputFile" 
+					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
+					<%
+									} 
+					%>	
+					<input type="file" name="carPic<%=i+1 %>" id="carPic<%=i+1 %>" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<br/><hr>
+					<%
+								}
+						}else {
+					%>
+						<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic5" id="CarPic5" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
 					<br/><hr>
 					<%
 						}
-							}
 					%>
 					
 				

@@ -47,9 +47,9 @@ public class DriverService {
 		return result;
 	}
 
-	public int driverRightModfiy(String id) {
+	public int driverRightModify(String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.driverRightModfiy(conn, id);
+		int result = dao.driverRightModify(conn, id);
 		if (result == 1) {
 			JDBCTemplate.commit(conn);
 		} else {
