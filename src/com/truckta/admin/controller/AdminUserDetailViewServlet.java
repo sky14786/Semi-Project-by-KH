@@ -30,6 +30,7 @@ public class AdminUserDetailViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
+		System.out.println("this id: "+id);
 		boolean isDriverView = Boolean.parseBoolean(request.getParameter("isDriverView"));
 		Client client = new ClientService().findClient(id);
 		Driver driver = new DriverService().findDriver(id);
@@ -46,7 +47,6 @@ public class AdminUserDetailViewServlet extends HttpServlet {
 		request.setAttribute("driver", driver);
 		request.setAttribute("client", client);
 		request.setAttribute("isDriverView", isDriverView);
-
 		if (request.getParameter("isUpdateView") != null
 				&& Boolean.parseBoolean(request.getParameter("isUpdateView"))) {
 			request.getRequestDispatcher("/views/admin/adminUserUpdateView.jsp").forward(request, response);

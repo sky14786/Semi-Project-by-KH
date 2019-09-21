@@ -187,9 +187,9 @@ public class ClientService {
 		return list;
 	}
 
-	public int adminUpdateClient(Client c, String target) {
+	public int adminUpdateClient(Client c, String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.adminUpdateClient(conn, c, target);
+		int result = dao.adminUpdateClient(conn, c, id);
 		if (result == 1) {
 			JDBCTemplate.commit(conn);
 		} else {

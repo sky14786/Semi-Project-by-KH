@@ -16,8 +16,6 @@ public class Client {
 
 	public Client() {
 	}
-	
-	
 
 	public Client(String id, String name, String email) {
 		super();
@@ -41,12 +39,12 @@ public class Client {
 		this.reportCount = reportCount;
 	}
 
-	public Client(String id, String pw, String name, String email) {
+	public Client(String id, String name, String email, String profile) {
 		super();
 		this.id = id;
-		this.pw = pw;
 		this.name = name;
 		this.email = email;
+		this.profile = profile;
 	}
 
 	public String getEmail() {

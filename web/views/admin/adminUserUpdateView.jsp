@@ -40,7 +40,7 @@
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" value="<%=client.getId()%>"  />
+						class="form-control" value="<%=client.getId()%>" readonly/>
 				</div>
 				<div class="form-group">
 					<label for="name">Name</label> <input type="text" name="name"
@@ -125,23 +125,15 @@
 					%>
 				
 					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
-					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
+					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />	<input type="file" name="carPic<%=i+1 %>" id="carPic<%=i+1 %>" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<br/><hr>
 					<%
 						}
 							}
 					%>
 					
-					<input type="file" name="carPic1" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic2" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic4" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<input type="file" name="carPic5" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />		
-					<hr>
+				
 				</div>
 				<%
 					}

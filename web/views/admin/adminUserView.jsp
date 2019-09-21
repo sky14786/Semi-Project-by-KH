@@ -34,13 +34,11 @@
 			<br>
 			<h2>Modify information</h2>
 			<hr>
-			<form
-				action="<%=request.getContextPath()%>/ClientUpdateEndServlet.do"
-				method="post" name="sendform" enctype="multipart/form-data">
+			<form method="post" name="sendform">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" value="<%=client.getId()%>" readonly />
+						class="form-control" value="<%=client.getId()%>" readonly/>
 				</div>
 				<div class="form-group">
 					<label for="name">Name</label> <input type="text" name="name"

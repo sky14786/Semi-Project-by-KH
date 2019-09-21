@@ -166,16 +166,15 @@ public class DriverDao {
 
 	public int adminUpdateDriver(Connection conn, Driver d, String target) {
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateDriver");
+		String sql = prop.getProperty("adminUpdateDriver");
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, d.getId());
-			pstmt.setString(2, d.getDateOfBirth());
-			pstmt.setString(3, d.getdLicense());
-			pstmt.setString(4, d.getbLicense());
-			pstmt.setInt(5, d.getCarType());
-			pstmt.setString(6, target);
+			pstmt.setString(1, d.getDateOfBirth());
+			pstmt.setString(2, d.getdLicense());
+			pstmt.setString(3, d.getbLicense());
+			pstmt.setInt(4, d.getCarType());
+			pstmt.setString(5, target);
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException sqle) {
