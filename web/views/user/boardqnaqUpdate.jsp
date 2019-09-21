@@ -6,7 +6,7 @@
 <script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.3" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/adminUpdateQnaQ-js.js?ver=1.3" charset="utf-8"></script>
 <%@ page import="java.util.List,com.truckta.boardqna.q.model.vo.BoardQnaQ,com.truckta.file.qna.model.vo.FileQna"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -38,11 +38,12 @@
 			<form
 				action="<%=request.getContextPath()%>/admin/adminBoardQnaQUpdate"
 				method="post" name="sendform" enctype="multipart/form-data">
+				<input type="hidden" name="boardNo" id="boardNo" value="<%=board.getBoardNo() %>">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					유형 : <%=board.getType()==0?"질문":(board.getType()==1?"건의":"신고")%>&nbsp;&nbsp;
 					<br>상태 : <%=board.getStatus()==0?"답변전":(board.getStatus()==1?"답변완료":"해결")%><br><hr>
-					<label for="id">제목</label> <input type="text" name="id" id="id"
+					<label for="id">제목</label> <input type="text" name="title" id="title"
 						class="form-control" value="<%=board.getTitle()%>"/>
 				</div>
 				<div class="form-group">
@@ -53,13 +54,15 @@
 						</div>
 					</div>
 				<div class="form-group">
-					<label for="carPic">Truck Picture</label><hr>
+					<label for="carPic">Q&A Picture</label><hr>
 					<%
 						if (fileList != null) {
 								for (int i = 0;i < 5; i++) {
-									if(fileList.get(i)!=null){
+									if(i<fileList.size()&&fileList.get(i)!=null){
 					%>
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+					<img name="img_org_qnaPic<%=i+1 %>" src="<%=request.getContextPath() %>/images/qna_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+					<button type="button" onclick="deleteImg('org_qnaPic<%=i+1 %>');" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="cancelImg('org_qnaPic<%=i+1 %>','<%=request.getContextPath() %>/images/qna_images/<%=fileList.get(i).getFileName() %>','<%=fileList.get(i).getFileName() %>');" class="btn btn-primary">취소</button>
 					<input type="hidden" name="org_qnaPic<%=i+1 %>" id="org_qnaPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
 					<%			
 									} 
@@ -126,6 +129,17 @@ $(document).ready(function (e){
 	    }, 1000);
 	  });//end bigWrapperClick event
 });
+
+function deleteImg(img){
+	$("img[name=img_"+img+"]").attr("src","");
+	$("input[name="+img+"]").val("null");
+	
+}
+function cancelImg(img,src,name){
+	$("img[name=img_"+img+"]").attr("src",src);
+	$("input[name="+img+"]").val(name);
+}
+
 </script>
 
 

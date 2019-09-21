@@ -101,6 +101,8 @@ public class AdminUserUpdateServlet extends HttpServlet {
 					File newFile = new File(tempDir);
 					oldFile.renameTo(newFile);
 				}
+			} else if (i < files.size() && mul.getParameter("org_" + nameTag).equals("null")) {
+				service.deleteDriverFile(files.get(i).getFileName());
 			}
 		}
 
@@ -125,12 +127,12 @@ public class AdminUserUpdateServlet extends HttpServlet {
 
 		if (i == 7) {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Driver_Update : " + c.getId());
-			request.setAttribute("isDriverView", true);
-			request.getRequestDispatcher("/views/admin/adminUserView.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=true&id=" + c.getId()).forward(request,
+					response);
 		} else if (isClientUpdate == 1) {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Client_Update : " + c.getId());
-			request.setAttribute("isDriverView", false);
-			request.getRequestDispatcher("/views/admin/adminUserView.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=false&id=" + c.getId()).forward(request,
+					response);
 		} else {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_User_Update Fail : " + c.getId());
 			request.setAttribute("location", "/");

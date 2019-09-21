@@ -24,6 +24,7 @@ public class AdminBoardQnaQUpdateTry extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		
 		BoardQnaQ temp = new BoardQnaQService().findBoardQnaQ(boardNo);
 		List<FileQna> fileList = new FileQnaService().findFileList(boardNo);
 		

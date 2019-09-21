@@ -65,20 +65,20 @@ function isDriverDataCheck(formatChecking,sizeChecking){
 		return false;
 	}
 	for(var i =1 ; i<6;i++){
-		if ($("input[name=carpic"+i+"]").val()) {
-			if (!formatChecking.test($("input[name=carpic"+i+"]").val().toLowerCase())) {
+		if ($("input[name=carPic"+i+"]").val()) {
+			if (!formatChecking.test($("input[name=carPic"+i+"]").val().toLowerCase())) {
 				alert("프로필사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
-				$("input[name=carpic"+i+"]").val("");
+				$("input[name=carPic"+i+"]").val("");
 				return false;
 			}
 		}
 	}
 	for(var i=1;i<6;i++){
-		if ($("input[name=carpic"+i+"]").val()) {
+		if ($("input[name=carPic"+i+"]").val()) {
 			var size = document.getElementById("carPic"+i).files[0].size;
 			if (sizeChecking < size) {
 				alert("차사진의 용량을 확인해 주세요. [3MB]");
-				$("input[name=carpic"+i+"]").val("");
+				$("input[name=carPic"+i+"]").val("");
 				return false;
 			}
 		}

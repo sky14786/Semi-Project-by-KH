@@ -59,9 +59,11 @@
 						if (client.getProfile() != null) {
 					%>
 						<label for="profile">Profile Picture</label><hr>
-						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="500px" height="300px">
-						<br>
-						업로드된 파일 : <%=client.getProfile() %>
+						<img name="img_org_profile" src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="400px" height="300px">
+						<br><br>
+						<button type="button" onclick="deleteProfileImg();" class="btn btn-primary">삭제</button>
+						<button type="button" onclick="cancelProfileImg('<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>','<%=client.getProfile() %>');" class="btn btn-primary">취소</button>
+						<hr>
 						<input type="hidden" name ="org_profile" id="org_profile" value="<%=client.getProfile() %>">
 						<input type="file" name="profile" id="profile" class="form-control btn btn-outline-secondary inputFile" 
 								accept=".jpg, .png, .pdf" style="margin-top: 5px; "/>
@@ -124,11 +126,13 @@
 					<%
 						if (fileList != null) {
 								for (int i = 0;i < 5; i++) {
-									if(fileList.get(i)!=null){
+									if(i<fileList.size()&&fileList.get(i)!=null){
 					%>
 				
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+					<img name="img_org_carPic<%=i+1 %>" src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
 					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
+					<button type="button" onclick="deleteImg('org_carPic<%=i+1 %>');" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="cancelImg('org_carPic<%=i+1 %>','<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>','<%=fileList.get(i).getFileName() %>');" class="btn btn-primary">취소</button>
 					<%
 									} 
 					%>	
@@ -196,6 +200,26 @@ $(document).ready(function (e){
 	    }, 1000);
 	  });//end bigWrapperClick event
 });
+
+function deleteImg(img){
+	$("img[name=img_"+img+"]").attr("src","");
+	$("input[name="+img+"]").val("null");
+	
+}
+function cancelImg(img,src,name){
+	$("img[name=img_"+img+"]").attr("src",src);
+	$("input[name="+img+"]").val(name);
+}
+
+function deleteProfileImg(){
+	$("img[name=img_org_profile]").attr("src","");
+	$("input[name=org_profile]").val("null");
+	
+}
+function cancelProfileImg(src,name){
+	$("img[name=img_org_profile]").attr("src",src);
+	$("input[name=org_profile]").val(name);
+}
 </script>
 
 

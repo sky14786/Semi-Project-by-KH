@@ -49,4 +49,38 @@ public class FileQnaDao {
 		}
 		return list;
 	}
+
+	public int deleteQnaFile(Connection conn, String fileName) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteQnaFile");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fileName);
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int uploadQnaFile(Connection conn, FileQna fileQna) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("uploadQnaFile");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fileQna.getBoardNo());
+			pstmt.setString(2, fileQna.getFileName());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 }

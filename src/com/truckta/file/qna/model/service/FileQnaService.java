@@ -17,4 +17,28 @@ public class FileQnaService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public int deleteQnaFile(String fileName) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteQnaFile(conn, fileName);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int uploadQnaFile(FileQna fileQna) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.uploadQnaFile(conn,fileQna);
+		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
