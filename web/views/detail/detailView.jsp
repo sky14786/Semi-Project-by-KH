@@ -5,6 +5,8 @@
 <%@ page import = "com.truckta.detail.model.vo.Detail" %>
 <%@ page import = "com.truckta.client.model.vo.Client" %>
 <%@page import = "com.truckta.matching.model.vo.Matching"%>
+<%@page import = "java.util.List"%>
+
 
 <%
 	String boardNo = (String)request.getAttribute("boardNo");
@@ -12,12 +14,15 @@
 	String endAddr = (String)request.getAttribute("endAddr");
 	Detail d = (Detail)request.getAttribute("d");
 	Client c = (Client)session.getAttribute("loginClient");
-	/* System.out.println("cccccccccccccccccc");
-	System.out.println("헌수헌수"+d); */
+	List <Matching>badeList = (List)request.getAttribute("badeList");
+	
 	
 %>
 
 <!-- favicons -->
+<link   href="<%=request.getContextPath()%>/css/conversation.css"
+     rel="stylesheet">
+
  <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -64,13 +69,56 @@
 		</div>
 
 
+
 	<!--==========================
-      pictures
+      	글 수정하기 와 비딩한 운전자의 리스트
     ============================-->
     <section id="portfolio"  class="section-bg" >
       <div class="container">
+	<%if(c !=null && c.getId().equals(d.getWriter())){ %>
+				<form class="btn btn-warning" action="#" method = "post">
+					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+					<button type = "submit" class = "btn btn-warning">글 수정하기</button>
+				</form>
+				<br><br>
+				
+				
 
-
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>운전사</th>
+                                <th>제안 날짜</th>
+                                <th>제안 가격</th>
+                                <th>제안 수락</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bids" onload = "showList();">
+                            <%for(int i=0; i<badeList.size(); i++){ %>
+                            <tr>
+                                <td class="py-1">
+                                    <img class = "mr-2 img-avatar" src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="image" /> <%=badeList.get(i).getResponser() %></td>
+                                <td><%=badeList.get(i).getTryDate() %></td>
+                                <td class="text"> <%=badeList.get(i).getPay()%> 원 <i class="mdi mdi-arrow-down"></i>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-success mr-2">수락</button>
+                                </td>
+                            </tr>
+                            <%} %>
+                        </tbody>
+                    </table>
+		<br><br>
+		
+		
+		<%}%>	
+		
+	
+	<!--==========================
+      	pictures
+    ============================-->
         <div class="row portfolio-container">
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
@@ -172,14 +220,6 @@
         <div class="col-md-6 about-content">
           <h2 class="about-title">제목 : <%=d.getTitle() %></h2>
            
-          <!--
-          <p class="about-text">
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-            id est laborum
-          </p>
-          <p class="about-text">
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt molli.
-          </p> -->
         </div>
       </div>
     </div>
@@ -202,26 +242,52 @@
             <%} %>
           </p>
           <br><br>
-          <!--  -->
-          <!-- 메세지방을 생성하기 위해 보낼 값들 -->
-				<%if(c!=null && c.getUserType()==2){ %>
-				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
-					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
-					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
-					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
-					<button type = "submit" class = "btn btn-primary">연락하기</button>
-				</form>
-				<%} %>
+          
+          <!--금액 제시하기  -->
+          
+          <%if(c!=null && c.getUserType()==2){ %>
+				<form class="" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+					  <!-- popup -->
+					 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			           	연락하기
+			        </button>
+			        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			            <div class="modal-dialog" role="document">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <h4 class="modal-title" id="myModalLabel">금액 제시하기</h4>
+			                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+			                                aria-hidden="true">×</span></button>
+			                    </div>
+			                    <div class="modal-body">
+											<form action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
+			                            <p>
+			                                <div class="d-flex justify-content-center">
+			                                    <input name = "bidPrice" type="text" class="col-6 form-control form-rounded" value="" maxlength="15">
+			                                    <span class="ml-2 currency"> ₩</span>
+			                                </div>
+			                            </p>
+			                     
+			                    </div>
+			                    <div class="modal-footer">
+			                        <!-- 메세지방을 생성하기 위해 보낼 값들 -->
+												<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
+												<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
+												<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
+												
+												<button type = "submit" class = "btn btn-primary">연락하기</button>
+			                        <button type="button" class="btn btn-danger" data-dismiss="modal">취소하기</button>
+			                    </div>
+											</form>
 				
-				<%if(c!=null && c.getId()==d.getWriter()){ %>
-				<form type = "hidden"class="btn btn-primary" action="<%=request.getContextPath()%>/createChat" method = "post" value = "연락하기">
-					<input type="hidden" name="driverId" value= "<%=c.getId()%>"/>
-					<input type="hidden" name="writerId" value = "<%=d.getWriter() %>">
-					<input type="hidden" name = "boardNo" value = "<%=d.getBoardNo() %>">
-					<button type = "submit" class = "btn btn-primary">연락하기</button>
-				</form>
+			                </div>
+			            </div>
+			        </div>
+			        
+			
 				<%} %>
-            
+          
+         
           <div class="section-title-divider"></div>
          <!--  <p class="section-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p> -->
         </div>
@@ -254,15 +320,7 @@
     </div>
   </section>
 
-
-
-
-
-
 <!-- Description end -->
-
-
-
 
 	   <!--- Two Column Section -->
    <br>
@@ -297,7 +355,6 @@
 
 
  <!-- JavaScript Libraries -->
-  <script src="<%=request.getContextPath() %>/js/picjs/jquery.min.js"></script>
   <script src="<%=request.getContextPath() %>/js/picjs/jquery-migrate.min.js"></script>
   <script src="<%=request.getContextPath() %>/js/picjs/bootstrap.bundle.min.js"></script>
   <script src="<%=request.getContextPath() %>/js/picjs/easing.min.js"></script>
@@ -314,11 +371,25 @@
   <!-- Template Main Javascript File -->
   <script src="<%=request.getContextPath() %>/js/picjs/main.js"></script>
 
+
+
+
     
-       
    
    <script>
    
+   //숫자만 입력받기 영어 한글 제외하는 로직
+   $("input:text[name=bidPrice]").keyup(function (e) {
+       //  var reg = /[^0-9]*$/;
+       var reg = /^[^0-9]/
+       var v = $(this).val();
+       console.log(v);
+       if (reg.test(v)) {
+           $(this).val(v.replace(reg, ""));
+           $(this).focus();
+       }
+
+   });  
    
 
    var addr = ["<%=startAddr%>", "<%=endAddr%>"];
@@ -345,16 +416,13 @@
              success: function(data) {
                  var obj = JSON.stringify(data);
                  obj = JSON.parse(obj);
-                 console.log(obj.coordinateInfo.coordinate[0]);
                  newAddr.push(obj.coordinateInfo.coordinate[0].newLat);
                  newAddr.push(obj.coordinateInfo.coordinate[0].newLon);
-                 console.log(newAddr.length)
                  if( newAddr.length == 4){
                     startingMap();
                  }
              },
              error:function(request,status,error){
-                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                  
              }
          });
@@ -487,16 +555,6 @@
      }
    
    
-   
    </script>
 
-
-   
-   
-
-
  <%@ include file="/views/common/footer.jsp"%> 
-
-    
-   
-    

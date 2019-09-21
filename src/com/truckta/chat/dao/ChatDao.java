@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import com.truckta.chat.model.vo.CreateChat;
@@ -25,10 +26,10 @@ public class ChatDao {
 		}
 	}
 
-	public int createChat(Connection conn, CreateChat cc) {
+	public int createRoom(Connection conn, CreateChat cc) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("insertOneOnOneChat");
+		String sql = prop.getProperty("createRoom");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cc.getWriterId());
@@ -48,8 +49,8 @@ public class ChatDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectRoom");
-		CreateChat ccWithRoom = null;
-		
+		//CreateChat ccWithRoom = null;
+		int result=-1;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -57,28 +58,63 @@ public class ChatDao {
 			pstmt.setString(2, cc.getDriverId());
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				ccWithRoom = new CreateChat();
-				ccWithRoom.setRoomNo(rs.getInt("room_no"));
-				ccWithRoom.setWriterId(rs.getString("user_a"));
-				ccWithRoom.setDriverId(rs.getString("user_b"));
-				ccWithRoom.setAdminId(rs.getString("user_c"));
-				ccWithRoom.setBoardNo(rs.getInt("board_no"));
-				ccWithRoom.setCreatedDate(rs.getDate("created_Date"));
-				System.out.println(ccWithRoom);
-			}
 			
-		} catch (Exception e) {
+			if(rs.next()) {
+				result=rs.getInt("room_no");
+			
+			}
+		} catch (SQLException e) {
+			
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		
-		return ccWithRoom.getRoomNo();
+		return result;
 	}
-	
-	
+
+	public int sendGreeting(Connection conn, int roomNum, String driverId, String message) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql = prop.getProperty("sendGreeting");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNum);
+			pstmt.setString(2, driverId);
+			pstmt.setString(3, message);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("SQL exception yo!");
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertBid(Connection conn, int boardNo, String writerId, String driverId, String bidPrice) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql = prop.getProperty("insertBid");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			pstmt.setString(2, writerId);
+			pstmt.setString(3, driverId);
+			pstmt.setInt(4, Integer.parseInt(bidPrice));
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("SQL exception yo!");
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	
