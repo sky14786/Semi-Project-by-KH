@@ -42,7 +42,7 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		String saveDir = getServletContext().getRealPath(File.separator + "upload" + File.separator + "qna");
+		String saveDir = getServletContext().getRealPath(File.separator + "images" + File.separator + "posted_images");
 		File dir = new File(saveDir);
 		if (dir.exists()) {
 			dir.mkdirs();

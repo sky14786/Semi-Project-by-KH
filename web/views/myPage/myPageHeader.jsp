@@ -16,7 +16,7 @@
 	} */
 %>
 <!-- <!DOCTYPE html> -->
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-top:60px;">
 	<a class="navbar-brand" href="<%=request.getContextPath()%>/my/pageTop">My Page</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">

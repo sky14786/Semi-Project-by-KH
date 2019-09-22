@@ -41,7 +41,7 @@
 		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
 		<div class="input-group">
 			<i class="fas fa-shipping-fast fa-3x" onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' style = "color: white; cursor: pointer;"></i>
-			<form class="ml-4 allsearch ml-1" action="<%=request.getContextPath() %>/main/mainFinder">
+			<form class="ml-4 allsearch ml-1" style="width:auto;" action="<%=request.getContextPath() %>/main/mainFinder">
 				<input type="text" placeholder="Search.." name = "searchKeyword"
 					id="seachbar" class="pl-3 search-bar" id="search-bar seachbar" value="" />
 			</form>

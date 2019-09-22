@@ -54,10 +54,11 @@ public class BoardQnaViewServlet extends HttpServlet {
 		 */
 
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
-	    System.out.println(q);
+		System.out.println(q);
 		/* List<BoardComment> list=new BoardService().selectBoardComment(boardNo); */
 		request.setAttribute("board_qna_q", q);
-		request.getRequestDispatcher(request.getContextPath()+"/views/user/board_qna_q_view.jsp").forward(request, response);
+		request.getRequestDispatcher(request.getContextPath() + "/views/user/board_qna_q_view.jsp").forward(request,
+				response);
 	}
 
 	/**
