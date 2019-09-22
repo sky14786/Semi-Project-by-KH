@@ -99,12 +99,16 @@
                             <%for(int i=0; i<badeList.size(); i++){ %>
                             <tr>
                                 <td class="py-1">
-                                    <img class = "mr-2 img-avatar" src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="image" /> <%=badeList.get(i).getResponser() %></td>
+                                    <img class = "mr-2 img-avatar" src="<%=request.getContextPath()%>/images/avatars/User 01a.png" alt="image" />
+                                     <%=badeList.get(i).getResponser() %>
+                                     </td>
                                 <td><%=badeList.get(i).getTryDate() %></td>
                                 <td class="text"> <%=badeList.get(i).getPay()%> 원 <i class="mdi mdi-arrow-down"></i>
                                 </td>
                                 <td>
-                                    <button type="submit" class="btn btn-success mr-2">수락</button>
+                                    <input type="text" class = "idNnN" value ="<%=d.getBoardNo() %>">
+                                    <button type="button" class="btn btn-success mr-2 idNoB" onclick="detailConfirm(<%=i%>);">수락</button>
+                                    <input type="text" class = "idNo" value ="<%=badeList.get(i).getResponser() %>">
                                 </td>
                             </tr>
                             <%} %>
@@ -114,8 +118,19 @@
 		
 		
 		<%}%>	
-		
-	
+    <script>
+      function detailConfirm(i) {
+        // console.log(i);
+        //var mybNum= $(this).attr('value');
+        // console.log($('.idNoB').next().attr('value'));
+        // console.log($('.idNoB').next()[i].value);
+        var idnnb = $('.idNnN')[i].value;
+        //console.log(idnnb);
+        
+        var iddd = $('.idNoB').next()[i].value;
+        location.href = "<%=request.getContextPath()%>/detailConfirm?id="+iddd+"&room="+idnnb;
+      }
+	 </script>
 	<!--==========================
       	pictures
     ============================-->

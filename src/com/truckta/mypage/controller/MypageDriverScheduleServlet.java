@@ -63,7 +63,7 @@ public class MypageDriverScheduleServlet extends HttpServlet {
 			cPage = 1;
 		}
 
-		int numPerPage = 5;
+		int numPerPage = 10;
 		int totalCount = new DriverService().matchingListCount();
 
 		/* title | start_addr | end_addr | responser | try_date | board_no */

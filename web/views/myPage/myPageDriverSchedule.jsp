@@ -28,11 +28,6 @@
 %>
 <%@ include file="/views/common/header.jsp"%>
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css" rel="stylesheet">
-<!-- FAVICON -->
-<!-- <link href="images/favicon.png" rel="shortcut icon"> -->
-
-<title>Driver Info</title>
-</head>
 <style>
 .myAddrImg {
 	width: 18px;
@@ -43,11 +38,6 @@
 	background-size: cover;
 }
 
-.schedule .schedule-contents {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	padding: 30px;
-}
 </style>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">

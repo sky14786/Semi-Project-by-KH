@@ -63,16 +63,18 @@ public class MyPageScheduleServlet extends HttpServlet {
 		}
 		
 
-		int numPerPage = 5; // 표시할 페이지 수
+		int numPerPage = 10; // 표시할 페이지 수
 
 		int totalCount = new BoardMatchingService().matchingListCount(writer);
 		List<BoardMatching> list = new BoardMatchingService().myAllList(writer, cPage, numPerPage);
+//		System.out.println("ejtoijeo  " + totalCount);
+//		System.out.println("fkldjfljdflk       " + list.size() );
 		if(list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				if(list.get(i).getMemo().equals("null") || list.get(i).getMemo() == null){
-					list.get(i).setMemo("연락메모 없음");
-				}
-			}
+//			for (int i = 0; i < list.size(); i++) {
+//				if(list.get(i).getMemo().equals("null")){
+//					list.get(i).setMemo("연락메모 없음");
+//				}
+//			}
 			request.setAttribute("boardMatching", list);
 		}
 
