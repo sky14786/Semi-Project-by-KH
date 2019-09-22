@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.boardqna.q.model.service.BoardQnaQService;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
-import com.truckta.boardqna.q.model.service.BoardQnaQService;
 
 /**
  * Servlet implementation class BoardQnaQListservlet
@@ -35,22 +34,27 @@ public class BoardQnaQListservlet extends HttpServlet {
 		
 		
 		// TODO Auto-generated method stub
+			  
 		int cPage;
+		int type= Integer.parseInt(request.getParameter("type"));
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		int numPerPage=10;
+		int numPerPage=15;
 		
-		int totalBoard=new BoardQnaQService().selectCountBoardQnaQ(0);
-		List<BoardQnaQ> list=new BoardQnaQService().selectListPage(cPage, numPerPage, 0);
+		
+		String qUser = request.getParameter("id");
+		
+		int totalBoard=new BoardQnaQService().selectCountBoardQnaQ(type);
+		List<BoardQnaQ> list=new BoardQnaQService().selectBoardList(cPage, numPerPage, type,qUser);
 		
 		
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
 		
 		String pageBar = "";
-		int pageSizeBar = 15;
+		int pageSizeBar = 5;
 
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;
@@ -80,9 +84,12 @@ public class BoardQnaQListservlet extends HttpServlet {
 			pageBar+="<a href='"+request.getContextPath()
 			+"/board/boardQnaQList?cPage="+(pageNo)+"'>[다음]</a>";
 		}
+		
+		
 		request.setAttribute("pageBar",pageBar);
 		request.setAttribute("cPage",cPage);
 		request.setAttribute("list",list);
+		request.setAttribute("type", type);
 		
 		
 		request.getRequestDispatcher("/views/user/board_qna_q.jsp").forward(request, response);

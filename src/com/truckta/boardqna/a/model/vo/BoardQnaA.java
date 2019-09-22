@@ -15,10 +15,19 @@ public class BoardQnaA {
 	
 	public BoardQnaA(int qNo,String writer,String etc) {
 		super();
-		this.qNo = qNo;
+		this.qNo = qNo;		
 		this.writer = writer;
 		this.etc = etc;
 	}
+
+	public BoardQnaA(int qNo,String writer,String etc,int aNo) {
+		super();
+		this.qNo = qNo;		
+		this.writer = writer;
+		this.etc = etc;
+		this.aNo= aNo;
+	}
+	
 
 	public BoardQnaA(int aNo, int qNo, String writer, String etc, Date hireDate) {
 		super();

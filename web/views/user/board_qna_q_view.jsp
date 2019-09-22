@@ -5,10 +5,11 @@
 <%@ page import="java.util.List"%>
 <%
 	BoardQnaQ q = (BoardQnaQ) request.getAttribute("board_qna_q");
-
+	/* BoardQnaA a = (BoardQnaA) request.getAttribute("board_qna_a"); */
 	List<BoardQnaA> list = (List) request.getAttribute("list");
+	/* System.out.println(a.getaNo()); */
 %>
-
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <%@ include file="/views/common/header.jsp"%>
 <style>
 section#board-container {
@@ -20,7 +21,7 @@ section#board-container {
 section#board-container h2 {
 	margin: 10px 0;
 }
-/*댓글테이블*/
+
 table#tbl-comment {
 	width: 580px;
 	margin: 0 auto;
@@ -45,21 +46,16 @@ table#tbl-comment tr td:last-of-type {
 	width: 100px;
 }
 
-table#tbl-comment button.btn-reply {
+table#tbl-comment button.btn-update2 {
 	display: none;
 }
 
 table#tbl-comment tr:hover {
-	background: lightgray;
+	background: lightblue;
 }
 
-table#tbl-comment tr:hover button.btn-reply {
+table#tbl-comment tr:hover button.btn-update2 {
 	display: inline;
-}
-
-table#tbl-comment tr.level2 {
-	color: gray;
-	font-size: 14px;
 }
 
 table#tbl-comment sub.comment-writer {
@@ -71,20 +67,6 @@ table#tbl-comment sub.comment-date {
 	color: tomato;
 	font-size: 10px
 }
-
-table#tbl-comment tr.level2 td:first-of-type {
-	padding-left: 100px;
-}
-
-table#tbl-comment tr.level2 sub.comment-writer {
-	color: #8e8eff;
-	font-size: 14px
-}
-
-table#tbl-comment tr.level2 sub.comment-date {
-	color: #ff9c8a;
-	font-size: 10px
-}
 </style>
 
 <section id="board-container">
@@ -92,7 +74,8 @@ table#tbl-comment tr.level2 sub.comment-date {
 		<div class="row" style="padding-top: 10%">
 			<div class="col-11 border border-light rounded "
 				style="flex-align: center">
-				<form style="margin: 10px">
+				<form style="margin: 10px"
+					action="<%=request.getContextPath()%>/board/boardFormEnd?id=<%=clientLogin.getId()%>">
 					<table class="table "
 						style="text-align: center; border: 1px solid #dddddd">
 						<th>제목</th>
@@ -124,12 +107,9 @@ table#tbl-comment tr.level2 sub.comment-date {
 	%>
 	<tr>
 		<td colspan='2' style="text-align: center;">
-			<button class="btn-update" value="<%=q.getType()%>" />수정하기
-			</button>
+			<button class="btn-update btn btn-outline-primary" value="<%=q.getType()%>" />수정하기</button>
 		</td>
-		<button class="btn-delete" onclick="" value="<%=q.getType()%>" />
-		삭제하기
-		</button>
+		<button class="btn-delete btn btn-outline-primary" onclick="" value="<%=q.getType()%>" />삭제하기</button>
 		</td>
 	</tr>
 	<%
@@ -170,13 +150,12 @@ table#tbl-comment tr.level2 sub.comment-date {
 			<form
 				action="<%=request.getContextPath()%>/boardqnacomment/commentInsert"
 				method="post">
-				<input type="hidden" name="boardRef" value="<%=q.getBoardNo()%>" />
-				<input type="hidden" name="boardCommentWriter"
+				<input type="hidden" name="qNo" value="<%=q.getBoardNo()%>" /> <input
+					type="hidden" name="writer"
 					value="<%=clientLogin != null ? clientLogin.getId() : ""%>" /> <input
-					type="hidden" name="boardCommentLevel" value="1" /> <input
-					type="hidden" name="boardCommentRef" value="0" />
-				<textarea name="boardCommentContent" rows="3" cols="60"></textarea>
-				<button type="submit" id="btn-insert">등록</button>
+					type="hidden" name="aNo" value="0" />
+				<textarea name="etc" rows="3" cols="60"></textarea>
+				<button type="submit" id="btn-insert " class="btn btn-primary">등록</button>
 			</form>
 		</div>
 	</div>
@@ -192,23 +171,28 @@ table#tbl-comment tr.level2 sub.comment-date {
 				
 			});
 		</script>
+
 	<table id="tbl-comment">
 
 		<%
 			if (list != null && !list.isEmpty()) {
-				for (BoardQnaA a : list) {
+				/* for (BoardQnaA a : list) { */
+				for (int i = 0; i < list.size(); i++) {
 		%>
 
 		<tr class="level1">
-			<td><sub class="comment-writer"> <%=a.getWriter()%>
-			</sub> <sub class="comment-date"> <%=a.getHireDate()%>
-			</sub> <br /> <%=a.getEtc()%></td>
+			<td><input type="hidden" name="org<%=i%>"
+				value="<%=list.get(i).getaNo()%>"> <sub
+				class="comment-writer"> <%=list.get(i).getWriter()%>
+			</sub> <sub class="comment-date"> <%=list.get(i).getHireDate()%>
+			</sub> <br /> <%=list.get(i).getEtc()%></td>
 			<td>
-				<button class="btn-reply" value="<%=a.getaNo()%>">답글</button> <%
- 	if (clientLogin != null
- 					&& ("admin".equals(clientLogin.getName()) || a.getWriter().equals(clientLogin.getId()))) {
+				<button class="btn-update2 btn btn-outline-primary">수정</button> <%
+ 	if (clientLogin != null && ("admin".equals(clientLogin.getName())
+ 					|| list.get(i).getWriter().equals(clientLogin.getId()))) {
  %>
-				<button class="btn-delete" value="<%=a.getaNo()%>">삭제</button> <%
+				<button class="btn-delete2 btn btn-outline-primary"
+					value="<%=list.get(i).getaNo()%>">삭제</button> <%
  	}
  %>
 			</td>
@@ -218,45 +202,11 @@ table#tbl-comment tr.level2 sub.comment-date {
 			}
 		%>
 
-		<!-- <script> -->
-<%-- function deleteBoard(){
-	   if(confirm("정말로 삭제하시겠습니까?")){
-	   var url="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
-	   location.href=url;
-	   }
-} --%>
 
-<%-- $(function(){
-	$('.btn-delete').click(function(){
-		if(<%=clientLogin==null%>){
-			alert("로그인 후 사용이 가능합니다.");
-			return
-		}
-		if(confirm("정말로 삭제하시겠습니까?")){
-			location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
-		}
-	})  --%>
-<!-- </script> -->
 	</table>
 	<script>
 	
-	    <%--  $(function(){
-			$('.btn-update').click(function(){
-				if(<%=clientLogin == null%>){
-					alert("로그인 후 사용이 가능합니다.");
-					return
-				}
-				if(confirm("정말로 수정하시겠습니까?")){
-					location.href="<%=request.getContextPath()%>/BoardQnaFormDeleteServlet?no=<%=q.getBoardNo()%>&type="+$(this).val();
-				}
-			})  --%>
-	
-			
-
-			<%-- $('.btn-update').click(function(){
-			location.href="<%=request.getContextPath()%>/borard/boardFormUpdate"; --%>
-			
-				   
+	   
 				 
 	 
 		 $(function(){
@@ -270,11 +220,80 @@ table#tbl-comment tr.level2 sub.comment-date {
 				}
 			}) ;
 			
-			$('.btn-update').click(function(){
-			location.href="<%=request.getContextPath()%>/borard/boardFormUpdate";
 			
+				$('.btn-delete2').click(function(){
+					if(<%=clientLogin == null%>){
+						alert("로그인 후 사용이 가능합니다.");
+						return
+					}
+					if(confirm("정말로 삭제하시겠습니까?")){
+					location.href="<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=q.getBoardNo()%>&aNo="+$(this).val();
+					}
+				}) ;
+				
+				
+			
+			$('.btn-update').click(function(){
+			location.href="<%=request.getContextPath()%>/board/boardFormUpdate?no=<%=q.getBoardNo()%>";
 			});
 			
+			$('.btn-update2').click(function(){
+				var btn_update2 = $(this);
+				var thisTr = btn_update2.parent().parent();
+				var thisTd = thisTr.children();
+				var chamsu = thisTd.eq(0).children().eq(0).val();
+				/* console.log(thisTr);
+				console.log(thisTd); */
+				/* console.log(chamsu);  */
+				
+			 	 if(<%=clientLogin != null%>){
+					var tr=$('<tr>');
+					var td=$("<td>").css({"display":"none","text-align":"left"}).attr("colspan",2);
+					var form=$("<form>").attr({
+								"action":"<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=q.getBoardNo()%>"								
+							});
+					var qNo=$("<input>").attr({
+							"type":"hidden","name":"qNo",
+							"value":"<%=q.getBoardNo()%>"
+						});
+					
+					var writer=$("<input>").attr({
+							"type":"hidden","name":"writer",
+							"value":"<%=clientLogin != null ? clientLogin.getId() : ""%>"
+						});
+					
+					var etc=$("<textarea>").attr({
+							"name":"etc","cols":"60","rows":"2"
+						});
+					var btn=$("<button>").attr({
+							"type":"submit","class":"btn-update2 btn btn-primary]]"
+						}).html("수정");
+					
+					form.append(qNo).append(writer).append(etc).append(btn);
+					td.append(form);
+					tr.html(td);
+					tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
+																					
+					$(this).off("click"); 
+
+	
+					tr.find("form").submit(function(e){
+						if(<%=clientLogin == null%>){
+							alert("로그인 후에 이용해주세요!");
+							e.preventDefault();
+						}
+						var len=$(this).children("textarea").val().trim().length;
+						if(len==0){
+							alert("내용을 입력하세요");
+							e.preventDefault();
+						} 
+					});				
+				}else{
+					alert("로그인후 이용할 수 있습니다.");
+					$("#id").focus();
+				}
+				
+			});
 			$('.btn-reply').click(function(){
 				
 				if(<%=clientLogin != null%>){
@@ -284,7 +303,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 								"action":"<%=request.getContextPath()%>/boardqnacomment/commentInsert",
 								"method":"post"
 							});
-					var boardref=$("<input>").attr({
+					var qNo=$("<input>").attr({
 							"type":"hidden","name":"qNo",
 							"value":"<%=q.getBoardNo()%>"
 						});
@@ -293,8 +312,8 @@ table#tbl-comment tr.level2 sub.comment-date {
 							"value":"<%=clientLogin != null ? clientLogin.getId() : ""%>"
 						});
 					
-					var content=$("<textarea>").attr({
-							"name":"content","cols":"60","rows":"2"
+					var etc=$("<textarea>").attr({
+							"name":"etc","cols":"60","rows":"2"
 						});
 					var btn=$("<button>").attr({
 							"type":"submit","class":"btn-insert2"
@@ -326,7 +345,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 					$("#id").focus();
 				}
 			})
-		});
+		 }); 
 	</script>
 </section>
 <%@ include file="/views/common/footer.jsp"%>

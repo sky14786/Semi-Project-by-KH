@@ -35,10 +35,12 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">	
 <!-- [End Import] -->
 </head>
+<style>
 
-<header class = "fixed-top">
+</style>
+<header>
 	<nav
-		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark">
+		class="navbar navbar-expand-md sticky-top d-flex bg-primary navbar-dark" >
 		<div class="input-group">
 			<i class="fas fa-shipping-fast fa-3x" onclick = 'location.href = "<%=request.getContextPath()%>/index.jsp"' style = "color: white; cursor: pointer;"></i>
 			<form class="ml-4 allsearch ml-1" action="<%=request.getContextPath() %>/main/mainFinder">

@@ -72,7 +72,7 @@ public class ClientLoginServlet extends HttpServlet {
 				//1. 쿠키객체를 생성!, 생성자 매개변수 그 쿠키의 명칭과 값을 대입
 				// 첫번째 매개변수 : 키, 두번째 매개변수 : 값
 				Cookie c=new Cookie("saveId",id);
-				c.setMaxAge(2*60);//
+				c.setMaxAge(10*60*60);//
 				//c.setPath("/");//경로를 설정할 수 있음.
 				response.addCookie(c);
 			}else {

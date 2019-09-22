@@ -3,6 +3,9 @@ package com.truckta.boardqna.q.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.websocket.Session;
+
 import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.dao.BoardQnaQDao;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
@@ -15,6 +18,14 @@ public class BoardQnaQService {
 	public List<BoardQnaQ> selectListPage(int cPage, int numPerPage, int type) {
 		Connection conn = JDBCTemplate.getConnection();
 		List<BoardQnaQ> list = dao.selectListPage(conn, cPage, numPerPage, type);
+		JDBCTemplate.close(conn);
+		return list;
+		
+	}
+	public List<BoardQnaQ> selectBoardList(int cPage, int numPerPage, int type, String qUser) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardQnaQ> list = dao.selectBoardList(conn, cPage, numPerPage, type,qUser);
 		JDBCTemplate.close(conn);
 		return list;
 	}
@@ -64,10 +75,6 @@ public class BoardQnaQService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertBoard(conn, q);
 		if (result > 0) {
-			// for() {
-			// result=dao.insertAttachment(conn,list.get(i))
-			// if(result<0) break;
-			// }
 			JDBCTemplate.commit(conn);
 			result = dao.selectSeqBoard(conn);
 
@@ -85,6 +92,7 @@ public class BoardQnaQService {
 		JDBCTemplate.close(conn);
 		return q;
 	}
+	
 
 	public int insertComment(BoardQnaA a) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -115,6 +123,61 @@ public class BoardQnaQService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	public int upLoadBoard(BoardQnaQ q) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.upLoadBoard(conn, q);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			result = dao.selectSeqBoard(conn);
+
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int deleteComment(int qNo, int aNo) {
+		Connection conn=JDBCTemplate.getConnection();
+		int result=dao.deleteComment(conn,qNo,aNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {JDBCTemplate.rollback(conn);}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int updateComment(BoardQnaA a) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateComment(conn, a);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int updateQna(BoardQnaQ temp) {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.updateQna(conn, temp);
+
+		if (result == 1) {
+
+			JDBCTemplate.commit(conn);
+
+		} else {
+
+			JDBCTemplate.rollback(conn);
+
+		}
+
+		JDBCTemplate.close(conn);
+
+		return result;
+
 	}
 
 }

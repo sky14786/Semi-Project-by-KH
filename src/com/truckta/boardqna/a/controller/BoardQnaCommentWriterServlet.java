@@ -30,15 +30,38 @@ public class BoardQnaCommentWriterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		/*
+		 * // TODO Auto-generated method stub int
+		 * boardNo=Integer.parseInt(request.getParameter("aNo")); String
+		 * etc=request.getParameter("etc"); String
+		 * writer=request.getParameter("writer"); //자신이 맞는지 확인하는 로직
+		 * 
+		 * BoardQnaA a=new BoardQnaA(boardNo,etc,writer);
+		 * System.out.println(a+"+aaaaa"); int result=new
+		 * BoardQnaQService().insertComment(a);
+		 * 
+		 * String message=""; String location="/board/boardView?boardNo="+boardNo;
+		 * String view="/views/common/msg.jsp"; message=result>0?"댓글등록 성공":"댓글등록 실패";
+		 * request.setAttribute("message",message);
+		 * request.setAttribute("location",location);
+		 * request.getRequestDispatcher(view).forward(request, response);
+		 */
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub	
 		int qNo=Integer.parseInt(request.getParameter("qNo"));
 		String etc=request.getParameter("etc");
 		String writer=request.getParameter("writer");
+		
 		//자신이 맞는지 확인하는 로직
 		
 		BoardQnaA a=new BoardQnaA(qNo,etc,writer);
-		System.out.println(a);
 		int result=new BoardQnaQService().insertComment(a);
+		
 		
 		String message="";
 		String location="/board/boardView?boardNo="+qNo;
@@ -47,14 +70,7 @@ public class BoardQnaCommentWriterServlet extends HttpServlet {
 	    request.setAttribute("message",message);
 	    request.setAttribute("location",location);
 	    request.getRequestDispatcher(view).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	    
 	}
 
 }

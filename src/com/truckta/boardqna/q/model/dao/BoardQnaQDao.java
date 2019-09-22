@@ -61,6 +61,38 @@ public class BoardQnaQDao {
 		}
 		return list;
 	}
+	public List<BoardQnaQ> selectBoardList(Connection conn, int cPage, int numPerPage, int type,String qUser) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectBoardList");
+		List<BoardQnaQ> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, type);
+			pstmt.setString(2, qUser);
+			pstmt.setInt(3, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(4, cPage * numPerPage);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardQnaQ temp = new BoardQnaQ();
+				temp.setBoardNo(rs.getInt("board_no"));
+				temp.setqUser(rs.getString("q_user"));
+				temp.setTitle(rs.getString("title"));
+				temp.setEtc(rs.getString("etc"));
+				temp.setHireDate(rs.getDate("hire_date"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setType(rs.getInt("type"));
+				list.add(temp);
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
 
 	public int selectCountBoardQnaQ(Connection conn, int type) {
 		PreparedStatement pstmt = null;
@@ -187,7 +219,6 @@ public class BoardQnaQDao {
 	public int insertBoard(Connection conn, BoardQnaQ q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		System.out.println(q+"++++++");
 		String sql = prop.getProperty("insertBoard");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -254,42 +285,25 @@ public class BoardQnaQDao {
 		return q;
 
 	}
+	
 	public int insertComment(Connection conn,BoardQnaA a) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("insertComment");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt( 1 , a.getaNo());
-			pstmt.setInt( 2 , a.getqNo());
+			/* aNo,etc,writer,qNo */
+			pstmt.setInt(1 , a.getqNo());
+			pstmt.setString(2, a.getEtc());
 			pstmt.setString(3, a.getWriter());
-			pstmt.setString(4 , a.getEtc());
-			pstmt.setDate(5 , a.getHireDate());
+			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}return result;
 	}
-	public int selectSeqComment(Connection conn) {
-		Statement stmt = null;
-		ResultSet rs = null;
-		int result = 0;
-		String sql = "select qna_a_pk_seq.currval from dual";
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(stmt);
-		}
-		return result;
-	}
+	
 	public List<BoardQnaA> selectBoardComment(Connection conn, String boardNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -329,6 +343,91 @@ public class BoardQnaQDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}return result;
+	}
+	
+	public int upLoadBoard(Connection conn, BoardQnaQ q) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("upLoadBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, q.getTitle());
+			pstmt.setString(2, q.getEtc());
+			pstmt.setInt(3, q.getType());
+			pstmt.setString(4, q.getqUser());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public int deleteComment(Connection conn, int qNo,int aNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			pstmt.setInt(2, aNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
+	}
+	public int updateComment(Connection conn,BoardQnaA a) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1 , a.getqNo());
+			pstmt.setString(2, a.getEtc());
+			pstmt.setString(3, a.getWriter());
+			pstmt.setInt(4, a.getaNo());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
+	}
+	
+	public int updateQna(Connection conn, BoardQnaQ temp) {
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateQna");
+
+		int result = 0;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, temp.getTitle());
+
+			pstmt.setString(2, temp.getEtc());
+
+			pstmt.setInt(3, temp.getBoardNo());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+
+			sqle.printStackTrace();
+
+		} finally {
+
+			JDBCTemplate.close(pstmt);
+
+		}
+
+		return result;
+
 	}
 
 }

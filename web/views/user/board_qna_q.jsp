@@ -4,11 +4,18 @@
 <%@ page import="java.util.List"%>
 <%
 	List<BoardQnaQ> list = (List) request.getAttribute("list");
-	System.out.println(list.get(1).getqUser());
 	int cPage = (int) request.getAttribute("cPage");
-	BoardQnaQ qu = new BoardQnaQ();
-	
+	/* BoardQnaQ qu= (BoardQnaQ) request.getAttribute("board_qna_q");  */
+
+	if (request.getAttribute("type") != null) {
+		int type = (int) request.getAttribute("type");
+	}
 %>
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -30,11 +37,13 @@
 			<thead class="thead-light">
 				<tr style="text-align: center;">
 
-
-					<%-- <%if(qu.getType()==0){ %>	 --%>
+					<%
+						/*  if(qu.getType()==0){   */
+					%>
 					<h2>Q&A 게시판</h2>
 				<tr>
 					<th style="background-color: #eeeeee; text-align: center;">번호</th>
+					<th style="background-color: #eeeeee; text-align: center;">게시물</th>
 					<th style="background-color: #eeeeee; text-align: center;">제목</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성자</th>
 					<th style="background-color: #eeeeee; text-align: center;">작성일</th>
@@ -51,6 +60,18 @@
 				%>
 				<tr style="text-align: center;">
 					<td><%=q.getBoardNo()%></td>
+					<td>
+						<%
+							if (q.getType() == 0) {
+						%> 질문 <%
+							} else if (q.getType() == 1) {
+						%> 건의 <%
+							} else if (q.getType() == 2) {
+						%> 신고 <%
+							}
+						%>
+
+					</td>
 					<td><a
 						href="<%=request.getContextPath()%>/board/boardView?boardNo=<%=q.getBoardNo()%>">
 							<%=q.getTitle()%>
@@ -65,8 +86,7 @@
 							} else if (q.getStatus() == 1) {
 						%> 답변후 <%
 							} else if (q.getStatus() == 2) {
-						%>
-						완료 <%
+						%> 완료 <%
 							}
 						%>
 					</td>
@@ -94,82 +114,16 @@
 			<%=request.getAttribute("pageBar")%>
 		</div>
 	</div>
-	<%-- <%} %> --%>
 
 
 
-	<%-- <%if(qu.getType()==1){ %>			
-<h2>Q&A 게시판</h2>
-        <tr>
-            <th style="background-color: #eeeeee; text-align :center;">번호</th>
-            <th style="background-color: #eeeeee; text-align :center;">제목</th>
-            <th style="background-color: #eeeeee; text-align :center;">작성자</th>
-            <th style="background-color: #eeeeee; text-align :center;">작성일</th>
-            <th style="background-color: #eeeeee; text-align :center;">상태</th>
-        </tr>
-    </thead>
-    <tbody>
-           <%for(BoardQnaQ q : list) {%>
-				<tr style="text-align:center;">
-					<td><%=q.getBoardNo() %></td>
-				<td>
-						<a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=q.getBoardNo()%>">
-							<%=q.getTitle() %>
-						</a>
-					</td>
-					<td><%=q.getqUser() %></td>
-					<td><%=q.getHireDate() %></td>
-					
-				
-				</tr>
-			<%} %>   
-    </tbody>
-    </table>
-   <div id="pageBar" style="text-align:center;color:black;">
-			<%=request.getAttribute("pageBar")%>
-	</div>
-</div>
 
-<%} %> 
 
-<%if(qu.getType()==2){ %>			
-<h2>Q&A 게시판</h2>
-        <tr>
-            <th style="background-color: #eeeeee; text-align :center;">번호</th>
-            <th style="background-color: #eeeeee; text-align :center;">제목</th>
-            <th style="background-color: #eeeeee; text-align :center;">작성자</th>
-            <th style="background-color: #eeeeee; text-align :center;">작성일</th>
-            <th style="background-color: #eeeeee; text-align :center;">상태</th>
-        </tr>
-    </thead>
-    <tbody>
-           <%for(BoardQnaQ q : list) {%>
-				<tr style="text-align:center;">
-					<td><%=q.getBoardNo() %></td>
-				<td>
-						<a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=q.getBoardNo()%>">
-							<%=q.getTitle() %>
-						</a>
-					</td>
-					<td><%=q.getqUser() %></td>
-					<td><%=q.getHireDate() %></td>
-					
-				
-				</tr>
-			<%} %>  --%>
-	<%-- </tbody>
-    </table>
-   <div id="pageBar" style="text-align:center;color:black;">
-			<%=request.getAttribute("pageBar")%>
-	</div>
-</div>
-
- <%} %>   --%>
 
 	<%
 		if (clientLogin != null) {
 	%>
-	<input type="button" value="글쓰기" id="btn-add" onclick="fn_boardAdd()" />
+	<input type="button" class="btn btn-primary" value="글쓰기" id="btn-add" onclick="fn_boardAdd()" />
 	<%
 		}
 	%>
@@ -194,6 +148,7 @@
 .list-padding {
 	padding: 10px 5px;
 }
+
 </style>
 </body>
 </html>
