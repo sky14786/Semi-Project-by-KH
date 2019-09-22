@@ -38,7 +38,7 @@ public class MainDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardMatching bm = new BoardMatching();
-				
+
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
@@ -49,15 +49,9 @@ public class MainDao {
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
-				
 
 				list.add(bm);
 			}
-<<<<<<< HEAD
-//			System.out.println("파일경로불러와졋니?dao"+list);
-=======
-			//System.out.println("파일경로불러와졋니?dao"+list);
->>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -67,7 +61,7 @@ public class MainDao {
 		return list;
 
 	}
-	
+
 	public int selectCountMember(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -111,10 +105,9 @@ public class MainDao {
 				bm.setMemo(rs.getString("memo"));
 				bm.setHireDate(rs.getDate("hire_date"));
 				bm.setBoardState(rs.getInt("board_state"));
-				
+
 				list.add(bm);
 			}
-			//System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -123,8 +116,7 @@ public class MainDao {
 		}
 		return list;
 	}
-	
-	
+
 	public int selectCountMember(Connection conn, String key) {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -174,7 +166,6 @@ public class MainDao {
 				bm.setBoardState(rs.getInt("board_state"));
 				list.add(bm);
 			}
-			//System.out.println("#####search dao : "+list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -190,7 +181,6 @@ public class MainDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from Board_Matching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
-		//System.out.println("#####maindao:" + sql);
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -208,7 +198,6 @@ public class MainDao {
 				bm.setBoardState(rs.getInt("board_state"));
 				list.add(bm);
 			}
-			//System.out.println("#########dao:" + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -223,7 +212,6 @@ public class MainDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select*from file_matching";
-		//System.out.println("#######file_matching sql:" + sql);
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -233,7 +221,6 @@ public class MainDao {
 				fm.setFileName(rs.getString("FILE_NAME"));
 				list.add(fm);
 			}
-			//System.out.println("#########file_matching dao:" + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -249,11 +236,6 @@ public class MainDao {
 		int result = 0;
 		String sql = "select count(*) as cnt from Board_Matching where start_addr like '%" + selectGu
 				+ "%' or end_addr like '%" + selectGu + "%'";
-<<<<<<< HEAD
-		//System.out.println("#######boardmatching dao:"+sql);
-=======
-//		System.out.println("#######boardmatching dao:"+sql);
->>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -277,21 +259,11 @@ public class MainDao {
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
 		String sql = "select * from(select rownum as rnum, a.* from("
-				+ "select * from board_matching where start_addr like '%"+ selectGu + "%' or end_addr like '%" + selectGu + "%' order by hire_date desc)a)"
-				+ " where rnum between "+ start+" and "+ end;
+				+ "select * from board_matching where start_addr like '%" + selectGu + "%' or end_addr like '%"
+				+ selectGu + "%' order by hire_date desc)a)" + " where rnum between " + start + " and " + end;
 
 		try {
-<<<<<<< HEAD
-			/*
-			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
-			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
-			 * end);
-			 */
-			//System.out.println("#####list selectListpagegu dao:"+sql);
-=======
-//			System.out.println("#####list selectListpagegu dao:"+sql);
->>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
-			 stmt=conn.createStatement();
+			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				BoardMatching bm = new BoardMatching();
@@ -315,27 +287,18 @@ public class MainDao {
 		}
 		return list;
 	}
+
 	public List<BoardMatching> searchDate(Connection conn, int cPage, int numPerPage, String searchdate) {
 		Statement stmt = null;
 		ResultSet rs = null;
 		List<BoardMatching> list = new ArrayList();
-		
+
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
-		String sql="select * from board_matching where tk_date="+"'"+searchdate+"'";
-
+		String sql = "select * from board_matching where tk_date=" + "'" + searchdate + "'";
 
 		try {
-<<<<<<< HEAD
-			/*
-			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
-			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
-			 * end);
-			 */
-=======
->>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
-			//System.out.println("#####list selectListpagegu dao:"+sql);
-			 stmt=conn.createStatement();
+			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				BoardMatching bm = new BoardMatching();

@@ -1,7 +1,6 @@
-package com.truckta.boardmatching.controller;
+package com.truckta.client.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,14 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.client.model.vo.Client;
+import com.truckta.driver.model.service.DriverService;
 
-@WebServlet("/board/delete")
-public class BoardMatchingDeleteServelt extends HttpServlet {
+/**
+ * Servlet implementation class UserToDriverServlet
+ */
+@WebServlet("/userToDriver")
+public class UserToDriverServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public BoardMatchingDeleteServelt() {
+    public UserToDriverServlet() {
         super();
     }
 
@@ -24,25 +26,24 @@ public class BoardMatchingDeleteServelt extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
-			request.setAttribute("message", "잘못된 접근입니다.");
+		if(cl == null || cl.getStatus() == 2 || cl.getStatus() == 3) {
+			request.setAttribute("message", "드라이버는 신청할 수 없습니");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		
-		//게시판 글 삭제
-		int boardNo = Integer.parseInt(request.getParameter("boNum"));
-		int result = new BoardMatchingService().boardDelete(boardNo);
-		if(result > 0) {
-			//삭제 성공
-			response.sendRedirect(request.getContextPath()+"/mainPage.jsp");
-			return;
+		// 신청 상태 확인 0:신청상태(DB) -> 1
+		int checkDriver = new DriverService().dirverStatusCheck(cl.getId());
+		
+		if(checkDriver == 1) {
+			request.setAttribute("message", "드라이버 신청중입니다");
+			String path = "/my/pageTop";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
-			//삭제 실패
-			request.setAttribute("message", "글 삭제가 되지 않았습니다.");
-			request.setAttribute("location", "/");
-			request.getRequestDispatcher(request.getContextPath()+"/common/msg.jsp").forward(request, response);
+			request.setAttribute("client", cl);
+			request.getRequestDispatcher("/views/user/userToDriver.jsp").forward(request, response);
 		}
 		
 	}

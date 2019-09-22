@@ -13,12 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.client.model.vo.Client;
 import com.truckta.driver.model.service.DriverService;
 import com.truckta.file.matching.model.vo.FileMatching;
 
@@ -37,6 +39,15 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Client cl = (Client)session.getAttribute("loginClient");
+		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+			request.setAttribute("message", "드라이버는 신청할 수 없습니");
+			String path = "/index.jsp";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
 		
 		// 이미지 서버에 업로드
 		// 경로 : /images/boardMatching_images	
@@ -95,7 +106,8 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		// boardNo(int), boardState(int), count(int)
 //		String writer = (String)request.getSession().getAttribute("writer");
 //		String writer = "writer";
-		bm.setWrtier("010-0335-0361");
+		//bm.setWrtier("010-0335-0361");
+		bm.setWrtier(cl.getId());
 		
 		// 유저 - 드라이버 확인
 		int userDriver = new DriverService().driverCheck(bm.getWrtier());
@@ -126,7 +138,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			// 이미지 경로 저장
 			int imgResult = new BoardMatchingService().insertImgBoardMatching(list);
 
-			// 이미지 삭제
+			// 실패시 서버에 이미지 삭제
 			if(imgResult == 0) {
 				for (int i = 0; i < fns.size(); i++) {
 					String imgFileName = fns.get(i);
@@ -135,7 +147,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 					if(file.exists()) file.delete();
 					int imgCk = new BoardMatchingService().deleteImg(resultBoNum);
 					System.out.println(imgCk==1?"DB이미지 삭제성공":"DB이미지 삭제실패");
-				}//for
+				}
 			}
 			
 		}else {
@@ -152,7 +164,13 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 				File file = new File(saveDir+ "/" + imgFileName);
 				if(file.exists()) file.delete();
 			}//for
+			request.setAttribute("message", "글 올리기에 실패했습니다");
+			String path = "/my/pageTop";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}//endif
+		
+		//request.getRequestDispatcher("/my/pageTop").forward(request, response);
 		
 		
 	}

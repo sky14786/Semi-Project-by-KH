@@ -83,10 +83,10 @@ public class MainSearchServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("fileList", fileList);
 		request.setAttribute("searchKeyword", keyword);
-		//System.out.println("####setattribute"+keyword);
+//		System.out.println("####setattribute"+keyword);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list_page", list);
-		//System.out.println("#####setattributelist_page:"+list);
+//		System.out.println("#####setattributelist_page:"+list);
 		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 		///views
 	}

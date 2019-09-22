@@ -11,6 +11,18 @@ import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.template.JDBCTemplate;
 
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.truckta.boardmatching.model.dao.BoardMatchingDao;
+import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.client.model.vo.Client;
+import com.truckta.file.matching.model.vo.FileMatching;
+
+import common.template.JDBCTemplate;
+
 public class BoardMatchingService {
 	private BoardMatchingDao dao = new BoardMatchingDao();
 
@@ -191,9 +203,9 @@ public class BoardMatchingService {
 	}
 
 	// 전체 리스트(마이페이지)
-	public List<BoardMatching> myAllList(String writer) {
+	public List<BoardMatching> myAllList(String writer, int cPage, int numPerPage) {
 		Connection conn = JDBCTemplate.getConnection();
-		List<BoardMatching> list = dao.myAllList(conn, writer);
+		List<BoardMatching> list = dao.myAllList(conn, writer, cPage, numPerPage);
 		JDBCTemplate.close(conn);
 		return list;
 	}
@@ -226,7 +238,7 @@ public class BoardMatchingService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-	
+
 	public int matchingListCount(String writer) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.matchingListCount(conn, writer);

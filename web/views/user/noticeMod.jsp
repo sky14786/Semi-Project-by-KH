@@ -21,21 +21,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <%@ include file="/views/common/header.jsp"%>
-<%@ include file="/views/user/myPageHeader.jsp"%>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <title>배달 정보 업로드</title>
 
 <!-- 부트스트랩 4 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-
-<!-- jquery -->
-<!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-
 <!-- date picker -->
 <script src="../../js/jquery-3.4.1.js" charset="utf-8"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
@@ -44,16 +34,12 @@
 	rel="stylesheet" type="text/css" />
 
 <!-- notice -->
-<script src="../../js/notice.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
 <!-- post -->
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script src="../../js/post.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 
 <style>
-nav, aside {
-	color: red;
-}
-
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -74,27 +60,18 @@ nav, aside {
 
 <body class="bg-light">
 	<div class="container">
-		<div class="py-1 text-center">
-			<!-- <h2>header</h2> -->
-			<!-- 헤더 수정 -->
-
-
-			
-
-
-
-		</div>
-
+		<!-- <div class="py-1 text-center">
+			<h2>header</h2>
+			헤더 수정
+		</div> -->
 		<div class="row">
 			<div class="col-md-2 order-md-1 mb-1">
-				<nav>nav</nav>
-
-				<!-- ---------------------------------------- -->
+				<!-- <nav>nav</nav> -->
 			</div>
 			
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
-				<h4 class="mb-3">배달 정보<h3>(수정)</h3></h4>
+				<h4 class="mb-3">배달 정보(변경)</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
 				
@@ -123,7 +100,7 @@ nav, aside {
 						required>
 
 					<div class="mb-4"></div>
-					<label for="address2">목적지 주소</label>
+					<label for="address2">도착지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control end-postcode" name="post-number2"
 							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" value="<%=newEndAddr[0]%>" readonly> <input
@@ -169,7 +146,7 @@ nav, aside {
 						<label for="">희망 배송일</label>
 						<div class="col-8">
 							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="배송 메모" value="<%=bm.getMemo()%>">
+								placeholder="연락 메모" value="<%=bm.getMemo()%>">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
 								placeholder="일 / 월 / 년" value="<%=bm.getHireDate()%>" day="<%=bm.getHireDate()%>" readonly />
@@ -243,9 +220,9 @@ nav, aside {
 			</div>
       
 			<!-- aside -->
-			<div class="col-md-2 order-md-3 mb-1">
+			<!-- <div class="col-md-2 order-md-3 mb-1">
 				<aside>aside</aside>
-			</div>
+			</div> -->
 		</div>
      </div>
     <script>
@@ -311,7 +288,7 @@ nav, aside {
 </body>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-	<p class="mb-1">footer</p>
+	<!-- <p class="mb-1">footer</p> -->
 </footer>
 
 
@@ -319,3 +296,4 @@ nav, aside {
 
 
 
+>>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8

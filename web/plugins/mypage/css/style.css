@@ -3,7 +3,6 @@
 html {
   font-size: 16px;
 }
-
 body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -1329,6 +1328,7 @@ select.form-control:not([size]):not([multiple]) {
 @media (max-width: 996px) {
 	.schedule .schedule-tab ul li.nav-item a{
 		padding: 5px 5px;
+		font-size: 21px;
 	}
 }
 @media (max-width: 748px) {

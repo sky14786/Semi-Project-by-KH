@@ -61,23 +61,60 @@ public class DriverService {
 
 	public Driver findDriver(String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		Driver temp = dao.findDriver(conn,id);
+		Driver temp = dao.findDriver(conn, id);
 		JDBCTemplate.close(conn);
 		return temp;
 	}
 
-	public int adminUpdateDriver(Driver d,String target) {
+	public int adminUpdateDriver(Driver d, String target) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.adminUpdateDriver(conn,d,target);
-		if(result ==1) {
+		int result = dao.adminUpdateDriver(conn, d, target);
+		if (result == 1) {
 			JDBCTemplate.commit(conn);
-		}else {
+		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return result;
 	}
 
+	// 매칭 성사전 매칭 신청한 리스트
+	public List<List> myPageDriverMatching(String driver) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.myPageDriverMatching(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 
+	// 운송 완료 리스트
+	public List<List> myPageDriverMatchingCom(String driver) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.myPageDriverMatchingCom(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 
+	// 전체 리스트
+	public List<List> driverReqAllList(int cPage, int numPerPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<List> list = dao.driverReqAllList(conn, cPage, numPerPage);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	// count
+	public int matchingListCount() {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.matchingListCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	// 드라이버 상태 여부 확인
+	public int dirverStatusCheck(String driver) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.dirverStatusCheck(conn, driver);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

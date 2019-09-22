@@ -6,8 +6,7 @@
 	//쿠키는 key:value형식으로 여러개 저장이 가능하기 때문에
 	//쿠키객체가 배열로 저장이 됨.
 	Client cl = new Client();
-	System.out.println(cl);
-
+	
 	Cookie[] cookies = request.getCookies();
 	String saveId = null;
 	//내가 원하는 cookie객체를 찾아서 값을 처리
@@ -16,8 +15,6 @@
 			//key, value를 매소드를 이용해서 가져올 수 있음
 			String key = c.getName();
 			String value = c.getValue();
-			System.out.println("key : " + key);
-			System.out.println("value : " + value);
 			if (key.equals("saveId")) {
 				saveId = value;
 			}

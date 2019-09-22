@@ -14,12 +14,14 @@ import javax.servlet.http.HttpSession;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
+import com.truckta.driver.model.service.DriverService;
 
-@WebServlet("/my/mySchedule.do")
-public class MyPageScheduleServlet extends HttpServlet {
+@WebServlet("/my/pageScheduleDriver.do")
+public class MypageDriverScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public MyPageScheduleServlet() {
+
+	public MypageDriverScheduleServlet() {
 		super();
 	}
 
@@ -29,53 +31,45 @@ public class MyPageScheduleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String writer = "";
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 2 || cl.getStatus() == 0 ) {
-			request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
+		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 1 || cl.getStatus() == 0 ) {
+			request.setAttribute("message", "드라이버 페이지 불러오기에 실패했습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		writer = cl.getId();
-
-
-		/* hire_date | start_addr | end_addr | id | pay */
-		List<List> matList = new BoardMatchingService().matchingList(writer);
-		/* com_date | id | end_addr | pay */
-		List<List> matCompleList = new BoardMatchingService().matchingCompleteList(writer);
-
+		
+		
+		
+		/* title | start_addr | end_addr | try_date | pay | board_no */
+		List<List> matList = new DriverService().myPageDriverMatching(writer);
+		/* com_date | requestor | end_addr | pay | board_no */
+		List<List> matCompleList = new DriverService().myPageDriverMatchingCom(writer);
+		
 		if(matList.size() > 0) request.setAttribute("matList", matList);
 		if(matCompleList.size() > 0) request.setAttribute("matCompleList", matCompleList);	
 
-		//-----------page
-		//		List pageList = new ArrayList();
-		//pageList = paging(request, writer);
-
-		//		String pageBar = (String)pageList.get(0);
-		//		int cPage = (int)pageList.get(1);
-
-		//paging
-		//List list = new ArrayList();
+		//page
+//		List pageList = new ArrayList();
+//		pageList = paging(request, writer);
+//
+//		String pageBar = (String)pageList.get(0);
+//		int cPage = (int)pageList.get(1);
+		
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		} catch (NumberFormatException nfe) {
 			cPage = 1;
 		}
+
+		int numPerPage = 5;
+		int totalCount = new DriverService().matchingListCount();
+
+		/* title | start_addr | end_addr | responser | try_date | board_no */
+		List<List> list = new DriverService().driverReqAllList(cPage, numPerPage);
+		if(list.size() > 0) request.setAttribute("boardMatching", list);
 		
-
-		int numPerPage = 5; // 표시할 페이지 수
-
-		int totalCount = new BoardMatchingService().matchingListCount(writer);
-		List<BoardMatching> list = new BoardMatchingService().myAllList(writer, cPage, numPerPage);
-		if(list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				if(list.get(i).getMemo().equals("null") || list.get(i).getMemo() == null){
-					list.get(i).setMemo("연락메모 없음");
-				}
-			}
-			request.setAttribute("boardMatching", list);
-		}
-
 		int totalPage = (int) Math.ceil((double) totalCount / numPerPage);
 
 		String pageBar = "";
@@ -83,14 +77,14 @@ public class MyPageScheduleServlet extends HttpServlet {
 
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;
-//		System.out.println(pageNo + " / " + pageEnd + " / " + totalPage + " / " + totalCount);
+
 		if (pageNo == 1) {
 			pageBar += "<li class='page-item'><a class='page-link' href='#' aria-label='prev'>" 
 					+ "<i class='fa fa-angle-left'></i></span>"
 					+ "<span class='sr-only'>prev</span>"
 					+ "</a></li>";
 		} else {
-			pageBar += "<li class='page-item'><a class='page-link' href="+ request.getContextPath() + "/my/mySchedule.do?cPage=" + (pageNo - 1) + " aria-label='prev'>" 
+			pageBar += "<li class='page-item'><a class='page-link' href='"+ request.getContextPath() + "/my/pageScheduleDriver.do?cPage=" + (pageNo - 1) + "' aria-label='prev'>" 
 					+ "<i class='fa fa-angle-left'></i></span>"
 					+ "<span class='sr-only'>prev</span>"
 					+ "</a></li>";
@@ -101,8 +95,8 @@ public class MyPageScheduleServlet extends HttpServlet {
 				pageBar += "<li class='page-item active'><a class='page-link' href='#'>" + pageNo + "</a></li>";
 			} else {
 				pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
-				+ "/my/mySchedule.do?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
-
+				+ "/my/pageScheduleDriver.do?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
+				
 			}
 			pageNo++;
 		}
@@ -113,17 +107,15 @@ public class MyPageScheduleServlet extends HttpServlet {
 					+ "<span class='sr-only'>Next</span></a></li>";
 		} else {
 			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
-			+ "/my/mySchedule.do?cPage=" + (pageNo) 
-			+ "' aria-label='Next'>"
-			+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
-			+ "<span class='sr-only'>Next</span></a></li>";
+					+ "/my/pageScheduleDriver.do?cPage=" + (pageNo) 
+					+ "' aria-label='Next'>"
+					+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
+					+ "<span class='sr-only'>Next</span></a></li>";
 		}
-
-		// ---------- page ----------------
-
+		
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		request.getRequestDispatcher("/views/myPage/mySchedule.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/myPage/myPageDriverSchedule.jsp").forward(request, response);
 
 	}
 
@@ -142,17 +134,18 @@ public class MyPageScheduleServlet extends HttpServlet {
 			cPage = 1;
 		}
 
-		int numPerPage = 8; // 표시할 페이지 수
-		int totalCount = new BoardMatchingService().matchingListCount(writer);
-
+		int numPerPage = 10;
+		int totalCount = new DriverService().matchingListCount();
+//		int totalCount = new BoardMatchingService().matchingListCount(writer);
+		
 		int totalPage = (int) Math.ceil((double) totalCount / numPerPage);
 
 		String pageBar = "";
 		int pageSizeBar = 5;
-		
+
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;
-		System.out.println(pageNo + " / " + pageEnd);
+
 		if (pageNo == 1) {
 			pageBar += "<li class='page-item'><a class='page-link' href='#' aria-label='prev'>" 
 					+ "<i class='fa fa-angle-left'></i></span>"
@@ -171,7 +164,7 @@ public class MyPageScheduleServlet extends HttpServlet {
 			} else {
 				pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
 				+ "/my/mySchedule.do?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
-
+				
 			}
 			pageNo++;
 		}
@@ -182,16 +175,18 @@ public class MyPageScheduleServlet extends HttpServlet {
 					+ "<span class='sr-only'>Next</span></a></li>";
 		} else {
 			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
-			+ "/my/mySchedule.do?cPage=" + (pageNo) 
-			+ "' aria-label='Next'>"
-			+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
-			+ "<span class='sr-only'>Next</span></a></li>";
+					+ "/my/mySchedule.do?cPage=" + (pageNo) 
+					+ "' aria-label='Next'>"
+					+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
+					+ "<span class='sr-only'>Next</span></a></li>";
 		}
-
+		
 		list.add(pageBar);
 		list.add(cPage);
 
 		return list; 
 	}
 	*/
+	
+	
 }

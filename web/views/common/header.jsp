@@ -73,6 +73,7 @@
 	<%
 		} else{
 	%>
+<<<<<<< HEAD
 	<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
 				<i class="fas fa-envelope fa-lg"></i>
 			</button>
@@ -83,10 +84,16 @@
 <div class="collapse navbar-collapse flex-grow-0"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
-					<li class="nav-item active"><a class="nav-link"
-						href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
+					<li class="nav-item active">
+					<%if(clientLogin.getUserType() == 1){ %>
+					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTop'>마이페이지</a>
+					<%}else if(clientLogin.getUserType() == 2){ %>
+					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTopDriver'>마이페이지</a>
+					<%}else{ %>
+					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTop'>마이페이지</a>
+					<%} %>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href='<%=request.getContextPath()%>/logout'>로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
@@ -120,6 +127,7 @@ function deny(){
 
 </script>
 
-<body>
+<!-- <body>
+>>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8
 </body>
-</html>
+</html> -->

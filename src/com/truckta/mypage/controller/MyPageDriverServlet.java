@@ -14,70 +14,68 @@ import javax.servlet.http.HttpSession;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
+import com.truckta.driver.model.service.DriverService;
 import com.truckta.file.matching.model.vo.FileMatching;
 
-@WebServlet("/my/pageTop")
-public class MypageTopServleit extends HttpServlet {
+@WebServlet("/my/pageTopDriver")
+public class MyPageDriverServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MypageTopServleit() {
-        super();
-    }
+
+	public MyPageDriverServlet() {
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// my driver page init //
+		
+		// -- 다른 사용자 접속 에러 처리 --
 		HttpSession session = request.getSession();
 		String writer = "";
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 2  || cl.getStatus() == 0) {
-			request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
+		if(cl == null || cl.getUserType()== 3 || cl.getUserType() == 1 ||cl.getStatus() == 0) {
+			request.setAttribute("message", "드라이버 페이지 불러오기에 실패했습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else
 			writer = cl.getId();
 
-		// 값이 없으면 메인화면으로 이전
+		// -- 값이 없으면 메인화면으로 이전 --
 		if(writer.equals("null") || writer == null) {
 			String path = "/index.jsp";
 			request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		
-		List<BoardMatching> list = new BoardMatchingService().mypageTop(writer);
+
+		// 데이터 처리
+		// 거래중인 목록의 리스트(top3)
+		List<BoardMatching> list = new DriverService().driverTopList(writer);
 		List<List> imgAllList = new ArrayList<List>();
-		
+
 		for (int i = 0; i < list.size(); i++) {
-			// memo check null
-			if(list.get(i).getMemo() == null || list.get(i).getMemo().equals("null")) {
-				list.get(i).setMemo("연락메모 없음");
-			}
 			int boardTmp = list.get(i).getBoardNo();
 			List<FileMatching> listImg = new BoardMatchingService().loadBoardImg(boardTmp);	
 			imgAllList.add(listImg);			
 		}
-//		for (int i = 0; i < imgAllList.size(); i++) {
-//			for (int j = 0; j < imgAllList.get(i).size(); j++) {
-//				System.out.println( ((FileMatching)imgAllList.get(i).get(j)).getBaordNo() );
-//				System.out.println(  ((FileMatching)imgAllList.get(i).get(j)).getFileName()  );
-//			}
-//		}
-		if(list.size() != 0) {
+
+		if(list.size() > 0) {
 			request.setAttribute("boardTop", list);
 		}
-		if(imgAllList.size() != 0) {
+		if(imgAllList.size() > 0) {
 			request.setAttribute("imgTop", imgAllList);
 		}else {
 			request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
 		}
-		
-		request.getRequestDispatcher("/views/myPage/mypageTop.jsp").forward(request, response);
-		
+
+		request.getRequestDispatcher("/views/myPage/myPageDriverTop.jsp").forward(request, response);
+
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 
 }

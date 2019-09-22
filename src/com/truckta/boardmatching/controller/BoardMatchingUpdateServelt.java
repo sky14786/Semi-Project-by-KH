@@ -13,12 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.truckta.boardmatching.model.service.BoardMatchingService;
 import com.truckta.boardmatching.model.vo.BoardMatching;
+import com.truckta.client.model.vo.Client;
 import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.fileRename.BoFileRename;
@@ -32,6 +34,16 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// 수정된 데이터를 저장
+		HttpSession session = request.getSession();
+		Client cl = (Client)session.getAttribute("loginClient");
+		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+			request.setAttribute("message", "수정이 불가능합니다.");
+			String path = "/index.jsp";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
+		
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			response.sendRedirect("/");
 			return;
@@ -88,16 +100,14 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// boardNo(int), boardState(int), count(int)
-//				String writer = (String)request.getSession().getAttribute("writer");
-//				String writer = "writer";
-		bm.setWrtier("010-0335-0361");
+		bm.setWrtier(cl.getId());
 
-		int boardNum = 199; //해당 글번호
+//		int boardNum = request.getAttribute("boardNum"); //해당 글번호
+		int boardNum = 199;
 		bm.setBoardNo(boardNum);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
-		System.out.println("입력 성공 : " + result);
+		System.out.println("수정 성공 : " + result);
 		
 		if(result == 1) {
 			//기존 이미지 삭제
@@ -105,10 +115,10 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 			if(listImg.size() > 0) {
 				int imgCk = new BoardMatchingService().modImg(bm.getBoardNo(), imgTemp); //db에서 이미지 삭제
-				System.out.println("db 부분삭제 : " + imgCk);
+//				System.out.println("db 부분삭제 : " + imgCk);
 				if(imgCk > 0) {
 					for (int i = 0; i < imgTemp.length; i++) {
-						System.out.println("delete save img dir : " + saveDir + "/" + imgTemp[i]);
+//						System.out.println("delete save img dir : " + saveDir + "/" + imgTemp[i]);
 						File file = new File(saveDir+ "/" + imgTemp[i]);
 						if(file.exists()) file.delete(); // 서버에서 파일 삭제
 //						int imgCk = new BoardMatchingService().deleteImg(bm.getBoardNo()); //삭제후 db에서 삭제

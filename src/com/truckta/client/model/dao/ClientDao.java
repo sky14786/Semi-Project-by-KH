@@ -40,7 +40,6 @@ public class ClientDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
-			System.out.println(id + "/" + pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				cl = new Client();
@@ -52,7 +51,6 @@ public class ClientDao {
 				cl.setModDate(rs.getDate("modDate"));
 				cl.setUserType(rs.getInt("user_Type"));
 				cl.setStatus(rs.getInt("status"));
-				System.out.println(cl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -240,8 +238,6 @@ public class ClientDao {
 			close(pstmt);
 		}
 
-		System.out.println("result : " + result);
-
 		return result;
 	}
 
@@ -309,9 +305,9 @@ public class ClientDao {
 		String sql = prop.getProperty("sendChat");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("//////////////////");
-			System.out.println(ch);
-			System.out.println(ch.getRoomNo());
+//			System.out.println("//////////////////");
+//			System.out.println(ch);
+//			System.out.println(ch.getRoomNo());
 			pstmt.setInt(1, ch.getRoomNo());
 			pstmt.setString(2, ch.getSender());
 			pstmt.setString(3, ch.getChatText());
