@@ -85,6 +85,7 @@ public class DriverJoinServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add Fail : " + temp.getId());
+			request.getSession().removeAttribute("isCertified");
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "실패했습니다. 메인페이지로 이동합니다.");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
