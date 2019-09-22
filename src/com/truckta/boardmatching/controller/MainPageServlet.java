@@ -1,10 +1,12 @@
 package com.truckta.boardmatching.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,9 +67,7 @@ public class MainPageServlet extends HttpServlet {
 		} else {
 			pageBar += "<a href=" + request.getContextPath() + "/mainpageload?cPage=" + (pageNo) + ">[다음]</a>";
 		}
-		////////////
-		//List<FileMatching> file_matching = new MainService().fileSearch();
-
+		
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
 		// request.setAttribute("members",list1);//??

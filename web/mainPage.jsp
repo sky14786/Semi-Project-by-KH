@@ -195,7 +195,7 @@
 
     </div>
 
-		<%if(list_page.size()>9){ %>
+			<% if(list_page.size()>9){ %>
 		<div class="pagebar" id="pagebar"><%=request.getAttribute("pageBar")%></div>
 		<%} %>
 		<div class="col-xl-1" >
@@ -321,55 +321,9 @@
   	    
   	    $("#paymentDate").html(options);
   	    
-  	var calendarShown = false;
-  	$.datepicker.setDefaults({
-  	  showOn: "both",
-  	  buttonImageOnly: true,
-  	  buttonImage: "",
-  	  buttonText: "Calendar",
-  	  dateFormat: "m/d/yy"
-  	});
-
-  	$( "#payday" ).datepicker({
-  			beforeShow: readSelected, 
-  			onSelect: updateSelected,
-  			maxDate: $("select#paymentDate option").length - 1,
-  			minDate: "0"
-  		});
-
-  	$("#show1up").click(function(){	
-  		if(!calendarShown || !$("#ui-datepicker-div").is(":visible") ){
-  			$(".ui-datepicker-trigger").trigger("click");
-  			calendarShown = true;
-  		}
-  		else
-  			calendarShown = false;
-  	});	
+  
 
   	});
-
-
-  	function readSelected() {
-  	}
-
-  	function updateSelected(date) {
-  	    $("#paymentDate option").each(function(index){        
-  	     	if($(this).val() == date)
-  	     		$('#paymentDate option').eq(index).prop('selected', true);
-  		});
-  	    
-  	}
-
-    function readSelected() {
-    }
-
-    function updateSelected(date) {
-        $("#paymentDate option").each(function(index){        
-         	if($(this).val() == date)
-         		$('#paymentDate option').eq(index).prop('selected', true);
-    	});
-        
-    } 
     
     </script>
 	

@@ -28,6 +28,15 @@ Client clientLogin=(Client)session.getAttribute("loginClient");
     <link href="<%=request.getContextPath()%>/css/header.css?ver=1.1" rel="stylesheet" />
     <link href="<%=request.getContextPath()%>/css/mainListStyle.css?ver=1.1" rel="stylesheet" />
     <!-- [End Import] -->
+    
+    <script type="text/javascript">
+
+
+   alert("하이요");
+
+
+</script>
+
   </head>
 
  <header>
