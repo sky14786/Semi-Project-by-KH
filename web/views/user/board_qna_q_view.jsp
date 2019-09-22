@@ -181,7 +181,7 @@ table#tbl-comment sub.comment-date {
 		%>
 
 		<tr class="level1">
-			<td><input type="hidden" name="org<%=i%>"
+<%-- 			<td><input type="hidden" name="org<%=i%>"
 				value="<%=list.get(i).getaNo()%>"> <sub
 				class="comment-writer"> <%=list.get(i).getWriter()%>
 			</sub> <sub class="comment-date"> <%=list.get(i).getHireDate()%>
@@ -195,7 +195,20 @@ table#tbl-comment sub.comment-date {
 					value="<%=list.get(i).getaNo()%>">삭제</button> <%
  	}
  %>
+			</td> --%>
+			<td><input type="hidden" name ="org_aNo" value="<%=list.get(i).getaNo()%>"></td>
+			<td>
+				<sub class="comment-writer">글쓴이 : <%=list.get(i).getWriter() %></sub>&nbsp;
+				<sub class="comment-date">작성일 : <%=list.get(i).getHireDate() %></sub><br><br>
+				<%=list.get(i).getEtc() %>
 			</td>
+			<td>
+				<button class="btn-update2 btn btn-outline-primary">수정</button><br>
+				<%if(clientLogin!=null && (clientLogin.getName().equals("관리자")||clientLogin.getId().equals(list.get(i).getWriter()))) {%>
+				<button class="btn-delete2 btn btn-outline-primary">삭제</button>
+			<%} %>
+			</td>
+			
 		</tr>
 		<%
 			}
@@ -250,13 +263,13 @@ table#tbl-comment sub.comment-date {
 					var tr=$('<tr>');
 					var td=$("<td>").css({"display":"none","text-align":"left"}).attr("colspan",2);
 					var form=$("<form>").attr({
-								"action":"<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=q.getBoardNo()%>"								
+								"action":"<%=request.getContextPath()%>/board/boardCommentUpdate",
+								"method":"post"
 							});
-					var qNo=$("<input>").attr({
-							"type":"hidden","name":"qNo",
-							"value":"<%=q.getBoardNo()%>"
+					var aNo=$("<input>").attr({
+							"type":"hidden","name":"aNo",
+							"value":$("input[name=org_aNo]").val()
 						});
-					
 					var writer=$("<input>").attr({
 							"type":"hidden","name":"writer",
 							"value":"<%=clientLogin != null ? clientLogin.getId() : ""%>"
@@ -266,10 +279,10 @@ table#tbl-comment sub.comment-date {
 							"name":"etc","cols":"60","rows":"2"
 						});
 					var btn=$("<button>").attr({
-							"type":"submit","class":"btn-update2 btn btn-primary]]"
-						}).html("수정");
+							"type":"submit","class":"btn-insert2"
+						}).html("등록");
 					
-					form.append(qNo).append(writer).append(etc).append(btn);
+					form.append(aNo).append(writer).append(etc).append(btn);
 					td.append(form);
 					tr.html(td);
 					tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
@@ -300,12 +313,12 @@ table#tbl-comment sub.comment-date {
 					var tr=$('<tr>');
 					var td=$("<td>").css({"display":"none","text-align":"left"}).attr("colspan",2);
 					var form=$("<form>").attr({
-								"action":"<%=request.getContextPath()%>/boardqnacomment/commentInsert",
+								"action":"<%=request.getContextPath()%>/board/boardCommentUpdate",
 								"method":"post"
 							});
-					var qNo=$("<input>").attr({
-							"type":"hidden","name":"qNo",
-							"value":"<%=q.getBoardNo()%>"
+					var aNo=$("<input>").attr({
+							"type":"hidden","name":"aNo",
+							"value":$("input[name=org_aNo]").val()
 						});
 					var writer=$("<input>").attr({
 							"type":"hidden","name":"writer",
@@ -319,7 +332,7 @@ table#tbl-comment sub.comment-date {
 							"type":"submit","class":"btn-insert2"
 						}).html("등록");
 					
-					form.append(qNo).append(writer).append(etc).append(btn);
+					form.append(aNo).append(writer).append(etc).append(btn);
 					td.append(form);
 					tr.html(td);
 					tr.insertAfter($(this).parent().parent()).children("td").slideDown(800);
@@ -346,6 +359,8 @@ table#tbl-comment sub.comment-date {
 				}
 			})
 		 }); 
+		 
+		 
 	</script>
 </section>
 <%@ include file="/views/common/footer.jsp"%>

@@ -37,9 +37,6 @@ public class BoardQnaViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String boardNo = request.getParameter("boardNo");
-
-		String a = (String) request.getAttribute("board_qna_a");
-
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
 		List<BoardQnaA> list = new BoardQnaQService().selectBoardComment(boardNo);
 		request.setAttribute("board_qna_q", q);

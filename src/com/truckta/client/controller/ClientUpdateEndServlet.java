@@ -45,7 +45,7 @@ public class ClientUpdateEndServlet extends HttpServlet {
 		System.out.println(fileName);
 
 		Client c = new Client();
-		c.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
+		c.setPw(DataEncryptionTemplate.encryptionToSHA512(mul.getParameter("pw")));
 		c.setName(mul.getParameter("name"));
 		c.setEmail(mul.getParameter("email"));
 		c.setId(mul.getParameter("id"));
@@ -71,7 +71,7 @@ public class ClientUpdateEndServlet extends HttpServlet {
 		} else {
 			System.out.println(":: LOG :: " + now + " :: " + " Client update Fail");
 			response.getWriter().print("<script>alert('정보업데이트에 실패했습니다. 메인페이지로 이동합니다.')</script>");
-			
+
 		}
 
 	}

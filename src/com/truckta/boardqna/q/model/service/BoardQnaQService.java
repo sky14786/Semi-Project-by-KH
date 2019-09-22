@@ -166,13 +166,20 @@ public class BoardQnaQService {
 	public int updateComment(BoardQnaA a) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateComment(conn, a);
-		if (result > 0) {
+		if (result == 1 ) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	public BoardQnaA findAnswer(int aNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaA temp = dao.findAnswer(conn,aNo);
+		JDBCTemplate.close(conn);
+		return temp;
 	}
 
 }

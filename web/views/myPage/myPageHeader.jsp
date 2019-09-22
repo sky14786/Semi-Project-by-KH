@@ -55,11 +55,14 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
 				<div class="dropdown-menu">
+				<a class="dropdown-item"
+						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=0">질문게시판</a>
+
 					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList">질문게시판</a>
-					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList">건의게시판</a>
-					<a class="dropdown-item" href="#">신고게시판</a>
+						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=1">건의게시판</a>
+
+					<a class="dropdown-item" 
+					    href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=2">신고게시판</a>
 				</div>
 			</li>
 			<%} %>

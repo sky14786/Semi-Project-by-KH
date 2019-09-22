@@ -389,10 +389,8 @@ public class BoardQnaQDao {
 		String sql = prop.getProperty("updateComment");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, a.getqNo());
-			pstmt.setString(2, a.getEtc());
-			pstmt.setString(3, a.getWriter());
-			pstmt.setInt(4, a.getaNo());
+			pstmt.setString(1, a.getEtc());
+			pstmt.setInt(2, a.getaNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -418,6 +416,32 @@ public class BoardQnaQDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public BoardQnaA findAnswer(Connection conn, int aNo) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findAnswer");
+		ResultSet rs = null;
+		BoardQnaA temp = null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, aNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				temp = new BoardQnaA();
+				temp.setaNo(rs.getInt("a_no"));
+				temp.setEtc(rs.getString("etc"));
+				temp.setHireDate(rs.getDate("hire_date"));
+				temp.setWriter(rs.getString("writer"));
+				temp.setqNo(rs.getInt("q_no"));
+			}
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
 	}
 
 }
