@@ -20,7 +20,7 @@ public class MatchingDao {
 	Properties prop = new Properties();
 
 	public MatchingDao() {
-		String path = getClass().getResource("/").getPath() + "/sql/matching/matching-query.properties";
+		String path = getClass().getResource("/sql/matching/matching-query.properties").getPath();
 		try {
 			prop.load(new FileReader(path));
 		} catch (IOException e) {
@@ -145,6 +145,37 @@ public class MatchingDao {
 		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(stmt);
+		}
+		return list;
+	}
+
+	public List<Matching> selectMatches(Connection conn, String boardNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+
+		String sql=prop.getProperty("selectMatches");
+		
+		List<Matching> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(boardNo));
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Matching m = new Matching();
+				m.setMatNo(rs.getInt("mat_no"));
+				m.setBoardNo(rs.getInt("board_no"));
+				m.setRequestor(rs.getString("requestor"));
+				m.setResponser(rs.getString("responser"));
+				m.setPay(rs.getInt("pay"));
+				m.setTryDate(rs.getDate("try_date"));
+				list.add(m);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}

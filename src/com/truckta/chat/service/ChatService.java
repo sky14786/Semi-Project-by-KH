@@ -13,9 +13,9 @@ public class ChatService {
 	
 	private ChatDao dao = new ChatDao();
 	
-	public int createChat(CreateChat cc) {
+	public int createRoom(CreateChat cc) {
 		Connection conn = getConnection();
-		int result = dao.createChat(conn, cc);
+		int result = dao.createRoom(conn, cc);
 		if(result>0) {
 			commit(conn);
 		} else {
@@ -30,6 +30,36 @@ public class ChatService {
 		close(conn);
 		return room;
 	}
+
+	public int sendGreeting(int roomNum, String driverId, String message) {
+		Connection conn = getConnection();
+		int send = dao.sendGreeting(conn, roomNum, driverId, message);
+		if(send>0) {
+			System.out.println("sent!!!@!!!!!!");
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return send;
+	}
+
+	public int insertBid(int boardNo, String writerId, String driverId, String bidPrice) {
+		Connection conn = getConnection();
+		int addBid = dao.insertBid(conn, boardNo, writerId, driverId, bidPrice);
+		if(addBid>0) {
+			System.out.println("Bid   !!!@!!!!!!");
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return 0;
+	}
+
+	
+
+	
 	
 
 }

@@ -82,4 +82,11 @@ public class Matching {
 		this.tryDate = tryDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Matching [matNo=" + matNo + ", boardNo=" + boardNo + ", requestor=" + requestor + ", responser="
+				+ responser + ", pay=" + pay + ", memo=" + memo + ", tryDate=" + tryDate + "]";
+	}
+	
+
 }

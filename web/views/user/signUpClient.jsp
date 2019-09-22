@@ -22,7 +22,7 @@
 		<div class="col-1"></div>
 		<div class="col-6"><br><br><br><br>
 			<h2>Sign Up</h2><hr>
-			<form action="/clientSignUp" method="post" name="sendform"
+			<form action="<%=request.getContextPath() %>/clientSignUp" method="post" name="sendform"
 				enctype="multipart/form-data">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">

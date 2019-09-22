@@ -6,7 +6,7 @@
 <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpMain-Style.css?ver=1.1" rel="stylesheet">
-<%-- <script src="<%=request.getContextPath()%>/js/signUpMain-js.js?ver=1.1" charset="utf-8"></script> --%>
+<%-- <script src="<%=request.getContextPath()%>/js/signUpMain-js.js?ver=1.3" charset="utf-8"></script>  --%>
 
 <!-- ----------------End----------------- -->
 <div class="container">
@@ -20,15 +20,16 @@
 				Message and data rates may apply. Learn how Facebook uses your info
 			</div>
 			<form class="form-style" id="sendform" method="post">
-				<div class="form-group">
+				<div class="form-group iframe">
+				<!-- <iframe src="https://www.acountkit.com"></iframe> -->
 					<label for="phone_number">Input Your Phone Number</label> <input type="text"
 						 name="phone_number" id="phone_number"
 						class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
+				
 			</form>
 		</div>
 		<div class="form-style">
 			<div>
-				</form>
 				<button onclick="duplicateCheck();"
 					class="btn btn-warning button-send">
 					<span class="span-send">Send</span>
@@ -46,7 +47,8 @@ AccountKit_OnInteractive = function() {
 	    state: "12345",
 	    version: "v1.1",
 	    fbAppEventsEnabled: true,
-	    redirect: ""
+	    redirect: "",
+	    display:"modal"
 	  });
 	};
 

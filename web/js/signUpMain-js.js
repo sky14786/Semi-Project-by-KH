@@ -1,7 +1,3 @@
-/**
- *
- */
-
 AccountKit_OnInteractive = function() {
   AccountKit.init({
     appId: 1787619668211832,
