@@ -13,7 +13,7 @@
 
 
 <script>
-	//certifiedCheck();
+	certifiedCheck();
 </script>
 
 	<div class="container">
@@ -27,8 +27,8 @@
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" placeholder="Phone Number" <%-- value="<%=id%>"
-						readonly --%> />
+						class="form-control" placeholder="Phone Number" value="<%=id%>"
+						readonly  />
 				</div>
 				<div class="form-group">
 					<label for="pw">Pw</label> <input type="password" name="pw" id="pw"

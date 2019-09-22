@@ -59,7 +59,6 @@
 						<label for="profile">Profile Picture</label><hr>
 						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="500px" height="300px">
 						<br>
-						업로드된 파일 : <%=client.getProfile() %>
 						<input type="hidden" name ="org_profile" id="org_profile" value="<%=client.getProfile() %>">
 						<input type="file" name="profile" id="profile" class="form-control btn btn-outline-secondary inputFile" 
 								accept=".jpg, .png, .pdf" style="margin-top: 5px; "/>

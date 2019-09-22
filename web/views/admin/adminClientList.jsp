@@ -63,7 +63,7 @@
 						<td><%=c.getReportCount() %></td>
 						<td>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
-						<a href="<%=request.getContextPath() %>/admin/adminUserDetail?isDriverView=false&id=<%=c.getId() %>&isUpdateView=true" style="color:inherit;">
+						<a href="<%=request.getContextPath() %>/admin/adminUserDetail?isDriverView=<%=c.getUserType()==2?true:false %>>&id=<%=c.getId() %>&isUpdateView=true" style="color:inherit;">
 							수정
 						</a>
 						</button>
