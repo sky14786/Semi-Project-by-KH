@@ -38,6 +38,16 @@ function checkData() {
 		alert("이름을 입력해 주세요.");
 		return false;
 	}
+	
+	if(!$("inpit[name=email]").val()){
+		alert("이메일을 입력해 주세요.")
+		return false;
+	}
+	
+	
+	chkEmail($("inpit[name=email]").val());
+	
+	
 
 	if ($("input[name=profile]").val()) {
 		if (!formatChecking.test($("input[name=profile]").val().toLowerCase())) {
@@ -63,3 +73,18 @@ function checkData() {
 
 	sessionStorage.removeItem("isCertified");
 }
+
+
+function chkEmail(str) {
+
+    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    if (regExp.test(str)){
+    	return true;
+    }else{
+    	alert("이메일의 양식이 이상합니다.");
+    	return false;
+    }
+
+}
+

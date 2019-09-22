@@ -24,7 +24,7 @@
 				<!-- <iframe src="https://www.acountkit.com"></iframe> -->
 					<label for="phone_number">Input Your Phone Number</label> <input type="text"
 						 name="phone_number" id="phone_number"
-						class="form-control input-phonenumber" placeholder="010-XXXX-XXXX" />
+						class="form-control input-phonenumber" placeholder="010XXXXXXXX" />
 				
 			</form>
 		</div>
@@ -91,18 +91,6 @@ AccountKit_OnInteractive = function() {
 	  form.action = "signUpClient.jsp";
 	  form.submit();
 	}
-	function phoneNumberCheck() {
-	  var reg = /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
-
-	  var temp = $("input[name=phone_number]").val();
-
-	  if (!reg.test(phone_number)) {
-	    alert("비정상적인 휴대폰번호 양식입니다.");
-	    $("input[name=phone_number]").val("");
-	  } else {
-	    duplicateCheck();
-	  }
-	}
 
 	function duplicateCheck() {
 	  var phone_number = $("input[name=phone_number]").val();
@@ -127,6 +115,65 @@ AccountKit_OnInteractive = function() {
 	    }
 	  });
 	}
+	
+	
+	 $("input:text[name=id]").keyup(function(e) {
+	     var reg = /[^0-9]*$/;
+	     var v = $(this).val();
+	     if (reg.test(v)) {
+	     	$(this).val(v.replace(reg, ""));
+	         $(this).focus();
+	     }
+	     
+		});  
+	    
+		$(function(){
+
+		    $("input:text[name=phone_number]").on('keydown', function(e){
+		       // 숫자만 입력받기
+		    var trans_num = $(this).val().replace(/-/gi,'');
+			var k = e.keyCode;
+						
+			if(trans_num.length >= 11 && ((k >= 48 && k <=126) || (k >= 12592 && k <= 12687 || k==32 || k==229 || (k>=45032 && k<=55203)) ))
+			{
+		  	    e.preventDefault();
+			}
+		    }).on('blur', function(){ // 포커스를 잃었을때 실행합니다.
+		        if($(this).val() == '') return;
+
+		        // 기존 번호에서 - 를 삭제합니다.
+		        var trans_num = $(this).val().replace(/-/gi,'');
+		      
+		        // 입력값이 있을때만 실행합니다.
+		        if(trans_num != null && trans_num != '')
+		        {
+		            // 총 핸드폰 자리수는 11글자이거나, 10자여야 합니다.
+		            if(trans_num.length==11 || trans_num.length==10) 
+		            {   
+		                // 유효성 체크
+		                var regExp_ctn = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+		                if(regExp_ctn.test(trans_num))
+		                {
+		                    // 유효성 체크에 성공하면 하이픈을 넣고 값을 바꿔줍니다.
+		                    trans_num = trans_num.replace(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/, "$1-$2-$3");                  
+		                    $(this).val(trans_num);
+		                }
+		                else
+		                {
+		                    alert("유효하지 않은 전화번호 입니다.");
+		                    $(this).val("");
+		                    $(this).focus();
+		                }
+		            }
+		            else 
+		            {
+		                alert("유효하지 않은 전화번호 입니다.");
+		                $(this).val("");
+		                $(this).focus();
+		            }
+		      }
+		  });  
+		});
 </script>
 
 
