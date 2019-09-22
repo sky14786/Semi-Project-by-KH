@@ -1,13 +1,15 @@
 package com.truckta.detail.model.dao;
+import static common.template.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
+import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.detail.model.vo.Detail;
-
-import static common.template.JDBCTemplate.close;
 
 
 public class DetailDao {
@@ -58,7 +60,6 @@ public class DetailDao {
 		}
 		return d;
 	}
-	
 	
 }
 

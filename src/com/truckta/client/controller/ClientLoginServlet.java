@@ -24,13 +24,11 @@ public class ClientLoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		// 로그인에 대한 비지니스 로직
 		ClientService service = new ClientService();
 		Client cl = service.selectId(id, pw);
-
 		// DB결과에 따라서 view화면을 선택~
 		String view = "";
 
@@ -56,7 +54,6 @@ public class ClientLoginServlet extends HttpServlet {
 
 			// 쿠키에 아이디 저장하기
 			String saveId = request.getParameter("saveId");
-			System.out.println(saveId);
 			// saveId = check가 되면 on, check안하면 null
 			if (saveId != null) {
 				// 쿠키에 저장하는 방법

@@ -45,6 +45,7 @@ public class FileMatchingDao {
 				fm.setBoardNo(rs.getInt("board_no"));
 				fm.setFileName(rs.getString("file_name"));
 				list.add(fm);
+				//System.out.println("###12333daofilematching:"+list);
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

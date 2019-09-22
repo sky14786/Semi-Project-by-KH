@@ -60,10 +60,10 @@ public class MainSearchServlet extends HttpServlet {
 
 		// ����ڵ� pageBar�� �����ϱ�
 		if (pageNo == 1) {
-			pageBar += "<span>[����]</span>";
+			pageBar += "<span>[이전]</span>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/main/mainFinder?cPage=" + (pageNo - 1)
-					+ "&searchKeyword=" + keyword + "'>[����]</a>";
+					+ "&searchKeyword=" + keyword + "'>[이전]</a>";
 		}
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (cPage == pageNo) {
@@ -75,16 +75,18 @@ public class MainSearchServlet extends HttpServlet {
 			pageNo++;
 		}
 		if (pageNo > totalPage) {
-			pageBar += "<span>[����]</span>";
+			pageBar += "<span>[다음]</span>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/admin/memberFinder?cPage=" + (pageNo)
-					+ "&searchKeyword=" + keyword + "'>[����]</a>";
+					+ "&searchKeyword=" + keyword + "'>[다음]</a>";
 		}
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("fileList", fileList);
 		request.setAttribute("searchKeyword", keyword);
+//		System.out.println("####setattribute"+keyword);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list_page", list);
+//		System.out.println("#####setattributelist_page:"+list);
 		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 		///views
 	}

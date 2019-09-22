@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <%@ include file="/views/common/header.jsp"%>
-<%@ include file="/views/user/myPageHeader.jsp"%>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <title>배달 정보 업로드</title>
 
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
@@ -17,15 +17,15 @@
 	rel="stylesheet" type="text/css" />
 
 <!-- notice -->
-<script src="../../js/notice.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
 <!-- post -->
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script src="../../js/post.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 
 <style>
-nav, aside {
+/* nav, aside {
 	color: red;
-}
+} */
 
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -46,29 +46,21 @@ nav, aside {
 
 <body class="bg-light">
 	<div class="container">
-	<!-- 	<div class="py-1 text-center">
-			<h2>header</h2>
-		</div> -->
-
+		<!-- <nav></nav> -->
 		<div class="row">
 			<div class="col-md-2 order-md-1 mb-1">
-				<nav>nav</nav>
-
-				<!-- ---------------------------------------- -->
 			</div>
-			
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
 				<h4 class="mb-3">배달 정보</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
-				
 				<form action="" method="post" id="boardUp" name="boardUp" class="needs-validation" enctype="multipart/form-data" >
 					<div class="row">
 						<div class="col-md-12 mb-3">
 							<label for="firstName">화물 정보(제목)</label> <input type="text"
 								class="form-control" name="stuff" id="board-stuff"
-								placeholder="제목) 침대, 이사, 소파 배송" value="" required>
+								placeholder="침대 이사 소파등 배송목록" value="" required>
 						</div>
 					</div>
 
@@ -88,7 +80,7 @@ nav, aside {
 						value="" required>
 
 					<div class="mb-4"></div>
-					<label for="address2">목적지 주소</label>
+					<label for="address2">도착지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control end-postcode" name="post-number2"
 							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" readonly> <input
@@ -134,7 +126,7 @@ nav, aside {
 						<label for="">희망 배송일</label>
 						<div class="col-8">
 							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="배송 메모">
+								placeholder="연락 메모">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
 								placeholder="일 / 월 / 년" readonly />
@@ -188,32 +180,17 @@ nav, aside {
 			</form>
 				<!-- //---------// -->
 				<div>
-					<button type="button" onclick="test();">update button</button>
+					<button type="button" onclick="test();">수정하기 button</button>
 					<script>
 						function test() {
 							location.href = '<%=request.getContextPath()%>/board/updateLoad';
 						}
 					</script>
-		      		<button type="button" onclick="test1();">myTop button</button>
-					<script>
-						function test1() {
-							location.href = '<%=request.getContextPath()%>/my/pageTop';
-						}
-					</script>
-					<button type="button" onclick="test2();">mySchedule button</button>
-					<script>
-						function test2() {
-							location.href = '<%=request.getContextPath()%>/my/mySchedule.do';
-						}
-					</script>
 				</div>
 			</div>
-			
-      
-      
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
-				<aside>aside</aside>
+				<!-- <aside>aside</aside> -->
 			</div>
 		</div>
 	</div>
@@ -254,7 +231,8 @@ nav, aside {
 					processData:false,
 					contentType:false,
 					success:function (data) {
-						alert('upload seccess!!');
+						//alert('upload seccess!!');
+						location.href='<%=request.getContextPath()%>/my/pageTop';
 					},
 					error : function(er) {
 						console.log('error');
@@ -272,7 +250,7 @@ nav, aside {
 </body>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-	<p class="mb-1">footer</p>
+	<!-- <p class="mb-1">footer</p> -->
 </footer>
 
 
@@ -280,3 +258,4 @@ nav, aside {
 
 
 
+>>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8

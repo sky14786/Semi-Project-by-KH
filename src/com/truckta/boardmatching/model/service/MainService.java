@@ -32,7 +32,6 @@ public class MainService {
 		return count;
 	}
 
-	// ������ ������ ��������
 	public List<BoardMatching> selectListPage(int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<BoardMatching> list = dao.selectListPage(conn, cPage, numPerPage);
@@ -41,7 +40,6 @@ public class MainService {
 
 	}
 
-	////////////////////////////// ȸ�� �˻�
 	public int selectCountMember(String key) {
 		Connection conn = getConnection();
 		int result = dao.selectCountMember(conn, key);

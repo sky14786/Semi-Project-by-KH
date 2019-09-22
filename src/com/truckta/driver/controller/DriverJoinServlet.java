@@ -59,7 +59,7 @@ public class DriverJoinServlet extends HttpServlet {
 		}
 
 		List<FileDriver> files = new ArrayList<FileDriver>();
-		
+
 		for (int i = 0; i < fileNames.size(); i++) {
 			String dir = path + "/" + fileNames.get(i);
 			File oldFile = new File(dir);
@@ -68,11 +68,10 @@ public class DriverJoinServlet extends HttpServlet {
 			String tempFileName = temp.getId() + "_" + now + "_" + fileNames.get(i);
 			FileDriver fd = new FileDriver(temp.getId(), tempFileName);
 			files.add(fd);
-			
+
 			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
 		}
-
 
 		int result = new DriverService().joinDriver(temp);
 		int isUpload = new FileDriverService().joinDriver(files);

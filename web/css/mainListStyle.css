@@ -2,6 +2,8 @@
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	border-radius:10px;
+	border-color : black;
+	
 }
 a#calendar, a.calendar {
 	overflow: hidden;
@@ -10,4 +12,23 @@ a#calendar, a.calendar {
     background-size: 32px;
 	text-indent: -2000em;
 }
+    	/* div{
+    		border:1px solid red;
+    	} */
+    	.div_hyuns{
+    		margin-right: 0em;	
+    		padding-bottom: 2em;
+    	}
+    	.div_2_hyuns{
+    		margin-right: 0em;
+    		
+    		
+    	}
+    	hr{
+    		margin:0em;
+    	}
+    	#pagebar{
+    		text-align: center;
+    	}
+
 .ui-datepicker-trigger{display: none;}
