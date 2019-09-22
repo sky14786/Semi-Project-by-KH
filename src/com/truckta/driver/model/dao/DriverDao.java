@@ -222,7 +222,7 @@ public class DriverDao {
 	}
 
 	// 전체 리스트 myDriverPage1
-	public List<List> driverReqAllList(Connection conn){
+	public List<List> driverReqAllList(Connection conn, int cPage, int numPerPage){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("driverReqAllList");
@@ -231,7 +231,10 @@ public class DriverDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(2, cPage * numPerPage);
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {		
 				listTmp = new ArrayList();
 				listTmp.add(rs.getString("title"));
@@ -275,6 +278,25 @@ public class DriverDao {
 		return result;
 	}
 
+	// 드라이버 상태 여부 확인
+	public int dirverStatusCheck(Connection conn, String driver) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("diverIdCheck");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, driver);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 

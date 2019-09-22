@@ -72,9 +72,9 @@ public class DriverService {
 	}
 	
 	// 전체 리스트
-	public List<List> driverReqAllList(){
+	public List<List> driverReqAllList(int cPage, int numPerPage){
 		Connection conn = JDBCTemplate.getConnection();
-		List<List> list = dao.driverReqAllList(conn);
+		List<List> list = dao.driverReqAllList(conn, cPage, numPerPage);
 		JDBCTemplate.close(conn);
 		return list;
 	}
@@ -83,6 +83,14 @@ public class DriverService {
 	public int matchingListCount() {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.matchingListCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	// 드라이버 상태 여부 확인
+	public int dirverStatusCheck(String driver) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.dirverStatusCheck(conn, driver);
 		JDBCTemplate.close(conn);
 		return result;
 	}

@@ -100,7 +100,7 @@
 						required>
 
 					<div class="mb-4"></div>
-					<label for="address2">목적지 주소</label>
+					<label for="address2">도착지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control end-postcode" name="post-number2"
 							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" value="<%=newEndAddr[0]%>" readonly> <input
@@ -146,7 +146,7 @@
 						<label for="">희망 배송일</label>
 						<div class="col-8">
 							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="배송 메모" value="<%=bm.getMemo()%>">
+								placeholder="연락 메모" value="<%=bm.getMemo()%>">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
 								placeholder="일 / 월 / 년" value="<%=bm.getHireDate()%>" day="<%=bm.getHireDate()%>" readonly />

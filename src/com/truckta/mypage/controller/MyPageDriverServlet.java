@@ -68,7 +68,7 @@ public class MyPageDriverServlet extends HttpServlet {
 			request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
 		}
 
-		request.getRequestDispatcher("/views/myPage/myMainPageDr.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/myPage/myPageDriverTop.jsp").forward(request, response);
 
 
 	}

@@ -138,7 +138,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			// 이미지 경로 저장
 			int imgResult = new BoardMatchingService().insertImgBoardMatching(list);
 
-			// 이미지 삭제
+			// 실패시 서버에 이미지 삭제
 			if(imgResult == 0) {
 				for (int i = 0; i < fns.size(); i++) {
 					String imgFileName = fns.get(i);
@@ -147,7 +147,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 					if(file.exists()) file.delete();
 					int imgCk = new BoardMatchingService().deleteImg(resultBoNum);
 					System.out.println(imgCk==1?"DB이미지 삭제성공":"DB이미지 삭제실패");
-				}//for
+				}
 			}
 			
 		}else {
@@ -164,7 +164,13 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 				File file = new File(saveDir+ "/" + imgFileName);
 				if(file.exists()) file.delete();
 			}//for
+			request.setAttribute("message", "글 올리기에 실패했습니다");
+			String path = "/my/pageTop";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}//endif
+		
+		//request.getRequestDispatcher("/my/pageTop").forward(request, response);
 		
 		
 	}

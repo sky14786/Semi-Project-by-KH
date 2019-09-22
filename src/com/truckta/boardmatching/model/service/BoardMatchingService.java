@@ -191,9 +191,9 @@ public class BoardMatchingService {
 	}
 
 	// 전체 리스트(마이페이지)
-	public List<BoardMatching> myAllList(String writer) {
+	public List<BoardMatching> myAllList(String writer, int cPage, int numPerPage) {
 		Connection conn = JDBCTemplate.getConnection();
-		List<BoardMatching> list = dao.myAllList(conn, writer);
+		List<BoardMatching> list = dao.myAllList(conn, writer, cPage, numPerPage);
 		JDBCTemplate.close(conn);
 		return list;
 	}

@@ -1,14 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	/* Client cl = new Client();
-	if((Client)request.getAttribute("client") != null){
-		cl = (Client)request.getAttribute("client");
-	}else{
-		response.sendRedirect("/");
-	} */
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +60,7 @@
 						<div class="col-md-12 mb-3">
 							<label for="firstName">화물 정보(제목)</label> <input type="text"
 								class="form-control" name="stuff" id="board-stuff"
-								placeholder="제목) 침대, 이사, 소파 배송" value="" required>
+								placeholder="침대 이사 소파등 배송목록" value="" required>
 						</div>
 					</div>
 
@@ -89,7 +80,7 @@
 						value="" required>
 
 					<div class="mb-4"></div>
-					<label for="address2">목적지 주소</label>
+					<label for="address2">도착지 주소</label>
 					<div class="input-group mb-1">
 						<input type="text" class="form-control end-postcode" name="post-number2"
 							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" readonly> <input
@@ -135,7 +126,7 @@
 						<label for="">희망 배송일</label>
 						<div class="col-8">
 							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="배송 메모">
+								placeholder="연락 메모">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
 								placeholder="일 / 월 / 년" readonly />
@@ -240,7 +231,8 @@
 					processData:false,
 					contentType:false,
 					success:function (data) {
-						alert('upload seccess!!');
+						//alert('upload seccess!!');
+						location.href='<%=request.getContextPath()%>/my/pageTop';
 					},
 					error : function(er) {
 						console.log('error');

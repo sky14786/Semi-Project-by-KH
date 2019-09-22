@@ -49,6 +49,10 @@ public class MypageTopServleit extends HttpServlet {
 		List<List> imgAllList = new ArrayList<List>();
 		
 		for (int i = 0; i < list.size(); i++) {
+			// memo check null
+			if(list.get(i).getMemo() == null || list.get(i).getMemo().equals("null")) {
+				list.get(i).setMemo("연락메모 없음");
+			}
 			int boardTmp = list.get(i).getBoardNo();
 			List<FileMatching> listImg = new BoardMatchingService().loadBoardImg(boardTmp);	
 			imgAllList.add(listImg);			
@@ -68,7 +72,7 @@ public class MypageTopServleit extends HttpServlet {
 			request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
 		}
 		
-		request.getRequestDispatcher("/views/myPage/myMainPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/myPage/mypageTop.jsp").forward(request, response);
 		
 	}
 

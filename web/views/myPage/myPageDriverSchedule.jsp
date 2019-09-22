@@ -33,7 +33,22 @@
 
 <title>Driver Info</title>
 </head>
+<style>
+.myAddrImg {
+	width: 18px;
+	height: 18px;
+}
+.bg-schedule {
+	background: url(<%=request.getContextPath()%>/images/common/schedule-bg.png) no-repeat;
+	background-size: cover;
+}
 
+.schedule .schedule-contents {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding: 30px;
+}
+</style>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
 	<section class="section schedule">
@@ -82,11 +97,13 @@
 										<div class="venue">신청날짜</div>
 									</li>
 
-<!-- 1------------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------------------------------- -->
+<!-- --------------------------      data      ------------------------------- -->
+<!-- ------------------------------------------------------------------------- -->
 									<!-- Schedule Details -->
 									<%if(bmNull != 1){ %>
 									<%for(int i=0; i<list.size(); i++){ %>
-									<li class="schedule-details">
+									<li class="schedule-details" value="<%=list.get(i).get(5) %>">
 										<div class="block">
 											
 											<!-- 화물정보 -->
@@ -104,7 +121,7 @@
 											</div>
 											<!-- 지역 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-truck.png"
 													> <span class="name">
 													<%
 													String stAddr = (String)(list.get(i)).get(1);
@@ -163,7 +180,7 @@
 									<%for(int i=0; i<matList.size(); i++){ %>
 									
 									<!-- Schedule Details -->
-									<li class="schedule-details">
+									<li class="schedule-details" value="<%=matList.get(i).get(5) %>">
 										<div class="block">
 											
 											<!-- 화물 -->
@@ -174,7 +191,7 @@
 											</div>
 											<!-- 지역 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-truck.png"
 													> <span class="name">
 													<%
 													String stAddr = (String)(matList.get(i)).get(1);
@@ -232,7 +249,7 @@
 									<%if(comNull != 1){ %>
 									<%for(int i=0; i<matCompleList.size(); i++){ %>
 									<!-- Schedule Details -->
-									<li class="schedule-details">
+									<li class="schedule-details" value="<%=matCompleList.get(i).get(4) %>">
 										<div class="block">
 					
 											<!-- 거래완료 일자 -->
@@ -243,7 +260,7 @@
 											</div>
 											<!-- 운송자 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-man.png"
 													> <span class="name">
 													<%=matCompleList.get(i).get(1) %>
 													</span>
@@ -269,6 +286,9 @@
 									<%} %>
 									<%} %>
 								</ul>
+							</div>
+							<div>
+								<p>* <small>상위 10가지만 표시됩니다</small></p>
 							</div>
 						</div>
 					</div>
@@ -298,28 +318,22 @@
 			
 			$(function () {
 				$('.navC').click(function () {
-					//console.log($(this).parent().attr('value'));
 					 var ckp = $(this).parent().attr('value');
-					//pagination
-					//console.log(ckp);
-					//$('.pagin').attr('visibility', 'visible');
-
 					var myPage = $('.pagination');
 					if(ckp == 0){
-						console.log('true');
-						console.log(myPage);
-						
-						myPage.prop('visibility','visible');
+						$('.pagination').show();
 					}else{
-						console.log('else');
-						$('.pagin').prop('visibility', 'hidden');
-						//$('.pagin').text('fddfddf');
-						//$('.pagination').attr('visibility', 'hidden');
-						
-						//myPage.attr('visibility','hidden');
+						$('.pagination').hide();
 					}
 				});
+
+				$('.schedule-details').click(function () {
+					var mybNum= $(this).attr('value');
+					location.href = '<%=request.getContextPath()%>/detail?boardNo='+mybNum;
+				});
 			});
+
+			
 			
 		</script>
 	

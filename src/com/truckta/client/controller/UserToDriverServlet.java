@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.truckta.client.model.vo.Client;
+import com.truckta.driver.model.service.DriverService;
 
 /**
  * Servlet implementation class UserToDriverServlet
@@ -32,9 +33,18 @@ public class UserToDriverServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		
-		request.setAttribute("client", cl);
-		request.getRequestDispatcher("/views/user/userToDriver.jsp").forward(request, response);
+		// 신청 상태 확인 0:신청상태(DB) -> 1
+		int checkDriver = new DriverService().dirverStatusCheck(cl.getId());
 		
+		if(checkDriver == 1) {
+			request.setAttribute("message", "드라이버 신청중입니다");
+			String path = "/my/pageTop";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}else {
+			request.setAttribute("client", cl);
+			request.getRequestDispatcher("/views/user/userToDriver.jsp").forward(request, response);
+		}
 		
 	}
 

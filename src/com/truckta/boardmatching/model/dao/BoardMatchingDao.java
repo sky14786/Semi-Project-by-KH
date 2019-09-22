@@ -343,7 +343,7 @@ public class BoardMatchingDao {
 	}
 	
 	// 전체 리스트(마이페이지)
-	public List<BoardMatching> myAllList(Connection conn, String writer){
+	public List<BoardMatching> myAllList(Connection conn, String writer, int cPage, int numPerPage){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("myAllList");
@@ -353,7 +353,10 @@ public class BoardMatchingDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, writer);
+			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(3, cPage * numPerPage);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				bm = new BoardMatching();
 				bm.setBoardNo(rs.getInt("board_no"));

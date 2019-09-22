@@ -39,9 +39,25 @@
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css" rel="stylesheet">
 <!-- FAVICON -->
 <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
-
 <title>MY PAGE</title>
 </head>
+<style>
+.myAddrImg {
+	width: 18px;
+	height: 18px;
+}
+
+.myAddrImg {
+	width: 18px;
+	height: 18px;
+}
+
+.bg-schedule {
+	background: url(<%=request.getContextPath()%>/images/common/schedule-bg.png)
+		no-repeat;
+	background-size: cover;
+}
+</style>
 
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
@@ -67,13 +83,13 @@
 					<!-- 타이틀 (제목) -->
 					<div class="schedule-tab">
 						<ul class="nav nav-pills text-center">
-							<li class="nav-item"><a class="nav-link active"
+							<li class="nav-item" value='0'><a class="nav-link active navC"
 								href="#nov20" data-toggle="pill"> 전 체 <span>게시글 요청목록</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#nov21"
+							<li class="nav-item" value='1'><a class="nav-link navC" href="#nov21"
 								data-toggle="pill"> 운송현황 <span>진행중인 운송목록</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#nov22"
+							<li class="nav-item" value='2'><a class="nav-link navC" href="#nov22"
 								data-toggle="pill"> 운송완료 <span>완료 된 운송목록</span>
 							</a></li>
 						</ul>
@@ -90,12 +106,13 @@
 										<div class="subject">메모</div>
 										<div class="venue">요청만료날짜</div>
 									</li>
-
-<!-- ------------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------------------------------- -->
+<!-- --------------------------      data      ------------------------------- -->
+<!-- ------------------------------------------------------------------------- -->
 									<!-- Schedule Details -->
 									<%if(bmNull != 1){ %>
 									<%for(int i=0; i<list.size(); i++){ %>
-									<li class="schedule-details">
+									<li class="schedule-details" value="<%=list.get(i).getBoardNo() %>">
 										<div class="block">
 											
 											<!-- 화물정보 -->
@@ -114,7 +131,7 @@
 											</div>
 											<!-- 도착지 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-truck.png"
 													> <span class="name">
 													<%
 														String edAddr = list.get(i).getEndAddr();
@@ -160,7 +177,7 @@
 									<%for(int i=0; i<matList.size(); i++){ %>
 									
 									<!-- Schedule Details -->
-									<li class="schedule-details">
+									<li class="schedule-details" value="<%=matList.get(i).get(5) %>">
 										<div class="block">
 											
 											<!-- 배송날 -->
@@ -171,7 +188,7 @@
 											</div>
 											<!-- 목적지-도착지 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-truck.png"
 													> <span class="name">
 													<%
 													String stAddr = (String)(matList.get(i)).get(1);
@@ -226,7 +243,7 @@
 									<%if(comNull != 1){ %>
 									<%for(int i=0; i<matCompleList.size(); i++){ %>
 									<!-- Schedule Details -->
-									<li class="schedule-details">
+									<li class="schedule-details" value="matCompleList.get(i).get(4)">
 										<div class="block">
 					
 											<!-- 거래완료 일자 -->
@@ -237,7 +254,7 @@
 											</div>
 											<!-- 운송자 -->
 											<div class="speaker">
-												<img src="#"
+												<img class='myAddrImg' src="<%=request.getContextPath()%>/images/common/ico-driver.png"
 													> <span class="name">
 													<%=matCompleList.get(i).get(1) %>
 													</span>
@@ -266,6 +283,9 @@
 									<%} %>
 								</ul>
 							</div>
+							<div>
+								<p>* <small>상위 10가지만 표시됩니다</small></p>
+							</div>
 						</div>
 					</div>
 
@@ -291,6 +311,24 @@
 				}else
 					return false;
 			}
+
+			$(function () {
+				$('.navC').click(function () {
+					var ckp = $(this).parent().attr('value');
+					var myPage = $('.pagination');
+					if(ckp == 0){
+						$('.pagination').show();
+					}else{
+						$('.pagination').hide();
+					}
+				});
+
+				$('.schedule-details').click(function () {
+					//console.log($(this).attr('value'));
+					var mybNum= $(this).attr('value');
+					location.href = '<%=request.getContextPath()%>/detail?boardNo='+mybNum;
+				});
+			});
 		</script>
 	
 	</section>
