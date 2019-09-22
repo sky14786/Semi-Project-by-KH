@@ -7,6 +7,8 @@ import java.sql.Connection;
 import com.truckta.detail.model.dao.DetailDao;
 import com.truckta.detail.model.vo.Detail;
 
+import common.template.JDBCTemplate;
+
 import static common.template.JDBCTemplate.close;
 
 

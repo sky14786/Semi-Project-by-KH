@@ -12,7 +12,7 @@
 .container {
 	font-family: "Noto Sans KR", sans-serif;
 }
-</style>
+</style> 
 
 
 <div class="container-fluid" style="margin-top: 3%">

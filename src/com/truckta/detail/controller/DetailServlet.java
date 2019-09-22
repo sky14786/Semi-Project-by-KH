@@ -36,8 +36,6 @@ public class DetailServlet extends HttpServlet {
 		String boardNo = request.getParameter("boardNo");
 		
 		DetailService service = new DetailService();
-		
-		// selecting the Detailed view info
 		Detail d = service.selectDetail(boardNo);
 		String startAddr[] = d.getStartAddr().split(",");
 		String endAddr[] = d.getEndAddr().split(",");
@@ -50,7 +48,6 @@ public class DetailServlet extends HttpServlet {
 		request.setAttribute("endAddr", endAddr[1]);
 		request.setAttribute("boardNo", boardNo);
 		request.setAttribute("d", d);
-		
 		request.getRequestDispatcher("/views/detail/detailView.jsp").forward(request, response);
 	}
 

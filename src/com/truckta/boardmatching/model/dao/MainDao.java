@@ -42,7 +42,7 @@ public class MainDao {
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStartAddr(rs.getString("start_addr").substring(7,15));
+				bm.setStartAddr(rs.getString("start_addr"));
 				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
@@ -53,7 +53,11 @@ public class MainDao {
 
 				list.add(bm);
 			}
+<<<<<<< HEAD
 //			System.out.println("파일경로불러와졋니?dao"+list);
+=======
+			//System.out.println("파일경로불러와졋니?dao"+list);
+>>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -100,8 +104,8 @@ public class MainDao {
 				bm.setBoardNo(rs.getInt("board_no"));
 				bm.setWrtier(rs.getString("writer"));
 				bm.setTitle(rs.getString("title"));
-				bm.setStartAddr(rs.getString("start_addr").substring(6,15));
-				bm.setEndAddr(rs.getString("end_addr").substring(6,15));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
 				bm.setEtc(rs.getString("etc"));
 				bm.setCarTypeNo(Integer.parseInt(rs.getString("car_type_no")));
 				bm.setMemo(rs.getString("memo"));
@@ -153,13 +157,6 @@ public class MainDao {
 		String sql = "select * from (" + "select rownum as rnum, a.*from(" + "select * from Board_Matching where title" //
 				+ " like '%" + key + "%' or start_addr like '%" + key + "%' or end_addr like '%" + key + "%')a) "
 				+ "where rnum between " + start + " and " + end;
-//				String sql="select * from ("
-//						+ "select rownum as rnum, a.*from("
-//						+ "select * from truckta_notice where "
-//						+ " like '%"+key+"%' )a) "
-//						+ "where rnum between "+start+" and " +end;
-//				String sql="select * from (select rownum as rnum, a.*from(select * from truckta_notice where client_id like '%"+key+"%' )a) where rnum between "+start+" and" +end;
-		// System.out.println("########sql : "+sql);
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -252,7 +249,11 @@ public class MainDao {
 		int result = 0;
 		String sql = "select count(*) as cnt from Board_Matching where start_addr like '%" + selectGu
 				+ "%' or end_addr like '%" + selectGu + "%'";
+<<<<<<< HEAD
 		//System.out.println("#######boardmatching dao:"+sql);
+=======
+//		System.out.println("#######boardmatching dao:"+sql);
+>>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -273,9 +274,6 @@ public class MainDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		List<BoardMatching> list = new ArrayList();
-
-		//from Board_Matching where start_addr like '%"+ key + "%' or end_addr like '%" + key + "%'"
-		
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
 		String sql = "select * from(select rownum as rnum, a.* from("
@@ -283,12 +281,16 @@ public class MainDao {
 				+ " where rnum between "+ start+" and "+ end;
 
 		try {
+<<<<<<< HEAD
 			/*
 			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
 			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
 			 * end);
 			 */
 			//System.out.println("#####list selectListpagegu dao:"+sql);
+=======
+//			System.out.println("#####list selectListpagegu dao:"+sql);
+>>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 			 stmt=conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -317,23 +319,21 @@ public class MainDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		List<BoardMatching> list = new ArrayList();
-
-		//from Board_Matching where start_addr like '%"+ key + "%' or end_addr like '%" + key + "%'"
 		
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
-//		String sql = "select * from(select rownum as rnum, a.* from("
-//				+ "select * from board_matching where start_addr like '%"+ searchdate + "%' or end_addr like '%" + searchdate + "%' order by hire_date desc)a)"
-//				+ " where rnum between "+ start+" and "+ end;
 		String sql="select * from board_matching where tk_date="+"'"+searchdate+"'";
 
 
 		try {
+<<<<<<< HEAD
 			/*
 			 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, "%"+selectGu+"%");
 			 * pstmt.setString(2, "%"+selectGu+"%"); pstmt.setInt(3, start); pstmt.setInt(4,
 			 * end);
 			 */
+=======
+>>>>>>> 139c962533034341bfb2e85065a1b1b2c825e842
 			//System.out.println("#####list selectListpagegu dao:"+sql);
 			 stmt=conn.createStatement();
 			rs = stmt.executeQuery(sql);
