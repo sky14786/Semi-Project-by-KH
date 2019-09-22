@@ -55,14 +55,14 @@ public class FileDriverDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				FileDriver fd = new FileDriver();
 				fd.setFileName(rs.getString("file_name"));
 				fd.setId(rs.getString("id"));
 				fileList.add(fd);
 			}
-			System.out.println("DAO"+fileList.toString());
+			System.out.println("DAO" + fileList.toString());
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -104,6 +104,30 @@ public class FileDriverDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public List<FileDriver> selectAllFiles(Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAllFiles");
+		ResultSet rs = null;
+		List<FileDriver> list = new ArrayList<FileDriver>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				FileDriver temp = new FileDriver();
+				temp.setFileName(rs.getString("file_name"));
+				temp.setId(rs.getString("id"));
+				list.add(temp);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 
 }

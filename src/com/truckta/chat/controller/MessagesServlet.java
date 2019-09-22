@@ -1,6 +1,7 @@
 package com.truckta.chat.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,8 +42,20 @@ public class MessagesServlet extends HttpServlet {
 		
 		// 리스트로 나와 대화창 기록들을 가지고 온다
 		List<MessageList> list = service.selectMessageList(loggedInClient.getId());
+		List<Client> cList = service.selectAllClient();
+		List<String> profileList = new ArrayList<String>();
+		
+		for(int i = 0 ; i<list.size();i++) {
+			for(int j=0;j<cList.size();j++) {
+				if(list.get(i).getUserB().equals(cList.get(j).getId())) {
+					profileList.add(cList.get(j).getProfile());
+					break;
+				}
+			}
+		}
 		
 		//set 으로 프론트로 넘겨준다
+		request.setAttribute("profileList", profileList);
 		request.setAttribute("loggedInClient", loggedInClient);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/chat/messages.jsp").forward(request, response);

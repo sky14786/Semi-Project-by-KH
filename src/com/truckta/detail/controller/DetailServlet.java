@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.detail.model.vo.Detail;
 import com.truckta.detail.service.DetailService;
+import com.truckta.file.driver.model.service.FileDriverService;
+import com.truckta.file.driver.model.vo.FileDriver;
 import com.truckta.file.matching.model.service.FileMatchingService;
 import com.truckta.file.matching.model.vo.FileMatching;
 import com.truckta.matching.model.service.MatchingService;
@@ -45,8 +47,12 @@ public class DetailServlet extends HttpServlet {
 		
 		//Getting the list of bade drivers
 		List<Matching> badeList = new MatchingService().selectMatches(boardNo);
+		// 업로드한 사진 가져오기
 		List<FileMatching> fileList = new FileMatchingService().detailimg(boardNo);
-		
+		List<FileDriver>  driverFileList = new FileDriverService().selectAllFiles();
+		System.out.println(driverFileList.toString());
+//		List<String> plist = service.selectProfile();
+		request.setAttribute("driverFileList", driverFileList);
 		request.setAttribute("filelist", fileList);
 		request.setAttribute("badeList", badeList);
 		request.setAttribute("startAddr", startAddr[1]);

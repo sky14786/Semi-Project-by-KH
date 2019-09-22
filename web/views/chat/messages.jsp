@@ -8,6 +8,7 @@
 <%
 	Client c = (Client) request.getAttribute("loggedInClient");
 	List<MessageList> list = (List) request.getAttribute("list");
+	List<String> profileList = (List) request.getAttribute("profileList");
 %>
 
 <script
@@ -39,15 +40,23 @@ form:active {
 	<div id="chat-container" class="container-fluid ">
 
 
-		<%
+		<%int i = 0 ;
 			if (list != null && !list.isEmpty()) {
 				for (MessageList ml : list) {
 		%>
 		<a href="<%=request.getContextPath()%>/messages/chat?room=<%=ml.getRoomNo()%>">
 			<div class="d-flex mt-3 py-2 border-bottom">
+			<%if(profileList.get(i)!=null){ %>
+				<img class="img-sm rounded-circle"
+					src="<%=request.getContextPath()%>/images/profile_images/<%=profileList.get(i) %>"
+					alt="profile image">
+				<%i++;
+				}else{ %>
 				<img class="img-sm rounded-circle"
 					src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
 					alt="profile image">
+				<%
+				i++;} %>
 				<div class="wrapper ml-2">
 					<p class="mb-n1 font-weight-semibold"><%=ml.getUserA() %></p>
 					<small><%=ml.getRoomNo() %></small>

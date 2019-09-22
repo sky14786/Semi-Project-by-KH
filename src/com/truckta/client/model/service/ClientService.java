@@ -210,4 +210,11 @@ public class ClientService {
 		return result;
 	}
 
+	public List<Client> selectAllClient() {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Client> list = dao.selectAllClient(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

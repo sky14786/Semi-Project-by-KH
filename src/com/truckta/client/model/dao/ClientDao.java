@@ -540,4 +540,34 @@ public class ClientDao {
 		return result;
 	}
 
+	public List<Client> selectAllClient(Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAllClient");
+		ResultSet rs = null;
+		List<Client> list = new ArrayList<Client>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Client c = new Client();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regdate"));
+				c.setModDate(rs.getDate("moddate"));
+				c.setUserType(rs.getInt("user_type"));
+				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
+				list.add(c);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
 }
