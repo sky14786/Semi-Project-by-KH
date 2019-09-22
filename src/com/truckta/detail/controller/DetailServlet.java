@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.detail.model.vo.Detail;
 import com.truckta.detail.service.DetailService;
+import com.truckta.file.matching.model.service.FileMatchingService;
+import com.truckta.file.matching.model.vo.FileMatching;
 import com.truckta.matching.model.service.MatchingService;
 import com.truckta.matching.model.vo.Matching;
 
@@ -34,7 +36,6 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		
 		DetailService service = new DetailService();
 		
 		// selecting the Detailed view info
@@ -44,7 +45,9 @@ public class DetailServlet extends HttpServlet {
 		
 		//Getting the list of bade drivers
 		List<Matching> badeList = new MatchingService().selectMatches(boardNo);
+		List<FileMatching> fileList = new FileMatchingService().detailimg(boardNo);
 		
+		request.setAttribute("filelist", fileList);
 		request.setAttribute("badeList", badeList);
 		request.setAttribute("startAddr", startAddr[1]);
 		request.setAttribute("endAddr", endAddr[1]);

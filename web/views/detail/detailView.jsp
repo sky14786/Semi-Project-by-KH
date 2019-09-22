@@ -6,6 +6,7 @@
 <%@ page import = "com.truckta.client.model.vo.Client" %>
 <%@page import = "com.truckta.matching.model.vo.Matching"%>
 <%@page import = "java.util.List"%>
+<%@page import = "com.truckta.file.matching.model.vo.FileMatching"%>
 
 
 <%
@@ -15,6 +16,7 @@
 	Detail d = (Detail)request.getAttribute("d");
 	Client c = (Client)session.getAttribute("loginClient");
 	List <Matching>badeList = (List)request.getAttribute("badeList");
+	List<FileMatching>filelist = (List)request.getAttribute("filelist");
 	
 	
 %>
@@ -120,21 +122,23 @@
       	pictures
     ============================-->
         <div class="row portfolio-container">
-
+		<%for(int i = 0; i<filelist.size(); i++){ %>
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="https://ak1.ostkcdn.com/img/mxc/02182019_Furniture_Guide2_MultifunctionalFurnitureforSmallSpaces.jpg?imwidth=1024&impolicy=medium" class="img-fluid" alt="">
-                <a href="https://ak1.ostkcdn.com/img/mxc/02182019_Furniture_Guide2_MultifunctionalFurnitureforSmallSpaces.jpg?imwidth=1024&impolicy=medium" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="fas fa-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="fab fa-algolia"></i></a>
+                <img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=filelist.get(i).getFileName()%>" style="width:350px; height:240px;" class="img-fluid" alt="">
+                <a href="<%=request.getContextPath()%>/images/boardMatching_images/<%=filelist.get(i).getFileName()%>" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="fas fa-eye"></i></a>
+                <!-- <a href="#" class="link-details" title="More Details"><i class="fab fa-algolia"></i></a> -->
               </figure>
               <div class="portfolio-info">
-                <h4><a href="#">Web 3</a></h4>
+                <h4><a href="#">사진 <%=i+1 %></a></h4>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+		<%} %>
+		</div>
+		
+          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
                 <img src="https://cb2.scene7.com/is/image/CB2/062719_cat_m_furniture_dining?wid=670&qlt=65" class="img-fluid" alt="">
@@ -192,7 +196,7 @@
 
         </div>
 
-      </div>
+      </div> --> -->
     </section><!-- #pictures -->
 
 
