@@ -29,6 +29,7 @@ public class MainPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 //		List<BoardMatching> list = new MainService().selectList();
+		List<FileMatching> fileList = new FileMatchingService().selectFileList();
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -41,7 +42,6 @@ public class MainPageServlet extends HttpServlet {
 		int totalFile = new FileMatchingService().selectCountFileMatching();
 //				List<Member> list=new MemberService().selectList();
 		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage);
-		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		
 		int totalPage = (int) Math.ceil((double) totalMember / numPerPage);
 		String pageBar = "";
@@ -74,6 +74,7 @@ public class MainPageServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);// ?
 		request.setAttribute("list_page", list_page);
 		request.setAttribute("fileList", fileList);
+		//System.out.println(fileList);
 		
 		//System.out.println(list_page);
 		//request.setAttribute("list", list);

@@ -5,14 +5,16 @@
         //List<BoardMatching> list=(List)request.getAttribute("list");
         List<BoardMatching> list_page=(List)request.getAttribute("list_page");
         //System.out.println(list_page.size());
-        //System.out.print("#####getlist_page"+list_page);
+        //System.out.println("#####getlist_page"+list_page);
+        //System.out.println("listpage:"+list_page.size());
         //int numPerPage=(int)request.getAttribute("numPerPage");
         List<BoardMatching> select_gu=(List)request.getAttribute("select_gu");
         //System.out.print("####getselect_gu+"+select_gcssu);
  		String searchKey=(String)request.getAttribute("searchKeyword");
  		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		List<FileMatching> fileList = (List)request.getAttribute("fileList");
- 		//System.out.print("#####getfileList"+fileList);
+ 		//System.out.println("#####getfileList"+fileList);
+ 		//System.out.println("사이즈"+fileList.size());
     	
     %>
     
@@ -85,7 +87,8 @@
 			<div class="col-xl-1"></div>
 			<div class="col-xl-10" style="/* background-color: lightgray; */ padding: 60px 20px">
 				<div class="row placeholders">
-				<%for(BoardMatching bm : list_page){
+				<%int q=0;
+				for(BoardMatching bm : list_page){
 					boolean isNotNull = false;
 					%>
 				<div class="col-lg-4 col-md-6 col-sm-8 col-sx-9 col-10 m-auto div_hyuns">
@@ -95,19 +98,21 @@
 					
 					
 					<%for(int i = 0 ; i<fileList.size();i++){
-						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){
-							isNotNull=true;
-							
-							}
-						
-					if(isNotNull){%>
+						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){%>
+						<hr>
+							<img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" style="width:250px;height:200px;">
+							<%
+						break;	
+						}}%>
 						<%-- <img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:250px;height:211px;" > --%>
-						<hr>
-						<img src="<%=request.getContextPath()%>/images/posted_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" >
-					<%break;}else{ %>
+						
+						<%-- <img src="<%=request.getContextPath()%>images/boardMatching_images/<%=fileList.get(i).getFileName()%>" class="img-responsive" style="width:250px;height:200px;">
+						<%System.out.println((i)+"@"+fileList.get(q).getFileName()); %>
+						<%}else{ %>
 						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:211px;height:211px;" >
+						<%System.out.println((i)+"에러"); %>
 						<hr>
-					<%break;}} %>  
+					<%}break;} %>   --%>
 					</div>
 					<div class="post-content">
 							<div class="date">
@@ -175,7 +180,7 @@
 					</button>
 				</div>
 			</div>
-					<%}
+					<%q++;}
 					%>
 		</div>
 		
@@ -191,9 +196,9 @@
       </div>
 
     </div>
-    	<% if(list_page.size()>8){ %>
+    	
 		<div class="pagebar" id="pagebar"><%=request.getAttribute("pageBar")%></div>
-		<%} %>
+		
 		<div class="col-xl-1" >
 		
 		</div>

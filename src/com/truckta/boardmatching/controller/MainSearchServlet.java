@@ -35,7 +35,7 @@ public class MainSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		List<FileMatching> fileList = new FileMatchingService().selectFileList();
 		// String type=request.getParameter("searchType");
 		String keyword = request.getParameter("searchKeyword");
 		int cPage;
@@ -48,7 +48,7 @@ public class MainSearchServlet extends HttpServlet {
 		int numPerPage = 8;
 		int totalData = new MainService().selectCountMember(keyword);
 		List<BoardMatching> list = new MainService().selectMemberList(keyword, cPage, numPerPage);
-		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
+		//List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		// ��ü ������ ��� (����¡ó��)
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
 

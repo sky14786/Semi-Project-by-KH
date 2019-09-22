@@ -24,5 +24,11 @@ public class FileMatchingService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public List<FileMatching> selectFileList() {
+		Connection conn = JDBCTemplate.getConnection();
+		List<FileMatching> fileList = dao.selectFileList(conn);
+		return fileList;
+	}
 			
 }

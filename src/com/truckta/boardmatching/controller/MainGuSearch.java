@@ -55,6 +55,7 @@ public class MainGuSearch extends HttpServlet {
 //		
 //		
 //		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+		List<FileMatching> fileList = new FileMatchingService().selectFileList();
 		int cPage;
 		String selectGu = request.getParameter("selectGu");
 		try {
@@ -67,7 +68,7 @@ public class MainGuSearch extends HttpServlet {
 		int totalBaordMatching = new MainService().selectCountBoardMatching(selectGu);
 		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage, selectGu);
 		//사진
-		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
+		//List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		
 		int totalPage = (int) Math.ceil((double) totalBaordMatching / numPerPage);
 		String pageBar = "";
