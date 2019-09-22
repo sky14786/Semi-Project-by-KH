@@ -31,7 +31,7 @@
 				enctype="multipart/form-data" onsubmit="return checkData();">
 				<div class="form-group">
 					<label for="id">Id</label> <input type="text" name="id" id="id"
-						class="form-control" placeholder="Phone Number" value="<%=clientLogin.getId() %>" readonly
+						class="form-control" placeholder="Phone Number" value="<%=id %>" readonly
 					/>
 				</div>
 				<div class="form-group form-group-1">
@@ -62,19 +62,19 @@
 					<label for="carPic">Truck Picture</label> 
 					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<button type="button" onclick="deleteDriverImg("carPic1");" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="deleteDriverImg('carPic1');" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<button type="button" onclick="deleteDriverImg("carPic2");" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="deleteDriverImg('carPic2');" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<button type="button" onclick="deleteDriverImg("carPic3");" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="deleteDriverImg('carPic3');" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<button type="button" onclick="deleteDriverImg("carPic4");" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="deleteDriverImg('carPic4');" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic5" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
-					<button type="button" onclick="deleteDriverImg("carPic5");" class="btn btn-primary">삭제</button>		
+					<button type="button" onclick="deleteDriverImg('carPic5');" class="btn btn-primary">삭제</button>		
 				</div>
 				
 				<div class="form-group form-check">

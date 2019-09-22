@@ -16,8 +16,8 @@
 	<div class="row">
 		<div class="col-xl-1"></div>
 		<div class="col-xl-5 left-image d-none d-sm-block">
-			<img src="<%=request.getContextPath() %>/images/project_images/ResetPassword-Thumbnail.jpg" alt=""
-				class="img-thumbnail" />
+			<img style ="height:525px;" src="<%=request.getContextPath() %>/images/project_images/ResetPassword-Thumbnail.jpg" alt=""
+				class="img-thumbnail" width="435px" height="525px" />
 		</div>
 		<div class="col-xl-5 right-input">
 			<h2>You can reset your password</h2>

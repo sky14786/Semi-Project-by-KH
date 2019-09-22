@@ -1,7 +1,7 @@
 function certifiedCheck() {
   if (!sessionStorage.getItem("isCertified")) {
     alert("비정상적인 접근입니다.");
-    location.href = "../signUpMain.html";
+    location.href = "../";
   }
 }
 
@@ -17,10 +17,6 @@ function checkData() {
     alert("아이디가 정상적이지 못합니다.");
     return false;
   }
-  if (!$("input[name=name]").val()) {
-		alert("이름을 입력해 주세요.");
-		return false;
-	}
   if (!$("input[name=dateOfBirth]").val()) {
 		alert("생년월일을 입력해 주세요.");
 		return false;

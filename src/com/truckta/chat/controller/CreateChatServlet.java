@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.chat.model.vo.CreateChat;
 import com.truckta.chat.service.ChatService;
+import com.truckta.client.model.service.ClientService;
 import com.truckta.client.model.vo.Client;
+
+import common.template.SMTPAuthentication;
 
 /**
  * Servlet implementation class CreateChatServlet
@@ -73,6 +76,18 @@ public class CreateChatServlet extends HttpServlet {
 		// Now that it has been created, redirect
 		//Finding the room number		
 		String room = Integer.toString(roomNum);
+		
+		//[SMTP] Send Mail To Requestor
+		Client client = new ClientService().findClient(writerId);
+		Client driver = new ClientService().findClient(driverId);
+		String subject = "[Truck ~ Ta] "+driver.getName()+"님이 회원님의 요청에 응답했습니다.";
+		String content = "<div style=\"border:2px gray solid; width:500px;text-align:center;padding:30px;\">"+
+				"<h3>"+client.getName()+"님께서 요청하신 운송건에 "+ driver.getName() +"님이 응답했습니다.</h3>"+
+				"<hr>"+
+				"<h4>금액 : \\"+bidPrice+"</h4>"+
+				"</div>";
+		SMTPAuthentication.sendmail(content, client.getEmail(), subject);
+		
 		request.setAttribute("room", room);
 		request.getRequestDispatcher("/views/chat/createdChat.jsp").forward(request, response);
 		
