@@ -156,11 +156,9 @@ public class ClientDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -522,6 +520,22 @@ public class ClientDao {
 			sqle.printStackTrace();
 		} finally {
 			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public int driverRightModify(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverRightModify");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}

@@ -199,4 +199,15 @@ public class ClientService {
 		return result;
 	}
 
+	public int driverRightModify(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.driverRightModify(conn, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
 }

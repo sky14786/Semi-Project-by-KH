@@ -7,7 +7,7 @@
 	rel="stylesheet" />
 
 <form class="form-signin ml-4" id='loginFrm'
-						action="#" method="post"
+						action="<%=request.getContextPath() %>/user/resetPasswordTry" method="post"
 						onsubmit="return validate();">
 	<div class="container-scroller"  style="
     margin-top: 4em4;
@@ -44,8 +44,22 @@
                       </div>
                     </div>
                   </div>
+                    <div class="form-group">
+                    <label class="label">이메일</label>
+                    <div class="input-group">
+                     <input type="text" id="email" name="email"
+							class="form-control LoginInputId"
+							placeholder=""
+							 required autofocus />
+                       <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
-                    <button type = "submit" class="btn btn-primary submit-btn btn-block">비밀번호 찾기</button>
+                    <button type = "submit" name="btn_send" class="btn btn-primary submit-btn btn-block">비밀번호 찾기</button>
                   </div>
               </div>
             </div>
@@ -118,7 +132,8 @@
 	      }
 	  });  
 	});
-	</script>
+	
+</script>
 
 
 

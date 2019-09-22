@@ -152,9 +152,9 @@ public class BoardQnaQDao {
 			String searchKeyword) {
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from(select rownum as rnum, a.* from(select * from board_qna_q where " + search + " like '%"
-				+ searchKeyword + "%' order by hire_date desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
-				+ " and " + (cPage * numPerPage);
+		String sql = "select * from(select rownum as rnum, a.* from(select * from board_qna_q where " + search
+				+ " like '%" + searchKeyword + "%' order by hire_date desc)a) where rnum between "
+				+ ((cPage - 1) * numPerPage + 1) + " and " + (cPage * numPerPage);
 		List<BoardQnaQ> list = new ArrayList();
 		try {
 			stmt = conn.createStatement();
@@ -180,13 +180,10 @@ public class BoardQnaQDao {
 		return list;
 	}
 
-
-
-
 	public int insertBoard(Connection conn, BoardQnaQ q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		System.out.println(q+"++++++");
+		System.out.println(q + "++++++");
 		String sql = prop.getProperty("insertBoard");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -254,5 +251,22 @@ public class BoardQnaQDao {
 
 	}
 
-}
+	public int updateQna(Connection conn, BoardQnaQ temp) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateQna");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, temp.getTitle());
+			pstmt.setString(2, temp.getEtc());
+			pstmt.setInt(3, temp.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
+}

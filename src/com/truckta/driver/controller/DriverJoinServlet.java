@@ -45,8 +45,7 @@ public class DriverJoinServlet extends HttpServlet {
 		ArrayList<String> fileNames = new ArrayList<String>();
 		Driver temp = new Driver();
 		temp.setId(mul.getParameter("id"));
-		temp.setDateOfBirth(
-				mul.getParameter("birth1") + "/" + mul.getParameter("birth2") + "/" + mul.getParameter("birth3"));
+		temp.setDateOfBirth(mul.getParameter("dateOfBirth"));
 		temp.setCarType(Integer.parseInt(mul.getParameter("carType")));
 		temp.setbLicense(mul.getParameter("bLicense"));
 		temp.setdLicense(mul.getParameter("dLicense"));
@@ -80,14 +79,15 @@ public class DriverJoinServlet extends HttpServlet {
 
 		if (result == 1 && isUpload == files.size()) {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
+			request.getSession().removeAttribute("isCertified");
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "신청했습니다. 관리자의 승인 후 이용가능합니다.");
-			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add Fail : " + temp.getId());
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "실패했습니다. 메인페이지로 이동합니다.");
-			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 	}
 

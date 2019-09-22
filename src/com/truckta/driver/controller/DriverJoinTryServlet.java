@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.truckta.cartype.model.service.CarTypeService;
 import com.truckta.cartype.model.vo.CarType;
@@ -29,6 +30,7 @@ public class DriverJoinTryServlet extends HttpServlet {
 		
 		
 		if (carTypeList != null && carTypeList.size() > 0) {
+			request.getSession().setAttribute("isCertified", true);
 			request.setAttribute("carTypeList", carTypeList);
 			request.getRequestDispatcher("/views/user/signUpDriver.jsp").forward(request, response);
 		} else {

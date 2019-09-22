@@ -57,7 +57,6 @@ public class AdminUserUpdateServlet extends HttpServlet {
 		String dLicense = mul.getParameter("dLicense");
 		String dateOfBirth = mul.getParameter("dateOfBirth");
 		int carType = Integer.parseInt(mul.getParameter("carType"));
-		System.out.println("기본 정보 로드 완료");
 		Client c = null;
 		String profile = null;
 		if (mul.getFilesystemName("profile") == null) {
@@ -76,70 +75,40 @@ public class AdminUserUpdateServlet extends HttpServlet {
 
 			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
-			System.out.println("클라이언트 프로필사진 완료!");
 		}
 
 		Driver d = new Driver(id, dateOfBirth, carType, dLicense, bLicense);
 		ArrayList<FileDriver> fileDriverList = new ArrayList<FileDriver>();
 
 		List<FileDriver> files = service.findDriverFile(id);
-//		Iterator fileNameIter = (Iterator) mul.getFileNames();
-		int i =0;
-		for(;i<5;i++) {
-			String nameTag = "carPic"+(i+1);
+		int i = 0;
+		for (; i < 5; i++) {
+			String nameTag = "carPic" + (i + 1);
 			if (mul.getFilesystemName(nameTag) != null) {
 				boolean uploadFile = false;
 				if (i < files.size()) {
 					uploadFile = (service.deleteDriverFile(files.get(i).getFileName()) == 1);
-				}else {
+				} else {
 					uploadFile = true;
 				}
 
 				if (uploadFile) {
 					String dir = path + "/" + mul.getFilesystemName(nameTag);
 					File oldFile = new File(dir);
-					String tempDir = path + "/" + d.getId() + "_" + now + "_"
-							+ mul.getFilesystemName(nameTag);
+					String tempDir = path + "/" + d.getId() + "_" + now + "_" + mul.getFilesystemName(nameTag);
 					String tempFileName = d.getId() + "_" + now + "_" + mul.getFilesystemName(nameTag);
-					service.joinDriver(new FileDriver(d.getId(),tempFileName));
+					service.joinDriver(new FileDriver(d.getId(), tempFileName));
 					File newFile = new File(tempDir);
 					oldFile.renameTo(newFile);
 				}
+			} else if (i < files.size() && mul.getParameter("org_" + nameTag).equals("null")) {
+				service.deleteDriverFile(files.get(i).getFileName());
 			}
 		}
 
-//		int i = 0;
-//		while (i < 6 && fileNameIter.hasNext()) {
-//			String tryUploadFileNameTag = (String) fileNameIter.next();
-//			System.out.println("NameTag : " + tryUploadFileNameTag);
-//			System.out.println("FileName : " + mul.getFilesystemName(tryUploadFileNameTag));
-//			if (mul.getFilesystemName(tryUploadFileNameTag) != null) {
-//				boolean uploadFile = false;
-//				if (i < files.size()) {
-//					uploadFile = (service.deleteDriverFile(files.get(i).getFileName()) == 1);
-//				}else {
-//					uploadFile = true;
-//				}
-//
-//				if (uploadFile) {
-//					String dir = path + "/" + mul.getFilesystemName(tryUploadFileNameTag);
-//					File oldFile = new File(dir);
-//					String tempDir = path + "/" + d.getId() + "_" + now + "_"
-//							+ mul.getFilesystemName(tryUploadFileNameTag);
-//					String tempFileName = d.getId() + "_" + now + "_" + mul.getFilesystemName(tryUploadFileNameTag);
-//					service.joinDriver(new FileDriver(d.getId(),tempFileName));
-//					File newFile = new File(tempDir);
-//					oldFile.renameTo(newFile);
-//				}
-//			}
-//			i++;
-//		}
-
-		System.out.println("Exit While");
 		Client client = new ClientService().findClient(id);
 		Driver driver = new DriverService().findDriver(id);
 		List<CarType> carTypeList = new CarTypeService().selectAll();
-		System.out.println("User Info Reload Complete");
 		if (driver != null) {
 			List<FileDriver> fileList = new FileDriverService().findDriverFile(id);
 			request.setAttribute("fileList", fileList);
@@ -151,23 +120,19 @@ public class AdminUserUpdateServlet extends HttpServlet {
 			request.setAttribute("driver", driver);
 		}
 		request.setAttribute("client", client);
-		System.out.println("Selecting Views....");
 
 		int isDriverUpdate = new DriverService().adminUpdateDriver(d, id);
-		System.out.println("isDriverUpdate" + (isDriverUpdate == 1 ? "true" : "false"));
 		int isClientUpdate = new ClientService().adminUpdateClient(c, id);
-		System.out.println("isDriverUpdate" + (isClientUpdate == 1 ? "true" : "false"));
 		i += isDriverUpdate + isClientUpdate;
-		
 
-		if (i == 6) {
+		if (i == 7) {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Driver_Update : " + c.getId());
-			request.setAttribute("isDriverView", true);
-			request.getRequestDispatcher("/views/admin/adminUserView.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=true&id=" + c.getId()).forward(request,
+					response);
 		} else if (isClientUpdate == 1) {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Client_Update : " + c.getId());
-			request.setAttribute("isDriverView", false);
-			request.getRequestDispatcher("/views/admin/adminUserView.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=false&id=" + c.getId()).forward(request,
+					response);
 		} else {
 			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_User_Update Fail : " + c.getId());
 			request.setAttribute("location", "/");

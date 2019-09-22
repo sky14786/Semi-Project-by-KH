@@ -119,7 +119,7 @@ public class DriverDao {
 		return result;
 	}
 
-	public int driverRightModfiy(Connection conn, String id) {
+	public int driverRightModify(Connection conn, String id) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("driverRightModify");
 		int result = 0;

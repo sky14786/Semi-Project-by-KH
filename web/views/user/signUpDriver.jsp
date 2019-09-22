@@ -14,7 +14,7 @@
 
 
 <script>
-	//certifiedCheck();
+	certifiedCheck();
 </script>
 
 
@@ -36,10 +36,8 @@
 				</div>
 				<div class="form-group form-group-1">
 					<label>Date of Birth</label><br />
-
-					<script>
-						createInputDate();
-					</script>
+					<input type="text" name="dateOfBirth" id="dateOfBirth"
+						class="form-control"  placeholder="YYYYMMDD"/>
 				</div>
 				<div class="form-group">
 					<label for="carType">Truck Category</label><br /> <select
@@ -64,14 +62,19 @@
 					<label for="carPic">Truck Picture</label> 
 					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<button type="button" onclick="deleteDriverImg("carPic1");" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<button type="button" onclick="deleteDriverImg("carPic2");" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<button type="button" onclick="deleteDriverImg("carPic3");" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<button type="button" onclick="deleteDriverImg("carPic4");" class="btn btn-primary">삭제</button>
 					<input type="file" name="carPic5" id="carPic5" class="form-control btn btn-outline-secondary inputFile" 
-							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />		
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<button type="button" onclick="deleteDriverImg("carPic5");" class="btn btn-primary">삭제</button>		
 				</div>
 				
 				<div class="form-group form-check">
@@ -88,4 +91,9 @@
 		<div class="col-2"></div>
 	</div>
 </div>
+<script>
+function deleteImg(img){
+	$("input[name="+img+"]").val("");
+}
+</script>
 <%@ include file="/views/common/footer.jsp"%>

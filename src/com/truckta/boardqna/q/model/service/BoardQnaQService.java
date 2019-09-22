@@ -93,4 +93,16 @@ public class BoardQnaQService {
 		return q;
 
 	}
+
+	public int updateQna(BoardQnaQ temp) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateQna(conn, temp);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

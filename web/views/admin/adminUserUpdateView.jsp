@@ -6,7 +6,7 @@
 <script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/signUpDriver-js.js?ver=1.3" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.3" charset="utf-8"></script>
 <%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -34,6 +34,8 @@
 			<br>
 			<h2>Modify information</h2>
 			<hr>
+			<input type="hidden" name = "isChecking" value = "<%=isDriverView %>" readonly/>
+			<input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
 			<form
 				action="<%=request.getContextPath()%>/admin/adminUserUpdate"
 				method="post" name="sendform" enctype="multipart/form-data">
@@ -57,8 +59,11 @@
 						if (client.getProfile() != null) {
 					%>
 						<label for="profile">Profile Picture</label><hr>
-						<img src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="500px" height="300px">
-						<br>
+						<img name="img_org_profile" src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="400px" height="300px">
+						<br><br>
+						<button type="button" onclick="deleteProfileImg();" class="btn btn-primary">삭제</button>
+						<button type="button" onclick="cancelProfileImg('<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>','<%=client.getProfile() %>');" class="btn btn-primary">취소</button>
+						<hr>
 						<input type="hidden" name ="org_profile" id="org_profile" value="<%=client.getProfile() %>">
 						<input type="file" name="profile" id="profile" class="form-control btn btn-outline-secondary inputFile" 
 								accept=".jpg, .png, .pdf" style="margin-top: 5px; "/>
@@ -80,7 +85,7 @@
 				</div>
 				<div class="form-group form-group-1">
 					<%
-						if (driver != null && client.getUserType() == 1) {
+						if (driver != null && client.getUserType() == 2) {
 					%>
 
 					<label>Date of Birth</label><br />
@@ -120,16 +125,37 @@
 					<label for="carPic">Truck Picture</label><hr>
 					<%
 						if (fileList != null) {
-								for (int i = 0;i < fileList.size(); i++) {
+								for (int i = 0;i < 5; i++) {
+									if(i<fileList.size()&&fileList.get(i)!=null){
 					%>
 				
-					<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
-					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />	<input type="file" name="carPic<%=i+1 %>" id="carPic<%=i+1 %>" class="form-control btn btn-outline-secondary inputFile" 
+					<img name="img_org_carPic<%=i+1 %>" src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+					<input type="hidden" name="org_carPic<%=i+1 %>" id="org_carPic<%=i+1 %>"  value="<%=fileList.get(i).getFileName() %>" />
+					<button type="button" onclick="deleteImg('org_carPic<%=i+1 %>');" class="btn btn-primary">삭제</button>
+					<button type="button" onclick="cancelImg('org_carPic<%=i+1 %>','<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>','<%=fileList.get(i).getFileName() %>');" class="btn btn-primary">취소</button>
+					<%
+									} 
+					%>	
+					<input type="file" name="carPic<%=i+1 %>" id="carPic<%=i+1 %>" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+					<br/><hr>
+					<%
+								}
+						}else {
+					%>
+						<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic2" id="carPic2" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic3" id="carPic3" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic4" id="carPic4" class="form-control btn btn-outline-secondary inputFile" 
+							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
+						<input type="file" name="carPic5" id="CarPic5" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
 					<br/><hr>
 					<%
 						}
-							}
 					%>
 					
 				
@@ -174,6 +200,26 @@ $(document).ready(function (e){
 	    }, 1000);
 	  });//end bigWrapperClick event
 });
+
+function deleteImg(img){
+	$("img[name=img_"+img+"]").attr("src","");
+	$("input[name="+img+"]").val("null");
+	
+}
+function cancelImg(img,src,name){
+	$("img[name=img_"+img+"]").attr("src",src);
+	$("input[name="+img+"]").val(name);
+}
+
+function deleteProfileImg(){
+	$("img[name=img_org_profile]").attr("src","");
+	$("input[name=org_profile]").val("null");
+	
+}
+function cancelProfileImg(src,name){
+	$("img[name=img_org_profile]").attr("src",src);
+	$("input[name=org_profile]").val(name);
+}
 </script>
 
 

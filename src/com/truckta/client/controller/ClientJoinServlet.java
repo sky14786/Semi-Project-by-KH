@@ -46,7 +46,7 @@ public class ClientJoinServlet extends HttpServlet {
 
 		Client temp = new Client();
 		temp.setId(mul.getParameter("id"));
-		temp.setPw(DataEncryptionTemplate.encryptionToSHA256(mul.getParameter("pw")));
+		temp.setPw(DataEncryptionTemplate.encryptionToSHA512(mul.getParameter("pw")));
 		temp.setName(mul.getParameter("name"));
 		temp.setEmail(mul.getParameter("email"));
 
