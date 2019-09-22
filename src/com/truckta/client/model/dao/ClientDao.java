@@ -156,11 +156,9 @@ public class ClientDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
-
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -284,6 +282,7 @@ public class ClientDao {
 		String sql = prop.getProperty("selectChatHistory");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(room);
 			pstmt.setInt(1, Integer.parseInt(room));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -337,7 +336,7 @@ public class ClientDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				temp = new Client();
-				temp.setId(id);
+				temp.setId(rs.getString("id"));
 				temp.setPw(rs.getString("pw"));
 				temp.setEmail(rs.getString("email"));
 				temp.setName(rs.getString("name"));
@@ -497,6 +496,48 @@ public class ClientDao {
 			JDBCTemplate.close(stmt);
 		}
 		return list;
+	}
+
+	public int adminUpdateClient(Connection conn, Client c, String id) {
+//		PreparedStatement pstmt = null;
+		Statement stmt = null;
+//		String sql = prop.getProperty("adminUpdateClient");
+		String sql2 = "update client set name='" + c.getName() + "', email='" + c.getEmail() + "', profile='"
+				+ c.getProfile() + "', moddate=sysdate where id = '" + id + "'";
+		int result = 0;
+		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, c.getName());
+//			pstmt.setString(2, c.getEmail());
+//			pstmt.setString(3, c.getProfile());
+//			pstmt.setString(4,id);
+//
+//			result = pstmt.executeUpdate();
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql2);
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	public int driverRightModify(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverRightModify");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

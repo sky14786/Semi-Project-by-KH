@@ -48,7 +48,7 @@
 							<%} %>
 						</td>
 						<td><%=b.getqUser() %></td>
-						<td><a href="#" style="color:inherit;"><%=b.getTitle() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/board/boardView?boardNo=<%=b.getBoardNo() %>" style="color:inherit;"><%=b.getTitle() %></a></td>
 						<td><%=b.getHireDate() %></td>
 						<td><%if(b.getStatus()==0){%>
 								답변전
@@ -60,6 +60,9 @@
 						</td>
 						<td>
 						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">답변</button>
+						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
+						<a href="<%=request.getContextPath() %>/admin/adminBoardQnaQUpdateTry?boardNo=<%=b.getBoardNo() %>" style="color:inherit;">
+						수정</a></button>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 				</tr>

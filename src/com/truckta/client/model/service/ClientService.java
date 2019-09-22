@@ -187,4 +187,27 @@ public class ClientService {
 		return list;
 	}
 
+	public int adminUpdateClient(Client c, String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.adminUpdateClient(conn, c, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int driverRightModify(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.driverRightModify(conn, id);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
 }

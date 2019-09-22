@@ -39,7 +39,7 @@ tr>td{
 			%>
 					<tr style="text-align:center;">
 						<td><%=m.getMatNo() %></td>
-						<td><a href="#" style="color:inherit;"><%=m.getBoardNo() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/detail?boardNo=<%=m.getBoardNo() %>"  style="color:inherit;"><%=m.getBoardNo() %></a></td>
 						<td><%=m.getRequestor() %></td>
 						<td><%=m.getResponser() %></td>
 						<td><%=m.getPay() %></td>

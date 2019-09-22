@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
-	<a class="navbar-brand" href="<%=request.getContextPath()%>/views/admin/adminMain.jsp">관리자</a>
+<div class="navbar navbar-expand-sm bg-dark navbar-dark"style="margin-top:65px;">
+	<a class="navbar-brand" href="<%=request.getContextPath()%>/views/admin/adminMain.jsp" style="width:auto;">관리자</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
 		<span class="navbar-toggler-icon"></span>

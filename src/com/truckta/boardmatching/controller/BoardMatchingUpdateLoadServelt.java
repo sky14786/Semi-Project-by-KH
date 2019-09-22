@@ -40,7 +40,7 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		
 		request.setAttribute("board", bm);
 		request.setAttribute("boardImgs", list);
-		request.getRequestDispatcher(request.getContextPath() + "/views/user/noticeMod.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/user/noticeMod.jsp").forward(request, response);
 		
 	}
 

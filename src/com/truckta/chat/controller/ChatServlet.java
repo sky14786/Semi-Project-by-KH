@@ -34,12 +34,13 @@ public class ChatServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Client loggedInClient =(Client)request.getSession().getAttribute("loginClient");
-		String room = request.getParameter("room");
+		String room = (String) request.getParameter("room");
 		
 		List<ChatHistory> list = new ClientService().selectChatHistory(room);
 		request.setAttribute("room", room);
 		request.setAttribute("list", list);
 		request.setAttribute("loggedInClient", loggedInClient);
+		
 		request.getRequestDispatcher("/views/chat/chat.jsp").forward(request, response);
 	}
 

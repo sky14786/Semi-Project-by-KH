@@ -41,7 +41,7 @@
 
 
 
-<!-- FAVICON -->`
+<!-- FAVICON -->
 <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
 
 <title>mypage test</title>

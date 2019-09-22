@@ -1,6 +1,7 @@
 package com.truckta.matching.model.service;
 
 import java.sql.Connection;
+
 import java.util.List;
 
 import com.truckta.matching.model.dao.MatchingDao;
@@ -35,6 +36,13 @@ public class MatchingService {
 	public List<Matching> selectSearchListPage(int cPage, int numPerPage, String search, String searchKeyword) {
 		Connection conn = JDBCTemplate.getConnection();
 		List<Matching> list = dao.selectSearchListPage(conn, cPage, numPerPage, search, searchKeyword);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public List<Matching> selectMatches(String boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Matching> list = dao.selectMatches(conn, boardNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}

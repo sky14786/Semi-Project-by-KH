@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file="/views/common/header.jsp"%>
 <%@ page import="com.truckta.client.model.vo.Client"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.truckta.chat.model.vo.MessageList"%>
@@ -9,28 +9,22 @@
 	Client c = (Client) request.getAttribute("loggedInClient");
 	List<MessageList> list = (List) request.getAttribute("list");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Document</title>
+
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-<!-- style.css -->
-<link href="<%=request.getContextPath()%>/css/messagebox.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/chat.css" rel="stylesheet">
-<!-- bootstrap css -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+     rel="stylesheet">
+<script   src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<link   href="<%=request.getContextPath()%>/css/conversation.css"
+     rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/chat.css"   rel="stylesheet">
 </head>
+
+<div></div>
+<br/><br/><br/>
+
+
 <body>
 	<style>
 form {
@@ -43,15 +37,6 @@ form:active {
 </style>
 
 	<div id="chat-container" class="container-fluid ">
-
-		<div class="navbar">
-			<a href="<%=request.getContextPath()%>/views/common/header.jsp"
-				class="p-2 "> <i class="fas fa-chevron-left fa-3x"></i></a>
-			<div class="p-2 chat-container-title ">
-				<i class="far fa-envelope fa-2x"></i>
-			</div>
-			<div></div>
-		</div>
 
 
 		<%

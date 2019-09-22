@@ -1,6 +1,7 @@
 package com.truckta.detail.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.detail.model.vo.Detail;
 import com.truckta.detail.service.DetailService;
+import com.truckta.matching.model.service.MatchingService;
+import com.truckta.matching.model.vo.Matching;
 
 /**
  * Servlet implementation class DetailServlet
@@ -31,18 +34,18 @@ public class DetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardNo = request.getParameter("boardNo");
-		System.out.println(boardNo);
 		
 		DetailService service = new DetailService();
 		
+		// selecting the Detailed view info
 		Detail d = service.selectDetail(boardNo);
 		String startAddr[] = d.getStartAddr().split(",");
 		String endAddr[] = d.getEndAddr().split(",");
 		
+		//Getting the list of bade drivers
+		List<Matching> badeList = new MatchingService().selectMatches(boardNo);
 		
-//		System.out.println(startAddr[1]);
-//		System.out.println(endAddr[1]);
-		
+		request.setAttribute("badeList", badeList);
 		request.setAttribute("startAddr", startAddr[1]);
 		request.setAttribute("endAddr", endAddr[1]);
 		request.setAttribute("boardNo", boardNo);

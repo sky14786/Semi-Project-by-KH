@@ -36,7 +36,7 @@
 				for(Client c : list){
 			%>
 					<tr style="text-align:center;">
-						<td><a href="#" style="color:inherit;"><%=c.getId() %></a></td>
+						<td><a href="<%=request.getContextPath() %>/admin/adminUserDetail?isDriverView=false&id=<%=c.getId() %>" style="color:inherit;"><%=c.getId() %></a></td>
 						<td><%=c.getName() %></td>
 						<td><%=c.getRegDate() %></td>
 						<td><%=c.getModDate() %></td>
@@ -62,7 +62,11 @@
 						<%} %>
 						<td><%=c.getReportCount() %></td>
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
+						<a href="<%=request.getContextPath() %>/admin/adminUserDetail?isDriverView=<%=c.getUserType()==2?true:false %>>&id=<%=c.getId() %>&isUpdateView=true" style="color:inherit;">
+							수정
+						</a>
+						</button>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						<%if(c.getStatus()==1) {%>
 						<button type="button" name="btn_report" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>

@@ -20,6 +20,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
+<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/user/myPageHeader.jsp"%>
 <title>배달 정보 업로드</title>
 
 <!-- 부트스트랩 4 -->
@@ -73,7 +75,7 @@ nav, aside {
 <body class="bg-light">
 	<div class="container">
 		<div class="py-1 text-center">
-			<h2>header</h2>
+			<!-- <h2>header</h2> -->
 			<!-- 헤더 수정 -->
 
 

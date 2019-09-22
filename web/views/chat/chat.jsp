@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html;   charset=UTF-8"
-     pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp"%>
 <%@ page import="com.truckta.client.model.vo.Client"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.truckta.chat.model.vo.ChatHistory"%>
+
 <%
      Client c = (Client) request.getAttribute("loggedInClient");
      List<ChatHistory> list = (List) request.getAttribute("list");
@@ -10,12 +12,7 @@
      String id = c.getId();
      
 %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>chat</title>
-<meta name="viewport" content="width=device-width,   initial-scale=1">
+
 <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link
@@ -26,26 +23,16 @@
      rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/chat.css"   rel="stylesheet">
 </head>
-<header>
-     <div id="chat-container" class="container-fluid ">
-          
-          <div class="navbar">
-              <a   href="<%=request.getContextPath()%>/messages" class="p-2   "> <i
-                   class="fas fa-chevron-left   fa-3x"></i></a>
-              <div class="p-2 chat-container-title ">
-                   <i class="far fa-envelope-open   fa-2x"></i>
-              </div>
-              <div></div>
-          </div>
-          
-</header>
-<body>
+
+<div></div>
+<br/><br/><br/>
+<body onload = "scrollDown();">
+     <div class="text-history" name="text-history"    id="text-history">
      <%
           if (list != null || !list.isEmpty()) {
               for (ChatHistory ch : list) {
                 if(!c.getId().equals(ch.getSender())){
      %>
-     <div class="text-history" name="text-history"    id="text-history">
           <div class="message-feed feed" id="msg"    name="msg">
               <div class="pull-left">
                    <img    src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
@@ -72,6 +59,10 @@
               }
           %>
           
+          </div>
+          <br/><br/><br/>
+          
+</body>
 </body>
 <footer>
 
@@ -86,6 +77,18 @@
 </footer>
 <!-- 메세지 보낼때 -->
 <script>
+
+
+// method to scroll down
+	function scrollDown(){
+		console.log("waaaaaaaaaaaa!!!!!!")
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+
+window.onload = function(){
+	scrollDown();
+}
+	
 //creating web socket
      var socket = new  WebSocket("ws://localhost:9090/<%=request.getContextPath()%>/messages/socket");
      socket.onopen = function(e) {
@@ -158,6 +161,7 @@
 	          $("#text-history").append(wrap);
 	          $("#text").val("");
           }
+	          scrollDown();
      }
      
      

@@ -38,7 +38,6 @@ public class DriverDao {
 			pstmt.setString(3, temp.getDateOfBirth());
 			pstmt.setString(4, temp.getdLicense());
 			pstmt.setString(5, temp.getbLicense());
-//			pstmt.setString(6, temp.getCarPic());
 
 			result = pstmt.executeUpdate();
 
@@ -102,7 +101,7 @@ public class DriverDao {
 		}
 		return list;
 	}
-	
+
 	// 드라이버 확인
 	public int driverCheck(Connection conn, String user) {
 		PreparedStatement pstmt = null;
@@ -114,6 +113,72 @@ public class DriverDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int driverRightModify(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("driverRightModify");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Driver findDriver(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findDriver");
+		ResultSet rs = null;
+		Driver driver = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				driver = new Driver();
+				driver.setId(rs.getString("id"));
+				driver.setCarType(rs.getInt("type_no"));
+				driver.setDateOfBirth(rs.getString("date_of_birth"));
+				driver.setdLicense(rs.getString("d_license"));
+				driver.setbLicense(rs.getString("b_license"));
+				driver.setRegDate(rs.getDate("regdate"));
+				driver.setStatus(rs.getInt("status"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return driver;
+	}
+
+	public int adminUpdateDriver(Connection conn, Driver d, String target) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminUpdateDriver");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, d.getDateOfBirth());
+			pstmt.setString(2, d.getdLicense());
+			pstmt.setString(3, d.getbLicense());
+			pstmt.setInt(4, d.getCarType());
+			pstmt.setString(5, target);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}

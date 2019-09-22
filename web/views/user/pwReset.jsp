@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<%
+	String id = (String) request.getParameter("id");
+%>
 <link href="../../css/resetPassword-Style.css?ver=1.1" rel="stylesheet" />
 <script src="../../js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
 <div class="container">
@@ -14,15 +16,21 @@
 	<div class="row">
 		<div class="col-xl-1"></div>
 		<div class="col-xl-5 left-image d-none d-sm-block">
-			<img src="../../images/project_images/ResetPassword-Thumbnail.jpg" alt=""
+			<img src="<%=request.getContextPath() %>/images/project_images/ResetPassword-Thumbnail.jpg" alt=""
 				class="img-thumbnail" />
 		</div>
 		<div class="col-xl-5 right-input">
 			<h2>You can reset your password</h2>
 			<br />
 			<br />
-			<form action="<%=request.getContextPath()%>/pwreset.do"
+			<form action="<%=request.getContextPath()%>/user/resetPassword"
 				method="post">
+				<input type="hidden" name="id" id="id" value="<%=id%>">
+				<div class="form-group">
+					<label for="key">Enter your Key</label> <input
+						type="text" name="key" id="key" class="form-control"
+						/>
+				</div>
 				<div class="form-group">
 					<label for="password">Please enter a password to reset</label> <input
 						type="password" name="password" id="password" class="form-control"

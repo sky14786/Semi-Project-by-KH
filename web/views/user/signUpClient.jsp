@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="/views/common/header.jsp"%>	
+<%@ include file="/views/common/header.jsp"%>
 <link href="../../css/signUpClient-Style.css?ver=1.1" rel="stylesheet" />
 <script src="../../js/signUpClient-js.js?ver=1.1" charset="utf-8"></script>
 <%
@@ -13,7 +13,7 @@
 
 
 <script>
-	//certifiedCheck();
+	certifiedCheck();
 </script>
 
 	<div class="container">
@@ -22,14 +22,13 @@
 		<div class="col-1"></div>
 		<div class="col-6"><br><br><br><br>
 			<h2>Sign Up</h2><hr>
-			<form action="/clientSignUp.do" method="post" name="sendform"
+			<form action="<%=request.getContextPath() %>/clientSignUp" method="post" name="sendform"
 				enctype="multipart/form-data">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
-						class="form-control" placeholder="Phone Number" <%--   value="<%=id%>"
-                readonly --%>
-              />
+						class="form-control" placeholder="Phone Number" value="<%=id%>"
+						readonly  />
 				</div>
 				<div class="form-group">
 					<label for="pw">Pw</label> <input type="password" name="pw" id="pw"

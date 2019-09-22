@@ -35,22 +35,55 @@
 /*---Media Queries --*/
 
 @media (max-width: 1200px) {
-  input[type="text"] {
+  .search-bar {
     width: 550px;
   }
 }
 
 @media (max-width: 900px) {
-  input[type="text"] {
+  .search-bar {
+    width: 300px;
+  }
+}
+
+@media (max-width: 700px) {
+  .search-bar {
     width: 250px;
   }
 }
 
+
 @media (max-width: 500px) {
-  input[type="text"] {
-    width: 70px;
+  .search-bar {
+    width: 180px;
   }
 }
+
+@media (max-width: 420px) {
+  .search-bar {
+    width: 130px;
+  }
+}
+
+
+@media (max-width: 370px) {
+  .search-bar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 340px) {
+  .search-bar {
+    width: 80px;
+  }
+}
+
+
+
+
+
+
+
 
 #logo {
   width: 50px;

@@ -1,6 +1,7 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/common/header.jsp"%> 
 <%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching" %>
 
 <%
@@ -53,7 +54,9 @@ tr>td{
 						<td><%=bm.getMemo()!=null?bm.getMemo():"X" %></td>
 						<td>
 
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
+						<a href="<%=request.getContextPath()%>/board/updateLoad?boardNo=<%=bm.getBoardNo()%>&writer=<%=bm.getWrtier()%>" style="color:inherit;">수정</a>
+						</button>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 						

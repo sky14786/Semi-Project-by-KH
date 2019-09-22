@@ -11,15 +11,15 @@
  		String searchKey=(String)request.getAttribute("searchKeyword");
  		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		
- 		System.out.println("//////////////////////////////////////////////////////////////////////");
+ 		//System.out.println("//////////////////////////////////////////////////////////////////////");
  		List<FileMatching> fileList = (List)request.getAttribute("fileList");
- 		System.out.print("#####getfileList"+fileList);
+ 		//System.out.print("#####getfileList"+fileList);
     	
     %>
     
     <%@ include file="/views/common/header.jsp"%>
     
-    
+    </br></br></br></br>
 	<div class="container">
 
 
@@ -133,7 +133,7 @@
 		
 		</div>
 	</div>
-	</div>
+
 
 	<script>
 	function dateSearch(datesearch){
