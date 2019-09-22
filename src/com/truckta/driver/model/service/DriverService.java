@@ -3,6 +3,7 @@ package com.truckta.driver.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
 import com.truckta.driver.model.dao.DriverDao;
 import com.truckta.driver.model.vo.Driver;
@@ -116,5 +117,12 @@ public class DriverService {
 		int result = dao.dirverStatusCheck(conn, driver);
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public List<BoardMatching> driverTopList(String driver){
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardMatching> list = dao.driverTopList(conn, driver);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

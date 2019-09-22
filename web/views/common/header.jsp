@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.truckta.client.model.vo.Client"%>
 
@@ -73,7 +72,6 @@
 	<%
 		} else{
 	%>
-<<<<<<< HEAD
 	<button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
 				<i class="fas fa-envelope fa-lg"></i>
 			</button>
