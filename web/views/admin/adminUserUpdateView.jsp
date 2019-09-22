@@ -6,7 +6,7 @@
 <script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.3" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.6" charset="utf-8"></script>
 <%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -35,7 +35,7 @@
 			<h2>Modify information</h2>
 			<hr>
 			<input type="hidden" name = "isChecking" value = "<%=isDriverView %>" readonly/>
-			<input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
+			
 			<form
 				action="<%=request.getContextPath()%>/admin/adminUserUpdate"
 				method="post" name="sendform" enctype="multipart/form-data">
@@ -89,7 +89,7 @@
 					%>
 
 					<label>Date of Birth</label><br />
-
+<input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
 					<input type="text" name="dateOfBirth" id="dateOfBirth"
 						class="form-control"  value="<%=driver.getDateOfBirth()%>"/>
 				</div>
