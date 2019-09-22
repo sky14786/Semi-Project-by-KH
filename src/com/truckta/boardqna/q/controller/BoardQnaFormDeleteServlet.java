@@ -1,4 +1,4 @@
-package com.truckta.client.controller;
+package com.truckta.boardqna.q.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.truckta.client.model.service.ClientService;
-import com.truckta.client.model.vo.Client;
+import com.truckta.boardqna.q.model.service.BoardQnaQService;
 
 /**
- * Servlet implementation class ClientUpdateServlet
+ * Servlet implementation class BoardQnaFormDeleteServlet
  */
-@WebServlet("/client/clientUpdate")
-public class ClientUpdateServlet extends HttpServlet {
+@WebServlet("/BoardQnaFormDeleteServlet")
+public class BoardQnaFormDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClientUpdateServlet() {
+    public BoardQnaFormDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +30,16 @@ public class ClientUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
-		 * Client c=new Client(); c.setName(request.getParameter("name"));
-		 * c.setProfile(request.getParameter("profile"));
-		 * c.setEmail(request.getParameter("email"));
-		 * 
-		 * 
-		 * int result=new ClientService().updateClient(c);
-		 * 
-		 * String msg=result>0?"회원수정이 완료되었습니다.":"회원수정을 실패하였습니다"; String
-		 * loc="/clientUpdate?id="+c.getId();
-		 * 
-		 * request.setAttribute("msg",msg ); request.setAttribute("loc", loc);
-		 * request.getRequestDispatcher("/views/common/msg.jsp").forward(request,
-		 * response);
-		 */
+		int boardNo=Integer.parseInt(request.getParameter("no"));
+		int type=Integer.parseInt(request.getParameter("type"));
+		
+		int result=new BoardQnaQService().deleteBoard(boardNo,type);
+		String location="/board/boardQnaQList?boardNo="+boardNo;
+		String message=result>0?"게시판삭제완료":"게시판삭제실패";
+		String view="/views/common/msg.jsp";
+		request.setAttribute("message", message);
+		request.setAttribute("location", location);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

@@ -17,6 +17,7 @@ public class EncyptWrapper extends HttpServletRequestWrapper {
 	@Override
 	public String getParameter(String name) {
 		String value="";
+		/* name = "www.truckta.com"+ name */; 
 		if(name!=null && (name.equals("pw")||name.equals("passwordNew"))) {
 			super.getParameter(name);//client 보낸실제값
 			value=getSha512(super.getParameter(name));

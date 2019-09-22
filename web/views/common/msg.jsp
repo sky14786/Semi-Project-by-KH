@@ -16,7 +16,7 @@
 		alert('<%=message%>');
 		<%=script!=null?script:""%>
 		  //메인화면으로 이동
-		location.href='<%=request.getContextPath()%><%=location%>';
+		 location.href='<%=request.getContextPath()%><%=location%>';
 	</script>
 </body>
 </html>

@@ -125,7 +125,6 @@ function deny(){
 
 </script>
 
-<!-- <body>
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8
+<body>
 </body>
-</html> -->
+</html>
