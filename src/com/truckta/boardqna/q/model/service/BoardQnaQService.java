@@ -23,10 +23,10 @@ public class BoardQnaQService {
 
 	}
 
-	public List<BoardQnaQ> selectBoardList(int cPage, int numPerPage, int type, String qUser) {
+	public List<BoardQnaQ> selectBoardList(int cPage, int numPerPage, String qUser) {
 		Connection conn = JDBCTemplate.getConnection();
 
-		List<BoardQnaQ> list = dao.selectBoardList(conn, cPage, numPerPage, type, qUser);
+		List<BoardQnaQ> list = dao.selectBoardList(conn, cPage, numPerPage, qUser);
 		JDBCTemplate.close(conn);
 		return list;
 	}

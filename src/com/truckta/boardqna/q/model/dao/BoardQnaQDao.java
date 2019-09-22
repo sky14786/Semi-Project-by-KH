@@ -62,17 +62,16 @@ public class BoardQnaQDao {
 		return list;
 	}
 
-	public List<BoardQnaQ> selectBoardList(Connection conn, int cPage, int numPerPage, int type, String qUser) {
+	public List<BoardQnaQ> selectBoardList(Connection conn, int cPage, int numPerPage, String qUser) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectBoardList");
 		List<BoardQnaQ> list = new ArrayList();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, type);
-			pstmt.setString(2, qUser);
-			pstmt.setInt(3, (cPage - 1) * numPerPage + 1);
-			pstmt.setInt(4, cPage * numPerPage);
+			pstmt.setString(1, qUser);
+			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(3, cPage * numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardQnaQ temp = new BoardQnaQ();
