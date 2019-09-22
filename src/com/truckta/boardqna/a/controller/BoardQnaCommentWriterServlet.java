@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.service.BoardQnaQService;
+import com.truckta.boardqna.q.model.vo.BoardQnaQ;
+import com.truckta.client.model.service.ClientService;
+import com.truckta.client.model.vo.Client;
+
+import common.template.SMTPAuthentication;
 
 /**
  * Servlet implementation class BoardQnaCommentWriterServlet
@@ -61,6 +66,24 @@ public class BoardQnaCommentWriterServlet extends HttpServlet {
 		
 		BoardQnaA a=new BoardQnaA(qNo,etc,writer);
 		int result=new BoardQnaQService().insertComment(a);
+		
+		if(result==1) {
+			Client temp = new ClientService().findClient(writer);
+			if(temp.getName().equals("관리자")) {
+				BoardQnaQ q = new BoardQnaQService().findBoardQnaQ(qNo);
+				q.setStatus(1);
+				if(new BoardQnaQService().updateQna(q)==1) {
+					Client c = new ClientService().findClient(q.getqUser());
+					String subject = "[Truck ~ Ta]"+c.getName()+"님 께서 문의주신 글에 대한 답변입니다.";
+					String content = "<div style=\"border:2px gray solid; width:500px;text-align:center;padding:30px;\">"+
+							"<h3>"+subject+"</h3>"+
+							"<hr>"+
+							"<h4>"+etc+"</h4>"+
+							"</div>";
+					SMTPAuthentication.sendmail(content, c.getEmail(), subject);
+				}
+			}
+		}
 		
 		
 		String message="";
