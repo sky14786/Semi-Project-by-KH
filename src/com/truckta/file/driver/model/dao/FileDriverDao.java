@@ -106,4 +106,27 @@ public class FileDriverDao {
 		return result;
 	}
 
+	   public List<FileDriver> selectAllFiles(Connection conn) {
+	      PreparedStatement pstmt = null;
+	      String sql = prop.getProperty("selectAllFiles");
+	      ResultSet rs = null;
+	      List<FileDriver> list = new ArrayList<FileDriver>();
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         rs = pstmt.executeQuery();
+
+	         while (rs.next()) {
+	            FileDriver temp = new FileDriver();
+	            temp.setFileName(rs.getString("file_name"));
+	            temp.setId(rs.getString("id"));
+	            list.add(temp);
+	         }
+	      } catch (SQLException sqle) {
+	         sqle.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(rs);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      return list;
+	   }
 }

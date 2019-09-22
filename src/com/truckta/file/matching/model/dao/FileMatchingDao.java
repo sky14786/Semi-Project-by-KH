@@ -77,6 +77,31 @@ public class FileMatchingDao {
 		return result;
 	}
 
-	// oh fuck i can't ctrl + space
+	   public List<FileMatching> detailimg(Connection conn,String boardNo) {
+		      Statement stmt = null;
+		      ResultSet rs = null;
+		      List<FileMatching> fileList = new ArrayList();
+		      System.out.println("daoboardNo"+boardNo);
+		      String sql = "SELECT board_matching.*, file_matching.file_Name FROM board_matching INNER JOIN file_matching ON  board_matching.board_NO = file_matching.board_No where board_matching.board_no="+boardNo;
+		      try {
+		         stmt = conn.prepareStatement(sql);
+		         
+		         rs = stmt.executeQuery(sql);
+
+		         while (rs.next()) {
+		            FileMatching fm = new FileMatching();
+		            fm.setBoardNo(rs.getInt("board_no"));
+		            fm.setFileName(rs.getString("file_name"));
+		            fileList.add(fm);
+		         }
+		         
+		      } catch (SQLException sqle) {
+		         sqle.printStackTrace();
+		      } finally {
+		         JDBCTemplate.close(rs);
+		         JDBCTemplate.close(stmt);
+		      }
+		      return fileList;
+		   }
 
 }

@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.container {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.inputFile {
+  height: 45px;
+}
+
+.navbar {
+  height: 65px;
+  width: 100%;
+}
+
+.navbar-brand {
+  width: 200px;
+}
+
+.navInput {
+  width: 200px;
+}
+
+.navButton {
+  width: 100px;
+}
+
+.input-dateofbirth-text {
+  font-size: 18px;
+  padding: 10px;
+  vertical-align: inherit;
+}
+
+.form-group-1 {
+  vertical-align: middle;
+}
+
+.form-group-1 > select {
+  vertical-align: inherit;
+}
+
+.custom-select-sm {
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+    no-repeat right 0.5rem center/8px 10px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 10px;
+  margin-left: 0;
+}
+
+.select-birth-input {
+  width: 80px;
+}
+
+.select-cartype-input {
+  width: 100px;
+}

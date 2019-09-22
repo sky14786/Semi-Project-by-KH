@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MOOG/git/tomcat server yo/lib/servlet-api.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
