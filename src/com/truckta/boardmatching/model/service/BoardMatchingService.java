@@ -11,7 +11,6 @@ import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.template.JDBCTemplate;
 
-
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -244,6 +243,14 @@ public class BoardMatchingService {
 		int result = dao.matchingListCount(conn, writer);
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public BoardMatching findBoard(int boardNum) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardMatching b = dao.findBoard(conn, boardNum);
+		JDBCTemplate.close(conn);
+		return b;
+
 	}
 
 }

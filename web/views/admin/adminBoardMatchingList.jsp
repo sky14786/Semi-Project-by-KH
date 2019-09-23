@@ -53,7 +53,7 @@ tr>td{
 						<td><%=bm.getBoardState() == 1?"정상":"삭제" %></td>
 						<td><%=bm.getMemo()!=null?bm.getMemo():"X" %></td>
 						<td>
-
+						<a href="<%=request.getContextPath() %>/board/updateLoad?boNum=<%=bm.getBoardNo()%>"><button type="button" name="btn_update" class="btn btn-sm" style="background-color:#17a2b8;color:white;">수정</button></a>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 						
