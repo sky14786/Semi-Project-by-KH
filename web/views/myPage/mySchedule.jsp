@@ -147,7 +147,11 @@
 											<!-- 메모 -->
 											<div class="subject">
 												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>" >
-													
+												<%
+													if(list.get(i).getMemo() == null || list.get(i).getMemo().equals("")){
+														list.get(i).setMemo("연락메모 없음");
+													}
+												%>
 												<%=list.get(i).getMemo() %>
 												</a>
 											</div>
@@ -220,13 +224,16 @@
 											<!-- 가격 -->
 											<div class="venue">
 												<%=matList.get(i).get(4) %>
-												<a href="#" onClick="matConfirm(); return false;">수락</a>
+												<input type="text" class = "boNum" value ="<%=matList.get(i).get(5) %>" hidden>
+												<%-- <a href="#" onClick="matConfirm(<%=i %>); return false;">수락</a> --%>
+                                  				<input type="text" class = "idNum" value ="<%=matList.get(i).get(3) %>" hidden>
 											</div>
 											
 										</div>
 									</li>
 									<%} %>
 									<%} %>
+											
 								</ul>
 							</div>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
@@ -303,13 +310,15 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			function matConfirm() {
+			function matConfirm(i) {
 				var cf = confirm("수락하시겠습니까?");
 				if(cf == true){
-				  //document.write("확인");
-				  location.href="<%=request.getContextPath()%>/confirm";
-				}else
+				var idnnb = $('.boNum')[i].value;
+			    var idNum = $('.idNum')[i].value;
+		     	<%-- //location.href="<%=request.getContextPath()%>/confirm"; --%>
+				}else{
 					return false;
+				}
 			}
 
 			$(function () {

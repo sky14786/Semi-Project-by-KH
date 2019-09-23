@@ -39,8 +39,6 @@ public class MypageDriverScheduleServlet extends HttpServlet {
 		}
 		writer = cl.getId();
 		
-		
-		
 		/* title | start_addr | end_addr | try_date | pay | board_no */
 		List<List> matList = new DriverService().myPageDriverMatching(writer);
 		/* com_date | requestor | end_addr | pay | board_no */
@@ -50,12 +48,6 @@ public class MypageDriverScheduleServlet extends HttpServlet {
 		if(matCompleList.size() > 0) request.setAttribute("matCompleList", matCompleList);	
 
 		//page
-//		List pageList = new ArrayList();
-//		pageList = paging(request, writer);
-//
-//		String pageBar = (String)pageList.get(0);
-//		int cPage = (int)pageList.get(1);
-		
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
@@ -122,71 +114,5 @@ public class MypageDriverScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
-	/*
-	private List paging(HttpServletRequest request, String writer) {
-		//paging
-		List list = new ArrayList();
-		int cPage;
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		} catch (NumberFormatException nfe) {
-			cPage = 1;
-		}
-
-		int numPerPage = 10;
-		int totalCount = new DriverService().matchingListCount();
-//		int totalCount = new BoardMatchingService().matchingListCount(writer);
-		
-		int totalPage = (int) Math.ceil((double) totalCount / numPerPage);
-
-		String pageBar = "";
-		int pageSizeBar = 5;
-
-		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
-		int pageEnd = pageNo + pageSizeBar - 1;
-
-		if (pageNo == 1) {
-			pageBar += "<li class='page-item'><a class='page-link' href='#' aria-label='prev'>" 
-					+ "<i class='fa fa-angle-left'></i></span>"
-					+ "<span class='sr-only'>prev</span>"
-					+ "</a></li>";
-		} else {
-			pageBar += "<li class='page-item'><a class='page-link' href='"+ request.getContextPath() + "/my/mySchedule.do?cPage=" + (pageNo - 1) + "' aria-label='prev'>" 
-					+ "<i class='fa fa-angle-left'></i></span>"
-					+ "<span class='sr-only'>prev</span>"
-					+ "</a></li>";
-		}
-
-		while (!(pageNo > pageEnd || pageNo > totalPage)) {
-			if (pageNo == cPage) {
-				pageBar += "<li class='page-item active'><a class='page-link' href='#'>" + pageNo + "</a></li>";
-			} else {
-				pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
-				+ "/my/mySchedule.do?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
-				
-			}
-			pageNo++;
-		}
-
-		if (pageNo > totalPage) {
-			pageBar += "<li class='page-item'><a class='page-link' href='#' aria-label='Next'>"
-					+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
-					+ "<span class='sr-only'>Next</span></a></li>";
-		} else {
-			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath() 
-					+ "/my/mySchedule.do?cPage=" + (pageNo) 
-					+ "' aria-label='Next'>"
-					+ "<span aria-hidden='true'><i class='fa fa-angle-right'></i></span>"
-					+ "<span class='sr-only'>Next</span></a></li>";
-		}
-		
-		list.add(pageBar);
-		list.add(cPage);
-
-		return list; 
-	}
-	*/
-	
 	
 }

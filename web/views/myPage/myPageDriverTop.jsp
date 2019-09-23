@@ -25,7 +25,7 @@
 %>
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<%@ include file="/views/common/header.jsp"%>
+<%-- <%@ include file="/views/common/header.jsp"%> --%>
 <link
 	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -81,7 +81,7 @@
 						<div class="post-thumb">
 
 							<!-- 상세 운반정보 -->
-							<a href="#"> <img
+							<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>"> <img
 								src="<%=request.getContextPath()%>/images/boardMatching_images/
 								<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"
 								alt="post-image" class="img-fluid">
@@ -113,7 +113,7 @@
 								<%=title%>
 								</p>
 								<h2 style="font-size: 0.5rem" class="mb-0 mt-0">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>">
 									<%
 										String stAddr = list.get(i).getStartAddr();
 										String edAddr = list.get(i).getEndAddr();
@@ -147,8 +147,10 @@
 										</a></li>
 									<li class="list-inline-item"><i class="fa fa-heart-o"></i>
 										<a href="#"><%=list.get(i).getCount() %></a></li>
-									<li class="list-inline-item"><i class="fa fa-comments-o"></i>
-										<a href="#">????</a></li>
+									<!-- <li class="list-inline-item">
+										<i class="fa fa-comments-o"></i>
+										<a href="#">????</a>
+									</li> -->
 								</ul>
 							</div>
 						</div>

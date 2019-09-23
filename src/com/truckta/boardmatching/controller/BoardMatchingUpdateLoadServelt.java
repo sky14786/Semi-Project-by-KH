@@ -37,8 +37,9 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		
 		/* 보드매칭 글 업데이 */
 //		String writer = "010-0335-0361";
+		//int boardNum = 199; //해당 글번호
 		String writer = cl.getId();
-		int boardNum = 199; //해당 글번호
+		int boardNum = Integer.parseInt(request.getParameter("boNum")); 
 		BoardMatching bm = new BoardMatchingService().loadBoardMatching(writer, boardNum);
 		List<FileMatching> list = new BoardMatchingService().loadBoardImg(boardNum);
 		

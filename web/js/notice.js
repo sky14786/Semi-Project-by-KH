@@ -133,11 +133,10 @@ function boardDuple() {
 	var ck = 0;
 	var boardText = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	
-	if (!boardText.test($('#board-stuff').val() || $('#board-stuff').val() == "") {
+	if (!boardText.test($('#board-stuff').val()) || $('#board-stuff').val() == ""){}
 		alert("비어(공백) 있거나 한글/영문/숫자만 입력 가능합니다");
 		console.log('titile error');
 	    return ck;
-	}
 
 	if ($('#st-addr-post').val() == "" && $('#st-addr').val() == "" && $('#address').val()){
 		alert("출발지 주소를 입력하세요");

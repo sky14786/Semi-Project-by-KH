@@ -93,7 +93,7 @@
 									<!-- Schedule Details -->
 									<%if(bmNull != 1){ %>
 									<%for(int i=0; i<list.size(); i++){ %>
-									<li class="schedule-details" value="<%=list.get(i).get(5) %>">
+									<li class="schedule-details schedule2" value="<%=list.get(i).get(5) %>">
 										<div class="block">
 											
 											<!-- 화물정보 -->
@@ -215,7 +215,7 @@
 											
 											<div class="venue">
 												<%=matList.get(i).get(4) %>
-												<a href="<%=request.getContextPath()%>/driverConfirm?boardNo=<%=matList.get(i).get(5) %>" onClick="matConfirm(); return false;">
+												<a href="<%=request.getContextPath()%>/driverDeliConfirm?boardNo=<%=matList.get(i).get(5) %>&id=<%=matList.get(i).get(6) %>" onClick="matConfirm(); return false;">
 												배송완료</a>											
 											</div>
 											
@@ -239,7 +239,7 @@
 									<%if(comNull != 1){ %>
 									<%for(int i=0; i<matCompleList.size(); i++){ %>
 									<!-- Schedule Details -->
-									<li class="schedule-details" value="<%=matCompleList.get(i).get(4) %>">
+									<li class="schedule-details schedule2" value="<%=matCompleList.get(i).get(4) %>">
 										<div class="block">
 					
 											<!-- 거래완료 일자 -->
@@ -317,7 +317,7 @@
 					}
 				});
 
-				$('.schedule-details').click(function () {
+				$('.schedule2').click(function () {
 					var mybNum= $(this).attr('value');
 					location.href = '<%=request.getContextPath()%>/detail?boardNo='+mybNum;
 				});
