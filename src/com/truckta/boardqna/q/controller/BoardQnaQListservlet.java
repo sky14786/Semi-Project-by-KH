@@ -36,7 +36,7 @@ public class BoardQnaQListservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 			  
 		int cPage;
-		int type= Integer.parseInt(request.getParameter("type"));
+		//int type= Integer.parseInt(request.getParameter("type"));
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -47,7 +47,7 @@ public class BoardQnaQListservlet extends HttpServlet {
 		
 		String qUser = request.getParameter("id");
 		
-		int totalBoard=new BoardQnaQService().selectCountBoardQnaQ(type);
+		int totalBoard=new BoardQnaQService().selectCountQnaQ();
 		List<BoardQnaQ> list=new BoardQnaQService().selectBoardList(cPage,numPerPage,qUser);
 		
 		
@@ -89,7 +89,7 @@ public class BoardQnaQListservlet extends HttpServlet {
 		request.setAttribute("pageBar",pageBar);
 		request.setAttribute("cPage",cPage);
 		request.setAttribute("list",list);
-		request.setAttribute("type", type);
+//		request.setAttribute("type", type);
 		
 		
 		request.getRequestDispatcher("/views/user/board_qna_q.jsp").forward(request, response);

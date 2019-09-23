@@ -423,10 +423,10 @@ public class BoardQnaQDao {
 		ResultSet rs = null;
 		BoardQnaA temp = null;
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, aNo);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
 				temp = new BoardQnaA();
 				temp.setaNo(rs.getInt("a_no"));
 				temp.setEtc(rs.getString("etc"));
@@ -434,13 +434,33 @@ public class BoardQnaQDao {
 				temp.setWriter(rs.getString("writer"));
 				temp.setqNo(rs.getInt("q_no"));
 			}
-		}catch(SQLException sqle) {
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return temp;
+	}
+
+	public int selectCountQnaQ(Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectCountQnaQ");
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

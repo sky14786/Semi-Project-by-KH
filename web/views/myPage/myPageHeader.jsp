@@ -32,16 +32,8 @@
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageTop">현재 정보</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/userToDriver">기사신청 </a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList">질문게시판</a>
-					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList">건의게시판</a>
-					<a class="dropdown-item" href="#">신고게시판</a>
-				</div>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>">Q&A </a></li>
+			
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/board/pageLoad">배송 요청하기</a></li>
 			<%} %>
@@ -52,19 +44,8 @@
 				href="<%=request.getContextPath()%>/my/pageScheduleDriver.do">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageTopDriver">현재 정보</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Q&A</a>
-				<div class="dropdown-menu">
-				<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=0">질문게시판</a>
-
-					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=1">건의게시판</a>
-
-					<a class="dropdown-item" 
-					    href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=2">신고게시판</a>
-				</div>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>">Q&A </a></li>
+			
 			<%} %>
 		</ul>
 

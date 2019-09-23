@@ -87,7 +87,7 @@
 				</div>
 				<div style="text-align:center;">
 				<button type="submit" class="btn btn-primary">기사신청</button>
-				<button type="button" class="btn  btn-primary"><a href="<%=request.getContextPath()%>/">뒤로가기</a></button>
+				<button type="button" onclick="location.href='../../'" class="btn  btn-primary">뒤로가기</button>
 				</div>
 			</form>
 		</div>
