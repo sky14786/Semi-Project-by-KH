@@ -64,7 +64,7 @@
                <li class="nav-item active"><a class="nav-link"
                   href="<%=request.getContextPath() %>/views/user/Login.jsp">로그인</a></li>
                <li class="nav-item active"><a class="nav-link"
-                  href="<%=request.getContextPath() %>/views/user/signUpClient.jsp">회원가입</a></li>
+                  href="<%=request.getContextPath() %>/views/user/signUpMain.jsp">회원가입</a></li>
             </ul>
          </div>
       </div>

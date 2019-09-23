@@ -4,7 +4,7 @@
 
 <%@ include file="/views/common/header.jsp"%>
 <link href="../../css/signUpClient-Style.css?ver=1.1" rel="stylesheet" />
-<script src="../../js/signUpClient-js.js?ver=1.5" charset="utf-8"></script>
+<script src="../../js/signUpClient-js.js?ver=1.9" charset="utf-8"></script>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("phone_number");
@@ -46,7 +46,7 @@
 						id="name" class="form-control" placeholder="NAME" />
 				</div>
 				<div class="form-group">
-					<label for="name">Email</label> <input type="text" name="email"
+					<label for="email">Email</label> <input type="text" name="email"
 						id="email" class="form-control" placeholder="EMAIL" />
 				</div>
 				<div class="form-group">
