@@ -1,6 +1,7 @@
 package com.truckta.chat.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import com.truckta.client.model.vo.Client;
  */
 @WebServlet("/messages")
 public class MessagesServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,33 +29,45 @@ public class MessagesServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	// 메세지 방 수 가지고 오기
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Client loggedInClient =(Client)request.getSession().getAttribute("loginClient");
-		if(loggedInClient == null) {
-			request.setAttribute("msg","로그인 후 이용해주세요");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/common/msg.jsp");
-		}
-		else {
-		ClientService service = new ClientService();
-		
-		// 리스트로 나와 대화창 기록들을 가지고 온다
-		List<MessageList> list = service.selectMessageList(loggedInClient.getId());
-		
-		//set 으로 프론트로 넘겨준다
-		request.setAttribute("loggedInClient", loggedInClient);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/chat/messages.jsp").forward(request, response);
-		}
-	}
+   // 메세지 방 수 가지고 오기
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      Client loggedInClient =(Client)request.getSession().getAttribute("loginClient");
+      if(loggedInClient == null) {
+         request.setAttribute("msg","로그인 후 이용해주세요");
+         request.setAttribute("loc", "/");
+         request.getRequestDispatcher("/views/common/msg.jsp");
+      }
+      else {
+      ClientService service = new ClientService();
+      
+      // 리스트로 나와 대화창 기록들을 가지고 온다
+      List<MessageList> list = service.selectMessageList(loggedInClient.getId());
+      List<Client> cList = service.selectAllClient();
+      List<String> profileList = new ArrayList<String>();
+      
+      for(int i = 0 ; i<list.size();i++) {
+         for(int j=0;j<cList.size();j++) {
+            if(list.get(i).getUserB().equals(cList.get(j).getId())) {
+               profileList.add(cList.get(j).getProfile());
+               break;
+            }
+         }
+      }
+      
+      //set 으로 프론트로 넘겨준다
+      request.setAttribute("profileList", profileList);
+      request.setAttribute("loggedInClient", loggedInClient);
+      request.setAttribute("list", list);
+      request.getRequestDispatcher("/views/chat/messages.jsp").forward(request, response);
+      }
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      doGet(request, response);
+   }
 
 }

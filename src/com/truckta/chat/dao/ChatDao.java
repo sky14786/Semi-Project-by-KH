@@ -116,6 +116,10 @@ public class ChatDao {
       return result;
    }
 
+	
+	
+
+
    public int selectBid(Connection conn, int boardNo, String driverId) {
       PreparedStatement pstmt = null;
       ResultSet rs = null;

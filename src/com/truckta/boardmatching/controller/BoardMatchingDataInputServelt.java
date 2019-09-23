@@ -112,7 +112,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		// 유저 - 드라이버 확인
 		int userDriver = new DriverService().driverCheck(bm.getWrtier());
 		if(userDriver == 0) {
-			response.sendRedirect(request.getContextPath()+"/views/user/notice.jsp");
+			response.sendRedirect("/views/user/notice.jsp");
 			return;
 		}
 		

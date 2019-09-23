@@ -9,7 +9,7 @@
 	int cPage = (int) request.getAttribute("cPage");
 	String search = (String) request.getAttribute("search");
 	String searchKeyword = (String) request.getAttribute("searchKeyword");
-%>
+%> 
 <style>
 .container-fluid {
 	font-family: "Noto Sans KR", sans-serif;
@@ -21,7 +21,7 @@ tr>td{
 
 
 <div class="container-fluid" style=" margin-top: 3%">
-	<table class="table" style="font-size:10px">
+	<table class="table" style="font-size:12px">
 		<thead class="thead-light">
 			<tr style="text-align:center;">
 				<th>글번호</th>
@@ -54,9 +54,6 @@ tr>td{
 						<td><%=bm.getMemo()!=null?bm.getMemo():"X" %></td>
 						<td>
 
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">
-						<a href="<%=request.getContextPath()%>/board/updateLoad?boardNo=<%=bm.getBoardNo()%>&writer=<%=bm.getWrtier()%>" style="color:inherit;">수정</a>
-						</button>
 						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 						

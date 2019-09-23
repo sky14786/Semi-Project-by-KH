@@ -210,6 +210,14 @@ public class ClientService {
 		return result;
 	}
 	
+
+	   public List<Client> selectAllClient() {
+		      Connection conn = JDBCTemplate.getConnection();
+		      List<Client> list = dao.selectAllClient(conn);
+		      JDBCTemplate.close(conn);
+		      return list;
+		   }
+
 	// 삭제멤버 정보
 	public Client delMemberSelect(String id) {
 		Connection conn = JDBCTemplate.getConnection();

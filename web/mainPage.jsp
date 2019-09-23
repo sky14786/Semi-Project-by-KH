@@ -92,19 +92,12 @@
 					
 					
 				<%for(int i = 0 ; i<fileList.size();i++){
-						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){
-							isNotNull=true;
-							break;
-							}
-						
-					if(isNotNull){%>
-						<%-- <img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:250px;height:211px;" > --%>
+						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){%>
 						<hr>
-						<img src="<%=request.getContextPath()%>/images/posted_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" > --%>
-					<%}else{ %>
-						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:211px;height:211px;" >
-						<hr>
-					<%}} %>  
+							<img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" style="width:250px;height:200px;">
+							<%
+						break;	
+						}}%>
 				
 				
 				</div>

@@ -33,20 +33,21 @@ public class FileMatchingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<FileMatching> list = new ArrayList();
-		String sql = prop.getProperty("selectListPage");
+		String sql = prop.getProperty("selectListPage");//selectFileMatching
 		try {
 			pstmt = conn.prepareStatement(sql);
+			//System.out.println(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
 			pstmt.setInt(2, cPage * numPerPage);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				FileMatching fm = new FileMatching();
 				fm.setBoardNo(rs.getInt("board_no"));
 				fm.setFileName(rs.getString("file_name"));
 				list.add(fm);
-				//System.out.println("###12333daofilematching:"+list);
 			}
+			//System.out.println("###12333daofilematching:"+list);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {
@@ -77,6 +78,60 @@ public class FileMatchingDao {
 		return result;
 	}
 
+
+	public List<FileMatching> selectFileList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FileMatching> fileList = new ArrayList();
+		String sql = prop.getProperty("selectFileMatching");//selectFileMatching
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while (rs.next()) {
+				FileMatching fm = new FileMatching();
+				fm.setBoardNo(rs.getInt("board_no"));
+				fm.setFileName(rs.getString("file_name"));
+				fileList.add(fm);
+			}
+			//System.out.println("###12333daofilematching:"+list);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return fileList;
+	}
+
 	// oh fuck i can't ctrl + space
+
+	   public List<FileMatching> detailimg(Connection conn,String boardNo) {
+		      Statement stmt = null;
+		      ResultSet rs = null;
+		      List<FileMatching> fileList = new ArrayList();
+		      System.out.println("daoboardNo"+boardNo);
+		      String sql = "SELECT board_matching.*, file_matching.file_Name FROM board_matching INNER JOIN file_matching ON  board_matching.board_NO = file_matching.board_No where board_matching.board_no="+boardNo;
+		      try {
+		         stmt = conn.prepareStatement(sql);
+		         
+		         rs = stmt.executeQuery(sql);
+
+		         while (rs.next()) {
+		            FileMatching fm = new FileMatching();
+		            fm.setBoardNo(rs.getInt("board_no"));
+		            fm.setFileName(rs.getString("file_name"));
+		            fileList.add(fm);
+		         }
+		         
+		      } catch (SQLException sqle) {
+		         sqle.printStackTrace();
+		      } finally {
+		         JDBCTemplate.close(rs);
+		         JDBCTemplate.close(stmt);
+		      }
+		      return fileList;
+		   }
+
 
 }

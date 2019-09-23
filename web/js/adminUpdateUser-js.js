@@ -38,7 +38,7 @@ function checkData() {
 		}
 	}
 	  
-	if($("input[name=isChecking]").val()||$("input[name=isDriver]").val()==2){
+	if($("input[name=isDriver]").val()==2){
 		isDriverDataCheck(formatChecking,sizeChecking);
 		isValiDate($("input[name=dateOfBirth]").val());
 	}
