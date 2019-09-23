@@ -52,8 +52,7 @@
 						</td>
 						
 						<td>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>
-						<button type="button" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						<button type="button" name="btn_report" class="btn btn-sm" style="background-color:#17a2b8;color:white;">경고</button>
 						</td>
 						
 				</tr>
@@ -81,4 +80,35 @@
 	padding: 10px 5px;
 }
 </style>
+<script>
+$("button[name=btn_report]").click(function(){
+	var btn_report = $(this);
+	var tr = btn_report.parent().parent();
+	var td = tr.children();
+	var user = td.eq(0).text();
+	
+	var isCheckReport =  confirm(user+" 사용자를 경고처리하겠습니까?");
+	if(isCheckReport){
+	 	reportUser(user); 
+	} 
+});
+
+function reportUser(user){
+	$.ajax({
+		url:"<%=request.getContextPath()%>/admin/adminReportUser",
+		type:"post",
+		dataType:"json",
+		data:{"user":user},
+		success:function(data){
+			if(data){
+				alert("경고처리했습니다.");
+				location.href="<%=request.getContextPath()%>/admin/adminDriverList";
+			}else{
+				alert("실패! 개발자에게 문의하세요.");
+			}
+			
+		}
+	})
+}
+</script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -24,22 +24,23 @@
 			style="flex-align: center">
 			<form style="margin: 10px" method="post"
 				enctype="multipart/form-data"
-				action="<%=request.getContextPath()%>/BoardQnaFormUpdateEndServlet?type<%=q.getType()%>">
+				action="<%=request.getContextPath()%>/board/boardQnaFormUpdateEndServlet">
 				<table class="table "
 					style="text-align: center; border: 1px solid #dddddd">
 					<th>제목</th>
+					<input type ="hidden" name ="boardNo" value="<%=q.getBoardNo() %>">
 					<tr>
-						<td><input type="text" class="form-control" style=""
+						<td><input type="text" name="title" id="title" class="form-control" style=""
 							"50" value="<%=q.getTitle()%>" /></td>
 					</tr>
 					<th>작성자</th>
 					<tr>
-						<td><input type="text" class="form-control"
-							value="<%=clientLogin.getId()%>" readonly /></td>
+						<td><input type="text" name="writer" id="writer" class="form-control"
+							value="<%=q.getqUser()%>" readonly /></td>
 					</tr>
 					<th>내용</th>
 					<tr>
-						<td><input type="text" class="form-control" maxlength="2048"
+						<td><input type="text" name="etc" id="etc" class="form-control" maxlength="2048"
 							style="height: 350px;" value="<%=q.getEtc()%>" />
 					</tr>
 					<td><input type="file" name="up_file" /></td>

@@ -38,7 +38,7 @@ public class BoardQnaFormUpadateServlet extends HttpServlet {
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
 
 		request.setAttribute("board_qna_q", q);
-		request.getRequestDispatcher(request.getContextPath() + "/views/user/boardQnaFormUpdate.jsp").forward(request,
+		request.getRequestDispatcher("/views/user/boardQnaFormUpdate.jsp").forward(request,
 				response);
 
 	}

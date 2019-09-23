@@ -122,7 +122,7 @@ table#tbl-comment sub.comment-date {
 	%>
 	<tr>
 		<td colspan='2' style="text-align: center;">
-			<button class="btn-update btn btn-outline-primary" value="<%=q.getType()%>" />수정하기</button>
+			<button class="btn-update btn btn-outline-primary" value="<%=q.getType()%>"/>수정하기</button>
 		</td>
 		<button class="btn-delete btn btn-outline-primary" onclick="" value="<%=q.getType()%>" />삭제하기</button>
 		</td>

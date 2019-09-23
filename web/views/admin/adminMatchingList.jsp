@@ -19,7 +19,7 @@ tr>td{
 </style>
 
 
-<div class="container-fluid" style=" margin-top: 3%">
+<div class="container-fluid" style=" margin-top: 8%">
 	<table class="table" >
 		<thead class="thead-light">
 			<tr style="text-align:center;">
@@ -30,7 +30,7 @@ tr>td{
 				<th>금액</th>
 				<th>코맨트</th>
 				<th>신청날자</th>
-				<th>기타</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -48,7 +48,7 @@ tr>td{
 						<td>
 
 						
-						<button type="button" name="btn_del" class="btn btn-sm" style="background-color:#17a2b8;color:white;">삭제</button>
+						
 						</td>
 						
 				</tr>

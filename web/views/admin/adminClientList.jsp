@@ -16,7 +16,7 @@
 </style>
 
 
-<div class="container-fluid" style="margin-top: 3%">
+<div class="container-fluid" style="margin-top: 8%">
 	<table class="table">
 		<thead class="thead-light">
 			<tr style="text-align:center;">

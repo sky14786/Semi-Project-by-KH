@@ -115,5 +115,9 @@ function deny(){
    alert("로그인 후 이용 가능합니다");
 }
 </script>
-
+<style>
+.container-fluid{
+	margin:top:11%;
+}
+</style>
 </html>
