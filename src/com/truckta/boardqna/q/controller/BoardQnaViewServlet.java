@@ -44,7 +44,7 @@ public class BoardQnaViewServlet extends HttpServlet {
 		List<BoardQnaA> list = new BoardQnaQService().selectBoardComment(boardNo);
 		request.setAttribute("board_qna_q", q);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher(request.getContextPath() + "/views/user/board_qna_q_view.jsp").forward(request,
+		request.getRequestDispatcher("/views/user/board_qna_q_view.jsp").forward(request,
 				response);
 	}
 
