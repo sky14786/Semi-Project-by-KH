@@ -39,7 +39,7 @@ function checkData() {
 		return false;
 	}
 	
-	if(!$("inpit[name=email]").val()){
+	if(!$("input[name=email]").val()){
 		alert("이메일을 입력해 주세요.")
 		return false;
 	}
