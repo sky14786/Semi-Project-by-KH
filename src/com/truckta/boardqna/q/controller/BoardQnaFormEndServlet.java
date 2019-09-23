@@ -68,7 +68,7 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 		String location = "";
 		if (result > 0) {
 			message = "게시글 등록 완료";
-			location = request.getContextPath()+"/board/boardQnaQList?id="+qNo+"&type="+type;
+			location = "/board/boardQnaQList?id="+qNo;
 //			"/board/boardQnaQList?id="+qNo;
 		} else {
 			/*
@@ -76,7 +76,7 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 			 * remove.delete();// 파일 삭제
 			 */
 			message = "게시글 등록 실패";
-			location = request.getContextPath()+"/board/boardQnaForm";
+			location ="/board/boardQnaForm";
 		}
 		request.setAttribute("message", message);
 		request.setAttribute("location", location);
