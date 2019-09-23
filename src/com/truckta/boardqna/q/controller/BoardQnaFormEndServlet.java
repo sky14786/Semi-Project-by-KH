@@ -36,13 +36,13 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// ParameterNames id(qNo) , title, writer, etc ,type, up_file
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("message", "잘못된 방법으로 접근하셨습니다");
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		String saveDir = getServletContext().getRealPath(File.separator + "images" + File.separator + "posted_images");
+		String saveDir = getServletContext().getRealPath("/images/qna_images");
 		File dir = new File(saveDir);
 		if (dir.exists()) {
 			dir.mkdirs();

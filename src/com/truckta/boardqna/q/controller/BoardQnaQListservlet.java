@@ -48,7 +48,7 @@ public class BoardQnaQListservlet extends HttpServlet {
 		String qUser = request.getParameter("id");
 		
 		int totalBoard=new BoardQnaQService().selectCountBoardQnaQ(type);
-		List<BoardQnaQ> list=new BoardQnaQService().selectBoardList(cPage, numPerPage,qUser);
+		List<BoardQnaQ> list=new BoardQnaQService().selectBoardList(cPage,numPerPage,qUser);
 		
 		
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);

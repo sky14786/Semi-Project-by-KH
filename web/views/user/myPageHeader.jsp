@@ -73,13 +73,13 @@
 				<div class="dropdown-menu">
 
 					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=0">질문게시판</a>
+						href="<%=request.getContextPath()%>/board/boardQnaQList?type=0&id=<%=cl.getId()%>">질문게시판</a>
 
 					<a class="dropdown-item"
-						href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=1">건의게시판</a>
+						href="<%=request.getContextPath()%>/board/boardQnaQList?type=1&id=<%=cl.getId()%>&">건의게시판</a>
 
 					<a class="dropdown-item" 
-					    href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>&type=2">신고게시판</a>
+					    href="<%=request.getContextPath()%>/board/boardQnaQList?type=2&id=<%=cl.getId()%>">신고게시판</a>
 
 				</div></li>
 

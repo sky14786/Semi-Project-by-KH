@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.service.BoardQnaQService;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
+import com.truckta.file.qna.model.service.FileQnaService;
+import com.truckta.file.qna.model.vo.FileQna;
 
 /**
  * Servlet implementation class BoardQnaViewServlet
@@ -38,6 +40,7 @@ public class BoardQnaViewServlet extends HttpServlet {
 
 		String boardNo = request.getParameter("boardNo");
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
+		List<FileQna> fileList = new FileQnaService().findFileList(Integer.parseInt(boardNo));
 		List<BoardQnaA> list = new BoardQnaQService().selectBoardComment(boardNo);
 		request.setAttribute("board_qna_q", q);
 		request.setAttribute("list", list);

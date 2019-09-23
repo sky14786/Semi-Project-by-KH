@@ -3,10 +3,12 @@
 <%@ page import="com.truckta.boardqna.q.model.vo.BoardQnaQ"%>
 <%@ page import="com.truckta.boardqna.a.model.vo.BoardQnaA"%>
 <%@ page import="java.util.List"%>
+<%@ page import="com.truckta.file.qna.model.vo.FileQna" %>
 <%
 	BoardQnaQ q = (BoardQnaQ) request.getAttribute("board_qna_q");
 	/* BoardQnaA a = (BoardQnaA) request.getAttribute("board_qna_a"); */
 	List<BoardQnaA> list = (List) request.getAttribute("list");
+	List<FileQna> fileList = (List) request.getAttribute("fileList");
 	/* System.out.println(a.getaNo()); */
 %>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -94,7 +96,20 @@ table#tbl-comment sub.comment-date {
 							<td><input type="text" class="form-control" maxlength="2048"
 								style="height: 350px;" value="<%=q.getEtc()%>" readonly />
 						</tr>
-						<td><input type="file" name="up_file" /></td>
+						<tr>
+						<%
+						if (fileList != null) { 
+								for (int i = 0; i < fileList.size(); i++) {
+						%>
+				
+						<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+						<%
+									}
+								}
+						%>
+						<hr>
+						</tr>
+						
 					</table>
 
 				</form>

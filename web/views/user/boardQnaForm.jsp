@@ -76,7 +76,31 @@
 							<td><textarea class="form-control" placeholder="글 내용"
 									name="etc" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
-						<td><input type="file" name="up_file" /></td>
+						<tr>
+						<td>
+						<input type="file" name="qnaPic1" id="qnaPic1" accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
+						</td>
+						</tr>
+						<tr>
+						<td>
+						<input type="file" name="qnaPic2" id="qnaPic2" accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
+						</td>
+						</tr>
+						<tr>
+						<td>
+						<input type="file" name="qnaPic3" id="qnaPic3" accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
+						</td>
+						</tr>
+						<tr>
+						<td>
+						<input type="file" name="qnaPic4" id="qnaPic4" accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
+						</td>
+						</tr>
+						<tr>
+						<td>
+						<input type="file" name="qnaPic5" id="qnaPic5" accept=".jpg, .png, .pdf" style="margin-top: 5px;"/>
+						</td>
+						</tr>
 					</tbody>
 				</table>
 
