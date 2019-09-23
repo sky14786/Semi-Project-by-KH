@@ -5,7 +5,6 @@
 	String id = (String) request.getParameter("id");
 %>
 <link href="../../css/resetPassword-Style.css?ver=1.1" rel="stylesheet" />
-<script src="../../js/signUpMain-js.js?ver=1.1" charset="utf-8"></script>
 <div class="container">
 	<br />
 	<br />
@@ -24,7 +23,7 @@
 			<br />
 			<br />
 			<form action="<%=request.getContextPath()%>/user/resetPassword"
-				method="post">
+				method="post" onsubmit="checkDate(); return false;">
 				<input type="hidden" name="id" id="id" value="<%=id%>">
 				<div class="form-group">
 					<label for="key">Enter your Key</label> <input
@@ -33,12 +32,12 @@
 				</div>
 				<div class="form-group">
 					<label for="password">Please enter a password to reset</label> <input
-						type="password" name="password" id="password" class="form-control"
+						type="password" name="pw" id="pw" class="form-control"
 						placeholder="********" />
 				</div>
 				<div class="form-group">
 					<label for="password_check">Password Check</label> <input
-						type="password" name="password_check" id="password_check"
+						type="password" name="pwCheck" id="pwCheck"
 						class="form-control" placeholder="********" />
 				</div>
 
@@ -49,4 +48,45 @@
 		</div>
 	</div>
 </div>
+<script>
+
+function checkDate(){
+	var pwChecking = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,14}$/;
+
+	if(!($("input[name=[key]]").va())){
+		alert("인증번호를 입력해 주세요.");
+		return false;
+	}
+
+	if(!($("input[name=pw]").va())){
+		alert("비밀번호를 입력해 주세요.");
+		return false;
+	}
+
+	if(!($("input[name=pwCheck]").va())){
+		alert("비밀번호 확인란을 입력해 주세요.");
+		return false;
+	}
+
+	if (!pwChecking.test($("input[name=pw]").val())) {
+		alert("비밀번호는 8~14자 영소문자,대문자로 이루어져 있습니다.");
+		return false;
+	}
+
+	if (!pwChecking.test($("input[name=pwCheck]").val())) {
+		alert("비밀번호는 8~14자 영소문자,대문자로 이루어져 있습니다.");
+		return false;
+	}
+
+	if ($("input[name=pw]").val() != $("input[name=pwCheck]").val()) {
+		alert("비밀번호가 일치하지 않습니다.");
+		$("input[name=pwCheck]").val("");
+		return false;
+	}
+	
+	return true;
+}
+
+
+</script>
 <%@ include file="/views/common/footer.jsp"%>
