@@ -75,6 +75,7 @@
    <button class="navbar-right btn btn-primary ml-auto mr-2" onclick = 'location.href = "<%=request.getContextPath()%>/messages"'>
             <i class="fas fa-envelope fa-lg"></i>
          </button>
+
 <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -112,4 +113,5 @@ function deny(){
    alert("로그인 후 이용 가능합니다");
 }
 </script>
+
 </html>

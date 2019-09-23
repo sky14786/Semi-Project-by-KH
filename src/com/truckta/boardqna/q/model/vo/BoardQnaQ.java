@@ -15,6 +15,11 @@ public class BoardQnaQ {
 		// TODO Auto-generated constructor stub
 	}
 	
+	 public BoardQnaQ(String title,String qUser,String etc) { this.title=title;
+	 this.qUser=qUser; this.etc=etc;
+	 }
+	 
+	
 	public BoardQnaQ(String title,String qUser,String etc,int type) {
 		this.title = title;
 		this.qUser = qUser;

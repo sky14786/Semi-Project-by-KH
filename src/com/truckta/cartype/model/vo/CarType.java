@@ -7,7 +7,6 @@ public class CarType {
 	public CarType() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public CarType(int typeNo, String carType) {
 		super();
 		this.typeNo = typeNo;

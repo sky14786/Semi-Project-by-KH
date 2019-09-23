@@ -1,17 +1,19 @@
-package com.truckta.boardqna.q.controll;
+package com.truckta.boardqna.q.controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.service.BoardQnaQService;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
+import com.truckta.file.qna.model.service.FileQnaService;
+import com.truckta.file.qna.model.vo.FileQna;
 
 /**
  * Servlet implementation class BoardQnaViewServlet
@@ -37,27 +39,13 @@ public class BoardQnaViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String boardNo = request.getParameter("boardNo");
-		System.out.println(boardNo + "+++++");
-		// 쿠키통해서 제한
-		/*
-		 * Cookie[] cookies=request.getCookies(); String boardCookieVal=""; boolean
-		 * hasRead= false;//이게시글을 읽었는지 확인
-		 * 
-		 * if(cookies!=null) { out: for(Cookie c: cookies) { String name=c.getName();
-		 * String value=c.getValue();
-		 * 
-		 * if("boardCookie".equals(name)) { boardCookieVal=value;
-		 * if(value.contains("|"+boardNo+"|")) { hasRead=true;//읽었는지 확인 break out; } } }
-		 * } if(!hasRead) { Cookie boardCookie=new Cookie("boardCookie",
-		 * boardCookieVal+"|"+boardNo+"|"); boardCookie.setMaxAge(-1);
-		 * response.addCookie(boardCookie); }
-		 */
-
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
-	    System.out.println(q);
-		/* List<BoardComment> list=new BoardService().selectBoardComment(boardNo); */
+		List<FileQna> fileList = new FileQnaService().findFileList(Integer.parseInt(boardNo));
+		List<BoardQnaA> list = new BoardQnaQService().selectBoardComment(boardNo);
 		request.setAttribute("board_qna_q", q);
-		request.getRequestDispatcher(request.getContextPath()+"/views/user/board_qna_q_view.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher(request.getContextPath() + "/views/user/board_qna_q_view.jsp").forward(request,
+				response);
 	}
 
 	/**

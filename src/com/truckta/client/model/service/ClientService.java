@@ -82,7 +82,7 @@ public class ClientService {
 	public int updateClient(Client c) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateClient(conn, c);
-		if (result > 0) {
+		if (result == 1) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
@@ -90,6 +90,7 @@ public class ClientService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
 
 	public int selectCountMessageList() {
 		Connection conn = getConnection();
