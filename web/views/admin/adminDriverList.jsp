@@ -48,11 +48,7 @@
 						
 						<td><%=d.getRegDate() %></td>
 						<td>
-						<%if(d.getStatus()==1){%>
-							신청
-						<%}else{%>
-							탈퇴
-						<%} %>
+						<%=d.getStatus()==1?"정상":(d.getStatus()==2?"탈퇴":"신청") %>
 						</td>
 						
 						<td>

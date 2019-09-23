@@ -30,32 +30,13 @@ function checkData() {
 		alert("사업자등록증을 등록해 주세요.");
 		return false;
 	}
-	for(var i =1 ; i<6;i++){
-		if ($("input[name=carpic"+i+"]").val()) {
-			if (!formatChecking.test($("input[name=carpic"+i+"]").val().toLowerCase())) {
-				alert("프로필사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
-				$("input[name=carpic"+i+"]").val("");
-				return false;
-			}
-		}
-	}
-	for(var i=1;i<6;i++){
-		if ($("input[name=carPic]").val()) {
-			var size = document.getElementById("carPic").files[0].size;
-			if (sizeChecking < size) {
-				alert("차사진의 용량을 확인해 주세요. [3MB]");
-				$("input[name=carPic]").val("");
-				return false;
-			}
-		}
-	}
 	
 	 isValiDate($("input[name=dateOfBirth]").val());
 	 
 	 for(var i =1 ; i<6;i++){
 			if ($("input[name=carPic"+i+"]").val()) {
 				if (!formatChecking.test($("input[name=carPic"+i+"]").val().toLowerCase())) {
-					alert("프로필사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
+					alert("차사진의 확장자를 확인해 주세요. [pdf,jpg,jpeg,png]");
 					$("input[name=carPic"+i+"]").val("");
 					return false;
 				}

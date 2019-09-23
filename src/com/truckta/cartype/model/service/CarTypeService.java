@@ -56,4 +56,16 @@ public class CarTypeService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int updateCarType(CarType temp) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateCarType(conn, temp);
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

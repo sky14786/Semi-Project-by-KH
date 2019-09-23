@@ -68,7 +68,7 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 		String location = "";
 		if (result > 0) {
 			message = "게시글 등록 완료";
-			location = request.getContextPath()+"/board/boardQnaQList?id="+qNo+"&type="+type;
+			location = request.getContextPath()+"/board/boardQnaQList?id="+qNo;
 //			"/board/boardQnaQList?id="+qNo;
 		} else {
 			/*

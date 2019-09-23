@@ -617,4 +617,37 @@ public class BoardMatchingDao {
 		return list;
 	}
 
+	public BoardMatching findBoard(Connection conn, int boardNum) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findBoard");
+		ResultSet rs = null;
+		BoardMatching bm = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bm = new BoardMatching();
+				bm.setBoardNo(rs.getInt("board_no"));
+				bm.setWrtier(rs.getString("writer"));
+				bm.setTitle(rs.getString("title"));
+				bm.setStartAddr(rs.getString("start_addr"));
+				bm.setEndAddr(rs.getString("end_addr"));
+				bm.setEtc(rs.getString("etc"));
+				bm.setCarTypeNo(rs.getInt("car_type_no"));
+				bm.setMemo(rs.getString("memo"));
+				bm.setHireDate(rs.getDate("hire_date"));
+				bm.setTkDate(rs.getDate("tk_date"));
+				bm.setBoardState(rs.getInt("board_state"));
+				bm.setCount(rs.getInt("count"));
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return bm;
+	}
+
 }

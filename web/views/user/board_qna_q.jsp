@@ -8,7 +8,6 @@
 	/* BoardQnaQ qu= (BoardQnaQ) request.getAttribute("board_qna_q");  */
 
 	if (request.getAttribute("type") != null) {
-		int type = (int) request.getAttribute("type");
 	}
 %>
 
@@ -32,7 +31,7 @@
 </head>
 <body>
 
-	<div class="container-fluid" style="margin-top: 3%">
+	<div class="container-fluid" style="margin-top: 10%">
 		<table class="table">
 			<thead class="thead-light">
 				<tr style="text-align: center;">

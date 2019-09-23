@@ -91,6 +91,7 @@ public class DriverDao {
 				d.setdLicense(rs.getString("d_license"));
 				d.setbLicense(rs.getString("b_license"));
 				d.setRegDate(rs.getDate("regdate"));
+				d.setStatus(rs.getInt("status"));
 				list.add(d);
 			}
 		} catch (SQLException sqle) {

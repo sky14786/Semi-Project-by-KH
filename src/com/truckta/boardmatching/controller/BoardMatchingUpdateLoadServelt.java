@@ -44,15 +44,15 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		String writer = cl.getId();
 		int boardNum = Integer.parseInt(request.getParameter("boNum")); 
 //		System.out.println(boardNum);
-		BoardMatching bm = new BoardMatchingService().loadBoardMatching(writer, boardNum);
+		BoardMatching bm = new BoardMatchingService().findBoard(boardNum);
 		List<FileMatching> list = new BoardMatchingService().loadBoardImg(boardNum);
 //		System.out.println(bm);
 		for (FileMatching f : list) {
 			System.out.println(f);
 		}
 		
-		
-		if(bm.getMemo().equals("null")) {
+		System.out.println(bm.toString());
+		if(bm.getMemo()==null) {
 			bm.setMemo("");
 		}
 

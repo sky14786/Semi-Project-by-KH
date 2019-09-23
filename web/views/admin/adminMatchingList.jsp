@@ -43,7 +43,7 @@ tr>td{
 						<td><%=m.getRequestor() %></td>
 						<td><%=m.getResponser() %></td>
 						<td><%=m.getPay() %></td>
-						<td><%=m.getMemo() %></td>
+						<td><%=m.getMemo()==null?"없음":m.getMemo() %></td>
 						<td><%=m.getTryDate() %></td>
 						<td>
 
@@ -69,7 +69,7 @@ tr>td{
 #pageBar>a{
 	color:black!important;
 	margin:4px!important;
-	font-size:20px;
+	font-size:20px;	
 	
 }
 #pageBar> .cPage{
