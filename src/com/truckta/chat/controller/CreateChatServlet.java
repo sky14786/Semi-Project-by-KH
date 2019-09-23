@@ -80,13 +80,11 @@ public class CreateChatServlet extends HttpServlet {
        
       
       if(bidded>0) {
-         request.setAttribute("message", "이미 비딩을 하였습니다");
-         String path = "/index.jsp";
-         request.setAttribute("location", path);
-         request.getRequestDispatcher("/views/detail/detailView.jsp").forward(request, response);
+        System.out.println("이미 비딩 함");
       } else {
          // Adding to the bidding list
          int addBid =  cs.insertBid(boardNo, writerId, driverId, bidPrice);
+         System.out.println("새로운 비딩");
          System.out.println(addBid);
       }
       
