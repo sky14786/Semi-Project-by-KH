@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.truckta.client.model.vo.Client" %>
 <%
-/* 	Client cl = new Client();
-	if((Client)request.getAttribute("client") != null){
-		cl = (Client)request.getAttribute("client");
-	}else{
-		response.sendRedirect("/");
-	} */
-	
+ 	Client cl = (Client)request.getAttribute("client");
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
@@ -26,7 +21,7 @@
 
 	} */
 </style>
-<%@ include file="/views/myPage/myPageHeader.jsp"%>
+<%-- <%@ include file="/views/myPage/myPageHeader.jsp"%>  --%>
 <body class="body-wrapper">
 	<section class="section schedule">
 		<div class="container">
@@ -52,9 +47,10 @@
 
 </body>
 <script>
-	function driverCon() {
+	function driverCon(id) {
 		if (confirm("기사 신청하시겠습니까?") == true){
-			location.href = '<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>';
+			sessionStorage.setItem("isCertified", true);
+			location.href = "<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>";
 		}else{	//취소
 			return false;
 		}

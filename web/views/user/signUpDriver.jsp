@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.client.model.vo.Client" %>
+<%@ page import = "com.truckta.client.model.vo.*" %>
 <%@ include file="/views/common/header.jsp"%>	
+
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	String id = request.getParameter("phone_number");
+	
+	String id = request.getParameter("id");
 	List<CarType> list = (List) request.getAttribute("carTypeList");
 %>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
