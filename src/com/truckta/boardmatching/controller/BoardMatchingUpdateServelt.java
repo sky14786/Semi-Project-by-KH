@@ -34,6 +34,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		// 수정된 데이터를 저장
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
