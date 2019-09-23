@@ -9,13 +9,13 @@
 	int cPage = (int) request.getAttribute("cPage"); 
 %>
 <style>
-.container {
+.container-fluid {
 	font-family: "Noto Sans KR", sans-serif;
 }
 </style>
 
 
-<div class="container-fluid" style="margin-top: 3%">
+<div class="container-fluid" style="margin-top: 11%">
 	<table class="table">
 		<thead class="thead-light">
 			<tr style="text-align:center;">

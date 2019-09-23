@@ -16,7 +16,7 @@ import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
 import com.truckta.driver.model.service.DriverService;
 
-@WebServlet("/my/pageScheduleDriver.do")
+@WebServlet("/my/pageScheduleDriver")
 public class MypageDriverScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

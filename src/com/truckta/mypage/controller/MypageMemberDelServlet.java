@@ -38,7 +38,7 @@ public class MypageMemberDelServlet extends HttpServlet {
 			response.getWriter().write("false");
 		}
 		response.getWriter().flush();
-		response.sendRedirect("/index.jsp");
+		response.sendRedirect("/");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

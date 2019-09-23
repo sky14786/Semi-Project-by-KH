@@ -8,7 +8,7 @@
 	int cPage = (int) request.getAttribute("cPage");
 %>
 <style>
-.container-fluid {
+.container {
 	font-family: "Noto Sans KR", sans-serif;
 }
 tr>td{
@@ -17,7 +17,7 @@ tr>td{
 </style>
 
 
-<div class="container" style=" margin-top: 3%">
+<div class="container" style=" margin-top: 11%">
 	<%-- <table class="table">
 		<thead class="thead-light">
 		<tr style="text-align:center;">

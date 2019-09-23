@@ -173,9 +173,9 @@
 					<button type="submit" onclick="checkData();" class="btn btn-primary">수정</button>
 					<button type="button" onclick="history.back();" class="btn btn-primary">뒤로</button>
 				</div>
-				<div>
+				<!-- <div>
 					<button type="button" onclick="memberDel();" class="btn btn-danger btn-block">회원 탈퇴</button>
-				</div>
+				</div> -->
 			</form>
 		</div>
 		<div class="col-1"></div>

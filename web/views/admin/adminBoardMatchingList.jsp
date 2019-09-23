@@ -13,6 +13,7 @@
 <style>
 .container-fluid {
 	font-family: "Noto Sans KR", sans-serif;
+	margin-top:11%;
 }
 tr>td{
 	vertical-align:middle!important;
@@ -20,7 +21,7 @@ tr>td{
 </style>
 
 
-<div class="container-fluid" style=" margin-top: 3%">
+<div class="container-fluid">
 	<table class="table" style="font-size:12px">
 		<thead class="thead-light">
 			<tr style="text-align:center;">

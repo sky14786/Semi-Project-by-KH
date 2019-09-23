@@ -107,6 +107,8 @@
    
 </header>
 
+
+
 <script>
 function redirect() {
    location.replace("./chat.html");

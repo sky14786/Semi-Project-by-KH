@@ -24,7 +24,7 @@ public class AdminDeleteBoardMatchingServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("user"));
 		int result = new BoardMatchingService().deleteBoardMatching(no);
 
 		if (result == 1) {

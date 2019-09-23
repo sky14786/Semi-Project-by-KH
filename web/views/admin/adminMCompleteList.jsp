@@ -19,7 +19,7 @@ tr>td{
 </style>
 
 
-<div class="container-fluid" style=" margin-top: 3%">
+<div class="container-fluid" style=" margin-top: 11%">
 	<table class="table" >
 		<thead class="thead-light">
 			<tr style="text-align:center;">
