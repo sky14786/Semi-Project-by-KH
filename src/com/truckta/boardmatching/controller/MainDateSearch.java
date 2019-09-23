@@ -42,6 +42,8 @@ public class MainDateSearch extends HttpServlet {
 //		System.out.println("!!!!!!!!searchdate"+searchdate);
 		//List<BoardMatching> datesearch= new MainService().searchDate();
 		
+		List<FileMatching> fileList = new FileMatchingService().selectFileList();
+		
 		int cPage;
 		String selectGu = request.getParameter("selectGu");
 		try {
@@ -54,7 +56,6 @@ public class MainDateSearch extends HttpServlet {
 		int totalBaordMatching = new MainService().selectCountBoardMatching(selectGu);
 		List<BoardMatching> list_page = new MainService().searchDate(cPage, numPerPage, searchdate); //selectGu ->searchdate
 		//사진
-		List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
 		int totalPage = (int) Math.ceil((double) totalBaordMatching / numPerPage);
 		String pageBar = "";
 		int pageSizeBar = 5;

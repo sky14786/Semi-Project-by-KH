@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/footer.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--- Footer -->
 	<footer class="bg-dark text-white bottom" style="margin-top:30px;">
 		<div class="container-fluid padding">
@@ -24,24 +24,12 @@
 					<p>토요일: 아침 10시 - 오후 4시</p>
 					<p>일요일: 문 닫음</p>
 				</div>
-				<div class="col-md-4">
-					<hr class="light">
-					<h5>Follow us on</h5>
-					<hr class="light">
-					<!--Facebook-->
-					<a class="btn-floating btn-lg btn-primary btn-fb" type="button" role="button"><i
-							class="fab fa-facebook-f"></i></a>
-					<!--Twitter-->
-					<a class="btn-floating btn-lg btn-tw" type="button" role="button"><i class="fab fa-twitter"></i></a>
-					<!--Google +-->
-					<a class="btn-floating btn-lg btn-gplus" type="button" role="button"><i
-							class="fab fa-google-plus-g"></i></a>
-					<!--Linkedin-->
-					<a class="btn-floating btn-lg btn-li" type="button" role="button"><i
-							class="fab fa-linkedin-in"></i></a>
-					<!--Instagram-->
-					<a class="btn-floating btn-lg btn-ins" type="button" role="button"><i
-							class="fab fa-instagram"></i></a>
+		
+				<div class="icon-bar">
+				  <a href="https://www.facebook.com/moogkwon" class="facebook"><i class="fa fa-facebook"></i></a> 
+				  <a href="https://www.instagram.com/mydadismotherteresa" class="instagram"><i class="fa fa-instagram"></i></a> 
+				  <a href="https://www.linkedin.com/in/moog-kwon-7b243510a/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+				  <a href="https://www.youtube.com/channel/UCqVrL8sCNEWpAXdKH-FIn1A?view_as=subscriber" class="youtube"><i class="fa fa-youtube"></i></a> 
 				</div>
 				<div class="col-12">
 					<hr class="light-100">
