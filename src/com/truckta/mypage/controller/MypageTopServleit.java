@@ -57,12 +57,7 @@ public class MypageTopServleit extends HttpServlet {
 			List<FileMatching> listImg = new BoardMatchingService().loadBoardImg(boardTmp);	
 			imgAllList.add(listImg);			
 		}
-//		for (int i = 0; i < imgAllList.size(); i++) {
-//			for (int j = 0; j < imgAllList.get(i).size(); j++) {
-//				System.out.println( ((FileMatching)imgAllList.get(i).get(j)).getBaordNo() );
-//				System.out.println(  ((FileMatching)imgAllList.get(i).get(j)).getFileName()  );
-//			}
-//		}
+
 		if(list.size() != 0) {
 			request.setAttribute("boardTop", list);
 		}

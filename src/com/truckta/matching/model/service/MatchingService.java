@@ -46,5 +46,15 @@ public class MatchingService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+	
+	// 드라이버 배송완료 확인
+	public int dirverConfirm(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.dirverConfirm(conn, boardNo);
+		if(result > 0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }

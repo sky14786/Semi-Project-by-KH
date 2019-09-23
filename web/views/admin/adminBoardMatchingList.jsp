@@ -9,7 +9,7 @@
 	int cPage = (int) request.getAttribute("cPage");
 	String search = (String) request.getAttribute("search");
 	String searchKeyword = (String) request.getAttribute("searchKeyword");
-%>
+%> 
 <style>
 .container-fluid {
 	font-family: "Noto Sans KR", sans-serif;

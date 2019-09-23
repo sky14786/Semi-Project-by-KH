@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,26 +10,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
+<title>배달 정보 업로드</title>
 <%@ include file="/views/common/header.jsp"%>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
-<title>배달 정보 업로드</title>
+<!-- 부트스트랩 4 -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- jquery -->
+<!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+<!-- date picker -->
+<script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js" charset="utf-8"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
 
-<!-- notice -->
-<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
+
 <!-- post -->
+<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 
-<style>
-/* nav, aside {
-	color: red;
-} */
 
+<style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -52,6 +59,7 @@
 			</div>
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
+				<hr>
 				<h4 class="mb-3">배달 정보</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
@@ -171,22 +179,21 @@
 			<button class="btn btn-primary btn-lg btn-block" id="boardUpload"
 				type="button">글 올리기</button>
 				
+			<hr>
 			<div class="input-group mb-1">
 				<div class="col-md-8"></div>
 				<div class="col-md-4">
-					<button class="btn btn-danger btn-sm" type="button" onclick="cancle();">뒤로가기</button>
+					<button class="btn btn-danger btn-sm btn-block" type="button" onclick="cancle();">뒤로가기</button>
 				</div>
 			</div>
+			<script >
+				function cancle() {
+					location.href="<%=request.getContextPath()%>/my/pageTop";
+				}
+			</script>
 			</form>
 				<!-- //---------// -->
-				<div>
-					<button type="button" onclick="test();">수정하기 button</button>
-					<script>
-						function test() {
-							location.href = '<%=request.getContextPath()%>/board/updateLoad';
-						}
-					</script>
-				</div>
+				
 			</div>
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
@@ -195,7 +202,8 @@
 		</div>
 	</div>
 	<script>
-		$('#boardUpload').click(function () {
+		
+			$('#boardUpload').click(function () {
 			
 			var du = boardDuple();	//유효성 검사
 			
@@ -253,9 +261,4 @@
 	<!-- <p class="mb-1">footer</p> -->
 </footer>
 
-
 </html>
-
-
-
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8

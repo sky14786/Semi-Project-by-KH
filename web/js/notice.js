@@ -133,7 +133,7 @@ function boardDuple() {
 	var ck = 0;
 	var boardText = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
 	
-	if (!boardText.test($('#board-stuff').val() || $('#board-stuff').val() == "") {
+	if (!boardText.test($('#board-stuff').val().trim()) || $('#board-stuff').val() == ""){
 		alert("비어(공백) 있거나 한글/영문/숫자만 입력 가능합니다");
 		console.log('titile error');
 	    return ck;

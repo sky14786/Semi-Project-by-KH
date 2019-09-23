@@ -32,7 +32,7 @@ public class BoardMatchingPageLoadServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
 			request.setAttribute("client", cl);
-			request.getRequestDispatcher(request.getContextPath() + "/views/user/notice.jsp").forward(request,
+			request.getRequestDispatcher("/views/user/notice.jsp").forward(request,
 					response);
 		}
 	}

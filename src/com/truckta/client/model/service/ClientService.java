@@ -210,11 +210,38 @@ public class ClientService {
 		return result;
 	}
 	
+
 	   public List<Client> selectAllClient() {
 		      Connection conn = JDBCTemplate.getConnection();
 		      List<Client> list = dao.selectAllClient(conn);
 		      JDBCTemplate.close(conn);
 		      return list;
 		   }
+
+	// 삭제멤버 정보
+	public Client delMemberSelect(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Client cl = dao.delMemberSelect(conn, id);
+		JDBCTemplate.close(conn);
+		return cl;
+	}
+	
+	// 삭제 맴버 상태변경
+//	public int delMemberState(String id) {
+//		Connection conn = JDBCTemplate.getConnection();
+//		int result = dao.delMemberState(conn, id);
+//		if(result > 0) JDBCTemplate.commit(conn);
+//		else JDBCTemplate.rollback(conn);
+//		JDBCTemplate.close(conn);
+//	}
+	
+	// 삭제된 맴버를 삭제테이블로 옮김
+	public int delMemberInsert(Client cl){
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.delMemberInsert(conn, cl);
+		if(result > 0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		return result;
+	}
 
 }

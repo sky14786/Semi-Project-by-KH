@@ -305,9 +305,9 @@ public class ClientDao {
 		String sql = prop.getProperty("sendChat");
 		try {
 			pstmt = conn.prepareStatement(sql);
-//			System.out.println("//////////////////");
-//			System.out.println(ch);
-//			System.out.println(ch.getRoomNo());
+			//			System.out.println("//////////////////");
+			//			System.out.println(ch);
+			//			System.out.println(ch.getRoomNo());
 			pstmt.setInt(1, ch.getRoomNo());
 			pstmt.setString(2, ch.getSender());
 			pstmt.setString(3, ch.getChatText());
@@ -495,20 +495,20 @@ public class ClientDao {
 	}
 
 	public int adminUpdateClient(Connection conn, Client c, String id) {
-//		PreparedStatement pstmt = null;
+		//		PreparedStatement pstmt = null;
 		Statement stmt = null;
-//		String sql = prop.getProperty("adminUpdateClient");
+		//		String sql = prop.getProperty("adminUpdateClient");
 		String sql2 = "update client set name='" + c.getName() + "', email='" + c.getEmail() + "', profile='"
 				+ c.getProfile() + "', moddate=sysdate where id = '" + id + "'";
 		int result = 0;
 		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, c.getName());
-//			pstmt.setString(2, c.getEmail());
-//			pstmt.setString(3, c.getProfile());
-//			pstmt.setString(4,id);
-//
-//			result = pstmt.executeUpdate();
+			//			pstmt = conn.prepareStatement(sql);
+			//			pstmt.setString(1, c.getName());
+			//			pstmt.setString(2, c.getEmail());
+			//			pstmt.setString(3, c.getProfile());
+			//			pstmt.setString(4,id);
+			//
+			//			result = pstmt.executeUpdate();
 			stmt = conn.createStatement();
 			result = stmt.executeUpdate(sql2);
 
@@ -565,5 +565,69 @@ public class ClientDao {
 	      }
 	      return list;
 	   }
+
+	// 삭제멤버 정보
+	public Client delMemberSelect(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("delMemberSelect");
+		Client cl = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				cl = new Client();
+				cl.setId(rs.getString("id"));
+				cl.setName(rs.getString("name"));
+				cl.setProfile(rs.getString("profile"));
+				cl.setRegDate(rs.getDate("regdate"));
+				cl.setModDate(rs.getDate("moddate"));
+				cl.setUserType(rs.getInt("user_type"));
+				cl.setStatus(rs.getInt("status"));
+				cl.setReportCount(rs.getInt("report_count"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return cl;
+	}
+	
+	// 삭제 맴버 상태변경
+//	public int delMemberState(String id) {
+//		prep
+//
+//	}
+
+	
+	// 삭제된 맴버를 삭제테이블로 옮김
+	public int delMemberInsert(Connection conn, Client cl){
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("delMemberInsert");
+		int result = 0;
+		try {
+			//id / pw / name / email / profile / regdate / moddate / user_type / status / report_count
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cl.getId());
+			pstmt.setString(2, cl.getName());
+			pstmt.setString(3, cl.getEmail());
+			pstmt.setDate(4, cl.getRegDate());
+			pstmt.setDate(5, cl.getModDate());
+			pstmt.setInt(6, cl.getUserType());
+			pstmt.setInt(7, cl.getStatus());
+			pstmt.setInt(8, cl.getReportCount());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 }

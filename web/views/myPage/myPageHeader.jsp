@@ -1,3 +1,4 @@
+
 <%@page import="com.truckta.client.model.vo.Client"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,9 +16,13 @@
 		response.sendRedirect("/");
 	} */
 %>
+<style>
+	.myheader{
+		margin-top: 65px;
+	}
+</style>
 <!-- <!DOCTYPE html> -->
-<br><br><br>
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="navbar navbar-expand-sm bg-dark navbar-dark myheader">
 	<a class="navbar-brand" href="<%=request.getContextPath()%>/my/pageTop">My Page</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
@@ -27,7 +32,7 @@
 		<ul class="navbar-nav">
 			<!-- 유저 메뉴 -->
 			<% if(cl.getUserType()==1){ %>
-			<li class="nav-item"><a class="nav-link" href="#">유저 정보</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/mypageUserLoad">유저 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/mySchedule.do">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
@@ -48,7 +53,7 @@
 			<%} %>
 			<!-- 기사 메뉴 -->
 			<% if(cl.getUserType()==2){ %>
-			<li class="nav-item"><a class="nav-link" href="#">기사 정보</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/mypageUserLoad">기사 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageScheduleDriver.do">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"

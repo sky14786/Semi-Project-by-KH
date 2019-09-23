@@ -71,6 +71,7 @@
 			
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
+				<hr>
 				<h4 class="mb-3">배달 정보(변경)</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
@@ -205,17 +206,23 @@
 			<!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
 			<button class="btn btn-primary btn-lg btn-block" id="boardUpload"
 				type="button">수정글 올리기</button>
-				
+			<hr>
 			<div class="input-group mb-1">
-				<div class="col-md-6">
-					<button class="btn btn-danger btn-sm" type="button" onclick="boardDel();">삭제하기</button>
+				<div class="col-md-6"></div>
+				<div class="col-md-3">
+					<button class="btn btn-danger btn-sm btn-block" type="button" onclick="boardDel();">삭제하기</button>
 				</div>
-				<div class="col-md-6">
-					<button class="btn btn-danger btn-sm" type="button" onclick="cancle();">뒤로가기</button>
+				<div class="col-md-3">
+					<button class="btn btn-danger btn-sm btn-block" type="button" onclick="cancle();">뒤로가기</button>
 				</div>
 			</div>
 			
 			</form>
+			<script >
+				function cancle() {
+					location.href="<%=request.getContextPath()%>/my/pageTop";
+				}
+			</script>
 		
 			</div>
       
@@ -226,6 +233,10 @@
 		</div>
      </div>
     <script>
+	    $('#datepicker').datepicker({
+			uiLibrary: 'bootstrap4'
+		});
+	    
 		$('#boardUpload').click(function () {
 			
 			var du = boardDuple();	//유효성 검사
@@ -293,7 +304,3 @@
 
 
 </html>
-
-
-
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8

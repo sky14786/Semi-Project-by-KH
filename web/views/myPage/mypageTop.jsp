@@ -1,3 +1,4 @@
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -22,24 +23,12 @@
 	
 %>
 
-
-<!-- <!DOCTYPE html>
-<html lang="kr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-
-<%@ include file="/views/common/header.jsp"%>
-
+<%-- <%@ include file="/views/common/header.jsp"%> --%>
 <link
 	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css"
 	rel="stylesheet">
-<title>mypage</title>
-</head>
-<br><br><br><br><br><br><br><br><br><br><br>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
 	<section class="page-title bg-title overlay-dark">
@@ -97,7 +86,7 @@
 						<div class="post-thumb">
 
 							<!-- 상세 운반정보 -->
-							<a href="#"> <img
+							<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>"> <img
 								src="<%=request.getContextPath()%>/images/boardMatching_images/
 								<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"
 								alt="post-image" class="img-fluid">
@@ -130,7 +119,7 @@
 								<%=title%>
 								</p>
 								<h2 style="font-size: 0.5rem" class="mb-0 mt-0">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>">
 									<%
 										String stAddr = list.get(i).getStartAddr();
 										String edAddr = list.get(i).getEndAddr();
@@ -164,8 +153,10 @@
 										</a></li>
 									<li class="list-inline-item"><i class="fa fa-heart-o"></i>
 										<a href="#"><%=list.get(i).getCount() %></a></li>
-									<li class="list-inline-item"><i class="fa fa-comments-o"></i>
-										<a href="#">????</a></li>
+									<!-- <li class="list-inline-item">
+										<i class="fa fa-comments-o"></i>
+										<a href="#">????</a>
+									</li> -->
 								</ul>
 							</div>
 						</div>
@@ -249,5 +240,4 @@
             });
      </script>
 </body>
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8:web/views/myPage/mypageTop.jsp
 </html>

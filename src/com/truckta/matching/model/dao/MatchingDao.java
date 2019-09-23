@@ -180,4 +180,20 @@ public class MatchingDao {
 		return list;
 	}
 
+	public int dirverConfirm(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("dirverConfirm");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 }

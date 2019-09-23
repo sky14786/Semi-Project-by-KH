@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.truckta.client.model.vo.Client;
 import com.truckta.matching.complete.model.vo.MatchingComplete;
+import com.truckta.matching.model.vo.Matching;
 
 import common.template.JDBCTemplate;
 
@@ -76,4 +76,57 @@ public class MatchingCompleteDao {
 		}
 		return list;
 	}
+	
+	
+	public Matching matDate(Connection conn, String id, String room) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("matData");
+//		List<MatchingComplete> list = new ArrayList();
+		Matching mc =  null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(room));
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				mc = new Matching();
+				mc.setMatNo(rs.getInt("mat_no"));
+				mc.setBoardNo(rs.getInt("board_no"));
+				mc.setRequestor(rs.getString("requestor"));
+				mc.setResponser(rs.getString("responser"));
+				mc.setPay(rs.getInt("pay"));
+				mc.setMemo(rs.getString("etc"));
+				mc.setTryDate(rs.getDate("try_date"));
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return mc;
+	}
+	
+	public int insertData(Connection conn, Matching mc) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("matDataInsert");
+		int result = 0;
+		System.out.println(mc.getMatNo()+ "");
+		try {
+			pstmt =  conn.prepareStatement(sql);
+			pstmt.setInt(1, mc.getMatNo());
+			pstmt.setDate(2, mc.getTryDate());
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException  e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
+	
 }
