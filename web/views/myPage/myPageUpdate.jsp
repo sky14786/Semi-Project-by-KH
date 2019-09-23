@@ -173,6 +173,9 @@
 					<button type="submit" onclick="checkData();" class="btn btn-primary">수정</button>
 					<button type="button" onclick="history.back();" class="btn btn-primary">뒤로</button>
 				</div>
+				<div>
+					<button type="button" onclick="memberDel();" class="btn btn-danger btn-block">회원 탈퇴</button>
+				</div>
 			</form>
 		</div>
 		<div class="col-1"></div>
@@ -181,6 +184,20 @@
 	</div>
 </div>
 <script>
+
+function memberDel() {
+	var tt = '<%=client.getId() %>';
+	var cf = confirm("탈퇴 하시겠습니까");
+	if(cf == true){
+	  	var cf2 = confirm("정말로 탈퇴할까요?");
+	  	if(cf2 == true)
+	  		location.href="<%=request.getContextPath()%>/MypageMemeberDel?id="+tt;
+	  		//return true;
+	  	else
+	  		return false
+	}else
+		return false;
+}
 
 $(document).ready(function (e){
 	
