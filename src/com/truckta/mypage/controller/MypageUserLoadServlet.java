@@ -19,9 +19,7 @@ import com.truckta.driver.model.service.DriverService;
 import com.truckta.driver.model.vo.Driver;
 import com.truckta.file.driver.model.service.FileDriverService;
 import com.truckta.file.driver.model.vo.FileDriver;
-/**
- * Servlet implementation class MypageUserLoadServlet
- */
+
 @WebServlet("/mypageUserLoad")
 public class MypageUserLoadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,7 +29,7 @@ public class MypageUserLoadServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if(cl == null || cl.getUserType() == 3 || cl.getStatus() == 0) {
 			request.setAttribute("message", "수정 페이지를 불러올 수 없습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
@@ -43,19 +41,30 @@ public class MypageUserLoadServlet extends HttpServlet {
 		System.out.println("this id: "+id);
 		// 유저 타입
 //		cl.getUserType() 
-		boolean isDriverView = Boolean.parseBoolean(request.getParameter("isDriverView"));
+		boolean isDriverView = true;
+		if(cl.getUserType() == 2) { //1:c 2:d 3:Admin
+			isDriverView = false;
+		}
+//		 = Boolean.parseBoolean(request.getParameter("isDriverView"));
 		Client client = new ClientService().findClient(id);
+		System.out.println("client / " + client);
 		Driver driver = new DriverService().findDriver(id);
+		System.out.println("dirver / " + driver);
+		
 		List<CarType> carTypeList = new ArrayList<CarType>();
 		carTypeList = new CarTypeService().selectAll();
-		
+		System.out.println("carType / " + carTypeList);
+		//010-0335-0361
 		if (driver != null) {
 			List<FileDriver> fileList = new FileDriverService().findDriverFile(id);
+			System.out.println(fileList);
 			request.setAttribute("fileList", fileList);
 		}
 		if(carTypeList!=null && carTypeList.size()>0) {
+			System.out.println(carTypeList);
 			request.setAttribute("carType", carTypeList);
 		}
+		
 		request.setAttribute("driver", driver);
 		request.setAttribute("client", client);
 		request.setAttribute("isDriverView", isDriverView);

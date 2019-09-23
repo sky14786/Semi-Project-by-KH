@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -25,27 +26,34 @@ import com.truckta.driver.model.vo.Driver;
 import com.truckta.file.driver.model.service.FileDriverService;
 import com.truckta.file.driver.model.vo.FileDriver;
 
-/**
- * Servlet implementation class MypageUserServlet
- */
 @WebServlet("/mypageUserUpdate")
 public class MypageUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final private int maxSize = 1024 * 1024 * 3;
 
 	public MypageUserServlet() {
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		FileDriverService service = new FileDriverService();
+
+		HttpSession session = request.getSession();
+		Client cl = (Client)session.getAttribute("loginClient");
+		if(cl == null || cl.getUserType() == 3 || cl.getStatus() == 0) {
+			request.setAttribute("message", "잘못된 접근입니다");
+			String path = "/index.jsp";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
+
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			request.getSession().setAttribute("isCertified", false);
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "잘못된 접근입니다. 홈으로 이동합니다.");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
+
 		String path = request.getServletContext().getRealPath("/images/profile_images");
 		DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", policy);
@@ -55,10 +63,8 @@ public class MypageUserServlet extends HttpServlet {
 		String id = mul.getParameter("id");
 		String name = mul.getParameter("name");
 		String email = mul.getParameter("email");
-		String bLicense = mul.getParameter("bLicense");
-		String dLicense = mul.getParameter("dLicense");
-		String dateOfBirth = mul.getParameter("dateOfBirth");
-		int carType = Integer.parseInt(mul.getParameter("carType"));
+
+
 		Client c = null;
 		String profile = null;
 		if (mul.getFilesystemName("profile") == null) {
@@ -79,8 +85,22 @@ public class MypageUserServlet extends HttpServlet {
 			oldFile.renameTo(newFile);
 		}
 
-		Driver d = new Driver(id, dateOfBirth, carType, dLicense, bLicense);
+		Driver d = null;
 		ArrayList<FileDriver> fileDriverList = new ArrayList<FileDriver>();
+
+		//if(cl.getUserType() == 2) {
+		String bLicense = "";
+		String dLicense = "";
+		String dateOfBirth = "";
+		int carType = 0;
+		
+		if(cl.getUserType() == 2) {
+			bLicense = mul.getParameter("bLicense");
+			dLicense = mul.getParameter("dLicense");
+			dateOfBirth = mul.getParameter("dateOfBirth");
+			carType = Integer.parseInt(mul.getParameter("carType"));
+		}
+		d = new Driver(id, dateOfBirth, carType, dLicense, bLicense);
 
 		List<FileDriver> files = service.findDriverFile(id);
 		int i = 0;
@@ -128,19 +148,17 @@ public class MypageUserServlet extends HttpServlet {
 		i += isDriverUpdate + isClientUpdate;
 
 		if (i == 7) {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Driver_Update : " + c.getId());
 			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=true&id=" + c.getId()).forward(request,
 					response);
 		} else if (isClientUpdate == 1) {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_Client_Update : " + c.getId());
 			request.getRequestDispatcher("/admin/adminUserDetail?isDriverView=false&id=" + c.getId()).forward(request,
 					response);
 		} else {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_User_Update Fail : " + c.getId());
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "실패! 개발자에게 문의하세요");
 			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
 		}
+		//}
 
 	}
 

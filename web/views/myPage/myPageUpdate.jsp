@@ -1,22 +1,29 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp"%>
-\<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/signUpDriver-Style.css?ver=1.1" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/adminUpdateUser-js.js?ver=1.3" charset="utf-8"></script>
 <%@ page import="com.truckta.client.model.vo.Client,com.truckta.driver.model.vo.Driver,java.util.List,com.truckta.cartype.model.vo.CarType,com.truckta.file.driver.model.vo.FileDriver"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	Client client = (Client) request.getAttribute("client");
-	Driver driver = (Driver) request.getAttribute("driver");
-	List<FileDriver> fileList = (List) request.getAttribute("fileList");
+	Client client = null;
+	if((Client)request.getAttribute("client") != null){
+		client = (Client) request.getAttribute("client");
+	}
+	Driver driver = null;
+	if((Driver) request.getAttribute("driver") != null){
+		driver = (Driver) request.getAttribute("driver");
+	}
+	List<FileDriver> fileList = new ArrayList<FileDriver>();
+	if((List) request.getAttribute("fileList") != null){
+		fileList = (List) request.getAttribute("fileList");
+	}
 	boolean isDriverView = (boolean) request.getAttribute("isDriverView");
 	List<CarType> carTypeList = (List) request.getAttribute("carType");
 %>
-<%-- <div class="container"> --%>
-<!-- <br /> <br /> <br /> -->
-
 
 <script>
 	//certifiedCheck();
@@ -33,7 +40,7 @@
 			<br>
 			<h2>Modify information</h2>
 			<hr>
-			<input type="hidden" name = "isChecking" value = "<%=isDriverView %>" readonly/>
+			<%-- <input type="hidden" name = "isChecking" value = "<%=isDriverView %>" readonly/> --%>
 			<input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
 			<form
 				action="<%=request.getContextPath()%>/mypageUserUpdate"
