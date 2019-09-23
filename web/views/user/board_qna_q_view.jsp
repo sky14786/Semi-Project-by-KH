@@ -87,7 +87,7 @@ table#tbl-comment sub.comment-date {
 						<th>작성자</th>
 						<tr>
 							<td><input type="text" class="form-control"
-								value="<%=clientLogin.getId()%>" readonly /></td>
+								value="<%=q.getqUser()%>" readonly /></td>
 						</tr>
 						<th>내용</th>
 						<tr>

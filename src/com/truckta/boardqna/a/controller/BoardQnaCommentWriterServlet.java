@@ -69,7 +69,7 @@ public class BoardQnaCommentWriterServlet extends HttpServlet {
 		
 		if(result==1) {
 			Client temp = new ClientService().findClient(writer);
-			if(temp.getName().equals("관리자")) {
+			if(temp.getName().equals("admin")) {
 				BoardQnaQ q = new BoardQnaQService().findBoardQnaQ(qNo);
 				q.setStatus(1);
 				if(new BoardQnaQService().updateQna(q)==1) {
