@@ -53,8 +53,8 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 
 		// Multipartrequest객체 생성
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxSize, "UTF-8", null);
-       
-		String qNo=request.getParameter("id");
+
+		String qNo = request.getParameter("id");
 		// 클라이언트가 보내준값을 DB에 저장하기
 		String title = mr.getParameter("title");
 		String writer = mr.getParameter("writer");
@@ -68,7 +68,7 @@ public class BoardQnaFormEndServlet extends HttpServlet {
 		String location = "";
 		if (result > 0) {
 			message = "게시글 등록 완료";
-			location = "/board/boardQnaQList?id="+qNo+"&type="+type;
+			location = "/board/boardQnaQList?id=" + qNo + "&type=" + type;
 //			"/board/boardQnaQList?id="+qNo;
 		} else {
 			/*

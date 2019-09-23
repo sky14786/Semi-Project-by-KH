@@ -47,7 +47,7 @@
 
 </body>
 <script>
-	function driverCon(id) {
+	function driverCon() {
 		if (confirm("기사 신청하시겠습니까?") == true){
 			sessionStorage.setItem("isCertified", true);
 			location.href = "<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>";

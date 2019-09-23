@@ -45,7 +45,6 @@ function checkData() {
 	}
 	
 	
-	chkEmail($("inpit[name=email]").val());
 	
 	
 
