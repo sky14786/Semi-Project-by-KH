@@ -6,7 +6,7 @@
 <%
 	List<Driver> dList = (List) request.getAttribute("dList");
 	List<CarType> cList = (List) request.getAttribute("cList");
-	int cPage = (int) request.getAttribute("cPage");
+	int cPage = (int) request.getAttribute("cPage"); 
 %>
 <style>
 .container {

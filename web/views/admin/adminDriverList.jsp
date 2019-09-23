@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <%@ page import="java.util.List,com.truckta.driver.model.vo.Driver, com.truckta.cartype.model.vo.CarType" %>
-
+ 
 <%
 	List<Driver> dList = (List) request.getAttribute("dList");
 	List<CarType> cList = (List) request.getAttribute("cList");
