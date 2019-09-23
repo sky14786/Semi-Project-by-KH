@@ -22,10 +22,9 @@ public class DriverDeliveryConfirmSevlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 배송완료 비지니스 로직
-		String boardNo = request.getParameter("boardNo");
+		String boardNo = request.getParameter("room");
 		String id = request.getParameter("id");
-		System.out.println("000000000000     "+boardNo);
-		System.out.println(id);
+		
 		Matching mc = new MatchingCompleteService().matData(id, boardNo);
 		if(mc == null) {
 			request.setAttribute("message", "문제가 발생하여 완료할 수 없습니다");
@@ -37,7 +36,7 @@ public class DriverDeliveryConfirmSevlet extends HttpServlet {
 		int result = new MatchingService().dirverConfirm(mc.getMatNo());
 		
 		if(result > 0) {
-			String msg = "배송 완료!";
+			String msg = "배송을 받았습니다!";
 			request.setAttribute("message", msg);
 			String path = "/my/pageTopDriver";
 			request.setAttribute("location", path);

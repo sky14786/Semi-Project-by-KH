@@ -223,7 +223,7 @@ public class DriverDao {
 				listTmp.add(rs.getDate("try_date"));
 				listTmp.add(rs.getInt("pay"));
 				listTmp.add(rs.getString("board_no"));
-				listTmp.add(rs.getString("responser"));
+				listTmp.add(rs.getString("requestor"));
 				list.add(listTmp);
 			}
 		} catch (SQLException e) {
