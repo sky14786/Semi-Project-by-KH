@@ -48,13 +48,19 @@ public class ChatService {
 		Connection conn = getConnection();
 		int addBid = dao.insertBid(conn, boardNo, writerId, driverId, bidPrice);
 		if(addBid>0) {
-			System.out.println("Bid   !!!@!!!!!!");
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
 		return 0;
+	}
+
+	public int selectBid(int boardNo, String driverId) {
+		Connection conn = getConnection();
+		int room = dao.selectBid(conn, boardNo, driverId);
+		close(conn);
+		return room;
 	}
 
 	

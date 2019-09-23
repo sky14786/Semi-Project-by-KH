@@ -70,8 +70,20 @@ public class CreateChatServlet extends HttpServlet {
 		// Sending the greeting message
 		System.out.println(message);
 		int send = cs.sendGreeting(roomNum, driverId, message);
-		// Adding to the bidding list
-		int addBid =  cs.insertBid(boardNo, writerId, driverId, bidPrice);
+		
+		// checking if already bidded
+		int bidded = cs.selectBid(boardNo, driverId);
+		
+		if(bidded>0) {
+			request.setAttribute("message", "이미 비딩을 하였습니다");
+			String path = "/index.jsp";
+			request.setAttribute("location", path);
+			request.getRequestDispatcher("/views/detail/detailView.jsp").forward(request, response);
+		} else {
+			// Adding to the bidding list
+			int addBid =  cs.insertBid(boardNo, writerId, driverId, bidPrice);
+		}
+		
 		
 		// Now that it has been created, redirect
 		//Finding the room number		

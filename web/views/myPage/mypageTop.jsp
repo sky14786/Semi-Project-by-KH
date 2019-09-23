@@ -38,6 +38,7 @@
 	rel="stylesheet">
 <title>mypage</title>
 </head>
+<br><br><br><br><br><br><br><br><br><br><br>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body class="body-wrapper">
 	<section class="page-title bg-title overlay-dark">
