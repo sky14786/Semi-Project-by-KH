@@ -50,7 +50,7 @@ public class DetailServlet extends HttpServlet {
       // 업로드한 사진 가져오기
       List<FileMatching> fileList = new FileMatchingService().detailimg(boardNo);
       List<FileDriver>  driverFileList = new FileDriverService().selectAllFiles();
-      System.out.println(driverFileList.toString());
+//      System.out.println(driverFileList.toString());
 //      List<String> plist = service.selectProfile();
       request.setAttribute("driverFileList", driverFileList);
       request.setAttribute("filelist", fileList);

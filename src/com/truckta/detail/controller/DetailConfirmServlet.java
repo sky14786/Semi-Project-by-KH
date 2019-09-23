@@ -33,7 +33,7 @@ public class DetailConfirmServlet extends HttpServlet {
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-		System.out.println(mc);
+//		System.out.println(mc);
 		int result = new MatchingCompleteService().insertData(mc);
 		if (result > 0) {
 			System.out.println("입력 성공 : " + result);
