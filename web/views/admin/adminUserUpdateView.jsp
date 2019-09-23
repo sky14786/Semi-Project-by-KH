@@ -41,16 +41,16 @@
 				method="post" name="sendform" enctype="multipart/form-data">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
-					<label for="id">ID</label> <input type="text" name="id" id="id"
+					<label for="id">아이디</label> <input type="text" name="id" id="id"
 						class="form-control" value="<%=client.getId()%>" readonly/>
 				</div>
 				<div class="form-group">
-					<label for="name">Name</label> <input type="text" name="name"
+					<label for="name">이름</label> <input type="text" name="name"
 						id="name" class="form-control" value="<%=client.getName()%>"
 						/>
 				</div>
 				<div class="form-group">
-					<label for="name">Email</label> <input type="text" name="email"
+					<label for="name">이메일</label> <input type="text" name="email"
 						id="email" class="form-control"
 						value="<%=client.getEmail()%>" placeholder="EMAIL"  />
 				</div>
@@ -58,7 +58,7 @@
 					<%
 						if (client.getProfile() != null) {
 					%>
-						<label for="profile">Profile Picture</label><hr>
+						<label for="profile">프로필 사진</label><hr>
 						<img name="img_org_profile" src="<%=request.getContextPath() %>/images/profile_images/<%=client.getProfile() %>" width="400px" height="300px">
 						<br><br>
 						<button type="button" onclick="deleteProfileImg();" class="btn btn-primary">삭제</button>
@@ -88,13 +88,13 @@
 						if (driver != null && client.getUserType() == 2) {
 					%>
 
-					<label>Date of Birth</label><br />
+					<label>생년월일</label><br />
 <input type="hidden" name = "isDriver" value = "<%=client.getUserType() %>" readonly/>
 					<input type="text" name="dateOfBirth" id="dateOfBirth"
 						class="form-control"  value="<%=driver.getDateOfBirth()%>"/>
 				</div>
 					<div class="form-group">
-					<label for="carType">Truck Category</label><br /> <select
+					<label for="carType">운송수단 종류</label><br /> <select
 						name="carType" id="carType"class="custom-select-sm select-cartype-input">
 						<%
 							for (CarType ct : carTypeList) {
@@ -114,15 +114,15 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="dLicense">Driver License</label> <input type="text" name="dLicense" id="dLicense"
+					<label for="dLicense">면허번호</label> <input type="text" name="dLicense" id="dLicense"
 						class="form-control" placeholder="ex.??-??-??????-??" value="<%=driver.getdLicense()%>"/>
 				</div>
 				<div class="form-group">
-					<label for="bLicense">Business License</label> <input type="text" name="bLicense" id="bLicense"
+					<label for="bLicense">사업자등록번호</label> <input type="text" name="bLicense" id="bLicense"
 						class="form-control" placeholder="ex.???-??-?????" value="<%=driver.getbLicense()%>"/>
 				</div>
 				<div class="form-group">
-					<label for="carPic">Truck Picture</label><hr>
+					<label for="carPic">운송수단 사진</label><hr>
 					<%
 						if (fileList != null) {
 								for (int i = 0;i < 5; i++) {

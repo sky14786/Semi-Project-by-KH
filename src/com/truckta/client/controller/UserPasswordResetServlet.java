@@ -23,8 +23,8 @@ public class UserPasswordResetServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
-		String pwChk = request.getParameter("password_check");
+		String pw = request.getParameter("pw");
+		String pwChk = request.getParameter("pwCheck");
 		String key = (String) request.getSession().getAttribute("key");
 		String keyChk = request.getParameter("key");
 		

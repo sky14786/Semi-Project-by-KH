@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.truckta.client.model.service.ClientService;
 import com.truckta.client.model.vo.Client;
 
+import common.template.DataEncryptionTemplate;
+
 @WebServlet(name = "ClientLogin", urlPatterns = "/login")
 public class ClientLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,9 @@ public class ClientLoginServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		// 로그인에 대한 비지니스 로직
+		pw = DataEncryptionTemplate.encryptionToSHA512(pw);
+		System.out.println(pw);
+		
 		ClientService service = new ClientService();
 		Client cl = service.selectId(id, pw);
 

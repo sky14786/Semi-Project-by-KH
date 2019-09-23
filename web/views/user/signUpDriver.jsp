@@ -29,21 +29,21 @@
 		<div class="col-1"></div>
 		<div class="col-6">
 		<br><br><br><br>
-			<h2>Driver Sign Up</h2><hr>
+			<h2>트럭타 기사신청</h2><hr>
 			<form action="/driverSignUp" method="post" name="sendform"
 				enctype="multipart/form-data" onsubmit="return checkData();">
 				<div class="form-group">
-					<label for="id">Id</label> <input type="text" name="id" id="id"
+					<label for="id">아이디</label> <input type="text" name="id" id="id"
 						class="form-control" placeholder="Phone Number" value="<%=id %>" readonly
 					/>
 				</div>
 				<div class="form-group form-group-1">
-					<label>Date of Birth</label><br />
+					<label>생년월일</label><br />
 					<input type="text" name="dateOfBirth" id="dateOfBirth"
 						class="form-control"  placeholder="YYYYMMDD"/>
 				</div>
 				<div class="form-group">
-					<label for="carType">Truck Category</label><br /> <select
+					<label for="carType">운송수단 종류</label><br /> <select
 						name="carType" class="custom-select-sm select-cartype-input">
 						<%for(CarType ct : list) {%>
 						<option value="<%=ct.getTypeNo() %>" selected><%=ct.getCarType() %></option>
@@ -52,17 +52,17 @@
 				</div>
 
 				<div class="form-group">
-					<label for="dLicense">Driver License</label> <input type="text" name="dLicense" id="dLicense"
+					<label for="dLicense">면허번호</label> <input type="text" name="dLicense" id="dLicense"
 						class="form-control" placeholder="ex.??-??-??????-??" 
 					/>
 				</div>
 				<div class="form-group">
-					<label for="bLicense">Business License</label> <input type="text" name="bLicense" id="bLicense"
+					<label for="bLicense">사업자등록번호</label> <input type="text" name="bLicense" id="bLicense"
 						class="form-control" placeholder="ex.???-??-?????" 
 					/>
 				</div>
 				<div class="form-group">
-					<label for="carPic">Truck Picture</label> 
+					<label for="carPic">운송수단 사진</label> 
 					<input type="file" name="carPic1" id="carPic1" class="form-control btn btn-outline-secondary inputFile" 
 							accept=".jpg, .png, .pdf" style="margin-top: 5px;" />
 					<button type="button" onclick="deleteDriverImg('carPic1');" class="btn btn-primary">삭제</button>
@@ -86,7 +86,8 @@
 					</label>
 				</div>
 				<div style="text-align:center;">
-				<button type="submit" class="btn btn-primary">Send</button>
+				<button type="submit" class="btn btn-primary">기사신청</button>
+				<button type="button" class="btn  btn-primary"><a href="<%=request.getContextPath()%>/">뒤로가기</a></button>
 				</div>
 			</form>
 		</div>

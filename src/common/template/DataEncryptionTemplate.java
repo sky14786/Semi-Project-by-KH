@@ -8,8 +8,8 @@ public class DataEncryptionTemplate {
 	public static String encryptionToSHA512(String temp) {
 		MessageDigest md = null;
 		try {
-//			String key = "www.truckta.com" + temp;
-			String key =  temp;
+			String key = "www.truckta.com" + temp;
+//			String key =  temp;
 			md = MessageDigest.getInstance("SHA-512");
 			md.update(key.getBytes());
 

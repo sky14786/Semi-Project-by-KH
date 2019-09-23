@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Servlet Filter implementation class EncyriptFilter
  */
-@WebFilter(servletNames= {
-		"ClientLogin","clientSignUp.do","trypwreset.do"
-})
+@WebFilter(servletNames= {})
 public class EncyriptFilter implements Filter {
 
     /**
