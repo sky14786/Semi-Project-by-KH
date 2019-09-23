@@ -7,13 +7,6 @@
 	if((Client)session.getAttribute("loginClient")!=null){
 		cl = (Client)session.getAttribute("loginClient");
 	}
-	
-	/* Client cl = new Client();
-	if((Client)request.getAttribute("client") != null){
-		cl = (Client)request.getAttribute("client");
-	}else{
-		response.sendRedirect("/");
-	} */
 %>
 <style>
 	.myheader{

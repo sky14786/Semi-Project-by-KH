@@ -30,14 +30,16 @@ public class DriverJoinTryServlet extends HttpServlet {
 		carTypeList = new CarTypeService().selectAll();
 		String id = request.getParameter("id");
 		Client client = null;
+
 		if (id != null) {
 			client = new ClientService().findClient(id);
 		}
-
+		System.out.println(client);
 		if (client != null && carTypeList != null && carTypeList.size() > 0) {
+
 			request.getSession().setAttribute("isCertified", true);
 			request.setAttribute("carTypeList", carTypeList);
-			request.setAttribute("id", new ClientService().findClient(id));
+			request.setAttribute("id", client);
 
 			request.getRequestDispatcher("/views/user/signUpDriver.jsp").forward(request, response);
 		} else {

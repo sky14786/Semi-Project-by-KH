@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-/* 	Client cl = new Client();
-	if((Client)request.getAttribute("client") != null){
-		cl = (Client)request.getAttribute("client");
-	}else{
-		response.sendRedirect("/");
-	} */
-	
-	
-%>
 <%@ include file="/views/common/header.jsp"%>
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css"
 	rel="stylesheet">
@@ -33,7 +23,7 @@
 			<div class="row">
 				<!-- 약관 스크롤 -->
 				<div class='col-12 text-center'>
-					<h2>화물자동차 운수사업법<span>( 약칭: 화물자동차법 )</span></h2>
+					<h2>화물자동차 드라이버 신청</h2>
 				</div>
 				
 				<div>
@@ -53,8 +43,12 @@
 </body>
 <script>
 	function driverCon() {
-		if (confirm("기사 신청하시겠습니까?") == true){
-			location.href = '<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>';
+		var driverConf = confirm("기사 신청하시겠습니까?");
+		console.log(driverConf);
+		
+		if (driverConf == true){
+			console.log('<%=cl.getId()%>');
+			location.href = "<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>";
 		}else{	//취소
 			return false;
 		}
