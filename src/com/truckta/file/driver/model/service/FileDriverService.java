@@ -54,5 +54,12 @@ public class FileDriverService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	   public List<FileDriver> selectAllFiles() {
+		      Connection conn = JDBCTemplate.getConnection();
+		      List<FileDriver> list = dao.selectAllFiles(conn);
+		      JDBCTemplate.close(conn);
+		      return list;
+		   }
 
 }

@@ -34,6 +34,8 @@
 			<h2>Modify information</h2>
 			<hr>
 			<form method="post" name="sendform">
+			
+			<input type="hidden" name="isDriver" value="">
 				<!-- onsubmit="return checkData();" -->
 				<div class="form-group">
 					<label for="id">ID</label> <input type="text" name="id" id="id"
@@ -70,7 +72,6 @@
 					%>
 
 					<label>Date of Birth</label><br />
-
 					<input type="text" name="dateOfBirth" id="dateOfBirth"
 						class="form-control"  value="<%=driver.getDateOfBirth()%>" readonly/>
 				</div>

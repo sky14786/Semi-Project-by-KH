@@ -115,8 +115,37 @@ public class ChatDao {
 		}
 		return result;
 	}
-	
-	
+
+	public int selectBid(Connection conn, int boardNo, String driverId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("selectBid");
+		//CreateChat ccWithRoom = null;
+		int result=-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			pstmt.setString(2, driverId);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				result=rs.getInt(1);
+				System.out.println("///////////////////////");
+				System.out.println("///////////////////////");
+				System.out.println(result);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+
 	
 	
 
