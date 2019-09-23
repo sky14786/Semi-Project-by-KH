@@ -149,7 +149,7 @@ function boardDuple() {
 		return ck;
 	}
 	
-	if (%('#end-addr').val()="" && $('#st-addr').val()==""){
+	if ($('#end-addr').val()=="" && $('#st-addr').val()==""){
 		alert("주소를 자세히 입력해주세요");
 		return ck;
 	}

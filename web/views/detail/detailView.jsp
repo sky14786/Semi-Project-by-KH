@@ -190,8 +190,15 @@
   <section id="services">
     <div class="container wow fadeInUp justify-content-center">
       <div class="row">
+          <h3 class="section-title">내용 : </h3>
         <div class="col-md-12">
-          <h3 class="section-title">내용 : <%=d.getEtc() %></h3>
+        	<textarea class="textAr" rows="40" cols="60" readonly><%=d.getEtc() %></textarea>
+        	<style>
+        		.textAr{
+        			height:300px ; 
+        			font-size:2em;
+        		}
+			</style>
           <br>
           <p class="about-text">
           <br>

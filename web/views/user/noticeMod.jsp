@@ -1,43 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="com.truckta.file.matching.model.vo.FileMatching"%>
 <%@page import="com.truckta.boardmatching.model.vo.BoardMatching"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%
 	BoardMatching bm = (BoardMatching)request.getAttribute("board");
 	List<FileMatching> list = (List)request.getAttribute("boardImgs");
-	if(bm == null){
-		//errorpage redirect
-	}
 	String newStartAddr[] = bm.getStartAddr().split(",");
 	String newEndAddr[] = bm.getEndAddr().split(",");
 	
 %>
-<!DOCTYPE html>
-<html>
-<head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
+<title>배달 정보 업로드</title>
 <%@ include file="/views/common/header.jsp"%>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
-<title>배달 정보 업로드</title>
 
+
+
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/notice.js?ver=1" charset="utf-8"></script>
 <!-- 부트스트랩 4 -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- jquery -->
+<!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
 <!-- date picker -->
-<script src="../../js/jquery-3.4.1.js" charset="utf-8"></script>
+<%-- <script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js" charset="utf-8"></script> --%>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
 
-<!-- notice -->
-<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
+
 <!-- post -->
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/post.js?ver=1" charset="utf-8"></script>
+
 
 <style>
 .bd-placeholder-img {
@@ -269,6 +269,7 @@
 					contentType:false,
 					success:function (data) {
 						alert('upload seccess!!');
+						location.href='<%=request.getContextPath()%>/detail?boardNo=<%=bm.getBoardNo()%>';
 					},
 					error : function(er) {
 						console.log('error');
