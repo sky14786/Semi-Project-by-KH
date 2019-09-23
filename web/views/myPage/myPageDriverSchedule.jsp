@@ -167,7 +167,14 @@
 									</li>
 									
 									<%if(matNull != 1){ %>
-									<%for(int i=0; i<matList.size(); i++){ %>
+									<%	int u=0;
+										if(matList.size() > 10){
+											u=10;
+										}else{
+											u=matList.size();
+										}
+									for(int i=0; i<u; i++){ 
+									%>
 									
 									<!-- Schedule Details -->
 									<li class="schedule-details" value="<%=matList.get(i).get(5) %>">
@@ -206,17 +213,18 @@
 											</div>
 											<!-- 신청날짜 -->
 											<div class="subject">
-												<a href="<%=request.getContextPath()%>/detail?boardNo=<%=matList.get(i).get(5) %>" >
 												<%=matList.get(i).get(3) %>
-												</a>
 											</div>
 											<!-- 금액 -->
 											
 											
 											<div class="venue">
 												<%=matList.get(i).get(4) %>
-												<a href="<%=request.getContextPath()%>/driverDeliConfirm?boardNo=<%=matList.get(i).get(5) %>&id=<%=matList.get(i).get(6) %>" onClick="matConfirm(); return false;">
-												배송완료</a>											
+												<%-- <a href="#" onClick="matConfirm(<%=i %>); return false;">수락</a> --%>
+												<input type="text" class = "boNum" value ="<%=matList.get(i).get(5) %>" hidden>
+												<%-- <a href="<%=request.getContextPath()%>/detail?boardNo=<%=matList.get(i).get(5) %>" > --%>
+												<a href="#" onClick="matConfirm(<%=i %>); return false;">배송완료</a>
+                                  				<input type="text" class = "idNum" value ="<%=matList.get(i).get(6) %>" hidden>
 											</div>
 											
 										</div>
@@ -237,7 +245,15 @@
 									</li>
 
 									<%if(comNull != 1){ %>
-									<%for(int i=0; i<matCompleList.size(); i++){ %>
+										
+									<%	int k=0;
+										if(matCompleList.size() > 10){
+											k=10;
+										}else{
+											k=matCompleList.size();
+										}
+										for(int i=0; i<k; i++){ 
+									%>
 									<!-- Schedule Details -->
 									<li class="schedule-details schedule2" value="<%=matCompleList.get(i).get(4) %>">
 										<div class="block">
@@ -297,13 +313,18 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			function matConfirm() {
+			function matConfirm(i) {
 				var cf = confirm("배송완료 하시겠습니까?");
+				var idNum = $('.boNum')[i].value;
+			    var idnnb = $('.idNum')[i].value;
 				if(cf == true){
-				  	//document.write("확인");
+					//console.log(idnnb);
+					//console.log(idNum);
+				  	location.href="<%=request.getContextPath()%>/driverDeliConfirm?room="+idNum+"&id="+idnnb;
 				  	return true;
 				}else
 					return false;
+				
 			}
 			
 			$(function () {

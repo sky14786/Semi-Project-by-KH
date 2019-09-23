@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.truckta.client.model.vo.Client" %>
+<%@ page import="com.truckta.client.model.vo.Client"%>
 <%
- 	Client cl = (Client)request.getAttribute("client");
-	
+	Client cl = (Client) request.getAttribute("client");
 %>
 <%@ include file="/views/common/header.jsp"%>
 <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css"
@@ -13,11 +12,11 @@
 </head>
 
 <style>
-	.scrollspy-example{
-		height: 500px;
-		box-sizing: border-box;
-	}
-	/* .row{
+.scrollspy-example {
+	height: 500px;
+	box-sizing: border-box;
+}
+/* .row{
 
 	} */
 </style>
@@ -28,11 +27,26 @@
 			<div class="row">
 				<!-- 약관 스크롤 -->
 				<div class='col-12 text-center'>
-					<h2>화물자동차 운수사업법<span>( 약칭: 화물자동차법 )</span></h2>
+					
+					
+					
+					<nav id="navbar-example2" class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  
+</nav>
+
+					<br><br>
+					
+					
+					
+					
+					
 				</div>
-				
+
 				<div>
-				<button class="btn btn-primary col-12" onclick="driverCon(); return false;"> 기사 신청 </button>
+					<button class="btn btn-primary col-12"
+						onclick="driverCon(); return false;">기사 신청</button>
+						
 				</div>
 			</div>
 		</div>
@@ -48,11 +62,7 @@
 </body>
 <script>
 	function driverCon() {
-		if (confirm("기사 신청하시겠습니까?") == true){
 			sessionStorage.setItem("isCertified", true);
 			location.href = "<%=request.getContextPath()%>/driver/driverJoinTry?id=<%=cl.getId()%>";
-		}else{	//취소
-			return false;
-		}
 	}
 </script>

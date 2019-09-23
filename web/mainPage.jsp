@@ -22,7 +22,19 @@
 
 
 		<div class="row">
-			<div class="col-md-4 mb-3">
+			
+			
+			
+				<!-- ########################################################################## -->
+			
+
+
+
+		</div>
+		
+		<div class="row content_margin backimg" style="margin-top:5em">
+		
+		<div class="col-md-4 mb-3">
 				<label for="state">도시</label>
 				<select class="custom-select d-block w-100" id="select1" required onchange="citySelect()">
 					<option value="">Choose...</option>
@@ -57,8 +69,6 @@
 					Please provide a valid state.
 				</div>
 			</div>
-			
-				
 			<div class="col-md-4 mb-3">
 				<label for="state">날짜별</label>
 				<select class="custom-select d-block w-100" id=paymentDate required onchange="dateSearch()">
@@ -74,13 +84,8 @@
 				</div>
 
 			</div>
-		</div>
-
-
-
-		<div class="row content_margin">
 			<div class="col-xl-1"></div>
-				<div class="col-xl-10" style="/* background-color: lightgray; */ padding: 60px 20px">
+			<div class="col-xl-10" style="/* background-color: lightgray; */ padding: 60px 20px">
 				<div class="row placeholders">
 				<%for(BoardMatching bm : list_page){
 					boolean isNotNull = false;
@@ -173,7 +178,8 @@
 
 
 		</div>
-		
+		</div>
+		</div>
 		<div id="container">
       <div class="letters">
         <div class="letter" id="target">
