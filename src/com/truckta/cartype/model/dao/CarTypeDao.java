@@ -129,4 +129,22 @@ public class CarTypeDao {
 		return result;
 	}
 
+	public int updateCarType(Connection conn, CarType temp) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCarType");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, temp.getCarType());
+			pstmt.setInt(2, temp.getTypeNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

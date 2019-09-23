@@ -46,7 +46,7 @@ tr>td{
 						<td><%=ct.getTypeNo() %></td>
 						<td><%=ct.getCarType() %></td>
 						<td>
-						<button type="button" class="btn btn-sm" onclick="updateCarType();" name="btn_update" style="background-color:#17a2b8;color:white;">수정</button>
+						<button type="button" class="btn btn-sm" onclick="updateCarType(<%=ct.getTypeNo() %>);" name="btn_update" style="background-color:#17a2b8;color:white;">수정</button>
 						<button type="button" class="btn btn-sm" name="btn_del" style="background-color:#17a2b8;color:white;">삭제</button>
 						</td>
 					</tr>
@@ -134,6 +134,29 @@ tr>td{
 				}
 			}
 		});  
+	}
+	
+	function updateCarType(typeNo){
+		var carType = prompt("수정할 차 이름 ");
+		$.ajax({
+			url:"<%=request.getContextPath()%>/admin/updateCarType",
+			type:"post",
+			dataType:"json",
+			data:{
+				"typeNo":typeNo,
+				"carType":carType
+			},
+			success:function(data){
+				if(data==true){
+					console.log('tq');
+					alert("수정에 성공했습니다.");
+					location.href="<%=request.getContextPath()%>/admin/adminCarTypeList";
+				}else{
+					alert("실패했습니다 개발자에게 문의하세요.");
+				}
+			}
+		});  
+		
 	}
 </script>
 <%@ include file="/views/common/footer.jsp"%>
