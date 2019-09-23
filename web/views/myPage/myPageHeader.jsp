@@ -16,6 +16,7 @@
 	} */
 %>
 <!-- <!DOCTYPE html> -->
+<br><br><br>
 <div class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<a class="navbar-brand" href="<%=request.getContextPath()%>/my/pageTop">My Page</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
