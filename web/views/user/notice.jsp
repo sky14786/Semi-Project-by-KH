@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +25,7 @@
 
 
 <!-- post -->
-<script src="<%=request.getContextPath() %>/js/notice.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/notice.js?ver=1" charset="utf-8"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 

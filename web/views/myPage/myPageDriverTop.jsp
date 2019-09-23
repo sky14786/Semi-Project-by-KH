@@ -25,7 +25,7 @@
 %>
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<%-- <%@ include file="/views/common/header.jsp"%> --%>
+<%@ include file="/views/common/header.jsp"%>
 <link
 	href="<%=request.getContextPath()%>/plugins/mypage/css/font-awsome/css/font-awesome.min.css"
 	rel="stylesheet">

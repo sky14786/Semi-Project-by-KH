@@ -25,6 +25,9 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
 		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
@@ -40,8 +43,14 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		//int boardNum = 199; //해당 글번호
 		String writer = cl.getId();
 		int boardNum = Integer.parseInt(request.getParameter("boNum")); 
+//		System.out.println(boardNum);
 		BoardMatching bm = new BoardMatchingService().loadBoardMatching(writer, boardNum);
 		List<FileMatching> list = new BoardMatchingService().loadBoardImg(boardNum);
+//		System.out.println(bm);
+		for (FileMatching f : list) {
+			System.out.println(f);
+		}
+		
 		
 		if(bm.getMemo().equals("null")) {
 			bm.setMemo("");

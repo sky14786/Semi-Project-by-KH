@@ -148,6 +148,12 @@ function boardDuple() {
 		alert("도착지 주소를 입력하세요");
 		return ck;
 	}
+	
+	if ($('#end-addr').val()=="" && $('#st-addr').val()==""){
+		alert("주소를 자세히 입력해주세요");
+		return ck;
+	}
+	
 
 	// if (!boardText.test($('#board-mat-textarea').val()) || $('#board-mat-textarea').val() == "") {
 	if ($('#board-mat-textarea').val().length < 1) {	

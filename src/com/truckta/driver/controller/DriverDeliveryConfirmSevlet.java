@@ -24,7 +24,8 @@ public class DriverDeliveryConfirmSevlet extends HttpServlet {
 		// 배송완료 비지니스 로직
 		String boardNo = request.getParameter("boardNo");
 		String id = request.getParameter("id");
-		
+		System.out.println("000000000000     "+boardNo);
+		System.out.println(id);
 		Matching mc = new MatchingCompleteService().matData(id, boardNo);
 		if(mc == null) {
 			request.setAttribute("message", "문제가 발생하여 완료할 수 없습니다");

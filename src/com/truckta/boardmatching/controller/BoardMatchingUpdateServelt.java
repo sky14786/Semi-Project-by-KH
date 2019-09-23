@@ -34,6 +34,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		// 수정된 데이터를 저장
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
@@ -62,6 +65,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 		
 		BoardMatching bm = new BoardMatching();
 
+		int ss = Integer.parseInt(mr.getParameter("boardNo"));
+//		System.out.println(ss);
+		
 		String boardStuff = mr.getParameter("boardStuff");
 		String stAddrPost = mr.getParameter("stAddrPost");
 		String stAddr = mr.getParameter("stAddr");
@@ -102,9 +108,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 		bm.setWrtier(cl.getId());
 
-//		int boardNum = request.getAttribute("boardNum"); //해당 글번호
-		int boardNum = 199;
-		bm.setBoardNo(boardNum);
+//		int boardNum = ; //해당 글번호
+//		int boardNum = 199;
+		bm.setBoardNo(ss);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
 		System.out.println("수정 성공 : " + result);

@@ -40,6 +40,9 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
 		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
