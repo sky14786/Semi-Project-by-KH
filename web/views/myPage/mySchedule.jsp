@@ -177,8 +177,15 @@
 										
 									</li>
 									
-									<%if(matNull != 1){ %>
-									<%for(int i=0; i<matList.size(); i++){ %>
+									<%if(matNull != 1){ 
+										int k=0;
+										if(matList.size() > 10){
+											k=10;
+										}else{
+											k=matList.size();
+										}
+									%>
+									<%for(int i=0; i<k; i++){ %>
 									
 									<!-- Schedule Details -->
 									<li class="schedule-details" value="<%=matList.get(i).get(5) %>">
@@ -247,7 +254,14 @@
 										<div class="venue">금액</div>
 									</li>
 
-									<%if(comNull != 1){ %>
+									<%if(comNull != 1){ 
+										int k=0;
+										if(matCompleList.size() > 10){
+											k=10;
+										}else{
+											k=matCompleList.size();
+										}
+									%>
 									<%for(int i=0; i<matCompleList.size(); i++){ %>
 									<!-- Schedule Details -->
 									<li class="schedule-details" value="matCompleList.get(i).get(4)">
@@ -348,5 +362,4 @@
   	<script src="<%=request.getContextPath()%>/plugins/mypage/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8:web/views/myPage/mySchedule.jsp
 </html>
