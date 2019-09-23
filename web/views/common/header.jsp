@@ -11,6 +11,7 @@
 
 <html lang="en">
 <head>
+<link rel="icon" href="<%=request.getContextPath() %>/images/common/favicon.png" type="image/gif" sizes="16x16">
 <meta charset="UTF-8" />
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0" />
