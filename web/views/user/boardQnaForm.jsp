@@ -46,7 +46,7 @@
 	<div class="row" style="padding-top: 10%">
 		<div class="col-11 border border-light rounded "
 			style="flex-align: center">
-			<form style="margin: 10px" action="<%=request.getContextPath()%>/board/boardFormEnd?id=<%=clientLogin.getId() %>"
+			<form style="margin: 10px" action="<%=request.getContextPath() %>/board/boardFormEnd?id=<%=clientLogin.getId() %>"
 				method="post" enctype="multipart/form-data">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
