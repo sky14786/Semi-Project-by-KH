@@ -183,8 +183,8 @@
 					<%q++;}
 					%>
 		</div>
-		
-		
+		</div>
+		</div>
 		<div id="container">
       <div class="letters">
         <div class="letter" id="target">
