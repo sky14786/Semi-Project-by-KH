@@ -64,7 +64,7 @@
 					<li class="nav-item active"><a class="nav-link"
 						href="<%=request.getContextPath() %>/views/user/Login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="<%=request.getContextPath() %>/views/user/signUpMain.jsp">회원가입</a></li>
+						href="<%=request.getContextPath() %>/views/user/signUpClient.jsp">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
@@ -82,16 +82,10 @@
 <div class="collapse navbar-collapse flex-grow-0"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav text-right">
-					<li class="nav-item active">
-					<%if(clientLogin.getUserType() == 1){ %>
-					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTop'>마이페이지</a>
-					<%}else if(clientLogin.getUserType() == 2){ %>
-					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTopDriver'>마이페이지</a>
-					<%}else{ %>
-					<a class="nav-link" href='<%=request.getContextPath()%>/my/pageTop'>마이페이지</a>
-					<%} %>
-					</li>
-					<li class="nav-item active"><a class="nav-link" href='<%=request.getContextPath()%>/logout'>로그아웃</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
@@ -100,16 +94,7 @@
 	<%
 		}
 	%>
-
-
-	<script>
-		function redirect() {
-			location.replace("./chat.html");
-		}
-	</script>
-</header>
-<header>
-   
+	
 	<%
 		if (clientLogin != null && clientLogin.getName().equals("admin")) {
 	%>
@@ -117,14 +102,24 @@
 	<%
 		}%>
 	
-</header> 
+</header>
+
 <script>
+function redirect() {
+	location.replace("./chat.html");
+}
+
 function deny(){
 	alert("로그인 후 이용 가능합니다");
 }
 </script>
 
-<!-- <body>
->>>>>>> 003ec45379dd266d5eec29ca7b51042110b1ffd8
+<body>
 </body>
-</html> -->
+</html>
+
+<header>
+   
+	
+	
+</header> 
