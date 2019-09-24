@@ -29,9 +29,7 @@
 </head>
 <body>
 
-	<form class="form-signin ml-4" id='loginFrm'
-						action="<%=request.getContextPath()%>/login" method="post"
-						onsubmit="return validate();">
+	<form class="form-signin ml-4" id='loginFrm' action="<%=request.getContextPath()%>/login" method="post" onsubmit="return validate();">
 	<div class="container-scroller"  style="
     margin-top: 4em4;
     margin-top: 10em;">
@@ -78,7 +76,7 @@
                   </div> 
                   <div class="text-block text-center my-3">
                     <span class="text-small font-weight-semibold">Not a member ?</span>
-                    <a href="<%=request.getContextPath() %>/user/resetpassword.jsp" class="text-black text-small">Create new account</a>
+                    <a href="<%=request.getContextPath() %>/views/user/signUpMain.jsp" class="text-black text-small">Create new account</a>
                   </div>
               </div>
             </div>

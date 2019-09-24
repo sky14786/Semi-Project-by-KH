@@ -25,7 +25,7 @@ public class BoardMatchingPageLoadServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Client cl = (Client) session.getAttribute("loginClient");
-		if (cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if (cl == null ) {
 			request.setAttribute("message", "업로드페이지 불러오기에 실패했습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);

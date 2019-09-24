@@ -23,7 +23,7 @@ public class MypageMemberDelServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
-		System.out.println("탈퇴 유저 아이디 : " + id);
+//		System.out.println("탈퇴 유저 아이디 : " + id);
 		
 		Client cl = new ClientService().delMemberSelect(id);
 		

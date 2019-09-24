@@ -62,7 +62,6 @@
 				</div>
 				<div style="text-align:center;">
 					<button type="submit" class="btn  btn-primary">회원가입</button>
-					<button type="button" class="btn  btn-primary"><a href="<%=request.getContextPath()%>/">뒤로가기</a></button>
 				</div>
 			</form>
 		</div>

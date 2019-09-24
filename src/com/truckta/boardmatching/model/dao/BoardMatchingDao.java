@@ -28,7 +28,6 @@ public class BoardMatchingDao {
 		}
 	}
 
-	// 전체 리스트(마이페이지)
 	public List<BoardMatching> myAllList(Connection conn, String writer) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -66,13 +65,14 @@ public class BoardMatchingDao {
 
 	}
 
-	// 글 업로드
 	public int insertBoardMatching(Connection conn, BoardMatching bm) {
 
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertBoardMatching");
 		int result = 0;
+//		System.out.println("testtt");
 		try {
+//			System.out.println("testtt4");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bm.getWrtier());
 			pstmt.setString(2, bm.getTitle());
@@ -85,6 +85,7 @@ public class BoardMatchingDao {
 			pstmt.setDate(8, sqlDate);
 
 			result = pstmt.executeUpdate();
+//			System.out.println("testtt  " + result);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,12 +189,12 @@ public class BoardMatchingDao {
 
 	}
 
-	// 보드 이미지 파일 저장
 	public int insertImgBoardMatching(Connection conn, List<FileMatching> list) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertBoardImgs");
 		int result = 0;
 		try {
+			System.out.println("boardImg dao");
 			for (int i = 0; i < list.size(); i++) {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, list.get(i).getBoardNo());
@@ -201,6 +202,7 @@ public class BoardMatchingDao {
 
 				result = pstmt.executeUpdate();
 			}
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

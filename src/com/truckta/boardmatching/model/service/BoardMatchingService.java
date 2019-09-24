@@ -25,23 +25,15 @@ import common.template.JDBCTemplate;
 public class BoardMatchingService {
 	private BoardMatchingDao dao = new BoardMatchingDao();
 
-	// 글 업로드
 	public int insertBoardMatching(BoardMatching bm) {
 
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertBoardMatching(conn, bm);
-
-		if (result > 0) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
 		return result;
 
 	}
 
-	// 글 수정
 	public int updateBoardMatching(BoardMatching bm) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateBoardMatching(conn, bm);
@@ -87,12 +79,6 @@ public class BoardMatchingService {
 	public int insertImgBoardMatching(List<FileMatching> list) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertImgBoardMatching(conn, list);
-		if (result == 1) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
-		JDBCTemplate.close(conn);
 		return result;
 	}
 

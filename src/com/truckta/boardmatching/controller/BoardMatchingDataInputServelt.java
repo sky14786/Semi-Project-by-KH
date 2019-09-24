@@ -26,7 +26,7 @@ import com.truckta.file.matching.model.vo.FileMatching;
 
 import common.fileRename.BoFileRename;
 
-@WebServlet("/board/upload.do")
+@WebServlet("/board/upload")
 public class BoardMatchingDataInputServelt extends HttpServlet {
 	
 	/**
@@ -45,7 +45,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if(cl == null ) {
 			request.setAttribute("message", "드라이버는 신청할 수 없습니");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
@@ -105,11 +105,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
 		}
-		
-		// boardNo(int), boardState(int), count(int)
-//		String writer = (String)request.getSession().getAttribute("writer");
-//		String writer = "writer";
-		//bm.setWrtier("010-0335-0361");
+	
 		bm.setWrtier(cl.getId());
 		
 		// 유저 - 드라이버 확인
@@ -119,8 +115,10 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			return;
 		}
 		
+		
 		int result = new BoardMatchingService().insertBoardMatching(bm);
-		System.out.println("입력 성공 : " + result);
+		
+//		System.out.println("입력 성공 : " + result);
 		if(result == 1) {
 			int resultBoNum = new BoardMatchingService().searchBoardNum(bm);
 			//System.out.println("보드넘ber : " + resultBoNum);
@@ -145,11 +143,11 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			if(imgResult == 0) {
 				for (int i = 0; i < fns.size(); i++) {
 					String imgFileName = fns.get(i);
-					System.out.println("delete save img dir : " + saveDir+mr.getFilesystemName("boardImages"+i));
+//					System.out.println("delete save img dir : " + saveDir+mr.getFilesystemName("boardImages"+i));
 					File file = new File(saveDir+ "/" + imgFileName);
 					if(file.exists()) file.delete();
 					int imgCk = new BoardMatchingService().deleteImg(resultBoNum);
-					System.out.println(imgCk==1?"DB이미지 삭제성공":"DB이미지 삭제실패");
+//					System.out.println(imgCk==1?"DB이미지 삭제성공":"DB이미지 삭제실패");
 				}
 			}
 			

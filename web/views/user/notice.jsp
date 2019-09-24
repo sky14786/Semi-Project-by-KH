@@ -14,7 +14,7 @@
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 <!-- jquery -->
 <!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
 <!-- date picker -->
 <script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js" charset="utf-8"></script>
@@ -25,7 +25,7 @@
 
 
 <!-- post -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/notice.js?ver=1" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/notice.js?ver=2" charset="utf-8"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
 
@@ -201,7 +201,7 @@
 	<script>
 		
 			$('#boardUpload').click(function () {
-			
+			console.log('loglog');
 			var du = boardDuple();	//유효성 검사
 			
 			if(du != 0){
@@ -228,15 +228,15 @@
 				}
 				boardFd.append("boardMemo", $('#board-memo').val());
 				boardFd.append("boardDate", $('#datepicker').val());
-				
+				console.log("test");
 				$.ajax({
-					url:'<%=request.getContextPath()%>/board/upload.do',
+					url:"<%=request.getContextPath()%>/board/upload",
 					data:boardFd,
 					type:'post',
 					processData:false,
 					contentType:false,
 					success:function (data) {
-						//alert('upload seccess!!');
+						alert('upload seccess!!');
 						location.href='<%=request.getContextPath()%>/my/pageTop';
 					},
 					error : function(er) {

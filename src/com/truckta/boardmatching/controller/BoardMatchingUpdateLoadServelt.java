@@ -30,7 +30,7 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if(cl == null) {
 			request.setAttribute("message", "수정 페이지를 불러올 수 없습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
@@ -47,11 +47,11 @@ public class BoardMatchingUpdateLoadServelt extends HttpServlet {
 		BoardMatching bm = new BoardMatchingService().findBoard(boardNum);
 		List<FileMatching> list = new BoardMatchingService().loadBoardImg(boardNum);
 //		System.out.println(bm);
-		for (FileMatching f : list) {
-			System.out.println(f);
-		}
+//		for (FileMatching f : list) {
+//			System.out.println(f);
+//		}
 		
-		System.out.println(bm.toString());
+//		System.out.println(bm.toString());
 		if(bm.getMemo()==null) {
 			bm.setMemo("");
 		}

@@ -40,7 +40,7 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 		// 수정된 데이터를 저장
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 2 || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if(cl == null) {
 			request.setAttribute("message", "수정이 불가능합니다.");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
@@ -59,9 +59,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 		// 데이터
 		String imgTemp[] = mr.getParameterValues("imgTemp");
-		for (int i = 0; i < imgTemp.length; i++) {
-			System.out.println(imgTemp[i]);
-		}
+//		for (int i = 0; i < imgTemp.length; i++) {
+//			System.out.println(imgTemp[i]);
+//		}
 		
 		BoardMatching bm = new BoardMatching();
 
@@ -113,7 +113,7 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 		bm.setBoardNo(ss);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
-		System.out.println("수정 성공 : " + result);
+//		System.out.println("수정 성공 : " + result);
 		
 		if(result == 1) {
 			//기존 이미지 삭제

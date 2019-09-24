@@ -20,7 +20,7 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-	<link href="<%=request.getContextPath()%>/views/common/error.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/error/error.css" rel="stylesheet">
 
 </head>
 <body>
@@ -28,9 +28,9 @@
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
-				<h1>ok panic</h1>
+				<h1>Do panic</h1>
 			</div>
-			<h2>500 - Page not found</h2>
+			<h2>500 - 당황하지 마세요</h2>
 			<a href="<%=request.getContextPath()%>/mainpageload">Go To Homepage</a>
 		</div>
 	</div>
