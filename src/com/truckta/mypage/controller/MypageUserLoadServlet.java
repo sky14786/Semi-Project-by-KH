@@ -29,7 +29,7 @@ public class MypageUserLoadServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		if(cl == null || cl.getUserType() == 3 || cl.getStatus() == 0) {
+		if(cl == null) {
 			request.setAttribute("message", "수정 페이지를 불러올 수 없습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);

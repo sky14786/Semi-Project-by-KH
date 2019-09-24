@@ -16,7 +16,7 @@ import com.truckta.boardmatching.model.vo.BoardMatching;
 import com.truckta.client.model.vo.Client;
 import com.truckta.driver.model.service.DriverService;
 
-@WebServlet("/my/pageScheduleDriver.do")
+@WebServlet("/my/pageScheduleDriver")
 public class MypageDriverScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,7 @@ public class MypageDriverScheduleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String writer = "";
 		Client cl = (Client)session.getAttribute("loginClient");
+		System.out.println("00000000 ::::  " +  cl);
 		if(cl == null ) {
 			request.setAttribute("message", "드라이버 페이지 불러오기에 실패했습니다");
 			String path = "/index.jsp";

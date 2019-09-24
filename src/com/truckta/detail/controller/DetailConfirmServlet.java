@@ -22,18 +22,19 @@ public class DetailConfirmServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String id = request.getParameter("id");
-//		System.out.println(id);
+		System.out.println(id);
 		String room = request.getParameter("room");
-//		System.out.println(room);
+		System.out.println(room);
 		
 		Matching mc = new MatchingCompleteService().matData(id, room);
+		System.out.println(mc);
 		if(mc == null) {
 			request.setAttribute("message", "매칭되지 않았습니다");
 			String path = "/index.jsp";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
-//		System.out.println(mc);
+		System.out.println(mc);
 		int result = new MatchingCompleteService().insertData(mc);
 		if (result > 0) {
 			System.out.println("입력 성공 : " + result);

@@ -193,6 +193,7 @@ public class BoardMatchingDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertBoardImgs");
 		int result = 0;
+		System.out.println(list.size() + "fadjfda;sfladsjfkl;aj");
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				pstmt = conn.prepareStatement(sql);

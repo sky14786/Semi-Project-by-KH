@@ -40,8 +40,7 @@
 			<!-- 기사 메뉴 -->
 			<% if(cl.getUserType()==2){ %>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/mypageUserLoad">기사 정보</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="<%=request.getContextPath()%>/my/pageScheduleDriver.do">운송 정보</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/my/pageScheduleDriver">운송 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="<%=request.getContextPath()%>/my/pageTopDriver">현재 정보</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardQnaQList?id=<%=cl.getId()%>">Q&A </a></li>

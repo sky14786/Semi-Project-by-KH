@@ -14,12 +14,16 @@
 	List<BoardMatching> list = new ArrayList<BoardMatching>();
 	if((List)request.getAttribute("boardTop") != null){
 		list = (List)request.getAttribute("boardTop");
-	}else boardTopNull = 1;
+	}else {
+		boardTopNull = 1;
+	};
 	
 	List<List> imgTop = new ArrayList<List>();
 	if((List)request.getAttribute("imgTop") != null){
 		imgTop = (List)request.getAttribute("imgTop");
-	}else imgTopNull = 1;
+	}else {
+		imgTopNull = 1;
+	}
 	
 %>
 
@@ -64,7 +68,7 @@
 			<div class="row mt-40">
 				<!-- 내부 상세데이 -->
 				<%
-					if(boardTopNull == 0 || imgTopNull == 0){
+					if(boardTopNull == 0 && imgTopNull == 0){
 					int size = 1;
 					if(list.size() >= 3){
 						size = 3;

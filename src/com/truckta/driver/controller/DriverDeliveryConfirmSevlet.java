@@ -26,6 +26,7 @@ public class DriverDeliveryConfirmSevlet extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		Matching mc = new MatchingCompleteService().matData(id, boardNo);
+		System.out.println("mc :  " + mc);
 		if(mc == null) {
 			request.setAttribute("message", "문제가 발생하여 완료할 수 없습니다");
 			String path = "/index.jsp";
@@ -34,7 +35,7 @@ public class DriverDeliveryConfirmSevlet extends HttpServlet {
 			return;
 		}
 		int result = new MatchingService().dirverConfirm(mc.getMatNo());
-		
+		System.out.println("mcmcmcmc :  :  :    " + result);
 		if(result > 0) {
 			String msg = "배송을 받았습니다!";
 			request.setAttribute("message", msg);
