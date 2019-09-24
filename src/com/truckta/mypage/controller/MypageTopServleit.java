@@ -114,6 +114,7 @@ public class MypageTopServleit extends HttpServlet {
       HttpSession session = request.getSession();
       String writer = "";
       Client cl = (Client)session.getAttribute("loginClient");
+      System.out.println("MypageTop Servlet Cluient : "+ cl.toString());
       
 //      System.out.println("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
       
@@ -135,6 +136,9 @@ public class MypageTopServleit extends HttpServlet {
       
       List<BoardMatching> list = new BoardMatchingService().mypageTop(writer);
       List<List> imgAllList = new ArrayList<List>();
+      
+      System.out.println("mypagetopServlet  list : " + list);
+      System.out.println("mypagetopServlet  imgAllList : " + imgAllList);
       
 //      System.out.println("////////////////////////////////");
 //      System.out.println(list.size());
