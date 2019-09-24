@@ -11,12 +11,12 @@
 	int boardTopNull = 0;
 	int imgTopNull = 0;
 	
-	List<BoardMatching> list = new ArrayList<BoardMatching>();
+	List<BoardMatching> list = null;
 	if((List)request.getAttribute("boardTop") != null){
 		list = (List)request.getAttribute("boardTop");
 	}else boardTopNull = 1;
 	
-	List<List> imgTop = new ArrayList<List>();
+	List<List> imgTop = null;
 	if((List)request.getAttribute("imgTop") != null){
 		imgTop = (List)request.getAttribute("imgTop");
 	}else imgTopNull = 1;
@@ -64,8 +64,9 @@
 			<div class="row mt-40">
 				<!-- 내부 상세데이 -->
 				<%
-					if(boardTopNull == 0 || imgTopNull == 0){
-					int size = 1;
+					int size=0;
+					if(boardTopNull == 0 && imgTopNull == 0){
+					size = 1;
 					if(list.size() >= 3){
 						size = 3;
 					}else{
@@ -79,7 +80,10 @@
 					}
 					
 				%>
-				<%for(int i=0; i<size; i++){ %>
+				<%
+				if(list!=null){
+					for(int i=0; i<size; i++){ %>
+				
 				<%-- <%for(int i=0; i<list.size(); i++){ %> --%>
 				<div class="col-lg-4 col-md-6 col-sm-8 col-sx-9 col-10 m-auto">
 					<div class="blog-post">
@@ -163,7 +167,8 @@
 						</div>
 					</div>
 				</div>
-				<%} }else{%>
+				<%} }
+				}else{%>
 				<!-- ---------- 빈데이터 ---------- -->
                 <div class="col-lg-4 col-md-6 col-sm-8 col-sx-9 col-10 m-auto">
                     <div class="blog-post">
