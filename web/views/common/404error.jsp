@@ -30,7 +30,7 @@
 			<div class="notfound-404">
 				<h1>Don't panic</h1>
 			</div>
-			<h2>404 - 당황하지 마세요</h2>
+			<h2>404 - don't panic goddamnit</h2>
 			<a href="<%=request.getContextPath()%>/mainpageload">Go To Homepage</a>
 		</div>
 	</div>

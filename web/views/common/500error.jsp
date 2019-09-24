@@ -28,9 +28,9 @@
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
-				<h1>Do panic</h1>
+				<h1>Don't panic</h1>
 			</div>
-			<h2>500 - 당황하지 마세요</h2>
+			<h2>500 - 준영팀 당황하지 마세요</h2>
 			<a href="<%=request.getContextPath()%>/mainpageload">Go To Homepage</a>
 		</div>
 	</div>
