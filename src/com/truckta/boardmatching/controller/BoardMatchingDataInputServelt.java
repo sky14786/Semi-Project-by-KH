@@ -138,7 +138,7 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			
 			// 이미지 경로 저장
 			int imgResult = new BoardMatchingService().insertImgBoardMatching(list);
-
+			System.out.println("img :::" + imgResult);
 			// 실패시 서버에 이미지 삭제
 			if(imgResult == 0) {
 				for (int i = 0; i < fns.size(); i++) {

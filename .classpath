@@ -13,6 +13,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/MOOG/git/Semi-Project-by-KH/web/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/June/Desktop/SemiProject/Semi-Project-by-KH/web/WEB-INF/lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

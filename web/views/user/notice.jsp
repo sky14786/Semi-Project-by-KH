@@ -237,7 +237,7 @@
 					contentType:false,
 					success:function (data) {
 						alert('upload seccess!!');
-						location.href='<%=request.getContextPath()%>/my/pageTop';
+						location.href='<%=request.getContextPath()%>/';
 					},
 					error : function(er) {
 						console.log('error');
