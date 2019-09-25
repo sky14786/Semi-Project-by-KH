@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	
 <body>
 	<script>
 	location.href="<%=request.getContextPath()%>/mainpageload";

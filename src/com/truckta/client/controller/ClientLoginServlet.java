@@ -27,7 +27,7 @@ public class ClientLoginServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 		// 로그인에 대한 비지니스 로직
 		pw = DataEncryptionTemplate.encryptionToSHA512(pw);
-		System.out.println(pw);
+		System.out.println("pw : " + pw);
 		
 		ClientService service = new ClientService();
 		Client cl = service.selectId(id, pw);
@@ -84,8 +84,8 @@ public class ClientLoginServlet extends HttpServlet {
 			String message = "아이디나 비밀번호가 일치하지 않습니다.";
 			request.setAttribute("message", message);
 			view = "/views/common/msg.jsp";
-			String locaction = "/";
-			request.setAttribute("location", locaction);
+			String location = "/views/user/Login.jsp";
+			request.setAttribute("location", location);
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
 		}
