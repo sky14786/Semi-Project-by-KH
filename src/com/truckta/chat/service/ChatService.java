@@ -4,6 +4,9 @@ import java.sql.Connection;
 
 import com.truckta.chat.dao.ChatDao;
 import com.truckta.chat.model.vo.CreateChat;
+
+import common.template.JDBCTemplate;
+
 import static common.template.JDBCTemplate.getConnection;
 import static common.template.JDBCTemplate.close;
 import static common.template.JDBCTemplate.commit;
@@ -21,6 +24,7 @@ public class ChatService {
       } else {
          rollback(conn);
       }
+      JDBCTemplate.close(conn);
       return result;
    }
 

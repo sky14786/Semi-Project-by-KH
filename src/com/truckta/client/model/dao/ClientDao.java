@@ -192,7 +192,7 @@ public class ClientDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectListPage");
-		List<Client> list = new ArrayList();
+		List<Client> list = new ArrayList<Client>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
@@ -247,7 +247,7 @@ public class ClientDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectMessageList");
-		List<MessageList> list = new ArrayList();
+		List<MessageList> list = new ArrayList<MessageList>();
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -276,7 +276,7 @@ public class ClientDao {
 	public List<ChatHistory> selectChatHistory(Connection conn, String room) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<ChatHistory> list = new ArrayList();
+		List<ChatHistory> list = new ArrayList<ChatHistory>();
 		String sql = prop.getProperty("selectChatHistory");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -307,9 +307,6 @@ public class ClientDao {
 		String sql = prop.getProperty("sendChat");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//			System.out.println("//////////////////");
-			//			System.out.println(ch);
-			//			System.out.println(ch.getRoomNo());
 			pstmt.setInt(1, ch.getRoomNo());
 			pstmt.setString(2, ch.getSender());
 			pstmt.setString(3, ch.getChatText());
@@ -470,7 +467,7 @@ public class ClientDao {
 		String sql = "select * from(select rownum as rnum, a.* from(select * from client where " + search + " like '%"
 				+ searchKeyword + "%' order by regdate desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
 				+ " and " + (cPage * numPerPage);
-		List<Client> list = new ArrayList();
+		List<Client> list = new ArrayList<Client>();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -497,22 +494,13 @@ public class ClientDao {
 	}
 
 	public int adminUpdateClient(Connection conn, Client c, String id) {
-		//		PreparedStatement pstmt = null;
 		Statement stmt = null;
-		//		String sql = prop.getProperty("adminUpdateClient");
-		String sql2 = "update client set name='" + c.getName() + "', email='" + c.getEmail() + "', profile='"
+		String sql = "update client set name='" + c.getName() + "', email='" + c.getEmail() + "', profile='"
 				+ c.getProfile() + "', moddate=sysdate where id = '" + id + "'";
 		int result = 0;
 		try {
-			//			pstmt = conn.prepareStatement(sql);
-			//			pstmt.setString(1, c.getName());
-			//			pstmt.setString(2, c.getEmail());
-			//			pstmt.setString(3, c.getProfile());
-			//			pstmt.setString(4,id);
-			//
-			//			result = pstmt.executeUpdate();
 			stmt = conn.createStatement();
-			result = stmt.executeUpdate(sql2);
+			result = stmt.executeUpdate(sql);
 
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -537,36 +525,36 @@ public class ClientDao {
 		}
 		return result;
 	}
-	
-	public List<Client> selectAllClient(Connection conn) {
-	      PreparedStatement pstmt = null;
-	      String sql = prop.getProperty("selectAllClient");
-	      ResultSet rs = null;
-	      List<Client> list = new ArrayList<Client>();
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         rs = pstmt.executeQuery();
 
-	         while (rs.next()) {
-	            Client c = new Client();
-	            c.setId(rs.getString("id"));
-	            c.setName(rs.getString("name"));
-	            c.setProfile(rs.getString("profile"));
-	            c.setRegDate(rs.getDate("regdate"));
-	            c.setModDate(rs.getDate("moddate"));
-	            c.setUserType(rs.getInt("user_type"));
-	            c.setStatus(rs.getInt("status"));
-	            c.setReportCount(rs.getInt("report_count"));
-	            list.add(c);
-	         }
-	      } catch (SQLException sqle) {
-	         sqle.printStackTrace();
-	      } finally {
-	         JDBCTemplate.close(rs);
-	         JDBCTemplate.close(pstmt);
-	      }
-	      return list;
-	   }
+	public List<Client> selectAllClient(Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAllClient");
+		ResultSet rs = null;
+		List<Client> list = new ArrayList<Client>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Client c = new Client();
+				c.setId(rs.getString("id"));
+				c.setName(rs.getString("name"));
+				c.setProfile(rs.getString("profile"));
+				c.setRegDate(rs.getDate("regdate"));
+				c.setModDate(rs.getDate("moddate"));
+				c.setUserType(rs.getInt("user_type"));
+				c.setStatus(rs.getInt("status"));
+				c.setReportCount(rs.getInt("report_count"));
+				list.add(c);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
 
 	// 삭제멤버 정보
 	public Client delMemberSelect(Connection conn, String id) {
@@ -598,14 +586,7 @@ public class ClientDao {
 		}
 		return cl;
 	}
-	
-	// 삭제 맴버 상태변경
-//	public int delMemberState(String id) {
-//		prep
-//
-//	}
 
-	
 	// 삭제된 맴버를 삭제테이블로 옮김
 	public int delMemberInsert(Connection conn, Client cl){
 		PreparedStatement pstmt = null;
@@ -623,7 +604,7 @@ public class ClientDao {
 			pstmt.setInt(7, cl.getStatus());
 			pstmt.setInt(8, cl.getReportCount());
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -62,7 +62,6 @@ public class FileDriverDao {
             fd.setId(rs.getString("id"));
             fileList.add(fd);
          }
-         System.out.println("DAO" + fileList.toString());
       } catch (SQLException sqle) {
          sqle.printStackTrace();
       } finally {

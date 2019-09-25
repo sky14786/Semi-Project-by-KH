@@ -22,7 +22,7 @@ public class FileDriverService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
+
 	public int joinDriver(FileDriver fd) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.joinDriver(conn, fd);
@@ -39,7 +39,6 @@ public class FileDriverService {
 		Connection conn = JDBCTemplate.getConnection();
 		List<FileDriver> fileNames = dao.findDriverFile(conn, id);
 		JDBCTemplate.close(conn);
-//		System.out.println("service"+fileNames.toString());
 		return fileNames;
 	}
 
@@ -54,12 +53,12 @@ public class FileDriverService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
-	   public List<FileDriver> selectAllFiles() {
-		      Connection conn = JDBCTemplate.getConnection();
-		      List<FileDriver> list = dao.selectAllFiles(conn);
-		      JDBCTemplate.close(conn);
-		      return list;
-		   }
+
+	public List<FileDriver> selectAllFiles() {
+		Connection conn = JDBCTemplate.getConnection();
+		List<FileDriver> list = dao.selectAllFiles(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 
 }

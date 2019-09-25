@@ -52,11 +52,6 @@ public class BoardMatchingService {
 		Connection conn = JDBCTemplate.getConnection();
 		BoardMatching mb = dao.loadBoardMatching(conn, wirter, boardNum);
 
-		if (mb != null) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
 		return mb;
 	}
@@ -66,11 +61,6 @@ public class BoardMatchingService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.searchBoardNum(conn, bm);
 
-		if (result > 0) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
 		return result;
 	}
@@ -79,6 +69,11 @@ public class BoardMatchingService {
 	public int insertImgBoardMatching(List<FileMatching> list) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertImgBoardMatching(conn, list);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else
+			JDBCTemplate.rollback(conn);
+		JDBCTemplate.commit(conn);
 		return result;
 	}
 
@@ -112,11 +107,6 @@ public class BoardMatchingService {
 	public List<FileMatching> loadBoardImg(int boNum) {
 		Connection conn = JDBCTemplate.getConnection();
 		List<FileMatching> list = dao.loadBoardImg(conn, boNum);
-		if (list != null) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
 		return list;
 	}
@@ -215,11 +205,6 @@ public class BoardMatchingService {
 	public List<BoardMatching> mypageTop(String writer) {
 		Connection conn = JDBCTemplate.getConnection();
 		List<BoardMatching> list = dao.mypageTop(conn, writer);
-		if (list.size() > 0) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
 		return list;
 	}

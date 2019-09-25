@@ -13,7 +13,6 @@ import java.util.Properties;
 
 import com.truckta.boardqna.a.model.vo.BoardQnaA;
 import com.truckta.boardqna.q.model.vo.BoardQnaQ;
-import com.truckta.client.model.vo.Client;
 
 import common.template.JDBCTemplate;
 
@@ -33,7 +32,7 @@ public class BoardQnaQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectListPage");
-		List<BoardQnaQ> list = new ArrayList();
+		List<BoardQnaQ> list = new ArrayList<BoardQnaQ>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, type);
@@ -66,7 +65,7 @@ public class BoardQnaQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectBoardList");
-		List<BoardQnaQ> list = new ArrayList();
+		List<BoardQnaQ> list = new ArrayList<BoardQnaQ>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, qUser);
@@ -188,7 +187,7 @@ public class BoardQnaQDao {
 		String sql = "select * from(select rownum as rnum, a.* from(select * from board_qna_q where " + search
 				+ " like '%" + searchKeyword + "%' order by hire_date desc)a) where rnum between "
 				+ ((cPage - 1) * numPerPage + 1) + " and " + (cPage * numPerPage);
-		List<BoardQnaQ> list = new ArrayList();
+		List<BoardQnaQ> list = new ArrayList<BoardQnaQ>();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -305,7 +304,7 @@ public class BoardQnaQDao {
 	public List<BoardQnaA> selectBoardComment(Connection conn, String boardNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<BoardQnaA> list = new ArrayList();
+		List<BoardQnaA> list = new ArrayList<BoardQnaA>();
 		String sql = prop.getProperty("selectBoardComment");
 		try {
 			pstmt = conn.prepareStatement(sql);

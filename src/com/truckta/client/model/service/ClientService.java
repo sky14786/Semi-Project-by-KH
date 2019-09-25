@@ -90,7 +90,7 @@ public class ClientService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
+
 
 	public int selectCountMessageList() {
 		Connection conn = getConnection();
@@ -121,6 +121,7 @@ public class ClientService {
 		} else {
 			rollback(conn);
 		}
+		JDBCTemplate.close(conn);
 		return result;
 
 	}
@@ -209,16 +210,17 @@ public class ClientService {
 		} else {
 			JDBCTemplate.close(conn);
 		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
-	
 
-	   public List<Client> selectAllClient() {
-		      Connection conn = JDBCTemplate.getConnection();
-		      List<Client> list = dao.selectAllClient(conn);
-		      JDBCTemplate.close(conn);
-		      return list;
-		   }
+
+	public List<Client> selectAllClient() {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Client> list = dao.selectAllClient(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
 
 	// 삭제멤버 정보
 	public Client delMemberSelect(String id) {
@@ -227,16 +229,16 @@ public class ClientService {
 		JDBCTemplate.close(conn);
 		return cl;
 	}
-	
+
 	// 삭제 맴버 상태변경
-//	public int delMemberState(String id) {
-//		Connection conn = JDBCTemplate.getConnection();
-//		int result = dao.delMemberState(conn, id);
-//		if(result > 0) JDBCTemplate.commit(conn);
-//		else JDBCTemplate.rollback(conn);
-//		JDBCTemplate.close(conn);
-//	}
-	
+	//	public int delMemberState(String id) {
+	//		Connection conn = JDBCTemplate.getConnection();
+	//		int result = dao.delMemberState(conn, id);
+	//		if(result > 0) JDBCTemplate.commit(conn);
+	//		else JDBCTemplate.rollback(conn);
+	//		JDBCTemplate.close(conn);
+	//	}
+
 	// 삭제된 맴버를 삭제테이블로 옮김
 	public int delMemberInsert(Client cl){
 		Connection conn = JDBCTemplate.getConnection();

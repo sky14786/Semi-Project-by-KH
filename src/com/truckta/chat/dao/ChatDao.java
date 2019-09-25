@@ -49,7 +49,6 @@ public class ChatDao {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       String sql = prop.getProperty("selectRoom");
-      //CreateChat ccWithRoom = null;
       int result=-1;
       
       try {
@@ -57,7 +56,6 @@ public class ChatDao {
          pstmt.setString(1, cc.getWriterId());
          pstmt.setString(2, cc.getDriverId());
          rs = pstmt.executeQuery();
-         
          
          if(rs.next()) {
             result=rs.getInt("room_no");
@@ -86,7 +84,6 @@ public class ChatDao {
          result = pstmt.executeUpdate();
          
       } catch (SQLException e) {
-         System.out.println("SQL exception yo!");
          e.printStackTrace();
       }finally {
          close(pstmt);
@@ -108,7 +105,6 @@ public class ChatDao {
          result = pstmt.executeUpdate();
          
       } catch (SQLException e) {
-         System.out.println("SQL exception yo!");
          e.printStackTrace();
       }finally {
          close(pstmt);
@@ -116,15 +112,10 @@ public class ChatDao {
       return result;
    }
 
-	
-	
-
-
    public int selectBid(Connection conn, int boardNo, String driverId) {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       String sql = prop.getProperty("selectBid");
-      //CreateChat ccWithRoom = null;
       int result=-1;
       
       try {
@@ -135,9 +126,6 @@ public class ChatDao {
          
          if(rs.next()) {
             result=rs.getInt(1);
-            System.out.println("///////////////////////");
-            System.out.println("///////////////////////");
-            System.out.println(result);
          }
       } catch (SQLException e) {
          

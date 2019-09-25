@@ -32,7 +32,7 @@ public class MatchingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectListPage");
-		List<Matching> list = new ArrayList();
+		List<Matching> list = new ArrayList<Matching>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
@@ -123,7 +123,7 @@ public class MatchingDao {
 					+ searchKeyword + "%' order by try_date desc)a) where rnum between " + ((cPage - 1) * numPerPage + 1)
 					+ " and " + (cPage * numPerPage);
 		}
-		List<Matching> list = new ArrayList();
+		List<Matching> list = new ArrayList<Matching>();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -155,7 +155,7 @@ public class MatchingDao {
 
 		String sql=prop.getProperty("selectMatches");
 		
-		List<Matching> list = new ArrayList();
+		List<Matching> list = new ArrayList<Matching>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(boardNo));

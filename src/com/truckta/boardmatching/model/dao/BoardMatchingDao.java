@@ -70,9 +70,7 @@ public class BoardMatchingDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertBoardMatching");
 		int result = 0;
-//		System.out.println("testtt");
 		try {
-//			System.out.println("testtt4");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bm.getWrtier());
 			pstmt.setString(2, bm.getTitle());
@@ -83,16 +81,12 @@ public class BoardMatchingDao {
 			pstmt.setString(7, bm.getMemo());
 			java.sql.Date sqlDate = new java.sql.Date(bm.getHireDate().getTime());
 			pstmt.setDate(8, sqlDate);
-
 			result = pstmt.executeUpdate();
-//			System.out.println("testtt  " + result);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-
 		return result;
 
 	}
@@ -194,7 +188,6 @@ public class BoardMatchingDao {
 		String sql = prop.getProperty("insertBoardImgs");
 		int result = 0;
 		try {
-			System.out.println("boardImg dao");
 			for (int i = 0; i < list.size(); i++) {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, list.get(i).getBoardNo());
@@ -202,7 +195,6 @@ public class BoardMatchingDao {
 
 				result = pstmt.executeUpdate();
 			}
-			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -349,7 +341,7 @@ public class BoardMatchingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("selectListPage");
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
@@ -504,6 +496,7 @@ public class BoardMatchingDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
@@ -539,6 +532,7 @@ public class BoardMatchingDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
@@ -589,7 +583,7 @@ public class BoardMatchingDao {
 		String sql = "select * from(select rownum as rnum, a.* from(select * from board_matching where " + search
 				+ " like '%" + searchKeyword + "%' order by hire_date desc)a) where rnum between "
 				+ ((cPage - 1) * numPerPage + 1) + " and " + (cPage * numPerPage);
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);

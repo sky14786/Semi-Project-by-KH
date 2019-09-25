@@ -31,7 +31,7 @@ public class MainDao {
 	public List<BoardMatching> selectList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		String sql = prop.getProperty("selectList");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -72,7 +72,6 @@ public class MainDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getInt("cnt");
-				// result=rs.getInt(1);//�ε����� �ҷ�����
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,7 +85,7 @@ public class MainDao {
 	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		String sql = prop.getProperty("selectListPage");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -142,7 +141,7 @@ public class MainDao {
 	public List<BoardMatching> selectMemberList(Connection conn, String key, int cPage, int numPerPage) {
 		Statement stmt = null;
 		ResultSet rs = null;
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
@@ -177,7 +176,7 @@ public class MainDao {
 
 	public List<BoardMatching> guSearchList(Connection conn, String gu) {
 
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from Board_Matching where end_addr=" + "'" + gu + "' or start_addr=" + "'" + gu + "'";
@@ -208,7 +207,7 @@ public class MainDao {
 	}
 
 	public List<FileMatching> fileSearch(Connection conn) {
-		List<FileMatching> list = new ArrayList();
+		List<FileMatching> list = new ArrayList<FileMatching>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select*from file_matching";
@@ -255,7 +254,7 @@ public class MainDao {
 	public List<BoardMatching> selectListPage(Connection conn, int cPage, int numPerPage, String selectGu) {
 		Statement stmt = null;
 		ResultSet rs = null;
-		List<BoardMatching> list = new ArrayList();
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		int start = (cPage - 1) * numPerPage + 1;
 		int end = cPage * numPerPage;
 		String sql = "select * from(select rownum as rnum, a.* from("
@@ -291,10 +290,7 @@ public class MainDao {
 	public List<BoardMatching> searchDate(Connection conn, int cPage, int numPerPage, String searchdate) {
 		Statement stmt = null;
 		ResultSet rs = null;
-		List<BoardMatching> list = new ArrayList();
-
-		int start = (cPage - 1) * numPerPage + 1;
-		int end = cPage * numPerPage;
+		List<BoardMatching> list = new ArrayList<BoardMatching>();
 		String sql = "select * from board_matching where tk_date=" + "'" + searchdate + "'";
 
 		try {
