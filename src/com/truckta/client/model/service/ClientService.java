@@ -102,6 +102,7 @@ public class ClientService {
 	public List<MessageList> selectMessageList(String id) {
 		Connection conn = getConnection();
 		List<MessageList> list = dao.selectMessageList(conn, id);
+		close(conn);
 		return list;
 	}
 
@@ -242,6 +243,7 @@ public class ClientService {
 		int result = dao.delMemberInsert(conn, cl);
 		if(result > 0) JDBCTemplate.commit(conn);
 		else JDBCTemplate.rollback(conn);
+		close(conn);
 		return result;
 	}
 
