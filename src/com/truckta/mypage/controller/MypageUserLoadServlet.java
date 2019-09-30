@@ -36,9 +36,7 @@ public class MypageUserLoadServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		
-//		String id = request.getParameter("id");
 		String id = cl.getId();
-//		System.out.println("this id: "+id);
 		// 유저 타입
 //		cl.getUserType() 
 		boolean isDriverView = true;
@@ -47,20 +45,15 @@ public class MypageUserLoadServlet extends HttpServlet {
 		}
 //		 = Boolean.parseBoolean(request.getParameter("isDriverView"));
 		Client client = new ClientService().findClient(id);
-//		System.out.println("client / " + client);
 		Driver driver = new DriverService().findDriver(id);
-//		System.out.println("dirver / " + driver);
 		
 		List<CarType> carTypeList = new ArrayList<CarType>();
 		carTypeList = new CarTypeService().selectAll();
-//		System.out.println("carType / " + carTypeList);
 		if (driver != null) {
 			List<FileDriver> fileList = new FileDriverService().findDriverFile(id);
-//			System.out.println(fileList);
 			request.setAttribute("fileList", fileList);
 		}
 		if(carTypeList!=null && carTypeList.size()>0) {
-//			System.out.println(carTypeList);
 			request.setAttribute("carType", carTypeList);
 		}
 		

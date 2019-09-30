@@ -56,5 +56,13 @@ public class MatchingService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	// 매칭컴플리스 확인
+	public int matCount(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.matCount(conn, boardNo);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }

@@ -89,7 +89,6 @@
 						<div class="post-thumb">
 
 							<!-- 상세 운반정보 -->
-							<%-- "<%=request.getContextPath()%>/views/images/038.jpg" --%>
 							<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>"> <img
 								src="<%=request.getContextPath()%>/images/boardMatching_images/
 								<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"

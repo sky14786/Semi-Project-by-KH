@@ -8,6 +8,7 @@
 	if((Client)session.getAttribute("loginClient")!=null){
 		cl = (Client)session.getAttribute("loginClient");
 	}
+	System.out.println("userType : "+cl.getUserType());
 %>
 <style>
 	.myheader{

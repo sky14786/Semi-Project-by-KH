@@ -82,8 +82,7 @@
 
 							<!-- 상세 운반정보 -->
 							<a href="<%=request.getContextPath()%>/detail?boardNo=<%=list.get(i).getBoardNo() %>"> <img
-								src="<%=request.getContextPath()%>/images/boardMatching_images/
-								<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"
+								src="<%=request.getContextPath()%>/images/boardMatching_images/<%=((FileMatching)imgTop.get(i).get(0)).getFileName() %>"
 								alt="post-image" class="img-fluid">
 							</a>
 						</div>
@@ -162,7 +161,7 @@
                     <div class="blog-post">
                         <div class="post-thumb">
                             <a href="#">
-                                <img src="<%=request.getContextPath()%>/views/images/038.jpg" alt="post-image" class="img-fluid">
+                                <img src="<%=request.getContextPath()%>/images/boardMatching_images/defaultImg.jpg" alt="post-image" class="img-fluid">
                             </a>
                         </div>
                         <div class="post-content">

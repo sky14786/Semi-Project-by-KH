@@ -153,9 +153,10 @@ public class MypageTopServleit extends HttpServlet {
       }
       if(imgAllList.size() != 0) {
          request.setAttribute("imgTop", imgAllList);
-      }else {
-         request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
       }
+//      else {
+//         request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
+//      }
       
       request.getRequestDispatcher("/views/myPage/mypageTop.jsp").forward(request, response);
       
