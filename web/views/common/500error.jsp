@@ -24,13 +24,13 @@
 
 </head>
 <body>
-
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
 				<h1>Don't panic</h1>
 			</div>
-			<h2>500 - 준영팀 당황하지 마세요</h2>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<h2>500 - don't panic goddamnit</h2>
 			<a href="<%=request.getContextPath()%>/mainpageload">Go To Homepage</a>
 		</div>
 	</div>

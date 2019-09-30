@@ -141,7 +141,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=filelist.get(i).getFileName()%>" style="width:350px; height:240px;" class="img-fluid" alt="">
+                <img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=filelist.get(i).getFileName()%>" class="img-fluid" alt="">
                 <a href="<%=request.getContextPath()%>/images/boardMatching_images/<%=filelist.get(i).getFileName()%>" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="fas fa-eye"></i></a>
                 <!-- <a href="#" class="link-details" title="More Details"><i class="fab fa-algolia"></i></a> -->
               </figure>
@@ -190,23 +190,23 @@
   <section id="services">
     <div class="container wow fadeInUp justify-content-center">
       <div class="row">
-          <h3 class="section-title">내용 : </h3>
+         <h3 class="section-title">&nbsp;&nbsp; 내용 : </h3>
         <div class="col-md-12">
-        	<textarea class="textAr" rows="" cols="60" readonly><%=d.getEtc() %></textarea>
         	<style>
         		.textAr{
-        			height:300px ; 
+        		
         			font-size:2em;
               resize: none;
               
               color: darkgrey;
         		}
 			</style>
+        	<div class="textAr" rows="" cols="60" readonly>&nbsp;&nbsp;&nbsp;&nbsp;<%=d.getEtc() %></div>
           <br>
           <p class="about-text">
           <br>
           <br>
-          <h5>
+          <h5> 메모 : 
             <%if(d.getMemo() != null) {%>
             <%=d.getMemo() %>
             <%} else { %>
@@ -274,7 +274,7 @@
           <p class="service-description"><h5><%=startAddr %></h5></p>
         </div>
         <div class="col-md-4 service-item">
-          <div class="service-icon"><i class="fa fa-bar-chart"></i></div>
+          <div class="service-icon"><i class="fa fa-road"></i></div>
           <h4 class="service-title"><a href="">도착지</a></h4>
           <p class="service-description"><h5><%=endAddr %></h5></p>
         </div>

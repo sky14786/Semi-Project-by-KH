@@ -9,7 +9,6 @@
 	
 <body>
 	<script>
-	
 	location.href="<%=request.getContextPath()%>/mainpageload";
 	</script>
 </body>

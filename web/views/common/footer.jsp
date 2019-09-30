@@ -12,7 +12,7 @@
 			<div class="row text-center">
 				<div class="col-md-4">
 					<hr class="light">
-					<h5>트럭타 주소</h5>
+					<h5 class = "text-light">트럭타 주소</h5>
 					<hr class="light">
 					<p>010-9442-1732</p>
 					<p>help@truckta.com</p>
@@ -21,7 +21,7 @@
 				</div>
 				<div class="col-md-4">
 					<hr class="light">
-					<h5>사무실 방문 가능 시간</h5>
+					<h5 class = "text-light">사무실 방문 가능 시간</h5>
 					<hr class="light">
 					<p>월요일: 아침 9시 - 오후 5시</p>
 					<p>토요일: 아침 10시 - 오후 4시</p>
@@ -30,7 +30,7 @@
 		
 				<div class=" col-md-4 icon-bar justify-content-center">
 					<hr class="light">
-					<h5>소셜 미디어</h5>
+					<h5 class = "text-light">소셜 미디어</h5>
 					<hr class="light">
 					 <a href="https://www.facebook.com/moogkwon" class="facebook"><i class="fab fa-facebook-square"></i></a> 
 		            <a href="https://www.instagram.com/mydadismotherteresa" class="instagram"><i class="fab fa-instagram"></i></a> 
@@ -39,7 +39,7 @@
 				</div>
 				<div class="col-12">
 					<hr class="light-100">
-					<h5 class = "text-info">&copy; truckta.com</h5>
+					<h5 class = "text-light">&copy; truckta.com</h5>
 				</div>
 			</div>
 		</div>

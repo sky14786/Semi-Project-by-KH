@@ -2,19 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching,com.truckta.file.matching.model.vo.FileMatching" %>
     <%
-        //List<BoardMatching> list=(List)request.getAttribute("list");
         List<BoardMatching> list_page=(List)request.getAttribute("list_page");
-        //System.out.println(list_page.size());
-        //System.out.println("#####getlist_page"+list_page);
-        //System.out.println("listpage:"+list_page.size());
-        //int numPerPage=(int)request.getAttribute("numPerPage");
         List<BoardMatching> select_gu=(List)request.getAttribute("select_gu");
-        //System.out.print("####getselect_gu+"+select_gcssu);
  		String searchKey=(String)request.getAttribute("searchKeyword");
- 		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		List<FileMatching> fileList = (List)request.getAttribute("fileList");
- 		//System.out.println("#####getfileList"+fileList);
- 		//System.out.println("사이즈"+fileList.size());
     	
     %>
     
@@ -28,12 +19,6 @@
 		<div class="row">
 			
 			
-			
-				<!-- ########################################################################## -->
-			
-
-
-
 		</div>
 		
 		<div class="row content_margin backimg" style="margin-top:5em">
@@ -79,19 +64,17 @@
 					
 					<option>California</option>
 				</select>
-				<!-- <form action="<%=request.getContextPath() %>/maindatesearch"> -->
 				<input type="text" id="payday" name="searchdate" style="display: none;"/>
-				<!-- </form>	 -->
-				<!-- <a name="show1up" ID="show1up" class="calendar">Choose a payment date</a> -->
 				<div class="invalid-feedback">
 					Please provide a valid state.
 				</div>
-
 			</div>
-			<div class="col-xl-1"></div>
-			<div class="col-xl-10" style="/* background-color: lightgray; */ padding: 60px 20px">
-				<div class="row placeholders">
-				<%int q=0;
+			
+			
+			
+			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+				
+				<%
 				for(BoardMatching bm : list_page){
 					boolean isNotNull = false;
 					%>
@@ -108,15 +91,7 @@
 							<%
 						break;	
 						}}%>
-						<%-- <img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:250px;height:211px;" > --%>
 						
-						<%-- <img src="<%=request.getContextPath()%>images/boardMatching_images/<%=fileList.get(i).getFileName()%>" class="img-responsive" style="width:250px;height:200px;">
-						<%System.out.println((i)+"@"+fileList.get(q).getFileName()); %>
-						<%}else{ %>
-						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:211px;height:211px;" >
-						<%System.out.println((i)+"에러"); %>
-						<hr>
-					<%}break;} %>   --%>
 					</div>
 					<div class="post-content">
 							<div class="date">
@@ -174,20 +149,16 @@
 										<li class="list-inline-item"><i class="fa fa-user-o"></i>
 										<a href="#">메모없음</a>
 										<%} %>
-									<!-- <li class="list-inline-item"><i class="fa fa-heart-o"></i>
-										<a href="#"></a></li>
-									<li class="list-inline-item"><i class="fa fa-comments-o"></i>
-										<a href="#">????</a></li> -->
 								</ul>
 							</div>
 					</div>
 					</button>
 				</div>
 			</div>
-					<%q++;}
-					%>
+					<% } %>
 		</div>
-		</div>
+		
+		<!-- End End End End End End End End End End End End End End End End End End End -->
 		</div>
 		<div id="container">
       <div class="letters">
@@ -206,7 +177,6 @@
 		<div class="col-xl-1" >
 		
 		</div>
-	</div>
 
 
 	<script>

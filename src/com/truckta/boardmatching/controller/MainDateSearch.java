@@ -100,7 +100,7 @@ public class MainDateSearch extends HttpServlet {
 //		request.setAttribute("imgsearch", file_matching);
 //		System.out.println("######servlet imgsearch :" + file_matching);
 
-		request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/mainPageMoog.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

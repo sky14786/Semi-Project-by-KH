@@ -39,8 +39,7 @@
 						<h3>운반 정보</h3>
 					</div>
 					<ol class="breadcrumb p-0 m-0 ">
-						<%-- <li class="breadcrumb-item"><a href="<%=request.getContextPath() %>/mainPage.jsp">홈으로</a></li>
-						<li class="breadcrumb-item">운송정보</li> --%>
+
 					</ol>
 				</div>
 			</div>
@@ -197,7 +196,7 @@
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-comments-o"></i>
-                                        <a href="#">내용없음</a>
+                                        <a href="#">메모 : 내용없음</a>
                                     </li>
                                 </ul>
                             </div>
