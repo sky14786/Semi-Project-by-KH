@@ -7,7 +7,8 @@ public class MessageList {
 	private int roomNo;
 	private String userA;
 	private String userB;
-	private String UserC;
+	private String userC;
+	private String title;
 	private int boardNo;
 	private Date createdDate;
 	
@@ -15,12 +16,14 @@ public class MessageList {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MessageList(int roomNo, String userA, String userB, String userC, int boardNo, Date createdDate) {
+	public MessageList(int roomNo, String userA, String userB, String userC, String title, int boardNo,
+			Date createdDate) {
 		super();
 		this.roomNo = roomNo;
 		this.userA = userA;
 		this.userB = userB;
-		UserC = userC;
+		this.userC = userC;
+		this.title = title;
 		this.boardNo = boardNo;
 		this.createdDate = createdDate;
 	}
@@ -50,11 +53,19 @@ public class MessageList {
 	}
 
 	public String getUserC() {
-		return UserC;
+		return userC;
 	}
 
 	public void setUserC(String userC) {
-		UserC = userC;
+		this.userC = userC;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getBoardNo() {
@@ -75,8 +86,9 @@ public class MessageList {
 
 	@Override
 	public String toString() {
-		return "MessageList [roomNo=" + roomNo + ", userA=" + userA + ", userB=" + userB + ", UserC=" + UserC
-				+ ", boardNo=" + boardNo + ", createdDate=" + createdDate + "]";
+		return "MessageList [roomNo=" + roomNo + ", userA=" + userA + ", userB=" + userB + ", userC=" + userC
+				+ ", title=" + title + ", boardNo=" + boardNo + ", createdDate=" + createdDate + "]";
 	}
+
 	
 }

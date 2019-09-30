@@ -49,8 +49,8 @@ form:active {
 					src="<%=request.getContextPath()%>/images/avatars/User 01a.png"
 					alt="profile image">
 				<div class="wrapper ml-2">
-					<p class="mb-n1 font-weight-semibold"><%=ml.getUserA() %></p>
-					<small><%=ml.getRoomNo() %></small>
+					<p class="mb-n1 font-weight-semibold">제목 : <%=ml.getTitle() %></p>
+					<small><%=ml.getUserA() %></small>
 				</div>
 				<small class="text-muted ml-auto"><%=ml.getCreatedDate() %></small>
 			</div>

@@ -258,8 +258,9 @@ public class ClientDao {
 				MessageList ml = new MessageList();
 				ml.setRoomNo(rs.getInt("room_no"));
 				ml.setUserA(rs.getString("user_a"));
-				ml.setUserB(rs.getString("user_a"));
-				ml.setUserC(rs.getString("user_a"));
+				ml.setUserB(rs.getString("user_b"));
+				ml.setUserC(rs.getString("user_c"));
+				ml.setTitle(rs.getString("title"));
 				ml.setBoardNo(rs.getInt("board_no"));
 				ml.setCreatedDate(rs.getDate("created_date"));
 				list.add(ml);
