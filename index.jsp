@@ -9,9 +9,7 @@
 	
 <body>
 	<script>
-	<%-- setInterval(function() { 
-		location.href="<%=request.getContextPath()%>/mainpageload";
-	}, 1); --%>
+	
 	location.href="<%=request.getContextPath()%>/mainpageload";
 	</script>
 </body>
