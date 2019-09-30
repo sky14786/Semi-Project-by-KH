@@ -238,8 +238,7 @@
 					contentType:false,
 					success:function (data) {
 						alert('upload seccess!!');
-						location.href='<%=request.getContextPath()%>
-		/';
+						location.href="<%=request.getContextPath()%>/";
 											},
 											error : function(er) {
 												console.log('error');
