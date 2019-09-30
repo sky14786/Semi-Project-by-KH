@@ -74,15 +74,11 @@ public class MainPageServlet extends HttpServlet {
 		request.setAttribute("numPerPage", numPerPage);// ?
 		request.setAttribute("list_page", list_page);
 		request.setAttribute("fileList", fileList);
-		//System.out.println(fileList);
 		
-		//System.out.println(list_page);
 		//request.setAttribute("list", list);
 
 		//request.setAttribute("imgsearch", file_matching);
-		//System.out.println("######servlet imgsearch :" + file_matching);
 //		request.setAttribute("filematching", filematching);
-//		System.out.println("servlet:"+filematching);
 
 		//request.getRequestDispatcher("/mainList.jsp").forward(request, response);
 		request.getRequestDispatcher("/mainList.jsp").forward(request, response);

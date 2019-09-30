@@ -3,8 +3,6 @@
 
 <%
    Client clientLogin = (Client) session.getAttribute("loginClient");
-	/* System.out.println("from header");
-	System.out.println(clientLogin); */
 %>
 
 <!DOCTYPE html>

@@ -27,7 +27,7 @@ public class ClientLoginServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 		// 로그인에 대한 비지니스 로직
 		pw = DataEncryptionTemplate.encryptionToSHA512(pw);
-		System.out.println(pw);
+		//System.out.println(pw);
 		
 		ClientService service = new ClientService();
 		Client cl = service.selectId(id, pw);
@@ -57,6 +57,7 @@ public class ClientLoginServlet extends HttpServlet {
 
 			// 쿠키에 아이디 저장하기
 			String saveId = request.getParameter("saveId");
+			System.out.println("from back : " + saveId);
 			// saveId = check가 되면 on, check안하면 null
 			if (saveId != null) {
 				// 쿠키에 저장하는 방법

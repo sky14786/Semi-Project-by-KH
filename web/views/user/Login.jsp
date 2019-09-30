@@ -5,7 +5,7 @@
 	//쿠키값 확인해서 페이지에 반영하기
 	//쿠키는 key:value형식으로 여러개 저장이 가능하기 때문에
 	//쿠키객체가 배열로 저장이 됨.
-	Client cl = new Client();
+	/* Client cl = new Client(); */
 	
 	Cookie[] cookies = request.getCookies();
 	String saveId = null;
@@ -15,11 +15,14 @@
 			//key, value를 매소드를 이용해서 가져올 수 있음
 			String key = c.getName();
 			String value = c.getValue();
+			//System.out.println("key : " + key);
+			//System.out.println("value : " + value);
 			if (key.equals("saveId")) {
 				saveId = value;
 			}
 		}
 	}
+	System.out.println("saveId from Login.jsp : " + saveId);
 %>
 
 <%@ include file="/views/common/header.jsp"%>

@@ -52,7 +52,6 @@ public class ClientDao {
 				cl.setUserType(rs.getInt("user_Type"));
 				cl.setStatus(rs.getInt("status"));
 				cl.setEmail(rs.getString("email"));
-				System.out.println(cl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -280,7 +279,7 @@ public class ClientDao {
 		String sql = prop.getProperty("selectChatHistory");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(room);
+			//System.out.println(room);
 			pstmt.setInt(1, Integer.parseInt(room));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

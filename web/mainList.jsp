@@ -2,19 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.List,com.truckta.boardmatching.model.vo.BoardMatching,com.truckta.file.matching.model.vo.FileMatching" %>
     <%
-        //List<BoardMatching> list=(List)request.getAttribute("list");
         List<BoardMatching> list_page=(List)request.getAttribute("list_page");
-        //System.out.println(list_page.size());
-        //System.out.println("#####getlist_page"+list_page);
-        //System.out.println("listpage:"+list_page.size());
-        //int numPerPage=(int)request.getAttribute("numPerPage");
         List<BoardMatching> select_gu=(List)request.getAttribute("select_gu");
-        //System.out.print("####getselect_gu+"+select_gcssu);
  		String searchKey=(String)request.getAttribute("searchKeyword");
- 		//List<FileMatching> imgsearch=(List)request.getAttribute("imgsearch");
  		List<FileMatching> fileList = (List)request.getAttribute("fileList");
- 		//System.out.println("#####getfileList"+fileList);
- 		//System.out.println("사이즈"+fileList.size());
     	
     %>
     
@@ -108,15 +99,7 @@
 							<%
 						break;	
 						}}%>
-						<%-- <img src="<%=request.getContextPath()%>/images/posted_images/moo.png" class="img-responsive" style="width:250px;height:211px;" > --%>
 						
-						<%-- <img src="<%=request.getContextPath()%>images/boardMatching_images/<%=fileList.get(i).getFileName()%>" class="img-responsive" style="width:250px;height:200px;">
-						<%System.out.println((i)+"@"+fileList.get(q).getFileName()); %>
-						<%}else{ %>
-						<img src="<%=request.getContextPath()%>/images/posted_images/null.png" class="img-responsive" style="width:211px;height:211px;" >
-						<%System.out.println((i)+"에러"); %>
-						<hr>
-					<%}break;} %>   --%>
 					</div>
 					<div class="post-content">
 							<div class="date">
