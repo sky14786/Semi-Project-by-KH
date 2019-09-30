@@ -31,7 +31,7 @@
 </head>
 <body>
 
-	<div class="container-fluid" style="margin-top: 10%">
+	<div class="container-fluid" style="margin-top: 5%">
 		<table class="table">
 			<thead class="thead-light">
 				<tr style="text-align: center;">
