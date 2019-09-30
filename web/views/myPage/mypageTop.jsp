@@ -83,7 +83,6 @@
 				<%
 				if(list!=null){
 					for(int i=0; i<size; i++){ %>
-				
 				<%-- <%for(int i=0; i<list.size(); i++){ %> --%>
 				<div class="col-lg-4 col-md-6 col-sm-8 col-sx-9 col-10 m-auto">
 					<div class="blog-post">
@@ -174,7 +173,7 @@
                     <div class="blog-post">
                         <div class="post-thumb">
                             <a href="#">
-                                <img src="<%=request.getContextPath()%>/images/boardMatching/defaultImg.jpg" alt="post-image" class="img-fluid">
+                                <img src="<%=request.getContextPath()%>/images/boardMatching_images/defaultImg.jpg" alt="post-image" class="img-fluid">
                             </a>
                         </div>
                         <div class="post-content">
@@ -198,7 +197,7 @@
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-comments-o"></i>
-                                        <a href="#">30???</a>
+                                        <a href="#">내용없음</a>
                                     </li>
                                 </ul>
                             </div>
@@ -212,24 +211,12 @@
 		</div>
 	</section>
 
-	<!--====  End of News Posts  ====-->
-
-
 	<section class="section schedule">
 		<div class="container">
-	
 			<!-- -- 리스트 --  -->
-
 			<div class="row">
 				<div class="col-12">
-
-					<!-- section -->
-
-
-
 					<!-- Pagination -->
-
-
 				</div>
 			</div>
 		</div>
@@ -245,5 +232,5 @@
                 });
             });
      </script>
-</body>
+
 </html>

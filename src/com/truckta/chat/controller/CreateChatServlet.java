@@ -69,14 +69,14 @@ public class CreateChatServlet extends HttpServlet {
       } 
       
       // Sending the greeting message
-      System.out.println(message);
+//      System.out.println(message);
       int send = cs.sendGreeting(roomNum, driverId, message);
       
       
       
       // checking if already bidded
       int bidded = cs.selectBid(boardNo, driverId);
-      System.out.println(bidded);
+//      System.out.println(bidded);
        
       
       if(bidded>0) {
@@ -85,7 +85,7 @@ public class CreateChatServlet extends HttpServlet {
          // Adding to the bidding list
          int addBid =  cs.insertBid(boardNo, writerId, driverId, bidPrice);
          System.out.println("새로운 비딩");
-         System.out.println(addBid);
+//         System.out.println(addBid);
       }
       
       

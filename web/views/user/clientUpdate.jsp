@@ -2,30 +2,23 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp"%>
-<link href="../../css/clientUpdate-Style.css?ver=1.1" rel="stylesheet" />
-<script src="../../js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script>
+<link href="<%=request.getContextPath() %>/css/clientUpdate-Style.css?ver=1.1" rel="stylesheet" />
+<script src="<%=request.getContextPath() %>/js/clientUpdate-js.js?ver=1.1" charset="utf-8"></script>
 <%@ page import="com.truckta.client.model.vo.Client"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("phone_number");
 %>
-<%-- <div class="container"> --%>
-<!-- <br /> <br /> <br /> -->
-
 
 <script>
 	//certifiedCheck();
 </script>
-
+<body>
+<section>
 <div class="container">
 	<div class="row">
 		<div class="col-2"></div>
-		<div class="col-1"></div>
 		<div class="col-6">
-			<br>
-			<br>
-			<br>
-			<br>
 			<h2>Modify information</h2>
 			<hr>
 			<form
@@ -77,6 +70,7 @@
 
 	</div>
 </div>
-</div>
+
+</section>
 
 <%@ include file="/views/common/footer.jsp"%>

@@ -80,11 +80,11 @@ public class AdminBoardQnaQUpdateServlet extends HttpServlet {
 		i += qnaService.updateQna(temp);
 
 		if (i == 6) {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update : " + temp.getBoardNo());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update : " + temp.getBoardNo());
 			request.getRequestDispatcher("adminBoardQnaQUpdateTry?boardNo=" + temp.getBoardNo()).forward(request,
 					response);
 		} else {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update Fail : " + temp.getBoardNo());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update Fail : " + temp.getBoardNo());
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "실패! 개발자에게 문의하세요");
 			request.getRequestDispatcher("/common/msg.jsp").forward(request, response);

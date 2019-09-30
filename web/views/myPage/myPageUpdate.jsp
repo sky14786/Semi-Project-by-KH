@@ -31,12 +31,7 @@
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
 <div class="container">
 	<div class="row">
-		<div class="col-2"></div>
-		<div class="col-1"></div>
 		<div class="col-6">
-			<br>
-			<br>
-			<br>
 			<br>
 			<h2>Modify information</h2>
 			<hr>

@@ -113,7 +113,7 @@ public class MatchingCompleteDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("matDataInsert");
 		int result = 0;
-		System.out.println(mc.getMatNo()+ "");
+//		System.out.println(mc.getMatNo()+ "");
 		try {
 			pstmt =  conn.prepareStatement(sql);
 			pstmt.setInt(1, mc.getMatNo());

@@ -40,14 +40,11 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
 		if(cl == null ) {
 			request.setAttribute("message", "드라이버는 신청할 수 없습니");
-			String path = "/index.jsp";
+			String path = "/";
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
@@ -60,7 +57,9 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 		}
 
 		// 파일이 저정되 세이브 경로를 얻어옴
-		String saveDir = getServletContext().getRealPath("/images/boardMatching_images");
+//		String saveDir = getServletContext().getRealPath("/images/boardMatching_images");
+		String saveDir = request.getSession().getServletContext().getRealPath("/images/boardMatching_images");
+//		System.out.println("img path /:/ " + saveDir);
 		int maxSize = 1024 * 1024 * 20; // 20M
 		
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxSize, "utf-8", new BoFileRename());
@@ -121,7 +120,6 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 //		System.out.println("입력 성공 : " + result);
 		if(result == 1) {
 			int resultBoNum = new BoardMatchingService().searchBoardNum(bm);
-			//System.out.println("보드넘ber : " + resultBoNum);
 			List<FileMatching> list = new ArrayList<FileMatching>();
 			FileMatching fm = null;
 			Enumeration<String> e = mr.getFileNames();
@@ -138,12 +136,10 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			
 			// 이미지 경로 저장
 			int imgResult = new BoardMatchingService().insertImgBoardMatching(list);
-			System.out.println("img :::" + imgResult);
 			// 실패시 서버에 이미지 삭제
 			if(imgResult == 0) {
 				for (int i = 0; i < fns.size(); i++) {
 					String imgFileName = fns.get(i);
-//					System.out.println("delete save img dir : " + saveDir+mr.getFilesystemName("boardImages"+i));
 					File file = new File(saveDir+ "/" + imgFileName);
 					if(file.exists()) file.delete();
 					int imgCk = new BoardMatchingService().deleteImg(resultBoNum);
@@ -170,9 +166,6 @@ public class BoardMatchingDataInputServelt extends HttpServlet {
 			request.setAttribute("location", path);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}//endif
-		
-		//request.getRequestDispatcher("/my/pageTop").forward(request, response);
-		
 		
 	}
 

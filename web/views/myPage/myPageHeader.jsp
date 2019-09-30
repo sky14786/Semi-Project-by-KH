@@ -11,11 +11,15 @@
 %>
 <style>
 	.myheader{
-		margin-top: 65px;
+		margin-top: 60px;
+	}
+	.navbar-brand {
+		padding: 0px;
+		width: 67px !important;
 	}
 </style>
 <!-- <!DOCTYPE html> -->
-<div class="navbar navbar-expand-sm bg-dark navbar-dark myheader">
+<div class="navbar navbar-expand-sm bg-dark navbar-dark myheader ">
 
 	<a class="navbar-brand" href="<%=request.getContextPath()%>/my/pageTop">My Page</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"

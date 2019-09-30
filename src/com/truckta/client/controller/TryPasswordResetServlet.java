@@ -43,28 +43,28 @@ public class TryPasswordResetServlet extends HttpServlet {
 							"<h4>인증번호 : "+key+"</h4>"+
 							"</div>";
 					SMTPAuthentication.sendmail(content, temp.getEmail(), subject);
-					System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY SEND MAIL : " + temp.getId());
+//					System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY SEND MAIL : " + temp.getId());
 					HttpSession session = request.getSession();
 					session.setAttribute("key", key);
 					request.setAttribute("id", temp.getId());
 					request.getRequestDispatcher("/views/user/pwReset.jsp").forward(request, response);;
 				} else {
 					// 이메일이 다릅니다.
-					System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(EMAIL) : " + temp.getId());
+//					System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(EMAIL) : " + temp.getId());
 					request.setAttribute("location", "/views/user/resetpassword.jsp");
 					request.setAttribute("message", "이메일이 다릅니다.");
 					request.getRequestDispatcher("../views/common/msg.jsp").forward(request, response);
 				}
 			} else if (temp.getEmail().equals(request.getParameter("email"))) {
 				// 이름이 다릅니다.
-				System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(NAME) : " + temp.getId());
+//				System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(NAME) : " + temp.getId());
 				request.setAttribute("location", "/views/user/resetpassword.jsp");
 				request.setAttribute("message", "이름이 다릅니다.");
 				request.getRequestDispatcher("../views/common/msg.jsp").forward(request, response);
 			}
 		} else {
 			// 존재하지 않는 유저입니다.
-			System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(NOT FOUND)");
+//			System.out.println(":: Truckta_LOG :: " + "USER_RESET PASSWORD TRY FAIL(NOT FOUND)");
 			request.setAttribute("location", "/views/user/resetpassword.jsp");
 			request.setAttribute("message", "존재하지 않는 사용자 입니다.");
 			request.getRequestDispatcher("../views/common/msg.jsp").forward(request, response);

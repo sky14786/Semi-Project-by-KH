@@ -27,7 +27,7 @@ public class ClientLoginServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 		// 로그인에 대한 비지니스 로직
 		pw = DataEncryptionTemplate.encryptionToSHA512(pw);
-		System.out.println(pw);
+//		System.out.println(pw);
 		
 		ClientService service = new ClientService();
 		Client cl = service.selectId(id, pw);

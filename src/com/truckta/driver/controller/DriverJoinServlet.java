@@ -77,13 +77,13 @@ public class DriverJoinServlet extends HttpServlet {
 		int isUpload = new FileDriverService().joinDriver(files);
 
 		if (result == 1 && isUpload == files.size()) {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add : " + temp.getId());
 			request.getSession().removeAttribute("isCertified");
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "신청했습니다. 관리자의 승인 후 이용가능합니다.");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add Fail : " + temp.getId());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Driver Add Fail : " + temp.getId());
 			request.getSession().removeAttribute("isCertified");
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "실패했습니다. 메인페이지로 이동합니다.");

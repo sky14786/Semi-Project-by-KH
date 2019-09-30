@@ -42,7 +42,7 @@ public class ClientUpdateEndServlet extends HttpServlet {
 		MultipartRequest mul = new MultipartRequest(request, path, maxSize, "utf-8", policy);
 		String now = new SimpleDateFormat("yyyyMMddHmsS").format(new java.util.Date());
 		String fileName = mul.getFilesystemName("profile");
-		System.out.println(fileName);
+//		System.out.println(fileName);
 
 		Client c = new Client();
 		c.setPw(DataEncryptionTemplate.encryptionToSHA512(mul.getParameter("pw")));
@@ -65,11 +65,11 @@ public class ClientUpdateEndServlet extends HttpServlet {
 
 		int result = cs.updateClient(c);
 		if (result == 1) {
-			System.out.println(":: LOG :: " + now + " :: " + " Client update : " + c.getId());
+//			System.out.println(":: LOG :: " + now + " :: " + " Client update : " + c.getId());
 			response.getWriter().print("<script>alert('정보업데이트에 성공했습니다. 메인페이지로 이동합니다.')</script>");
 			response.sendRedirect("/views/common/header.jsp");
 		} else {
-			System.out.println(":: LOG :: " + now + " :: " + " Client update Fail");
+//			System.out.println(":: LOG :: " + now + " :: " + " Client update Fail");
 			response.getWriter().print("<script>alert('정보업데이트에 실패했습니다. 메인페이지로 이동합니다.')</script>");
 
 		}

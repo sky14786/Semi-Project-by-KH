@@ -19,7 +19,7 @@ public class ChattingServer {
 	
      @OnOpen
      public void open(Session session, EndpointConfig  config) {
-          System.out.println("Soceket connetion : " +  session.getId());
+//          System.out.println("Soceket connetion : " +  session.getId());
      }
      
      @OnMessage
@@ -36,8 +36,8 @@ public class ChattingServer {
     	 
     	 
     	 // DB 에 기록 남기기
-    	 System.out.println("Chatting server //////////////////////");
-    	 System.out.println(ch);
+//    	 System.out.println("Chatting server //////////////////////");
+//    	 System.out.println(ch);
     	 int result = new ClientService().sendChat(ch);
     	 
           for (Session s : session.getOpenSessions()) {

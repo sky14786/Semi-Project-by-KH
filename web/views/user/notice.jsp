@@ -1,33 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <title>배달 정보 업로드</title>
 <%@ include file="/views/common/header.jsp"%>
 <%@ include file="/views/myPage/myPageHeader.jsp"%>
-<!-- 부트스트랩 4 -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-<!-- jquery -->
-<!-- https://code.jquery.com/jquery-3.4.1.slim.js -->
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-
 <!-- date picker -->
-<script src="<%=request.getContextPath() %>/js/jquery-3.4.1.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"
+	charset="utf-8"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
-
-
 <!-- post -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/notice.js?ver=2" charset="utf-8"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/notice.js?ver=2" charset="utf-8"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<script src="<%=request.getContextPath() %>/js/post.js" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/post.js" charset="utf-8"></script>
 
 
 <style>
@@ -52,15 +47,15 @@
 	<div class="container">
 		<!-- <nav></nav> -->
 		<div class="row">
-			<div class="col-md-2 order-md-1 mb-1">
-			</div>
+			<div class="col-md-2 order-md-1 mb-1"></div>
 			<!-- 세션 내용 본문 -->
 			<div class="col-md-8 order-md-2">
 				<hr>
 				<h4 class="mb-3">배달 정보</h4>
 				<hr class="mb-4">
 				<!-- ---- 데이터 폼 ---- -->
-				<form action="" method="post" id="boardUp" name="boardUp" class="needs-validation" enctype="multipart/form-data" >
+				<form action="" method="post" id="boardUp" name="boardUp"
+					class="needs-validation" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-md-12 mb-3">
 							<label for="firstName">화물 정보(제목)</label> <input type="text"
@@ -71,10 +66,12 @@
 
 					<label for="address">출발지 주소</label>
 					<div class="input-group mb-1">
-						<input type="text" class="form-control start-postcode" name="post-number"
-							placeholder="우 편 번 호" style="text-align: center" id="st-addr-post" readonly> 
-						<input type="text" class="form-control start-addr" name="start-addr"
-							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(1);" id="st-addr" readonly>
+						<input type="text" class="form-control start-postcode"
+							name="post-number" placeholder="우 편 번 호"
+							style="text-align: center" id="st-addr-post" readonly> <input
+							type="text" class="form-control start-addr" name="start-addr"
+							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(1);"
+							id="st-addr" readonly>
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary start-btn" type="button"
 								id="button-addon1" onclick="execDaumPostcode(1)">주소 찾기</button>
@@ -87,10 +84,12 @@
 					<div class="mb-4"></div>
 					<label for="address2">도착지 주소</label>
 					<div class="input-group mb-1">
-						<input type="text" class="form-control end-postcode" name="post-number2"
-							placeholder="우 편 번 호" style="text-align: center" id="end-addr-post" readonly> <input
+						<input type="text" class="form-control end-postcode"
+							name="post-number2" placeholder="우 편 번 호"
+							style="text-align: center" id="end-addr-post" readonly> <input
 							type="text" class="form-control end-addr" name="end-addr"
-							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(2);" id="end-addr" readonly>
+							placeholder="주소를 검색해주세요" onkeydown="JavaScript:Enter_Check(2);"
+							id="end-addr" readonly>
 						<div class="input-group-append">
 							<button class="btn btn-outline-secondary" type="button"
 								id="button-addon2" onclick="execDaumPostcode(2)">주소 찾기</button>
@@ -99,7 +98,7 @@
 					<input type="text" class="form-control end-addr-detail"
 						name="end-detail" id="address2" placeholder="상세 주소를 입력해주세요"
 						required> <br>
-						
+
 					<!-- 설명 -->
 					<div class="mb-3">
 						<label for="">설명</label>
@@ -111,16 +110,17 @@
 						<label for="truck-size">화물차 선택(선택사항)</label>
 						<div class="col-8">
 							<div class="form-group">
-								<select class="form-control main" id="select-car" name="select-car">
-							      <option value="0">Car Type</option>
-							      <option value="2">1.5톤 일반</option>
-							      <option value="3">1.5톤 냉각차</option>
-							      <option value="4">1.5톤 탑차</option>
-							      <option value="5">2.5톤 일반</option>
-							      <option value="6">2.5톤 탑차</option>
-							      <option value="7">2.5톤 냉각차</option>
-							      <option value="8">1톤 일반</option>
-							    </select>
+								<select class="form-control main" id="select-car"
+									name="select-car">
+									<option value="0">Car Type</option>
+									<option value="2">1.5톤 일반</option>
+									<option value="3">1.5톤 냉각차</option>
+									<option value="4">1.5톤 탑차</option>
+									<option value="5">2.5톤 일반</option>
+									<option value="6">2.5톤 탑차</option>
+									<option value="7">2.5톤 냉각차</option>
+									<option value="8">1톤 일반</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -130,15 +130,15 @@
 					<div class="mb-3">
 						<label for="">희망 배송일</label>
 						<div class="col-8">
-							<input type="text" class="form-control" name="memo" id="board-memo"
-								placeholder="연락 메모">
+							<input type="text" class="form-control" name="memo"
+								id="board-memo" placeholder="연락 메모">
 							<div style="height: 4px"></div>
 							<input class="form-control" id="datepicker" name="date"
 								placeholder="일 / 월 / 년" readonly />
 						</div>
 					</div>
 
-					
+
 					<hr class="mb-4">
 
 					<!-- 이미지 목록 리스트 -->
@@ -170,27 +170,28 @@
 					<div class='col-md12' hidden>
 						<input class='imgNames' type="text" name='imgNamess'></input>
 					</div>
-					
-			<hr class="mb-6">
-			<!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
-			<button class="btn btn-primary btn-lg btn-block" id="boardUpload"
-				type="button">글 올리기</button>
-				
-			<hr>
-			<div class="input-group mb-1">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<button class="btn btn-danger btn-sm btn-block" type="button" onclick="cancle();">뒤로가기</button>
-				</div>
-			</div>
-			<script >
+
+					<hr class="mb-6">
+					<!-- 글 업로드시 최소 사진이 1장 이상일때 업로드가능 -->
+					<button class="btn btn-primary btn-lg btn-block" id="boardUpload"
+						type="button">글 올리기</button>
+
+					<hr>
+					<div class="input-group mb-1">
+						<div class="col-md-8"></div>
+						<div class="col-md-4">
+							<button class="btn btn-danger btn-sm btn-block" type="button"
+								onclick="cancle();">뒤로가기</button>
+						</div>
+					</div>
+					<script>
 				function cancle() {
 					location.href="<%=request.getContextPath()%>/my/pageTop";
 				}
 			</script>
-			</form>
+				</form>
 				<!-- //---------// -->
-				
+
 			</div>
 			<!-- aside -->
 			<div class="col-md-2 order-md-3 mb-1">
@@ -237,19 +238,20 @@
 					contentType:false,
 					success:function (data) {
 						alert('upload seccess!!');
-						location.href='<%=request.getContextPath()%>/';
-					},
-					error : function(er) {
-						console.log('error');
-						console.log(er);
-					}
-				});//ajax
-				
-			}else{ // 유효성 검사 실패
-				console.log('input error');
-			}
-			
-		});
+						location.href='<%=request.getContextPath()%>
+		/';
+											},
+											error : function(er) {
+												console.log('error');
+												console.log(er);
+											}
+										});//ajax
+
+							} else { // 유효성 검사 실패
+								console.log('input error');
+							}
+
+						});
 	</script>
 
 </body>
@@ -259,3 +261,4 @@
 </footer>
 
 </html>
+

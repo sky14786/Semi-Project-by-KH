@@ -144,7 +144,7 @@ public class BoardQnaFormUpdateEndServlet extends HttpServlet {
 
 		if (i == 6) {
 
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update : " + temp.getBoardNo());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update : " + temp.getBoardNo());
 
 			request.getRequestDispatcher("adminBoardQnaQUpdateTry?boardNo=" + temp.getBoardNo()).forward(request,
 
@@ -152,7 +152,7 @@ public class BoardQnaFormUpdateEndServlet extends HttpServlet {
 
 		} else {
 
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update Fail : " + temp.getBoardNo());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update Fail : " + temp.getBoardNo());
 
 			request.setAttribute("location", "/");
 

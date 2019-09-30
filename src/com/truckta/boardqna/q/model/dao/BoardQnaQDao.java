@@ -257,7 +257,7 @@ public class BoardQnaQDao {
 		ResultSet rs = null;
 		BoardQnaQ q = null;
 		String sql = prop.getProperty("selectBoard");
-		System.out.println(no);
+//		System.out.println(no);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(no));

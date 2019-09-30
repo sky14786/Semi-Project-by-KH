@@ -39,7 +39,7 @@ public class ChatService {
       Connection conn = getConnection();
       int send = dao.sendGreeting(conn, roomNum, driverId, message);
       if(send>0) {
-         System.out.println("sent!!!@!!!!!!");
+//         System.out.println("sent!!!@!!!!!!");
          commit(conn);
       } else {
          rollback(conn);

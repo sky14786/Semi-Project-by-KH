@@ -114,33 +114,27 @@ public class MypageTopServleit extends HttpServlet {
       HttpSession session = request.getSession();
       String writer = "";
       Client cl = (Client)session.getAttribute("loginClient");
-      System.out.println("MypageTop Servlet Cluient : "+ cl.toString());
+//      System.out.println("MypageTop Servlet Cluient : "+ cl.toString());
       
-//      System.out.println("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
-      
-//      if(cl == null || cl.getUserType()== 3 || cl.getStatus() == 0) {
-//         request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
-//         String path = "/";
-//         request.setAttribute("location", path);
-//         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//      }else
+      if(cl == null|| cl.getStatus() == 0) {
+         request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
+         String path = "/";
+         request.setAttribute("location", path);
+         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+      }else
          writer = cl.getId();
 
       // 값이 없으면 메인화면으로 이전
-//      if(writer.equals("null") || writer == null) {
-//         String path = "/";
-//         request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
-//         request.setAttribute("location", path);
-//         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//      }
+      if(writer.equals("null") || writer == null) {
+         String path = "/";
+         request.setAttribute("message", "마이페이지 불러오기에 실패했습니다");
+         request.setAttribute("location", path);
+         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+      }
       
       List<BoardMatching> list = new BoardMatchingService().mypageTop(writer);
       List<List> imgAllList = new ArrayList<List>();
-      
-      System.out.println("mypagetopServlet  list : " + list);
-      System.out.println("mypagetopServlet  imgAllList : " + imgAllList);
-      
-//      System.out.println("////////////////////////////////");
+
 //      System.out.println(list.size());
 //      System.out.println(imgAllList.size());
       

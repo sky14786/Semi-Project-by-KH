@@ -26,7 +26,7 @@ public class UserToDriverServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Client cl = (Client)session.getAttribute("loginClient");
-		System.out.println(cl);
+//		System.out.println(cl);
 		if(cl == null || cl.getStatus() == 2 || cl.getStatus() == 3) {
 			request.setAttribute("message", "드라이버는 신청할 수 없습니");
 			String path = "/index.jsp";

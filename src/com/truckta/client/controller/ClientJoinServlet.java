@@ -64,12 +64,12 @@ public class ClientJoinServlet extends HttpServlet {
 		int result = new ClientService().JoinClient(temp);
 
 		if (result == 1) {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Client Add : " + temp.getId());
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Client Add : " + temp.getId());
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "회원가입에 성공했습니다. 메인페이지로 이동합니다.");
 			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Client Add Fail");
+//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Client Add Fail");
 			request.setAttribute("location", "/");
 			request.setAttribute("message", "회원가입에 실패했습니다. 메인페이지로 이동합니다.");
 			request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);

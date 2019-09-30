@@ -6,7 +6,8 @@
  <script src="https://kit.fontawesome.com/3434726b05.js" crossorigin="anonymous"></script>
 
 	<!--- Footer -->
-	<footer class="bg-dark text-white bottom" style="margin-top:30px;">
+	</div>
+	<footer class="bg-dark text-white bottom" style="margin-top:35px;">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">

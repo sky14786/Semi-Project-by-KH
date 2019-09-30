@@ -37,7 +37,7 @@ public class BoardQnaCommentUpdateServlet extends HttpServlet {
 		String writer = request.getParameter("writer");
 		int aNo = Integer.parseInt(request.getParameter("aNo"));
 
-		System.out.println(writer + "xxxxxxxx");
+//		System.out.println(writer + "xxxxxxxx");
 
 		// 자신이 맞는지 확인하는 로직
 
