@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="margin-top:65px;">
    <a class="navbar-brand" href="<%=request.getContextPath()%>/views/admin/adminMain.jsp" style="width:auto;">관리자</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#collapsibleNavbar">
