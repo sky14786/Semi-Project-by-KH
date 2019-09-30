@@ -188,4 +188,11 @@ public class BoardQnaQService {
 		return result;
 	}
 
+	public BoardQnaQ findBoardQnaQ(String title, String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaQ temp = dao.findBoardQnaQ(conn, title,writer);
+		JDBCTemplate.close(conn);
+		return temp;
+	}
+
 }

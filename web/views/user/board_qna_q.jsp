@@ -6,9 +6,7 @@
 	List<BoardQnaQ> list = (List) request.getAttribute("list");
 	int cPage = (int) request.getAttribute("cPage");
 	/* BoardQnaQ qu= (BoardQnaQ) request.getAttribute("board_qna_q");  */
-
-	if (request.getAttribute("type") != null) {
-	}
+	
 %>
 
 

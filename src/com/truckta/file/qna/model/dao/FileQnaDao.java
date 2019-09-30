@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.truckta.file.driver.model.vo.FileDriver;
 import com.truckta.file.qna.model.vo.FileQna;
 
 import common.template.JDBCTemplate;
@@ -76,6 +77,25 @@ public class FileQnaDao {
 			pstmt.setString(2, fileQna.getFileName());
 
 			result = pstmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int uploadQnaFiles(Connection conn, List<FileQna> files) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("uploadQnaFile");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for (int i = 0; i < files.size(); i++) {
+				pstmt.setInt(1, files.get(i).getBoardNo());
+				pstmt.setString(2, files.get(i).getFileName());
+				result += pstmt.executeUpdate();
+			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} finally {

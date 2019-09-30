@@ -22,8 +22,9 @@ import com.truckta.file.driver.model.vo.FileDriver;
 
 @WebServlet("/driverSignUp")
 public class DriverJoinServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	final private int maxSize = 1024 * 1024 * 3;
+	private static final long serialVersionUID = 1L;
+	
 
 	public DriverJoinServlet() {
 		super();

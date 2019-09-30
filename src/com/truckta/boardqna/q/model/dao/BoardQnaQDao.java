@@ -462,4 +462,33 @@ public class BoardQnaQDao {
 		return result;
 	}
 
+	public BoardQnaQ findBoardQnaQ(Connection conn, String title, String writer) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findTitleWriterBoardQnaQ");
+		ResultSet rs = null;
+		BoardQnaQ temp = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, writer);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				temp=new BoardQnaQ();
+				temp.setBoardNo(rs.getInt("board_no"));
+				temp.setEtc(rs.getString("etc"));
+				temp.setHireDate(rs.getDate("hire_date"));
+				temp.setTitle(rs.getString("title"));
+				temp.setqUser(rs.getString("q_user"));
+				temp.setStatus(rs.getInt("status"));
+				temp.setType(rs.getInt("type"));
+			}
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+		}finally{
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return temp;
+	}
+
 }
