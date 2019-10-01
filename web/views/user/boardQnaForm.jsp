@@ -41,7 +41,7 @@
 </div>  --%>
 
 
-
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <div class="container">
 	<div class="row" style="padding-top: 10%">
 		<div class="col-11 border border-light rounded "

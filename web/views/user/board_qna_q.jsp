@@ -27,6 +27,7 @@
 <script src="../../js/clientBoardList-js.js?ver=1.1" charset="utf-8"></script>
 <title>Insert title here</title>
 </head>
+<%@ include file="/views/myPage/myPageHeader.jsp"%>
 <body>
 
 	<div class="container-fluid" style="margin-top: 5%">
