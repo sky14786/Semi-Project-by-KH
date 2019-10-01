@@ -86,8 +86,13 @@
 <div class="collapse navbar-collapse flex-grow-0"
             id="navbarSupportedContent">
             <ul class="navbar-nav text-right">
-               <li class="nav-item active"><a class="nav-link"
-                  href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a></li>
+               <li class="nav-item active">
+               		<% if(clientLogin.getUserType()==1){ %>
+               		<a class="nav-link" href="<%=request.getContextPath() %>/my/pageTop">마이페이지</a>
+               		<%}else{ %>
+               		<a class="nav-link" href="<%=request.getContextPath() %>/my/pageTopDriver">마이페이지</a>
+               		<%} %>
+               </li>
                <li class="nav-item active"><a class="nav-link"
                   href="<%=request.getContextPath() %>/logout">로그아웃</a></li>
             </ul>

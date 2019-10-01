@@ -19,6 +19,10 @@
 	List <Matching>badeList = (List)request.getAttribute("badeList");
 	List<FileMatching>filelist = (List)request.getAttribute("filelist");
 	List<FileDriver> driverFileList = (List) request.getAttribute("driverFileList");
+	
+	int matCompl = (int)request.getAttribute("matCompl");
+	
+	
 %>
 
 <!-- favicons -->
@@ -114,7 +118,9 @@
                                 </td>
                                 <td>
                                     <input type="text" class = "idNnN" value ="<%=d.getBoardNo() %>" hidden>
+                                    <% if(matCompl < 1){ %> 
                                     <button type="button" class="btn btn-success mr-2 idNoB" onclick="detailConfirm(<%=i%>);">수락</button>
+                                    <%} %>
                                     <input type="text" class = "idNo" value ="<%=badeList.get(i).getResponser() %>" hidden>
                                 </td>
                             </tr>

@@ -56,7 +56,7 @@ public class MyPageDriverServlet extends HttpServlet {
 		for (int i = 0; i < list.size(); i++) {
 			int boardTmp = list.get(i).getBoardNo();
 			List<FileMatching> listImg = new BoardMatchingService().loadBoardImg(boardTmp);	
-			imgAllList.add(listImg);			
+			imgAllList.add(listImg);
 		}
 
 		if(list.size() > 0) {
@@ -64,9 +64,10 @@ public class MyPageDriverServlet extends HttpServlet {
 		}
 		if(imgAllList.size() > 0) {
 			request.setAttribute("imgTop", imgAllList);
-		}else {
-			request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
 		}
+//		else {
+//			request.setAttribute("defaultImg", request.getContextPath()+"/images/boardMatching_images/defaultImg.jpg");
+//		}
 
 		request.getRequestDispatcher("/views/myPage/myPageDriverTop.jsp").forward(request, response);
 
