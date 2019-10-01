@@ -176,51 +176,45 @@
       </div>
     </div>
     <div class="container about-container wow fadeInUp">
-      <div class="row">
+      <!-- <div class="row"> -->
 
         <div class="col-lg-6 about-img">
           <img src="img/about-img.jpg" alt="">
         </div>
 
-        <div class="col-md-6 about-content">
-          <h2 class="about-title">제목 : <%=d.getTitle() %></h2>
-           
-        </div>
+        
+           <div class = "container">
+          <h2 class="about-title mr-2 text-dark"><%=d.getTitle() %></h2>
+          <br><hr/>
+
+           		<br><br><br>
+           		<h4>내용</h4>
+           		<br>
+           		<h4><%=d.getEtc() %></h4>
+           		<br><br><br>
+           		<h5>메모</h5>
+           		<h5><%=d.getMemo() %></h5>
+           </div>
+        
       </div>
-    </div>
   </section>
 
   <!--==========================
   Services Section
   ============================-->
+<style>
+	.textAr{
+	
+		font-size:2em;
+     resize: none;
+     
+     color: black;
+	}
+</style>
   <section id="services">
     <div class="container wow fadeInUp justify-content-center">
       <div class="row">
-         <h3 class="section-title">&nbsp;&nbsp; 내용 : </h3>
         <div class="col-md-12">
-        	<style>
-        		.textAr{
-        		
-        			font-size:2em;
-              resize: none;
-              
-              color: darkgrey;
-        		}
-			</style>
-        	<div class="textAr" rows="" cols="60" readonly>&nbsp;&nbsp;&nbsp;&nbsp;<%=d.getEtc() %></div>
-          <br>
-          <p class="about-text">
-          <br>
-          <br>
-          <h5> 메모 : 
-            <%if(d.getMemo() != null) {%>
-            <%=d.getMemo() %>
-            <%} else { %>
-               많은 분들께서 연락을 주셨으면 좋겠습니다 :)
-            <%} %>
-            </h5>
-          </p>
-          <br><br>
           
           <!--금액 제시하기  -->
           
@@ -265,40 +259,31 @@
                  
          
             <%} %>
-          
-         
-          <div class="section-title-divider"></div>
-         <!--  <p class="section-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p> -->
+              
+ 	<div class="row">
+        <div class="col-md-3 service-item">
+          <div class="service-icon text-dark"><i class="fa fa-road"></i></div>
+          <h4 class="service-title"><a href="" class = "text-primary">출발지</a></h4>
+          <p class="service-description text-dark"><h5><%=startAddr %></h5></p>
         </div>
-      </div>
-       <br/><br/><br/><br/>
-
-      <div class="row">
-        <div class="col-md-4 service-item">
-          <div class="service-icon"><i class="fa fa-road"></i></div>
-          <h4 class="service-title"><a href="">출발지</a></h4>
-          <p class="service-description"><h5><%=startAddr %></h5></p>
+        <div class="col-md-3 service-item">
+          <div class="service-icon text-dark"><i class="fa fa-road"></i></div>
+          <h4 class="service-title"><a href="" class = "text-primary">도착지</a></h4>
+          <p class="service-description text-dark"><h5><%=endAddr %></h5></p>
         </div>
-        <div class="col-md-4 service-item">
-          <div class="service-icon"><i class="fa fa-road"></i></div>
-          <h4 class="service-title"><a href="">도착지</a></h4>
-          <p class="service-description"><h5><%=endAddr %></h5></p>
+        <div class="col-md-3 service-item" >
+          <div class="service-icon text-dark"><i class="fa fa-paper-plane"></i></div>
+          <h4 class="service-title"><a href="" class = "text-primary">소요시간</a></h4>
+          <h5 class="service-description text-dark" id="totalTime" ></h5>
         </div>
-        <div class="col-md-4 service-item" >
-          <div class="service-icon"><i class="fa fa-paper-plane"></i></div>
-          <h4 class="service-title"><a href="">소요시간</a></h4>
-          <p class="service-description" id="totalTime" ></p>
-          <br>
-          <br>
+        <div class="col-md-3 service-item" >
+          <div class="service-icon text-dark"><i class="fa fa-paper-plane"></i></div>
+          <h4 class="service-title"><a href="" class = "text-primary">총 거리</a></h4>
+          <h5 class="service-description text-dark" id="totalDistance"></h5>
         </div>
-        <div class="col-md-4 service-item" >
-          <div class="service-icon"><i class="fa fa-paper-plane"></i></div>
-          <h4 class="service-title"><a href="">총 거리</a></h4>
-          <p class="service-description" id="totalDistance"></p>
-        </div>
-        
-      </div>
     </div>
+     
+
   </section>
 
 <!-- Description end -->
