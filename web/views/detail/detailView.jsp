@@ -79,7 +79,7 @@
 	<!--==========================
       	글 수정하기 와 비딩한 운전자의 리스트
     ============================-->
-    <section id="portfolio"  class="section-bg" >
+    <section id="portfolio"  class="" >
       <div class="container">
 	<%if(c !=null && c.getId().equals(d.getWriter())){ %>
 <%-- 				<form class="btn btn-warning" action="#" method = "post">

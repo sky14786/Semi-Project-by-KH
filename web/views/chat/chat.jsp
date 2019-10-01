@@ -90,7 +90,7 @@ window.onload = function(){
 }
 	
 //creating web socket
-     var socket = new  WebSocket("ws://rclass.iptime.org:9999/truckta/<%=request.getContextPath()%>/messages/socket");
+     var socket = new  WebSocket("ws://rclass.iptime.org:9999<%=request.getContextPath()%>/messages/socket");
      socket.onopen = function(e) {
           //console.log(e);
      }
