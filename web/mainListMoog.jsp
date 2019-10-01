@@ -14,16 +14,19 @@
     <%@ include file="/views/common/header.jsp"%>
     <link href="<%=request.getContextPath()%>/plugins/mypage/css/style.css"
 	rel="stylesheet">
+	
 	<!-- font awesome cdn -->
 	<link href="<%=request.getContextPath()%>/css/all.css" rel="stylesheet" >	
 	<link href="<%=request.getContextPath()%>/css/fontawesome.min.css" rel="stylesheet" >	
 			
+			
+		<div class="container">	
 		<div class="row content_margin backimg" style="margin-top:5em">
 		
 		<div class="col-md-4 mb-3">
 				<label for="state">도시</label>
 				<select class="custom-select d-block w-100" id="select1" required onchange="citySelect()">
-					<option value="">Choose...</option>
+					<option value="">시 선택</option>
 					<option id="seoul" value="seoul">서울시</option>
 					<option value="kyungi">경기</option>
 					<option value="incheon">인천</option>
@@ -49,7 +52,7 @@
 			<div class="col-md-4 mb-3">
 				<label for="state">구</label>
 				<select class="custom-select d-block w-100" id="select2" required onchange="guSelect()">
-					<option id="select3" value="">Choose...</option>
+					<option id="select3" value="">구 선택</option>
 				</select>
 				<div class="invalid-feedback">
 					Please provide a valid state.
@@ -172,6 +175,7 @@
                 
 		
 		<!-- End End End End End End End End End End End End End End End End End End End -->
+		</div>
 		</div>
 		<div id="container">
       <div class="letters">
