@@ -290,7 +290,7 @@
 				alert("삭제 되었습니다")
 				console.log('<%=bm.getBoardNo()%>');
 				
-				location.href = '<%=request.getContextPath()%>/board/delete?boNum=<%=bm.getBoardNo()%>';
+				location.href = '<%=request.getContextPath()%>/%>';
 			}else{	//취소
 				return false;
 			}
