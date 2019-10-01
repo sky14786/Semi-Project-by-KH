@@ -165,22 +165,22 @@
   <!--==========================
   About Section
   ============================-->
-  <section id="about">
+ <!--  <section id="about">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <!-- <h3 class="section-title">About Us</h3> -->
+          <h3 class="section-title">About Us</h3>
           <div class="section-title-divider"></div>
-          <!-- <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p> -->
+          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="container about-container wow fadeInUp">
       <!-- <div class="row"> -->
 
-        <div class="col-lg-6 about-img">
+      <!--   <div class="col-lg-6 about-img">
           <img src="img/about-img.jpg" alt="">
-        </div>
+        </div> -->
 
         
            <div class = "container">
@@ -289,9 +289,9 @@
 <!-- Description end -->
 
       <!--- Two Column Section -->
-   <br>
+
    <div class="container padding">
-      <div class="row padding">
+      <div class="">
 
          <!-- <div class="col-lg-10">
                 <img src="img/desk.png" class="img-fluid">
@@ -299,14 +299,9 @@
          <div class="col-md-12">
             <!-- start to destination -->
             <div class="addr">
-            
             </div>
             <!-- title -->
             <div class="height">
-           
-             
-         
-   
           <span class="main__header__result"></span>
     <hr>
    <div class="main__map main__map-empty" id="map"></div> <!-- 지도 보이는 곳 --> 
