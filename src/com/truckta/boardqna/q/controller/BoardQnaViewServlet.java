@@ -40,10 +40,11 @@ public class BoardQnaViewServlet extends HttpServlet {
 
 		String boardNo = request.getParameter("boardNo");
 		BoardQnaQ q = new BoardQnaQService().selectBoard(boardNo);
-		List<FileQna> fileList = new FileQnaService().findFileList(Integer.parseInt(boardNo));
+		List<FileQna> fileList = new FileQnaService().findFileList(q.getBoardNo());
 		List<BoardQnaA> list = new BoardQnaQService().selectBoardComment(boardNo);
 		request.setAttribute("board_qna_q", q);
 		request.setAttribute("list", list);
+		request.setAttribute("fileList", fileList);
 		request.getRequestDispatcher("/views/user/board_qna_q_view.jsp").forward(request,
 				response);
 	}

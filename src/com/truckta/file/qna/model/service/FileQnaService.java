@@ -3,6 +3,7 @@ package com.truckta.file.qna.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.truckta.file.driver.model.vo.FileDriver;
 import com.truckta.file.qna.model.dao.FileQnaDao;
 import com.truckta.file.qna.model.vo.FileQna;
 
@@ -34,6 +35,18 @@ public class FileQnaService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.uploadQnaFile(conn,fileQna);
 		if(result==1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int uploadQnaFiles(List<FileQna> files) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.uploadQnaFiles(conn,files);
+		if(result == files.size()) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);

@@ -13,7 +13,7 @@
 <style>
 .container-fluid {
 	font-family: "Noto Sans KR", sans-serif;
-	margin-top:11%;
+	margin-top:7%;
 }
 tr>td{
 	vertical-align:middle!important;

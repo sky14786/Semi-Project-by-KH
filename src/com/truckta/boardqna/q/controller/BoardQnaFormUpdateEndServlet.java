@@ -3,6 +3,7 @@ package com.truckta.boardqna.q.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,46 +21,18 @@ import com.truckta.boardqna.q.model.vo.BoardQnaQ;
 import com.truckta.file.qna.model.service.FileQnaService;
 import com.truckta.file.qna.model.vo.FileQna;
 
-/**
- * 
- * Servlet implementation class BoardQnaFormEndServlet
- * 
- */
-
-@WebServlet("/board/boardQnaFormUpdateEndServlet")
+@WebServlet("/qnaupdate")
 
 public class BoardQnaFormUpdateEndServlet extends HttpServlet {
 	final private int maxSize = 1024 * 1024 * 3;
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 * @see HttpServlet#HttpServlet()
-	 * 
-	 */
-
 	public BoardQnaFormUpdateEndServlet() {
-
 		super();
-
-		// TODO Auto-generated constructor stub
-
 	}
 
-	/**
-	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 * 
-	 *      response)
-	 * 
-	 */
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
 			throws ServletException, IOException {
-
-		// TODO Auto-generated method stub
-
 		if (!ServletFileUpload.isMultipartContent(request)) {
 
 			request.getSession().setAttribute("isCertified", false);
@@ -91,77 +64,46 @@ public class BoardQnaFormUpdateEndServlet extends HttpServlet {
 		temp.setEtc(mul.getParameter("etc"));
 
 		temp.setTitle(mul.getParameter("title"));
-
-		List<FileQna> fileList = fileService.findFileList(boardNo);
+		
+		List<FileQna> fileQnaList = new ArrayList<FileQna>();
+		List<FileQna> files = fileService.findFileList(boardNo);
 
 		int i = 0;
 
 		for (; i < 5; i++) {
-
 			String nameTag = "qnaPic" + (i + 1);
-
 			if (mul.getFilesystemName(nameTag) != null) {
-
 				boolean uploadFile = false;
-
-				if (i < fileList.size()) {
-
-					uploadFile = (fileService.deleteQnaFile(fileList.get(i).getFileName()) == 1);
-
+				if (i < files.size()) {
+					uploadFile = (fileService.deleteQnaFile(files.get(i).getFileName()) == 1);
 				} else {
-
 					uploadFile = true;
-
 				}
-
 				if (uploadFile) {
-
 					String dir = path + "/" + mul.getFilesystemName(nameTag);
-
 					File oldFile = new File(dir);
-
 					String tempDir = path + "/" + temp.getBoardNo() + "_" + now + "_" + mul.getFilesystemName(nameTag);
-
 					String tempFileName = temp.getBoardNo() + "_" + now + "_" + mul.getFilesystemName(nameTag);
-
 					fileService.uploadQnaFile(new FileQna(temp.getBoardNo(), tempFileName));
-
 					File newFile = new File(tempDir);
-
 					oldFile.renameTo(newFile);
-
 				}
-
-			} else if (i < fileList.size() && mul.getParameter("org_" + nameTag).equals("null")) {
-
-				fileService.deleteQnaFile(fileList.get(i).getFileName());
-
+			} else if (i < files.size() && mul.getParameter("org_" + nameTag).equals("null")) {
+				fileService.deleteQnaFile(files.get(i).getFileName());
 			}
-
 		}
-
 		i += qnaService.updateQna(temp);
-
+		
+		
 		if (i == 6) {
-
-//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update : " + temp.getBoardNo());
-
-			request.getRequestDispatcher("adminBoardQnaQUpdateTry?boardNo=" + temp.getBoardNo()).forward(request,
-
-					response);
-
+//			request.getRequestDispatcher("adminBoardQnaQUpdateTry?boardNo=" + temp.getBoardNo()).forward(request,
+//					response);
+			request.getRequestDispatcher("/board/boardView?boardNo="+boardNo).forward(request, response);
 		} else {
-
-//			System.out.println(":: Truckta_LOG :: " + now + " :: " + " Admin_QNA_Q_Update Fail : " + temp.getBoardNo());
-
 			request.setAttribute("location", "/");
-
 			request.setAttribute("message", "실패! 개발자에게 문의하세요");
-
-			request.getRequestDispatcher("/common/msg.jsp").forward(request, response);
-
+			request.getRequestDispatcher("../common/msg.jsp").forward(request, response);
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -95,21 +95,27 @@ table#tbl-comment sub.comment-date {
 						<tr>
 							<td><input type="text" class="form-control" maxlength="2048"
 								style="height: 350px;" value="<%=q.getEtc()%>" readonly />
+							</td>
 						</tr>
-						<tr>
+						<div class='bigPictureWrapper'>
+							<div class='bigPicture'>
+							</div>
+						</div>
 						<%
 						if (fileList != null) { 
+						%>
+						<%
 								for (int i = 0; i < fileList.size(); i++) {
 						%>
-				
-						<img src="<%=request.getContextPath() %>/images/profile_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+						<tr>
+						<td>
+						<img src="<%=request.getContextPath() %>/images/qna_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
+						</td>
+						</tr>
 						<%
 									}
 								}
 						%>
-						<hr>
-						</tr>
-						
 					</table>
 
 				</form>
@@ -377,6 +383,59 @@ table#tbl-comment sub.comment-date {
 		 
 		 
 	</script>
+	
+	<script>
+
+$(document).ready(function (e){
+	
+	$(document).on("click","img",function(){
+		var path = $(this).attr('src')
+		showImage(path);
+	});//end click event
+	
+	function showImage(fileCallPath){
+	    
+	    $(".bigPictureWrapper").css("display","flex").show();
+	    
+	    $(".bigPicture")
+	    .html("<img src='"+fileCallPath+"' >")
+	    .animate({width:'100%', height: '100%'}, 1000);
+	    
+	  }//end fileCallPath
+	  
+	$(".bigPictureWrapper").on("click", function(e){
+	    $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+	    setTimeout(function(){
+	      $('.bigPictureWrapper').hide();
+	    }, 1000);
+	  });//end bigWrapperClick event
+});
+</script>
+<style>
+		.bigPictureWrapper {
+			position: absolute;
+			display: none;
+			justify-content: center;
+			align-items: center;
+			top:0%;
+			width:100%;
+			height:100%;
+			background-color: gray; 
+			z-index: 100;
+			background:rgba(255,255,255,0.5);
+		}
+		.bigPicture {
+			position: relative;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.bigPicture img {
+			width:600px;
+		}
+</style>
+	
 </section>
 <%@ include file="/views/common/footer.jsp"%>
 </html>

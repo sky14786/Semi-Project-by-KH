@@ -181,11 +181,18 @@ public class BoardQnaQService {
 		JDBCTemplate.close(conn);
 		return temp;
 	}
-	public int selectCountQnaQ() {
+	public int selectCountQnaQ(String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.selectCountQnaQ(conn);
+		int result = dao.selectCountQnaQ(conn,id);
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public BoardQnaQ findBoardQnaQ(String title, String writer) {
+		Connection conn = JDBCTemplate.getConnection();
+		BoardQnaQ temp = dao.findBoardQnaQ(conn, title,writer);
+		JDBCTemplate.close(conn);
+		return temp;
 	}
 
 }

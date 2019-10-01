@@ -73,6 +73,9 @@ public class AdminUserUpdateServlet extends HttpServlet {
 			File newFile = new File(tempDir);
 			oldFile.renameTo(newFile);
 		}
+		
+		
+		
 		int i = 0;
 		if (c.getUserType() == 2) {
 			String bLicense = mul.getParameter("bLicense");
@@ -81,6 +84,9 @@ public class AdminUserUpdateServlet extends HttpServlet {
 			int carType = Integer.parseInt(mul.getParameter("carType"));
 
 			d = new Driver(id, dateOfBirth, carType, dLicense, bLicense);
+			
+			
+			
 			ArrayList<FileDriver> fileDriverList = new ArrayList<FileDriver>();
 
 			List<FileDriver> files = service.findDriverFile(id);
