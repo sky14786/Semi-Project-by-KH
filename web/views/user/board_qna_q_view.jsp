@@ -95,27 +95,27 @@ table#tbl-comment sub.comment-date {
 						<tr>
 							<td><input type="text" class="form-control" maxlength="2048"
 								style="height: 350px;" value="<%=q.getEtc()%>" readonly />
+							</td>
 						</tr>
-						<tr>
-						<%
-						if (fileList != null) { 
-						%>
 						<div class='bigPictureWrapper'>
 							<div class='bigPicture'>
 							</div>
 						</div>
 						<%
+						if (fileList != null) { 
+						%>
+						<%
 								for (int i = 0; i < fileList.size(); i++) {
 						%>
+						<tr>
 						<td>
 						<img src="<%=request.getContextPath() %>/images/qna_images/<%=fileList.get(i).getFileName() %>" width="100px" height="100px">
 						</td>
+						</tr>
 						<%
 									}
 								}
 						%>
-						</tr>
-						
 					</table>
 
 				</form>

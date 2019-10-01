@@ -181,9 +181,9 @@ public class BoardQnaQService {
 		JDBCTemplate.close(conn);
 		return temp;
 	}
-	public int selectCountQnaQ() {
+	public int selectCountQnaQ(String id) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.selectCountQnaQ(conn);
+		int result = dao.selectCountQnaQ(conn,id);
 		JDBCTemplate.close(conn);
 		return result;
 	}
