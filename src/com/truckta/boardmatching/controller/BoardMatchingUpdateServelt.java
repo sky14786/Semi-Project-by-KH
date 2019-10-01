@@ -51,22 +51,19 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 			response.sendRedirect("/");
 			return;
 		}
-
-		String saveDir = getServletContext().getRealPath("/images/boardMatching_images");
+		
+		String saveDir = request.getSession().getServletContext().getRealPath("/images/boardMatching_images");
+//		String saveDir = getServletContext().getRealPath("/images/boardMatching_images");
 		int maxSize = 1024 * 1024 * 20; // 20M
 
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxSize, "utf-8", new BoFileRename());
 
 		// 데이터
 		String imgTemp[] = mr.getParameterValues("imgTemp");
-//		for (int i = 0; i < imgTemp.length; i++) {
-//			System.out.println(imgTemp[i]);
-//		}
 		
 		BoardMatching bm = new BoardMatching();
 
 		int ss = Integer.parseInt(mr.getParameter("boardNo"));
-//		System.out.println(ss);
 		
 		String boardStuff = mr.getParameter("boardStuff");
 		String stAddrPost = mr.getParameter("stAddrPost");
@@ -108,12 +105,9 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 		bm.setWrtier(cl.getId());
 
-//		int boardNum = ; //해당 글번호
-//		int boardNum = 199;
 		bm.setBoardNo(ss);
 		
 		int result = new BoardMatchingService().updateBoardMatching(bm);
-//		System.out.println("수정 성공 : " + result);
 		
 		if(result == 1) {
 			//기존 이미지 삭제
@@ -121,7 +115,6 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 
 			if(listImg.size() > 0) {
 				int imgCk = new BoardMatchingService().modImg(bm.getBoardNo(), imgTemp); //db에서 이미지 삭제
-//				System.out.println("db 부분삭제 : " + imgCk);
 				if(imgCk > 0) {
 					for (int i = 0; i < imgTemp.length; i++) {
 //						System.out.println("delete save img dir : " + saveDir + "/" + imgTemp[i]);
@@ -143,7 +136,7 @@ public class BoardMatchingUpdateServelt extends HttpServlet {
 			while (e.hasMoreElements()) {
 				fns.add(mr.getFilesystemName((String)e.nextElement()));
 			}
-
+			
 			for (int i = 0; i < fns.size(); i++) {
 				String imgFileName = fns.get(i);
 				fm = new FileMatching(bm.getBoardNo(), imgFileName);
