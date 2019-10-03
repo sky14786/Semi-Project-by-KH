@@ -18,7 +18,7 @@
 }
 
 .content_margin {
-  margin-top: 30px;
+  margin-top: 15x;
 }
 
 .form-style {
@@ -26,26 +26,26 @@
 }
 
 .form-style > .form-group > label {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .content-background {
-  background-color: lightgray;
+  background-color: white;
   padding: 60px 20px;
 }
 
 .input-phonenumber {
-  height: 60px;
+  height: 40px;
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .button-send {
-  margin-top: 35px;
-  width: 140px;
-  height: 50px;
+  margin-top: 20px;
+  width: 120px;
+  height: 40px;
 }
 
 .span-send {
-  font-size: 25px;
+  font-size: 20px;
 }
