@@ -30,7 +30,7 @@
 		<div class="col-6">
 		<br><br><br><br>
 			<h2>트럭타 기사신청</h2><hr>
-			<form action="/driverSignUp" method="post" name="sendform"
+			<form action="<%=request.getContextPath() %>/driverSignUp" method="post" name="sendform"
 				enctype="multipart/form-data" onsubmit="return checkData();">
 				<div class="form-group">
 					<label for="id">아이디</label> <input type="text" name="id" id="id"
