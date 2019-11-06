@@ -99,7 +99,7 @@
 				<%for(int i = 0 ; i<fileList.size();i++){
 						if(fileList.get(i).getBoardNo()==bm.getBoardNo()){%>
 						<hr>
-							<img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" style="width:250px;height:200px;">
+							<img src="<%=request.getContextPath()%>/images/boardMatching_images/<%=fileList.get(i).getFileName() %>" class="img-responsive" style="width:250px;height:200px;background:white">
 							<%
 						break;	
 						}}%>
