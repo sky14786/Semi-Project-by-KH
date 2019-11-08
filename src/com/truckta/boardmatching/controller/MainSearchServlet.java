@@ -49,21 +49,21 @@ public class MainSearchServlet extends HttpServlet {
 		int totalData = new MainService().selectCountMember(keyword);
 		List<BoardMatching> list = new MainService().selectMemberList(keyword, cPage, numPerPage);
 		//List<FileMatching> fileList = new FileMatchingService().selectListPage(cPage,numPerPage);
-		// ��ü ������ ��� (����¡ó��)
+		// 占쏙옙체 占쏙옙占쏙옙占쏙옙 占쏙옙占� (占쏙옙占쏙옙징처占쏙옙)
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
 
-		// �������� ����
+		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 		int pageSizeBar = 5;
 		String pageBar = ""; 
 		int pageNo = ((cPage - 1) / pageSizeBar) * pageSizeBar + 1;
 		int pageEnd = pageNo + pageSizeBar - 1;
 
-		// ����ڵ� pageBar�� �����ϱ�
+		// 占쏙옙占쏙옙湄占� pageBar占쏙옙 占쏙옙占쏙옙占싹깍옙
 		if (pageNo == 1) {
-			pageBar += "<span>[이전]</span>";
+			pageBar += "<span>[�씠�쟾]</span>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/main/mainFinder?cPage=" + (pageNo - 1)
-					+ "&searchKeyword=" + keyword + "'>[이전]</a>";
+					+ "&searchKeyword=" + keyword + "'>[�씠�쟾]</a>";
 		}
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (cPage == pageNo) {
@@ -75,10 +75,10 @@ public class MainSearchServlet extends HttpServlet {
 			pageNo++;
 		}
 		if (pageNo > totalPage) {
-			pageBar += "<span>[다음]</span>";
+			pageBar += "<span>[�떎�쓬]</span>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/admin/memberFinder?cPage=" + (pageNo)
-					+ "&searchKeyword=" + keyword + "'>[다음]</a>";
+					+ "&searchKeyword=" + keyword + "'>[�떎�쓬]</a>";
 		}
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("fileList", fileList);
@@ -87,7 +87,7 @@ public class MainSearchServlet extends HttpServlet {
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("list_page", list);
 //		System.out.println("#####setattributelist_page:"+list);
-		request.getRequestDispatcher("/mainList.jsp").forward(request, response);
+		request.getRequestDispatcher("/mainListMoog.jsp").forward(request, response);
 		///views
 	}
 

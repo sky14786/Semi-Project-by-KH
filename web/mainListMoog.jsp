@@ -16,7 +16,7 @@
 	rel="stylesheet">
 	
 	<!-- font awesome cdn -->
-	<link href="<%=request.getContextPath()%>/css/all.css" rel="stylesheet" >	
+	<%-- <link href="<%=request.getContextPath()%>/css/all.css" rel="stylesheet" >	 --%>
 	<link href="<%=request.getContextPath()%>/css/fontawesome.min.css" rel="stylesheet" >	
 			
 			
@@ -73,6 +73,10 @@
 			
 			
 			<!-- ////////////////////////////////////////////////////////////////////////////// -->
+			
+			
+			<section class="news section">
+					<div class="row container">
 			<style>
 		    	.img-fluid {
 					/* height: 200px; */
@@ -81,12 +85,10 @@
 					background-color: black;
 					text-align: center;
 				}
+				div.blog-post, ::after, ::before {
+    			box-sizing: unset;
+				}
 			</style>
-			
-			
-			<section class="news section">
-				<class="container">
-					<div class="row">
 			<%
 				for(BoardMatching bm : list_page){
 					boolean isNotNull = false;
