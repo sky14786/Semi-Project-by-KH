@@ -13,6 +13,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/June/Desktop/Semi-Project-by-KH/web/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/June/Documents/Semi-Project-by-KH/web/WEB-INF/lib/cos.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>

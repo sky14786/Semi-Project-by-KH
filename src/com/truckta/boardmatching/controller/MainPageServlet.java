@@ -27,6 +27,7 @@ public class MainPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 
 //		List<BoardMatching> list = new MainService().selectList();
 		List<FileMatching> fileList = new FileMatchingService().selectFileList();
@@ -42,7 +43,7 @@ public class MainPageServlet extends HttpServlet {
 		int totalFile = new FileMatchingService().selectCountFileMatching();
 //				List<Member> list=new MemberService().selectList();
 		List<BoardMatching> list_page = new MainService().selectListPage(cPage, numPerPage);
-		
+
 		int totalPage = (int) Math.ceil((double) totalMember / numPerPage);
 		String pageBar = "";
 		int pageSizeBar = 5;
@@ -67,16 +68,16 @@ public class MainPageServlet extends HttpServlet {
 		} else {
 			pageBar += "<a href=" + request.getContextPath() + "/mainpageload?cPage=" + (pageNo) + ">[다음]</a>";
 		}
-		
+
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		
+
 		request.setAttribute("numPerPage", numPerPage);// ?
 		request.setAttribute("list_page", list_page);
 		request.setAttribute("fileList", fileList);
-		
+
 		request.getRequestDispatcher("/mainListMoog.jsp").forward(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
