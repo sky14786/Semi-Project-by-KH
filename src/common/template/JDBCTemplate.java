@@ -14,14 +14,13 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 
 public class JDBCTemplate {
-	private static Properties prop = new Properties();
 
 	public static Connection getConnection() {
+		Properties prop = new Properties();
 		Connection conn = null;
+		String path=JDBCTemplate.class.getResource("/common/template/driver.properties").getPath();
 		try {
-			String path = JDBCTemplate.class.getResource("/").getPath();
-			System.out.println("JDBCTemplate's reference Path : " + path);
-			prop.load(new FileReader(path + "../resource/properties/driver.properties"));
+			prop.load(new FileReader(path));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pw"));

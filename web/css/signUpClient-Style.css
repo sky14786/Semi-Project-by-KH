@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.container {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+.inputFile {
+	height: 45px;
+}
+.navbar {
+	height: 65px;
+	width: 100%;
+}
+
+.navbar-brand {
+	width: 200px;
+}
+
+.navInput {
+	width: 200px;
+}
+
+.navButton {
+	width: 100px;
+}

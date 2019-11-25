@@ -1,0 +1,92 @@
+.nav-bar {
+  width: 3em;
+  height: 3em;
+}
+
+.header-search-bar {
+  width: 100px;
+}
+
+.btn-bg-color {
+  background-color: rgb(178, 165, 159);
+}
+.bg-nav {
+  background-color: rgb(2, 52, 89);
+}
+
+.jumbotron {
+  background-image: url("/resource/project_images/banner_img2.jpg");
+  background-size: cover;
+  text-shadow: black 0.2em 0.2em 0.2em;
+  color: white;
+}
+/* nav > div > input[type="text"]  */
+.search-bar {
+  width: 700px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 5px;
+}
+
+/*---Media Queries --*/
+
+@media (max-width: 1200px) {
+  .search-bar {
+    width: 550px;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-bar {
+    width: 300px;
+  }
+}
+
+@media (max-width: 700px) {
+  .search-bar {
+    width: 250px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .search-bar {
+    width: 180px;
+  }
+}
+
+@media (max-width: 420px) {
+  .search-bar {
+    width: 130px;
+  }
+}
+
+
+@media (max-width: 370px) {
+  .search-bar {
+    width: 100px;
+  }
+}
+
+@media (max-width: 340px) {
+  .search-bar {
+    width: 80px;
+  }
+}
+
+
+
+
+
+
+
+
+#logo {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
